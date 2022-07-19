@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/copper"
+    },
+    "B": {
+      "tag": "forge:rods/wooden"
+    },
+    "C": {
+      "tag": "forge:dusts/redstone"
+    }
+  },
+  "pattern": [
+    "A A",
+    "ABA",
+    "ACA"
+  ],
+  "result": {
+    "count": 6,
+    "item": "minecraft:powered_rail"
+  }
+}

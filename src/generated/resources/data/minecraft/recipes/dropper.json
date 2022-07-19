@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "forge:ingots/copper"
+    },
+    "B": {
+      "tag": "forge:dusts/redstone"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "A A",
+    "ABA"
+  ],
+  "result": {
+    "item": "minecraft:dropper"
+  }
+}
