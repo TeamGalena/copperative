@@ -5,12 +5,11 @@ issueTrackerURL="https://github.com/xaidee/coopperative/issues/" #optional
 
 [[mods]] #mandatory
 modId="coopperative" #mandatory
-version="1.19-0.1.0" #mandatory
+version="0.0.2" #mandatory
 displayName="Coopperative" #mandatory
 updateJSONURL="https://www.curseforge.com/minecraft/mc-mods/coopperative/files" #optional
 displayURL="https://www.curseforge.com/minecraft/mc-mods/coopperative" #optional
 #logoFile="coopperative.png" #optional
-credits="Thanks for this Oreganized mod goes to our active () members on our discord server!" #optional
 authors="Xaidee as part of Team Galena" #optional
 description='''
 Rightfully uniting copper and redstone components as one and expanding on copper as a whole.
@@ -32,6 +31,6 @@ Rightfully uniting copper and redstone components as one and expanding on copper
     modId="minecraft"
     mandatory=true
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange="[1.19,1.20)"
+    versionRange="[1.18,1.19)"
     ordering="NONE"
     side="BOTH"

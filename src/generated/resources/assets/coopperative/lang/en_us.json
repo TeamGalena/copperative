@@ -1,7 +1,16 @@
 {
+  "block.coopperative.copper_door": "Copper Door",
+  "block.coopperative.copper_trapdoor": "Copper Trapdoor",
+  "block.coopperative.exposed_copper_door": "Exposed Copper Door",
+  "block.coopperative.exposed_copper_trapdoor": "Exposed Copper Trapdoor",
   "block.coopperative.exposed_observer": "Exposed Observer",
-  "block.coopperative.observer": "Observer",
+  "block.coopperative.headlight": "Headlight",
+  "block.coopperative.oxidized_copper_door": "Oxidized Copper Door",
+  "block.coopperative.oxidized_copper_trapdoor": "Oxidized Copper Trapdoor",
   "block.coopperative.oxidized_observer": "Oxidized Observer",
+  "block.coopperative.patina_block": "Block of Patina",
+  "block.coopperative.weathered_copper_door": "Weathered Copper Door",
+  "block.coopperative.weathered_copper_trapdoor": "Weathered Copper Trapdoor",
   "block.coopperative.weathered_observer": "Weathered Observer",
   "item.coopperative.copper_nugget": "Copper Nugget",
   "item.coopperative.patina": "Patina"

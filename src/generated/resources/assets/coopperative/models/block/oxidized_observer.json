@@ -2,9 +2,9 @@
   "parent": "minecraft:block/observer",
   "textures": {
     "bottom": "coopperative:block/oxidized_observer_back_off",
-    "front": "coopperative:block/oxidized_observer_front",
-    "particle": "coopperative:block/oxidized_observer_front",
     "side": "coopperative:block/oxidized_observer_side",
-    "top": "coopperative:block/oxidized_observer_top"
+    "top": "coopperative:block/oxidized_observer_top",
+    "front": "coopperative:block/oxidized_observer_front",
+    "particle": "coopperative:block/oxidized_observer_front"
   }
 }

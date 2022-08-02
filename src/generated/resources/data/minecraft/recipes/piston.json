@@ -1,5 +1,10 @@
 {
   "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCB",
+    "BDB"
+  ],
   "key": {
     "A": {
       "tag": "minecraft:planks"
@@ -14,11 +19,6 @@
       "tag": "forge:dusts/redstone"
     }
   },
-  "pattern": [
-    "AAA",
-    "BCB",
-    "BDB"
-  ],
   "result": {
     "item": "minecraft:piston"
   }

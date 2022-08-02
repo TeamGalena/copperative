@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "coopperative:patina_block"
+    }
+  ],
+  "result": {
+    "item": "coopperative:patina",
+    "count": 9
+  }
+}

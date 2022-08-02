@@ -1,21 +1,20 @@
 package galena.coopperative.data;
 
-import galena.coopperative.Coopperative;
 import galena.coopperative.data.provider.CLangProvider;
-import galena.coopperative.registry.CBlocks;
-import galena.coopperative.registry.CItems;
+import galena.coopperative.content.index.CBlocks;
+import galena.coopperative.content.index.CItems;
 import net.minecraft.data.DataGenerator;
 
 public class CLang extends CLangProvider {
 
     public CLang(DataGenerator gen) {
-        super(gen, Coopperative.MOD_ID, "en_us");
+        super(gen, "en_us");
     }
 
     @Override
     protected void addTranslations() {
 
-
+        addBlock(CBlocks.PATINA_BLOCK, "Block of Patina");
 
         /*
             Automatically create translations for blocks and items based on their registry name.

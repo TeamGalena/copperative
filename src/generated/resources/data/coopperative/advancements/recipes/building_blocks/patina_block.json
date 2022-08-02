@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "coopperative:patina_block"
+    ]
+  },
+  "criteria": {
+    "has_patina": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "coopperative:patina"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "coopperative:patina_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_patina",
+      "has_the_recipe"
+    ]
+  ]
+}

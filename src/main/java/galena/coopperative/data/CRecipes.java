@@ -1,7 +1,8 @@
 package galena.coopperative.data;
 
+import galena.coopperative.content.index.CBlocks;
 import galena.coopperative.data.provider.CRecipeProvider;
-import galena.coopperative.registry.CItems;
+import galena.coopperative.content.index.CItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -29,6 +30,9 @@ public class CRecipes extends CRecipeProvider {
 
         compact(Items.COPPER_INGOT, CItems.COPPER_NUGGET.get()).save(consumer, "copper_ingot_from_nuggets");
         unCompact(CItems.COPPER_NUGGET.get(), Items.COPPER_INGOT).save(consumer);
+
+        compact(CBlocks.PATINA_BLOCK.get(), CItems.PATINA.get()).save(consumer);
+        unCompact(CItems.PATINA.get(), CBlocks.PATINA_BLOCK.get()).save(consumer);
 
         ShapedRecipeBuilder.shaped(Blocks.REPEATER)
                 .pattern("ABA")

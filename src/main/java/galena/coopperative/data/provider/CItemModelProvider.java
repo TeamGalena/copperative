@@ -55,4 +55,13 @@ public abstract class CItemModelProvider extends ItemModelProvider {
         return withExistingParent(ForgeRegistries.ITEMS.getKey(item.get()).getPath(), mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/" + ForgeRegistries.ITEMS.getKey(item.get()).getPath()));
     }
+
+    public ItemModelBuilder blockWithItem(Supplier<? extends Block> block) {
+        return withExistingParent(blockName(block), mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/" + blockName(block)));
+    }
+
+    public ItemModelBuilder trapDoor(Supplier<? extends Block> block) {
+        return block(block, blockName(block) + "_bottom");
+    }
 }

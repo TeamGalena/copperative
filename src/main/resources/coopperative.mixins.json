@@ -8,9 +8,8 @@
     "defaultRequire": 1
   },
   "mixins": [
-
+    "BlockMixin"
   ],
   "client": [
-
   ]
 }

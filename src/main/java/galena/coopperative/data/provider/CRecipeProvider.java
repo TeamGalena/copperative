@@ -6,6 +6,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -17,19 +18,19 @@ public class CRecipeProvider extends RecipeProvider {
         super(gen);
     }
 
-    public ShapedRecipeBuilder compact(Item itemOut, Item itemIn) {
+    public ShapedRecipeBuilder compact(ItemLike itemOut, ItemLike itemIn) {
         return ShapedRecipeBuilder.shaped(itemOut)
                 .pattern("AAA")
                 .pattern("AAA")
                 .pattern("AAA")
                 .define('A', itemIn)
-                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(itemIn).getPath(), has(itemIn));
+                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(itemIn.asItem()).getPath(), has(itemIn));
     }
 
-    public ShapelessRecipeBuilder unCompact(Item itemOut, Item itemIn) {
+    public ShapelessRecipeBuilder unCompact(ItemLike itemOut, ItemLike itemIn) {
         return ShapelessRecipeBuilder.shapeless(itemOut, 9)
                 .requires(itemIn)
-                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(itemIn).getPath(), has(itemIn));
+                .unlockedBy("has_" + ForgeRegistries.ITEMS.getKey(itemIn.asItem()).getPath(), has(itemIn));
     }
 
     public ShapelessRecipeBuilder makeWaxed(Supplier<Block> blockOut, Block blockIn) {
