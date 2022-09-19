@@ -1,7 +1,7 @@
 package galena.coopperative.content.event;
 
 import galena.coopperative.Coopperative;
-import galena.coopperative.content.index.CItems;
+import galena.coopperative.index.CItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;

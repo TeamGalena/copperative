@@ -5,11 +5,14 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.WeatheringCopperFullBlock;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
+import java.util.ArrayList;
 import java.util.function.Supplier;
 
 public abstract class CItemModelProvider extends ItemModelProvider {
@@ -30,8 +33,27 @@ public abstract class CItemModelProvider extends ItemModelProvider {
         return block(block, blockName(block));
     }
 
+    public <B extends Block> ArrayList<ItemModelBuilder> weatheringBlock(ArrayList<RegistryObject<B>> blockArrayList) {
+        ArrayList<ItemModelBuilder> itemArrayList = new ArrayList<>(blockArrayList.size());
+        for (Supplier<? extends B> blocks : blockArrayList)
+            itemArrayList.add(block(blocks));
+        return itemArrayList;
+    }
+
+    public <B extends Block> ArrayList<ItemModelBuilder> weathingBlockWithItem(ArrayList<RegistryObject<B>> blockArrayList) {
+        ArrayList<ItemModelBuilder> itemArrayList = new ArrayList<>(blockArrayList.size());
+        for (Supplier<? extends B> blocks : blockArrayList)
+            itemArrayList.add(blockWithItem(blocks));
+        return itemArrayList;
+    }
+
     public ItemModelBuilder block(Supplier<? extends Block> block, String name) {
         return withExistingParent(blockName(block), modLoc("block/" + name));
+    }
+
+    public ItemModelBuilder block(Supplier<? extends Block> waxed, Supplier<? extends Block> block) {
+        String name = blockName(block);
+        return block(waxed, name);
     }
 
     public ItemModelBuilder blockFlat(Supplier<? extends Block> block) {

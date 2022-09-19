@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,powering=false": {
+      "model": "coopperative:block/toggler",
+      "y": 180
+    },
+    "facing=east,powering=false": {
+      "model": "coopperative:block/toggler",
+      "y": 270
+    },
+    "facing=south,powering=false": {
+      "model": "coopperative:block/toggler"
+    },
+    "facing=west,powering=false": {
+      "model": "coopperative:block/toggler",
+      "y": 90
+    },
+    "facing=north,powering=true": {
+      "model": "coopperative:block/toggler_on",
+      "y": 180
+    },
+    "facing=east,powering=true": {
+      "model": "coopperative:block/toggler_on",
+      "y": 270
+    },
+    "facing=south,powering=true": {
+      "model": "coopperative:block/toggler_on"
+    },
+    "facing=west,powering=true": {
+      "model": "coopperative:block/toggler_on",
+      "y": 90
+    }
+  }
+}

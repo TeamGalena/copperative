@@ -1,19 +1,17 @@
 package galena.coopperative.data;
 
 import galena.coopperative.Coopperative;
-import galena.coopperative.content.index.CBlocks;
+import galena.coopperative.index.CBlocks;
 import galena.coopperative.data.provider.CItemModelProvider;
-import galena.coopperative.content.index.CItems;
+import galena.coopperative.index.CItems;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.function.Supplier;
+import org.jetbrains.annotations.NotNull;
 
 public class CItemModels extends CItemModelProvider {
 
@@ -22,7 +20,7 @@ public class CItemModels extends CItemModelProvider {
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return Coopperative.MOD_NAME + " Item Models";
     }
 
@@ -32,12 +30,17 @@ public class CItemModels extends CItemModelProvider {
         normalItem(CItems.PATINA);
 
         block(CBlocks.PATINA_BLOCK);
+        weatheringBlock(CBlocks.COPPER_BRICKS);
+        weatheringBlock(CBlocks.COPPER_PILLAR);
+        weatheringBlock(CBlocks.COPPER_TILES);
         //block(CBlocks.HEADLIGHT);
 
         blockWithItem(CBlocks.COPPER_DOOR);
         blockWithItem(CBlocks.EXPOSED_COPPER_DOOR);
         blockWithItem(CBlocks.WEATHERED_COPPER_DOOR);
         blockWithItem(CBlocks.OXIDIZED_COPPER_DOOR);
+
+        weathingBlockWithItem(CBlocks.TOGGLER);
 
         trapDoor(CBlocks.COPPER_TRAPDOOR);
         trapDoor(CBlocks.EXPOSED_COPPER_TRAPDOOR);
@@ -47,6 +50,10 @@ public class CItemModels extends CItemModelProvider {
         block(CBlocks.EXPOSED_OBSERVER);
         block(CBlocks.WEATHERED_OBSERVER);
         block(CBlocks.OXIDIZED_OBSERVER);
+        block(CBlocks.WAXED_OBSERVER, () -> Blocks.OBSERVER);
+        block(CBlocks.WAXED_EXPOSED_OBSERVER, CBlocks.EXPOSED_OBSERVER);
+        block(CBlocks.WAXED_WEATHERED_OBSERVER, CBlocks.WEATHERED_OBSERVER);
+        block(CBlocks.WAXED_OXIDIZED_OBSERVER, CBlocks.OXIDIZED_OBSERVER);
     }
 
     public static class ItemModelOverrides extends ItemModelProvider {

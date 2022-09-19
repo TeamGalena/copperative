@@ -1,8 +1,8 @@
 package galena.coopperative.data;
 
 import galena.coopperative.data.provider.CLangProvider;
-import galena.coopperative.content.index.CBlocks;
-import galena.coopperative.content.index.CItems;
+import galena.coopperative.index.CBlocks;
+import galena.coopperative.index.CItems;
 import net.minecraft.data.DataGenerator;
 
 public class CLang extends CLangProvider {

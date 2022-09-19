@@ -1,5 +1,7 @@
 package galena.coopperative.content.item;
 
+import galena.coopperative.Coopperative;
+import galena.coopperative.index.CBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -31,9 +33,14 @@ public class PatinaItem extends Item {
         ItemStack stack = ctx.getItemInHand();
         InteractionHand hand = ctx.getHand();
         BlockPos pos = ctx.getClickedPos();
-        if (block instanceof WeatheringCopper weatherBlock && WeatheringCopper.getNext(block).isPresent()) {
+        if (block instanceof WeatheringCopper && WeatheringCopper.getNext(block).isPresent()) {
             Block nextWeatherBlock = WeatheringCopper.getNext(block).get();
             world.levelEvent(player, 3005, pos, 0); // Adds Stripping particles
+            apply(world, player, stack, hand, pos, state, nextWeatherBlock);
+        }
+        if (Coopperative.WEATHERING_BLOCKS.get().containsKey(block)) {
+            Block nextWeatherBlock = Coopperative.WEATHERING_BLOCKS.get().get(block);
+            world.levelEvent(player, 3005, pos, 0);
             apply(world, player, stack, hand, pos, state, nextWeatherBlock);
         }
         return super.useOn(ctx);

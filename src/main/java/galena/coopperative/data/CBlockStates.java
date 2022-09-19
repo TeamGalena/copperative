@@ -1,7 +1,7 @@
 package galena.coopperative.data;
 
 import galena.coopperative.Coopperative;
-import galena.coopperative.content.index.CBlocks;
+import galena.coopperative.index.CBlocks;
 import galena.coopperative.data.provider.CBlockStateProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Blocks;
@@ -21,11 +21,18 @@ public class CBlockStates extends CBlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         block(CBlocks.PATINA_BLOCK);
+        weatheringBlock(CBlocks.COPPER_BRICKS);
+        weatheringPillarBlock(CBlocks.COPPER_PILLAR);
+        copperTilesBlock(CBlocks.COPPER_TILES);
 
         observer(() -> Blocks.OBSERVER);
         observer(CBlocks.EXPOSED_OBSERVER);
         observer(CBlocks.WEATHERED_OBSERVER);
         observer(CBlocks.OXIDIZED_OBSERVER);
+        observer(CBlocks.WAXED_OBSERVER, () -> Blocks.OBSERVER);
+        observer(CBlocks.WAXED_EXPOSED_OBSERVER, CBlocks.EXPOSED_OBSERVER);
+        observer(CBlocks.WAXED_WEATHERED_OBSERVER, CBlocks.WEATHERED_OBSERVER);
+        observer(CBlocks.WAXED_OXIDIZED_OBSERVER, CBlocks.OXIDIZED_OBSERVER);
 
         //headlight(CBlocks.HEADLIGHT);
 

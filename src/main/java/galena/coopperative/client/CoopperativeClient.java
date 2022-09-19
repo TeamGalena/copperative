@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
 
-import static galena.coopperative.content.index.CBlocks.*;
+import static galena.coopperative.index.CBlocks.*;
 
 public class CoopperativeClient {
 

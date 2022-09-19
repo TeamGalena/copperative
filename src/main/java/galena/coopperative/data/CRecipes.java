@@ -1,8 +1,8 @@
 package galena.coopperative.data;
 
-import galena.coopperative.content.index.CBlocks;
+import galena.coopperative.index.CBlocks;
 import galena.coopperative.data.provider.CRecipeProvider;
-import galena.coopperative.content.index.CItems;
+import galena.coopperative.index.CItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -110,6 +110,16 @@ public class CRecipes extends CRecipeProvider {
                 .define('A', COPPER_INGOT)
                 .define('B', Tags.Items.RODS_WOODEN)
                 .define('C', REDSTONE_DUST)
+                .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(CBlocks.TOGGLER.get(1).get())
+                .pattern("ABA")
+                .pattern("CCC")
+                .define('A', REDSTONE_DUST)
+                .define('B', Items.AMETHYST_SHARD)
+                .define('C', COPPER_INGOT)
+                .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD))
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(consumer);
     }

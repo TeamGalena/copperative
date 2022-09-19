@@ -8,14 +8,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static galena.coopperative.Coopperative.CopperizedVanillaBlocks;
+import static galena.coopperative.Coopperative.CopperizedBlocks;
 
 @Mixin(Block.class)
 public abstract class BlockMixin {
 
     @Inject(method = "getSoundType", at = @At("RETURN"), cancellable = true)
-    public void getSoundType(BlockState state, CallbackInfoReturnable<SoundType> cir) {
-        if (CopperizedVanillaBlocks.contains(state.getBlock())) {
+    public void modifySoundType(BlockState state, CallbackInfoReturnable<SoundType> cir) {
+        if (CopperizedBlocks.contains(state.getBlock())) {
             cir.setReturnValue(SoundType.COPPER);
         }
     }
