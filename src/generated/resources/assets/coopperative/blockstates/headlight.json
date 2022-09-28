@@ -1,0 +1,96 @@
+{
+  "variants": {
+    "broken=false,facing=down,powered=false": {
+      "model": "coopperative:block/headlight",
+      "x": 90
+    },
+    "broken=true,facing=down,powered=false": {
+      "model": "coopperative:block/headlight_broken",
+      "x": 90
+    },
+    "broken=false,facing=up,powered=false": {
+      "model": "coopperative:block/headlight",
+      "x": 270
+    },
+    "broken=true,facing=up,powered=false": {
+      "model": "coopperative:block/headlight_broken",
+      "x": 270
+    },
+    "broken=false,facing=north,powered=false": {
+      "model": "coopperative:block/headlight"
+    },
+    "broken=true,facing=north,powered=false": {
+      "model": "coopperative:block/headlight_broken"
+    },
+    "broken=false,facing=south,powered=false": {
+      "model": "coopperative:block/headlight",
+      "y": 180
+    },
+    "broken=true,facing=south,powered=false": {
+      "model": "coopperative:block/headlight_broken",
+      "y": 180
+    },
+    "broken=false,facing=west,powered=false": {
+      "model": "coopperative:block/headlight",
+      "y": 270
+    },
+    "broken=true,facing=west,powered=false": {
+      "model": "coopperative:block/headlight_broken",
+      "y": 270
+    },
+    "broken=false,facing=east,powered=false": {
+      "model": "coopperative:block/headlight",
+      "y": 90
+    },
+    "broken=true,facing=east,powered=false": {
+      "model": "coopperative:block/headlight_broken",
+      "y": 90
+    },
+    "broken=false,facing=down,powered=true": {
+      "model": "coopperative:block/headlight_lit",
+      "x": 90
+    },
+    "broken=true,facing=down,powered=true": {
+      "model": "coopperative:block/headlight_broken",
+      "x": 90
+    },
+    "broken=false,facing=up,powered=true": {
+      "model": "coopperative:block/headlight_lit",
+      "x": 270
+    },
+    "broken=true,facing=up,powered=true": {
+      "model": "coopperative:block/headlight_broken",
+      "x": 270
+    },
+    "broken=false,facing=north,powered=true": {
+      "model": "coopperative:block/headlight_lit"
+    },
+    "broken=true,facing=north,powered=true": {
+      "model": "coopperative:block/headlight_broken"
+    },
+    "broken=false,facing=south,powered=true": {
+      "model": "coopperative:block/headlight_lit",
+      "y": 180
+    },
+    "broken=true,facing=south,powered=true": {
+      "model": "coopperative:block/headlight_broken",
+      "y": 180
+    },
+    "broken=false,facing=west,powered=true": {
+      "model": "coopperative:block/headlight_lit",
+      "y": 270
+    },
+    "broken=true,facing=west,powered=true": {
+      "model": "coopperative:block/headlight_broken",
+      "y": 270
+    },
+    "broken=false,facing=east,powered=true": {
+      "model": "coopperative:block/headlight_lit",
+      "y": 90
+    },
+    "broken=true,facing=east,powered=true": {
+      "model": "coopperative:block/headlight_broken",
+      "y": 90
+    }
+  }
+}

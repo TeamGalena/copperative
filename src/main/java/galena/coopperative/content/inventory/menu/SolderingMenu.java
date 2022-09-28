@@ -74,6 +74,7 @@ public class SolderingMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(this.accessWorld, player, CBlocks.SOLDERING_TABLE.get());
+        return false;
+        //return stillValid(this.accessWorld, player, CBlocks.SOLDERING_TABLE.get());
     }
 }

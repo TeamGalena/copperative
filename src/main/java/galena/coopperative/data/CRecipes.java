@@ -113,7 +113,7 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(consumer);
 
-        ShapedRecipeBuilder.shaped(CBlocks.TOGGLER.get(1).get())
+        ShapedRecipeBuilder.shaped(CBlocks.TOGGLER.get(0).get())
                 .pattern("ABA")
                 .pattern("CCC")
                 .define('A', REDSTONE_DUST)
@@ -121,6 +121,19 @@ public class CRecipes extends CRecipeProvider {
                 .define('C', COPPER_INGOT)
                 .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD))
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(CBlocks.HEADLIGHT.get(0).get())
+                .pattern("AAA")
+                .pattern("BCD")
+                .pattern("AAA")
+                .define('A', COPPER_INGOT)
+                .define('B', REDSTONE_DUST)
+                .define('C', Items.REDSTONE_LAMP)
+                .define('D', Items.AMETHYST_SHARD)
+                .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD))
+                .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
+                .unlockedBy("has_redstone_lamp", has(Items.REDSTONE_LAMP))
                 .save(consumer);
     }
 }

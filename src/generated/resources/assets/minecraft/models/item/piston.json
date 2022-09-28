@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/piston_inventory",
+  "textures": {
+    "bottom": "minecraft:block/dispenser_top",
+    "side": "minecraft:block/piston_side"
+  }
+}

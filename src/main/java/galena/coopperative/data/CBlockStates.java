@@ -6,6 +6,7 @@ import galena.coopperative.data.provider.CBlockStateProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 
 public class CBlockStates extends CBlockStateProvider {
 
@@ -14,7 +15,7 @@ public class CBlockStates extends CBlockStateProvider {
     }
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return Coopperative.MOD_NAME + " Block States";
     }
 
@@ -25,6 +26,36 @@ public class CBlockStates extends CBlockStateProvider {
         weatheringPillarBlock(CBlocks.COPPER_PILLAR);
         copperTilesBlock(CBlocks.COPPER_TILES);
 
+        repeater(() -> Blocks.REPEATER);
+        repeater(CBlocks.EXPOSED_REPEATER);
+        repeater(CBlocks.WEATHERED_REPEATER);
+        repeater(CBlocks.OXIDIZED_REPEATER);
+
+        comparator(() -> Blocks.COMPARATOR);
+        comparator(CBlocks.EXPOSED_COMPARATOR);
+        comparator(CBlocks.WEATHERED_COMPARATOR);
+        comparator(CBlocks.OXIDIZED_COMPARATOR);
+
+        piston(() -> Blocks.PISTON);
+        piston(CBlocks.EXPOSED_PISTON);
+        piston(CBlocks.WEATHERED_PISTON);
+        piston(CBlocks.OXIDIZED_PISTON);
+
+        piston(() -> Blocks.STICKY_PISTON);
+        piston(CBlocks.EXPOSED_STICKY_PISTON);
+        piston(CBlocks.WEATHERED_STICKY_PISTON);
+        piston(CBlocks.OXIDIZED_STICKY_PISTON);
+
+        dispenser(() -> Blocks.DISPENSER);
+        dispenser(CBlocks.EXPOSED_DISPENSER);
+        dispenser(CBlocks.WEATHERED_DISPENSER);
+        dispenser(CBlocks.OXIDIZED_DISPENSER);
+
+        dropper(() -> Blocks.DROPPER);
+        dropper(CBlocks.EXPOSED_DROPPER);
+        dropper(CBlocks.WEATHERED_DROPPER);
+        dropper(CBlocks.OXIDIZED_DROPPER);
+
         observer(() -> Blocks.OBSERVER);
         observer(CBlocks.EXPOSED_OBSERVER);
         observer(CBlocks.WEATHERED_OBSERVER);
@@ -34,7 +65,13 @@ public class CBlockStates extends CBlockStateProvider {
         observer(CBlocks.WAXED_WEATHERED_OBSERVER, CBlocks.WEATHERED_OBSERVER);
         observer(CBlocks.WAXED_OXIDIZED_OBSERVER, CBlocks.OXIDIZED_OBSERVER);
 
-        //headlight(CBlocks.HEADLIGHT);
+        lever(() -> Blocks.LEVER);
+        lever(CBlocks.EXPOSED_LEVER);
+        lever(CBlocks.WEATHERED_LEVER);
+        lever(CBlocks.OXIDIZED_LEVER);
+
+        headlight(CBlocks.HEADLIGHT);
+        toggler(CBlocks.TOGGLER);
 
         door(CBlocks.COPPER_DOOR);
         door(CBlocks.EXPOSED_COPPER_DOOR);

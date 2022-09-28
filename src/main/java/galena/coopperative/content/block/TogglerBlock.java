@@ -1,13 +1,18 @@
 package galena.coopperative.content.block;
 
+import galena.coopperative.index.CBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -21,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class TogglerBlock extends DiodeBlock implements WeatheringCopper {
+public class TogglerBlock extends DiodeBlock implements CWeatheringCopper {
 
     public final WeatherState weatherState;
 
@@ -92,5 +97,10 @@ public class TogglerBlock extends DiodeBlock implements WeatheringCopper {
     @Override
     public @NotNull WeatherState getAge() {
         return weatherState;
+    }
+
+    @Override
+    public void fillItemCategory(@NotNull CreativeModeTab tab, @NotNull NonNullList<ItemStack> items) {
+        insert(this, false, items, itemStack -> itemStack.getItem().equals(CBlocks.OXIDIZED_COMPARATOR.get().asItem()), false);
     }
 }

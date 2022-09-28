@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/repeater_3tick_on",
+  "textures": {
+    "particle": "coopperative:block/weathered_repeater_off",
+    "slab": "coopperative:block/weathered_dispenser_side",
+    "top": "coopperative:block/weathered_repeater_on",
+    "unlit": "minecraft:block/redstone_torch"
+  }
+}

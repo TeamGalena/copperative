@@ -65,7 +65,7 @@ public class SpotLightBlock extends AirBlock implements SimpleWaterloggedBlock {
     protected boolean shouldExist(Level world) {
         BlockState state = world.getBlockState(headLightPos);
         Boolean isHeadlight = state.getBlock() instanceof HeadLightBlock;
-        Boolean isLit = state.getValue(HeadLightBlock.LIT);
+        Boolean isLit = state.getValue(HeadLightBlock.POWERED);
         Boolean isFacingTowardsThis = state.getValue(HeadLightBlock.FACING).getOpposite().equals(this.headLightRelative);
 
         return isHeadlight && isLit && isFacingTowardsThis;

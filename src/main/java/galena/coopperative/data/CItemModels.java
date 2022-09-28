@@ -33,7 +33,7 @@ public class CItemModels extends CItemModelProvider {
         weatheringBlock(CBlocks.COPPER_BRICKS);
         weatheringBlock(CBlocks.COPPER_PILLAR);
         weatheringBlock(CBlocks.COPPER_TILES);
-        //block(CBlocks.HEADLIGHT);
+        weatheringBlock(CBlocks.HEADLIGHT);
 
         blockWithItem(CBlocks.COPPER_DOOR);
         blockWithItem(CBlocks.EXPOSED_COPPER_DOOR);
@@ -47,6 +47,30 @@ public class CItemModels extends CItemModelProvider {
         trapDoor(CBlocks.WEATHERED_COPPER_TRAPDOOR);
         trapDoor(CBlocks.OXIDIZED_COPPER_TRAPDOOR);
 
+        blockWithItem(CBlocks.EXPOSED_REPEATER);
+        blockWithItem(CBlocks.WEATHERED_REPEATER);
+        blockWithItem(CBlocks.OXIDIZED_REPEATER);
+
+        blockWithItem(CBlocks.EXPOSED_COMPARATOR);
+        blockWithItem(CBlocks.WEATHERED_COMPARATOR);
+        blockWithItem(CBlocks.OXIDIZED_COMPARATOR);
+
+        piston(CBlocks.EXPOSED_PISTON);
+        piston(CBlocks.WEATHERED_PISTON);
+        piston(CBlocks.OXIDIZED_PISTON);
+
+        piston(CBlocks.EXPOSED_STICKY_PISTON);
+        piston(CBlocks.WEATHERED_STICKY_PISTON);
+        piston(CBlocks.OXIDIZED_STICKY_PISTON);
+
+        block(CBlocks.EXPOSED_DISPENSER);
+        block(CBlocks.WEATHERED_DISPENSER);
+        block(CBlocks.OXIDIZED_DISPENSER);
+
+        block(CBlocks.EXPOSED_DROPPER);
+        block(CBlocks.WEATHERED_DROPPER);
+        block(CBlocks.OXIDIZED_DROPPER);
+
         block(CBlocks.EXPOSED_OBSERVER);
         block(CBlocks.WEATHERED_OBSERVER);
         block(CBlocks.OXIDIZED_OBSERVER);
@@ -54,9 +78,17 @@ public class CItemModels extends CItemModelProvider {
         block(CBlocks.WAXED_EXPOSED_OBSERVER, CBlocks.EXPOSED_OBSERVER);
         block(CBlocks.WAXED_WEATHERED_OBSERVER, CBlocks.WEATHERED_OBSERVER);
         block(CBlocks.WAXED_OXIDIZED_OBSERVER, CBlocks.OXIDIZED_OBSERVER);
+
+        blockFlat(CBlocks.EXPOSED_LEVER);
+        blockFlat(CBlocks.WEATHERED_LEVER);
+        blockFlat(CBlocks.OXIDIZED_LEVER);
+
+        blockFlat(CBlocks.EXPOSED_POWERED_RAIL);
+        blockFlat(CBlocks.WEATHERED_POWERED_RAIL);
+        blockFlat(CBlocks.OXIDIZED_POWERED_RAIL);
     }
 
-    public static class ItemModelOverrides extends ItemModelProvider {
+    public static class ItemModelOverrides extends CItemModelProvider {
         public ItemModelOverrides(DataGenerator gen, ExistingFileHelper help) {
             super(gen, "minecraft", help);
         }
@@ -68,7 +100,12 @@ public class CItemModels extends CItemModelProvider {
 
         @Override
         protected void registerModels() {
+            blockFlat(() -> Blocks.LEVER);
+            piston(() -> Blocks.PISTON);
+            block(Blocks.DISPENSER);
+            block(Blocks.DROPPER);
             block(Blocks.OBSERVER);
+
         }
 
         public ItemModelBuilder block(Block block) {

@@ -20,6 +20,9 @@ public abstract class CItemModelProvider extends ItemModelProvider {
     public CItemModelProvider(DataGenerator gen, ExistingFileHelper help) {
         super(gen, Coopperative.MOD_ID, help);
     }
+    public CItemModelProvider(DataGenerator gen, String target, ExistingFileHelper help) {
+        super(gen, target, help);
+    }
 
     protected String blockName(Supplier<? extends Block> block) {
         return ForgeRegistries.BLOCKS.getKey(block.get()).getPath();
@@ -51,6 +54,8 @@ public abstract class CItemModelProvider extends ItemModelProvider {
         return withExistingParent(blockName(block), modLoc("block/" + name));
     }
 
+
+
     public ItemModelBuilder block(Supplier<? extends Block> waxed, Supplier<? extends Block> block) {
         String name = blockName(block);
         return block(waxed, name);
@@ -81,6 +86,18 @@ public abstract class CItemModelProvider extends ItemModelProvider {
     public ItemModelBuilder blockWithItem(Supplier<? extends Block> block) {
         return withExistingParent(blockName(block), mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/" + blockName(block)));
+    }
+
+    public ItemModelBuilder blockInventorySpecific(Supplier<? extends Block> block) {
+        return withExistingParent(blockName(block), modLoc("block/" + blockName(block) + "_inventory"));
+    }
+
+    public ItemModelBuilder piston(Supplier<? extends Block> piston) {
+        ResourceLocation bottom = texture(CBlockStateProvider.weatheringPrefix(piston) + "dispenser_top");
+        ResourceLocation side = texture(blockName(piston).replace("sticky_", "") + "_side");
+        return withExistingParent(blockName(piston), new ResourceLocation("block/" + (blockName(piston).contains("sticky") ? "sticky_" : "") + "piston_inventory"))
+                .texture("bottom", bottom)
+                .texture("side", side);
     }
 
     public ItemModelBuilder trapDoor(Supplier<? extends Block> block) {

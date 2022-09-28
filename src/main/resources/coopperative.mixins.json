@@ -9,6 +9,8 @@
   },
   "mixins": [
     "BlockMixin",
+    "DispenserBlockMixin",
+    "PistonHeadBlockMixin",
     "WeatheringCopperMixin"
   ],
   "client": [

@@ -1,0 +1,6 @@
+{
+  "parent": "coopperative:block/base_toggler_on",
+  "textures": {
+    "top": "coopperative:block/exposed_toggler_on"
+  }
+}

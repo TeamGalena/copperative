@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/observer",
+  "textures": {
+    "bottom": "coopperative:block/exposed_headlight_back_off",
+    "side": "coopperative:block/exposed_headlight_side",
+    "top": "coopperative:block/exposed_dispenser_top",
+    "front": "coopperative:block/exposed_headlight_unlit",
+    "particle": "coopperative:block/exposed_headlight_side"
+  }
+}

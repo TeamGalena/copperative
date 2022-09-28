@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,powered=false,powering=false": {
+      "model": "coopperative:block/weathered_toggler",
+      "y": 180
+    },
+    "facing=south,powered=false,powering=false": {
+      "model": "coopperative:block/weathered_toggler"
+    },
+    "facing=west,powered=false,powering=false": {
+      "model": "coopperative:block/weathered_toggler",
+      "y": 90
+    },
+    "facing=east,powered=false,powering=false": {
+      "model": "coopperative:block/weathered_toggler",
+      "y": 270
+    },
+    "facing=north,powered=true,powering=false": {
+      "model": "coopperative:block/weathered_toggler",
+      "y": 180
+    },
+    "facing=south,powered=true,powering=false": {
+      "model": "coopperative:block/weathered_toggler"
+    },
+    "facing=west,powered=true,powering=false": {
+      "model": "coopperative:block/weathered_toggler",
+      "y": 90
+    },
+    "facing=east,powered=true,powering=false": {
+      "model": "coopperative:block/weathered_toggler",
+      "y": 270
+    },
+    "facing=north,powered=false,powering=true": {
+      "model": "coopperative:block/weathered_toggler_on",
+      "y": 180
+    },
+    "facing=south,powered=false,powering=true": {
+      "model": "coopperative:block/weathered_toggler_on"
+    },
+    "facing=west,powered=false,powering=true": {
+      "model": "coopperative:block/weathered_toggler_on",
+      "y": 90
+    },
+    "facing=east,powered=false,powering=true": {
+      "model": "coopperative:block/weathered_toggler_on",
+      "y": 270
+    },
+    "facing=north,powered=true,powering=true": {
+      "model": "coopperative:block/weathered_toggler_on",
+      "y": 180
+    },
+    "facing=south,powered=true,powering=true": {
+      "model": "coopperative:block/weathered_toggler_on"
+    },
+    "facing=west,powered=true,powering=true": {
+      "model": "coopperative:block/weathered_toggler_on",
+      "y": 90
+    },
+    "facing=east,powered=true,powering=true": {
+      "model": "coopperative:block/weathered_toggler_on",
+      "y": 270
+    }
+  }
+}

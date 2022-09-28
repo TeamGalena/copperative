@@ -79,14 +79,44 @@ public class Coopperative {
         WEATHERING_BLOCKS = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
                 .putAll(blockMapFromArray(CBlocks.COPPER_BRICKS))
                 .putAll(blockMapFromArray(CBlocks.COPPER_PILLAR))
+                .putAll(blockMapFromArray(CBlocks.TOGGLER))
+                .putAll(blockMapFromArray(CBlocks.HEADLIGHT))
+
+                .put(Blocks.REPEATER, CBlocks.EXPOSED_REPEATER.get())
+                .put(CBlocks.EXPOSED_REPEATER.get(), CBlocks.WEATHERED_REPEATER.get())
+                .put(CBlocks.WEATHERED_REPEATER.get(), CBlocks.OXIDIZED_REPEATER.get())
+
+                .put(Blocks.COMPARATOR, CBlocks.EXPOSED_COMPARATOR.get())
+                .put(CBlocks.EXPOSED_COMPARATOR.get(), CBlocks.WEATHERED_COMPARATOR.get())
+                .put(CBlocks.WEATHERED_COMPARATOR.get(), CBlocks.OXIDIZED_COMPARATOR.get())
+
+                .put(Blocks.PISTON, CBlocks.EXPOSED_PISTON.get())
+                .put(CBlocks.EXPOSED_PISTON.get(), CBlocks.WEATHERED_PISTON.get())
+                .put(CBlocks.WEATHERED_PISTON.get(), CBlocks.OXIDIZED_PISTON.get())
+
+                .put(Blocks.STICKY_PISTON, CBlocks.EXPOSED_STICKY_PISTON.get())
+                .put(CBlocks.EXPOSED_STICKY_PISTON.get(), CBlocks.WEATHERED_STICKY_PISTON.get())
+                .put(CBlocks.WEATHERED_STICKY_PISTON.get(), CBlocks.OXIDIZED_STICKY_PISTON.get())
+
+                .put(Blocks.OBSERVER, CBlocks.EXPOSED_OBSERVER.get())
+                .put(CBlocks.EXPOSED_OBSERVER.get(), CBlocks.WEATHERED_OBSERVER.get())
+                .put(CBlocks.WEATHERED_OBSERVER.get(), CBlocks.OXIDIZED_OBSERVER.get())
+
+                .put(Blocks.DISPENSER, CBlocks.EXPOSED_DISPENSER.get())
+                .put(CBlocks.EXPOSED_DISPENSER.get(), CBlocks.WEATHERED_DISPENSER.get())
+                .put(CBlocks.WEATHERED_DISPENSER.get(), CBlocks.OXIDIZED_DISPENSER.get())
+
+                .put(Blocks.DROPPER, CBlocks.EXPOSED_DROPPER.get())
+                .put(CBlocks.EXPOSED_DROPPER.get(), CBlocks.WEATHERED_DROPPER.get())
+                .put(CBlocks.WEATHERED_DROPPER.get(), CBlocks.OXIDIZED_DROPPER.get())
 
                 .put(Blocks.LEVER, CBlocks.EXPOSED_LEVER.get())
                 .put(CBlocks.EXPOSED_LEVER.get(), CBlocks.WEATHERED_LEVER.get())
                 .put(CBlocks.WEATHERED_LEVER.get(), CBlocks.OXIDIZED_LEVER.get())
 
-                .put(Blocks.OBSERVER, CBlocks.EXPOSED_OBSERVER.get())
-                .put(CBlocks.EXPOSED_OBSERVER.get(), CBlocks.WEATHERED_OBSERVER.get())
-                .put(CBlocks.WEATHERED_OBSERVER.get(), CBlocks.OXIDIZED_OBSERVER.get())
+                .put(Blocks.POWERED_RAIL, CBlocks.EXPOSED_POWERED_RAIL.get())
+                .put(CBlocks.EXPOSED_POWERED_RAIL.get(), CBlocks.WEATHERED_POWERED_RAIL.get())
+                .put(CBlocks.WEATHERED_POWERED_RAIL.get(), CBlocks.OXIDIZED_POWERED_RAIL.get())
 
                 .put(CBlocks.COPPER_DOOR.get(), CBlocks.EXPOSED_COPPER_DOOR.get())
                 .put(CBlocks.EXPOSED_COPPER_DOOR.get(), CBlocks.WEATHERED_COPPER_DOOR.get())

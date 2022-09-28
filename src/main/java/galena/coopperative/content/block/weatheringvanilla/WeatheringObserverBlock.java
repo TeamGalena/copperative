@@ -3,9 +3,14 @@ package galena.coopperative.content.block.weatheringvanilla;
 import galena.coopperative.content.block.CWeatheringCopper;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 import java.util.Random;
@@ -20,7 +25,7 @@ public class WeatheringObserverBlock extends ObserverBlock implements CWeatherin
         this.weatherState = weatherState;
     }
 
-    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+    /*public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
         this.onRandomTick(state, world, pos, random);
         super.randomTick(state, world, pos, random);
     }
@@ -28,10 +33,15 @@ public class WeatheringObserverBlock extends ObserverBlock implements CWeatherin
     @Override
     public boolean isRandomlyTicking(BlockState state) {
         return Optional.ofNullable(NEXT_BY_BLOCK.get().get(state.getBlock())).isPresent() || super.isRandomlyTicking;
-    }
+    }*/
 
     @Override
     public WeatherState getAge() {
         return this.weatherState;
+    }
+
+    @Override
+    public void fillItemCategory(@NotNull CreativeModeTab tab, @NotNull NonNullList<ItemStack> items) {
+        insert(this, false, items, itemStack -> itemStack.getItem().equals(Items.OBSERVER), true);
     }
 }
