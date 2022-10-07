@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -17,7 +16,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 public class HeadLightBlock extends DirectionalBlock implements CWeatheringCopper {
@@ -29,7 +27,6 @@ public class HeadLightBlock extends DirectionalBlock implements CWeatheringCoppe
     private static final Integer RANGE = 30;
 
     private BlockPos spotlightPos = BlockPos.ZERO;
-
 
     public HeadLightBlock(WeatherState weatherState, Properties properties) {
         super(properties);
@@ -43,29 +40,46 @@ public class HeadLightBlock extends DirectionalBlock implements CWeatheringCoppe
     }
 
     @Override
-    public void setPlacedBy(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-        if (!world.isClientSide)
-            this.checkIfOn(world, pos, state);
+    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block p_55669_, BlockPos p_55670_, boolean p_55671_) {
+        if (!world.isClientSide) {
+            boolean flag = isLit(state);
+            if (flag != world.hasNeighborSignal(pos)) {
+                if (flag) {
+                    world.scheduleTick(pos, this, 4);
+                    world.scheduleTick(spotlightPos, this, 4);
+                } else {
+                    world.setBlock(pos, state.cycle(POWERED), 2);
+                    if (world.isEmptyBlock(pos.relative(state.getValue(FACING))))
+                        spotlight(state, world, pos);
+                }
+            }
+
+        }
+    }
+
+    private boolean spotlight(BlockState state, Level world, BlockPos pos) {
+        if (state.getValue(BROKEN)) return false;
+        Direction facing = state.getValue(FACING);
+        for (int i = 1; RANGE > i; i++) {
+            BlockPos targetPos = pos.relative(facing, i);
+            if (!world.isEmptyBlock(targetPos)) {
+                spotlightPos = targetPos.relative(facing.getOpposite());
+                world.setBlock(spotlightPos, CBlocks.SPOT_LIGHT.get().defaultBlockState(), 2);
+                SpotLightBlock spotlight = (SpotLightBlock) world.getBlockState(spotlightPos).getBlock();
+                spotlight.setHeadLightPos(pos);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block adjBlock, BlockPos adjPos, boolean p_60514_) {
-        if (!world.isClientSide)
-            this.checkIfOn(world, pos, state);
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+        if (isLit(state) && !world.hasNeighborSignal(pos)) {
+            world.setBlock(pos, state.cycle(POWERED), 2);
+            world.scheduleTick(spotlightPos, this, 4);
+        }
     }
-
-    @Override
-    public void onPlace(BlockState state, Level world, BlockPos pos, BlockState clickedState, boolean p_60229_) {
-        if (!world.isClientSide)
-            this.checkIfOn(world, pos, state);
-    }
-
-    @Override
-    public void tick(BlockState state, @NotNull ServerLevel world, @NotNull BlockPos pos, @NotNull Random random) {
-        if (!world.isClientSide)
-            this.checkIfOn(world, pos, state);
-    }
-
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -82,55 +96,8 @@ public class HeadLightBlock extends DirectionalBlock implements CWeatheringCoppe
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
-    private boolean getNeighborSignal(Level world, BlockPos pos, Direction direction) {
-        for (Direction directions : Direction.values()) {
-            if (directions != direction && world.hasSignal(pos.relative(direction), direction)) {
-                return true;
-            }
-        }
-        if (world.hasSignal(pos, Direction.DOWN)) {
-            return true;
-        }
-        BlockPos blockpos = pos.above();
-
-        for(Direction directions : Direction.values()) {
-            if (directions != Direction.DOWN && world.hasSignal(blockpos.relative(directions), directions)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void checkIfOn(Level world, BlockPos pos, BlockState state) {
-        Direction direction = state.getValue(FACING);
-        boolean powered = this.getNeighborSignal(world, pos, direction);
-        if (powered && !state.getValue(POWERED)) {
-            state.setValue(POWERED, true);
-            spotlight(world, pos, direction);
-            return;
-        }
-        if (!powered && state.getValue(POWERED)) {
-            state.setValue(POWERED, false);
-        }
-    }
-
-    private boolean spotlight(Level world, BlockPos origin, Direction direction) {
-        // Cast until find a solid block
-        for (int i = 0; RANGE > i; i++) {
-            BlockPos targetPos = origin.relative(direction, i + 1);
-            if (!world.getBlockState(targetPos).canOcclude()) {
-                moveSpotlight(world, targetPos);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void moveSpotlight(Level world, BlockPos newPos) {
-        world.setBlockAndUpdate(newPos, CBlocks.SPOT_LIGHT.get().defaultBlockState());
-        if (spotlightPos != newPos && world.getBlockState(spotlightPos).is(CBlocks.SPOT_LIGHT.get()))
-            world.removeBlock(spotlightPos, true);
-        this.spotlightPos = newPos;
+    public static boolean isLit(BlockState state) {
+        return state.getValue(POWERED) && !state.getValue(BROKEN);
     }
 
     @Override

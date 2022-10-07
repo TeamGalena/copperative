@@ -12,6 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -26,13 +27,25 @@ public class CRecipes extends CRecipeProvider {
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
 
         compact(Items.COPPER_INGOT, CItems.COPPER_NUGGET.get()).save(consumer, "copper_ingot_from_nuggets");
         unCompact(CItems.COPPER_NUGGET.get(), Items.COPPER_INGOT).save(consumer);
 
         compact(CBlocks.PATINA_BLOCK.get(), CItems.PATINA.get()).save(consumer);
         unCompact(CItems.PATINA.get(), CBlocks.PATINA_BLOCK.get()).save(consumer);
+
+        door(Items.COPPER_INGOT, CBlocks.COPPER_DOOR);
+        trapdoor(Items.COPPER_INGOT, CBlocks.COPPER_TRAPDOOR);
+
+        quadTransform(Items.CUT_COPPER, CBlocks.COPPER_BRICKS.get(0));
+
+        ShapedRecipeBuilder.shaped(CBlocks.COPPER_PILLAR.get(0).get())
+                .pattern("A")
+                .pattern("A")
+                .define('A', Items.CUT_COPPER)
+                .unlockedBy("has_cut_copper", has(Items.CUT_COPPER))
+                .save(consumer);
 
         ShapedRecipeBuilder.shaped(Blocks.REPEATER)
                 .pattern("ABA")
@@ -114,25 +127,23 @@ public class CRecipes extends CRecipeProvider {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(CBlocks.TOGGLER.get(0).get())
-                .pattern("ABA")
+                .pattern(" A ")
+                .pattern("BAB")
                 .pattern("CCC")
-                .define('A', REDSTONE_DUST)
-                .define('B', Items.AMETHYST_SHARD)
+                .define('A', Items.AMETHYST_SHARD)
+                .define('B', REDSTONE_DUST)
                 .define('C', COPPER_INGOT)
                 .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD))
-                .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(CBlocks.HEADLIGHT.get(0).get())
                 .pattern("AAA")
-                .pattern("BCD")
-                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("ACA")
                 .define('A', COPPER_INGOT)
-                .define('B', REDSTONE_DUST)
+                .define('B', Items.SPYGLASS)
                 .define('C', Items.REDSTONE_LAMP)
-                .define('D', Items.AMETHYST_SHARD)
-                .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD))
-                .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
+                .unlockedBy("has_spyglass", has(Items.SPYGLASS))
                 .unlockedBy("has_redstone_lamp", has(Items.REDSTONE_LAMP))
                 .save(consumer);
     }

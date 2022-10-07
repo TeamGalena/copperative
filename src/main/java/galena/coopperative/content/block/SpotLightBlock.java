@@ -2,6 +2,7 @@ package galena.coopperative.content.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.AirBlock;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
 import java.util.function.ToIntFunction;
 
 public class SpotLightBlock extends AirBlock implements SimpleWaterloggedBlock {
@@ -39,9 +41,33 @@ public class SpotLightBlock extends AirBlock implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public void onPlace(BlockState state, Level world, BlockPos pos, BlockState adjState, boolean isMoving) {
-        super.onPlace(state, world, pos, adjState, isMoving);
-        if (shouldExist(world)) world.setBlock(pos, this.getFluidState(state).createLegacyBlock(), 2);
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+        if (headLightPos == null) {
+            world.removeBlock(pos, false);
+            return;
+        }
+        BlockState headlightState = world.getBlockState(headLightPos);
+        if (!(headlightState.getBlock() instanceof HeadLightBlock)) {
+            world.removeBlock(pos, false);
+            return;
+        }
+        if (!HeadLightBlock.isLit(headlightState))
+            world.removeBlock(pos, false);
+    }
+
+    @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        return true;
+    }
+
+    private Direction getRelativeDirection(BlockPos pos1, BlockPos pos2) {
+        if (pos1.getX() == pos2.getX()) {
+            if (pos1.getY() == pos2.getY()) {
+                return pos1.getZ() > pos2.getY() ? Direction.DOWN : Direction.UP;
+            }
+            return pos1.getY() > pos2.getY() ? Direction.EAST : Direction.WEST;
+        }
+        return pos1.getX() > pos2.getX() ? Direction.SOUTH : Direction.NORTH;
     }
 
     @Override
@@ -58,6 +84,10 @@ public class SpotLightBlock extends AirBlock implements SimpleWaterloggedBlock {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
+    public void setHeadLightPos(BlockPos pos) {
+        this.headLightPos = pos;
+    }
+
     public BlockPos getHeadLightPos() {
         return this.headLightPos;
     }
@@ -65,7 +95,7 @@ public class SpotLightBlock extends AirBlock implements SimpleWaterloggedBlock {
     protected boolean shouldExist(Level world) {
         BlockState state = world.getBlockState(headLightPos);
         Boolean isHeadlight = state.getBlock() instanceof HeadLightBlock;
-        Boolean isLit = state.getValue(HeadLightBlock.POWERED);
+        Boolean isLit = HeadLightBlock.isLit(state);
         Boolean isFacingTowardsThis = state.getValue(HeadLightBlock.FACING).getOpposite().equals(this.headLightRelative);
 
         return isHeadlight && isLit && isFacingTowardsThis;

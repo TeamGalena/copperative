@@ -320,25 +320,24 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
         });
     }
 
-    public ModelFile poweredRailModel(Supplier<? extends Block> block, Boolean powered) {
+    public ModelFile poweredRailModel(Supplier<? extends Block> block, String affix, Boolean powered, String shape) {
         String name = name(block);
-        return models().withExistingParent(name, BLOCK_FOLDER + "/powered_rail")
-                .texture("rail", texture(name + (powered ? "_on" : "")));
-    }
-
-    public ModelFile poweredRailModelRaised(Supplier<? extends Block> block, Boolean powered, Boolean NE) {
-        String name = name(block);
-        String affix = NE ? "_ne" : "_sw";
-        return models().withExistingParent(name, BLOCK_FOLDER + "/powered_rail_raised" + affix)
+        return models().withExistingParent(name + affix, BLOCK_FOLDER + "/powered_rail" + affix)
                 .texture("rail", texture(name + (powered ? "_on" : "")));
     }
 
     public void poweredRail(Supplier<? extends Block> block) {
         getVariantBuilder(block.get()).forAllStates(state -> {
             boolean powered = state.getValue(PoweredRailBlock.POWERED);
-            boolean raised = state.getValue(PoweredRailBlock.SHAPE).isAscending();
+            String shape = state.getValue(PoweredRailBlock.SHAPE).getName();
+            String affix = (powered ? "_on" : "") +
+                    (state.getValue(PoweredRailBlock.SHAPE).isAscending() ? "_raised" : "") +
+                    (shape.equals("ascending_east") || shape.equals("ascending_north") ? "_ne" : shape.equals("ascending_south") || shape.equals("ascending_west") ? "_sw" : "");
+            int y =
+                    shape.equals("ascending_east") || shape.equals("ascending_west") || shape.equals("east_west")
+                            ? 90 : 0;
 
-            return ConfiguredModel.builder().modelFile(poweredRailModel(block, powered)).build();
+            return ConfiguredModel.builder().modelFile(poweredRailModel(block, affix, powered, shape)).rotationY(y).build();
         });
     }
 

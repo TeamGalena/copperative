@@ -9,12 +9,11 @@ version="0.0.2" #mandatory
 displayName="Coopperative" #mandatory
 updateJSONURL="https://www.curseforge.com/minecraft/mc-mods/coopperative/files" #optional
 displayURL="https://www.curseforge.com/minecraft/mc-mods/coopperative" #optional
-#logoFile="coopperative.png" #optional
-authors="Xaidee as part of Team Galena" #optional
+logoFile="logo.png" #optional
+authors="Team Galena" #optional
 description='''
-Rightfully uniting copper and redstone components as one and expanding on copper as a whole.
+Uniting copper and redstone components as one and expanding on copper as a whole.
 '''
-
 [[dependencies.coopperative]] #optional
     # the modid of the dependency
     modId="forge" #mandatory

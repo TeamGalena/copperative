@@ -2,21 +2,18 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "AAA",
-    "BCD",
-    "AAA"
+    "ABA",
+    "ACA"
   ],
   "key": {
     "A": {
       "tag": "forge:ingots/copper"
     },
     "B": {
-      "tag": "forge:dusts/redstone"
+      "item": "minecraft:spyglass"
     },
     "C": {
       "item": "minecraft:redstone_lamp"
-    },
-    "D": {
-      "item": "minecraft:amethyst_shard"
     }
   },
   "result": {

@@ -2,29 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "coopperative:headlight"
+      "coopperative:copper_pillar"
     ]
   },
   "criteria": {
-    "has_spyglass": {
+    "has_cut_copper": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:spyglass"
-            ]
-          }
-        ]
-      }
-    },
-    "has_redstone_lamp": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:redstone_lamp"
+              "minecraft:cut_copper"
             ]
           }
         ]
@@ -33,14 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "coopperative:headlight"
+        "recipe": "coopperative:copper_pillar"
       }
     }
   },
   "requirements": [
     [
-      "has_spyglass",
-      "has_redstone_lamp",
+      "has_cut_copper",
       "has_the_recipe"
     ]
   ]

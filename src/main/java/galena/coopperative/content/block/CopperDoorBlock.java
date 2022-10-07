@@ -72,7 +72,7 @@ public class CopperDoorBlock extends DoorBlock implements CWeatheringCopper {
         super.onPlace(state, world, pos, clickedState, p_60229_);
     }
 
-        @Override
+    @Override
     public boolean isRandomlyTicking(BlockState state) {
         return Optional.ofNullable(NEXT_BY_BLOCK.get().get(state.getBlock())).isPresent();
     }
