@@ -2,10 +2,11 @@ package galena.coopperative.data.provider;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import galena.coopperative.Coopperative;
+import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.HashCache;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
@@ -16,14 +17,10 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.apache.commons.lang3.text.translate.JavaUnicodeEscaper;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
-import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.Supplier;
 
@@ -44,7 +41,7 @@ public abstract class CLangProvider implements DataProvider {
     protected abstract void addTranslations();
 
     @Override
-    public void run(HashCache cache) throws IOException {
+    public void run(CachedOutput cache) throws IOException {
         addTranslations();
         if (!data.isEmpty())
             save(cache, data, this.gen.getOutputFolder().resolve("assets/" + modid + "/lang/" + locale + ".json"));
@@ -55,19 +52,13 @@ public abstract class CLangProvider implements DataProvider {
         return "Languages: " + locale;
     }
 
-    private void save(HashCache cache, Object object, Path target) throws IOException {
-        String data = GSON.toJson(object);
-        data = JavaUnicodeEscaper.outsideOf(0, 0x7f).translate(data); // Escape unicode after the fact so that it's not double escaped by GSON
-        String hash = DataProvider.SHA1.hashUnencodedChars(data).toString();
-        if (!Objects.equals(cache.getHash(target), hash) || !Files.exists(target)) {
-            Files.createDirectories(target.getParent());
-
-            try (BufferedWriter bufferedwriter = Files.newBufferedWriter(target)) {
-                bufferedwriter.write(data);
-            }
+    private void save(CachedOutput cache, Map<String, String> data, Path target) throws IOException {
+        JsonObject json = new JsonObject();
+        for (Map.Entry<String, String> pair : data.entrySet()) {
+            json.addProperty(pair.getKey(), pair.getValue());
         }
 
-        cache.putNew(target, hash);
+        DataProvider.saveStable(cache, json, target);
     }
 
     public void addBlock(Supplier<? extends Block> key, String name) {

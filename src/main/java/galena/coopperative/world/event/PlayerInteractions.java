@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -46,7 +46,7 @@ public class PlayerInteractions {
      **/
     @SubscribeEvent
     public static void blockItemInteractions(final PlayerInteractEvent.RightClickBlock event) {
-        Level world = event.getWorld();
+        Level world = event.getLevel();
         BlockPos pos = event.getPos();
         BlockState state = world.getBlockState(pos);
         ItemStack itemStack = event.getItemStack();
@@ -56,11 +56,11 @@ public class PlayerInteractions {
 
             if (event.getEntity() instanceof ServerPlayer player) CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(player, pos, itemStack);
 
-            event.getPlayer().swing(event.getHand());
-            if (!event.getPlayer().isCreative()) event.getItemStack().shrink(1);
+            event.getEntity().swing(event.getHand());
+            if (!event.getEntity().isCreative()) event.getItemStack().shrink(1);
             Block waxedBlock = CBlocks.WAXED_BLOCKS.inverse().get(state.getBlock());
             if (!world.isClientSide() && waxedBlock != null) world.setBlock(pos, waxedBlock.withPropertiesOf(state), 11);
-            world.levelEvent(event.getPlayer(), 3003, pos, 0);
+            world.levelEvent(event.getEntity(), 3003, pos, 0);
         }
     }
 }

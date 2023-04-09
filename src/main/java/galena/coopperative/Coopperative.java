@@ -11,12 +11,12 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import org.apache.logging.log4j.LogManager;
@@ -137,14 +137,14 @@ public class Coopperative {
         ExistingFileHelper helper = event.getExistingFileHelper();
 
         if(event.includeClient()) {
-            generator.addProvider(new CBlockStates(generator, helper));
-            generator.addProvider(new CItemModels(generator, helper));
-            generator.addProvider(new CItemModels.ItemModelOverrides(generator, helper));
-            generator.addProvider(new CLang(generator));
+            generator.addProvider(true, new CBlockStates(generator, helper));
+            generator.addProvider(true, new CItemModels(generator, helper));
+            generator.addProvider(true, new CItemModels.ItemModelOverrides(generator, helper));
+            generator.addProvider(true, new CLang(generator));
             //generator.addProvider(true, new OSoundDefinitions(generator, helper));
         }
         if(event.includeServer()) {
-            generator.addProvider(new CRecipes(generator));
+            generator.addProvider(true, new CRecipes(generator));
             //generator.addProvider(true, new OLootTables(generator));
             //OBlockTags blockTags = new OBlockTags(generator, helper);
             //generator.addProvider(true, blockTags);

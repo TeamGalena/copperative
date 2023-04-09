@@ -14,7 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -73,7 +72,7 @@ public class SolderingRecipe implements Recipe<Container> {
         return null;
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<SolderingRecipe> {
+    public static class Serializer implements RecipeSerializer<SolderingRecipe> {
         private static final ResourceLocation NAME = new ResourceLocation(Coopperative.MOD_ID, "soldering");
 
         @Override

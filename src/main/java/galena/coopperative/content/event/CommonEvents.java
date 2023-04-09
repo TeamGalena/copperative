@@ -10,7 +10,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -20,7 +20,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void handleAxeScrapeEvent(BlockEvent.BlockToolModificationEvent event) {
         if (event.isSimulated() || event.getContext() == null) return;
-        Level world = (Level) event.getWorld();
+        Level world = (Level) event.getLevel();
         UseOnContext ctx = event.getContext();
         if (event.getToolAction() == ToolActions.AXE_SCRAPE && WeatheringCopper.getPrevious(event.getState()).isPresent()) {
             ItemStack patina = new ItemStack(CItems.PATINA.get());

@@ -1,13 +1,15 @@
 package galena.coopperative.content.inventory.menu;
 
-import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CMenuTypes;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.*;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.ResultContainer;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -76,5 +78,11 @@ public class SolderingMenu extends AbstractContainerMenu {
     public boolean stillValid(Player player) {
         return false;
         //return stillValid(this.accessWorld, player, CBlocks.SOLDERING_TABLE.get());
+    }
+
+    @Override
+    public ItemStack quickMoveStack(Player player, int slot) {
+        // TODO what does this method even do?
+        return ItemStack.EMPTY;
     }
 }
