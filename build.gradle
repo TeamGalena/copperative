@@ -111,13 +111,13 @@ dependencies {
     //runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 
     // Pretty Shaders for Showcases
-    runtimeOnly fg.deobf("curse.maven:oculus-581495:3821406")
-    runtimeOnly fg.deobf("curse.maven:rubidium-574856:3884715")
+    runtimeOnly fg.deobf("curse.maven:oculus-581495:${oculus_version}")
+    runtimeOnly fg.deobf("curse.maven:rubidium-574856:${rubidium_version}")
 
     // For testing compatibility
-    runtimeOnly fg.deobf("curse.maven:create-328085:3872145") // Create 1.18.2 v0.5.0c
-    runtimeOnly fg.deobf("curse.maven:flywheel-486392:3871082")
-    runtimeOnly fg.deobf("curse.maven:create-alloyed-564792:3871942")
+    runtimeOnly fg.deobf("curse.maven:create-328085:${create_version}")
+    runtimeOnly fg.deobf("curse.maven:flywheel-486392:${flywheel_version}")
+    runtimeOnly fg.deobf("curse.maven:create-alloyed-564792:${create_alloyed_version}")
 }
 
 jar {
