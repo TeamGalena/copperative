@@ -70,6 +70,7 @@ public class CBlockStates extends CBlockStateProvider {
         lever(CBlocks.WEATHERED_LEVER);
         lever(CBlocks.OXIDIZED_LEVER);
 
+        poweredRail(() -> Blocks.POWERED_RAIL);
         poweredRail(CBlocks.EXPOSED_POWERED_RAIL);
         poweredRail(CBlocks.WEATHERED_POWERED_RAIL);
         poweredRail(CBlocks.OXIDIZED_POWERED_RAIL);

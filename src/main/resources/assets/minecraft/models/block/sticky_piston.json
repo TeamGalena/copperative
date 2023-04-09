@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/template_piston",
-  "textures": {
-    "platform": "minecraft:block/piston_top_sticky",
-    "bottom": "minecraft:block/dispenser_top",
-    "side": "minecraft:block/piston_side"
-  }
-}

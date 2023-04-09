@@ -4,47 +4,47 @@
       "model": "coopperative:block/exposed_sticky_piston",
       "x": 90
     },
-    "extended=true,facing=down": {
+    "extended=false,facing=east": {
       "model": "coopperative:block/exposed_sticky_piston",
-      "x": 90
-    },
-    "extended=false,facing=up": {
-      "model": "coopperative:block/exposed_sticky_piston",
-      "x": 270
-    },
-    "extended=true,facing=up": {
-      "model": "coopperative:block/exposed_sticky_piston",
-      "x": 270
+      "y": 90
     },
     "extended=false,facing=north": {
-      "model": "coopperative:block/exposed_sticky_piston"
-    },
-    "extended=true,facing=north": {
       "model": "coopperative:block/exposed_sticky_piston"
     },
     "extended=false,facing=south": {
       "model": "coopperative:block/exposed_sticky_piston",
       "y": 180
     },
-    "extended=true,facing=south": {
+    "extended=false,facing=up": {
       "model": "coopperative:block/exposed_sticky_piston",
-      "y": 180
+      "x": 270
     },
     "extended=false,facing=west": {
       "model": "coopperative:block/exposed_sticky_piston",
       "y": 270
     },
-    "extended=true,facing=west": {
-      "model": "coopperative:block/exposed_sticky_piston",
-      "y": 270
-    },
-    "extended=false,facing=east": {
-      "model": "coopperative:block/exposed_sticky_piston",
-      "y": 90
+    "extended=true,facing=down": {
+      "model": "coopperative:block/exposed_sticky_piston_base",
+      "x": 90
     },
     "extended=true,facing=east": {
-      "model": "coopperative:block/exposed_sticky_piston",
+      "model": "coopperative:block/exposed_sticky_piston_base",
       "y": 90
+    },
+    "extended=true,facing=north": {
+      "model": "coopperative:block/exposed_sticky_piston_base"
+    },
+    "extended=true,facing=south": {
+      "model": "coopperative:block/exposed_sticky_piston_base",
+      "y": 180
+    },
+    "extended=true,facing=up": {
+      "model": "coopperative:block/exposed_sticky_piston_base",
+      "x": 270
+    },
+    "extended=true,facing=west": {
+      "model": "coopperative:block/exposed_sticky_piston_base",
+      "y": 270
     }
   }
 }

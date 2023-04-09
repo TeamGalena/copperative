@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "side": "coopperative:block/exposed_copper_tiles_horizontal",
-    "end": "coopperative:block/exposed_copper_tiles_top"
+    "end": "coopperative:block/exposed_copper_tiles_top",
+    "side": "coopperative:block/exposed_copper_tiles_horizontal"
   }
 }

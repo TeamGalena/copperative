@@ -1,10 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "AAA",
-    "ABA",
-    "ACA"
-  ],
   "key": {
     "A": {
       "tag": "forge:ingots/copper"
@@ -16,6 +11,11 @@
       "item": "minecraft:redstone_lamp"
     }
   },
+  "pattern": [
+    "AAA",
+    "ABA",
+    "ACA"
+  ],
   "result": {
     "item": "coopperative:headlight"
   }

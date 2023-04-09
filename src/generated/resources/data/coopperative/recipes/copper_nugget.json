@@ -6,7 +6,7 @@
     }
   ],
   "result": {
-    "item": "coopperative:copper_nugget",
-    "count": 9
+    "count": 9,
+    "item": "coopperative:copper_nugget"
   }
 }
