@@ -1,8 +1,6 @@
 package galena.coopperative.content.item;
 
 import galena.coopperative.Coopperative;
-import galena.coopperative.content.block.CopperDoorBlock;
-import galena.coopperative.index.CBlocks;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -38,11 +36,11 @@ public class PatinaItem extends Item {
         BlockPos pos = ctx.getClickedPos();
         if (block instanceof WeatheringCopper && WeatheringCopper.getNext(block).isPresent()) {
             Block nextWeatherBlock = WeatheringCopper.getNext(block).get();
-            apply(world, player, stack, hand, pos, state, nextWeatherBlock);
+            return apply(world, player, stack, hand, pos, state, nextWeatherBlock);
         }
         if (Coopperative.WEATHERING_BLOCKS.get().containsKey(block)) {
             Block nextWeatherBlock = Coopperative.WEATHERING_BLOCKS.get().get(block);
-            apply(world, player, stack, hand, pos, state, nextWeatherBlock);
+            return apply(world, player, stack, hand, pos, state, nextWeatherBlock);
         }
         return super.useOn(ctx);
     }
@@ -52,6 +50,7 @@ public class PatinaItem extends Item {
         world.playSound(player, pos, SoundEvents.AXE_SCRAPE, SoundSource.BLOCKS, 1.0F, 1.0F);
         world.levelEvent(player, 3005, pos, 0);
         world.setBlock(pos, newBlock.withPropertiesOf(state), 11);
+
         if (!player.isCreative())
             stack.shrink(1);
         if (player instanceof ServerPlayer)

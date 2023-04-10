@@ -3,8 +3,11 @@ package galena.coopperative;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
-import com.google.common.collect.ImmutableMap;
 import galena.coopperative.client.CoopperativeClient;
+import galena.coopperative.data.CBlockStates;
+import galena.coopperative.data.CItemModels;
+import galena.coopperative.data.CLang;
+import galena.coopperative.data.CRecipes;
 import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CItems;
 import net.minecraft.data.DataGenerator;
@@ -22,12 +25,8 @@ import net.minecraftforge.registries.RegistryObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-//import galena.coopperative.client.CoopperativeClient;
-import galena.coopperative.data.*;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
 
 @Mod(Coopperative.MOD_ID)
@@ -79,6 +78,7 @@ public class Coopperative {
         WEATHERING_BLOCKS = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
                 .putAll(blockMapFromArray(CBlocks.COPPER_BRICKS))
                 .putAll(blockMapFromArray(CBlocks.COPPER_PILLAR))
+                .putAll(blockMapFromArray(CBlocks.COPPER_TILES))
                 .putAll(blockMapFromArray(CBlocks.TOGGLER))
                 .putAll(blockMapFromArray(CBlocks.HEADLIGHT))
 
