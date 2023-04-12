@@ -4,47 +4,47 @@
       "model": "coopperative:block/oxidized_dropper_vertical",
       "x": 90
     },
-    "facing=up,triggered=false": {
+    "facing=down,triggered=true": {
       "model": "coopperative:block/oxidized_dropper_vertical",
-      "x": 270
+      "x": 90
+    },
+    "facing=east,triggered=false": {
+      "model": "coopperative:block/oxidized_dropper",
+      "y": 90
+    },
+    "facing=east,triggered=true": {
+      "model": "coopperative:block/oxidized_dropper",
+      "y": 90
     },
     "facing=north,triggered=false": {
+      "model": "coopperative:block/oxidized_dropper"
+    },
+    "facing=north,triggered=true": {
       "model": "coopperative:block/oxidized_dropper"
     },
     "facing=south,triggered=false": {
       "model": "coopperative:block/oxidized_dropper",
       "y": 180
     },
-    "facing=west,triggered=false": {
+    "facing=south,triggered=true": {
       "model": "coopperative:block/oxidized_dropper",
-      "y": 270
+      "y": 180
     },
-    "facing=east,triggered=false": {
-      "model": "coopperative:block/oxidized_dropper",
-      "y": 90
-    },
-    "facing=down,triggered=true": {
+    "facing=up,triggered=false": {
       "model": "coopperative:block/oxidized_dropper_vertical",
-      "x": 90
+      "x": 270
     },
     "facing=up,triggered=true": {
       "model": "coopperative:block/oxidized_dropper_vertical",
       "x": 270
     },
-    "facing=north,triggered=true": {
-      "model": "coopperative:block/oxidized_dropper"
-    },
-    "facing=south,triggered=true": {
+    "facing=west,triggered=false": {
       "model": "coopperative:block/oxidized_dropper",
-      "y": 180
+      "y": 270
     },
     "facing=west,triggered=true": {
       "model": "coopperative:block/oxidized_dropper",
       "y": 270
-    },
-    "facing=east,triggered=true": {
-      "model": "coopperative:block/oxidized_dropper",
-      "y": 90
     }
   }
 }

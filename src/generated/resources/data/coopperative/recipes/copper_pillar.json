@@ -1,14 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "A",
-    "A"
-  ],
   "key": {
     "A": {
       "item": "minecraft:cut_copper"
     }
   },
+  "pattern": [
+    "A",
+    "A"
+  ],
   "result": {
     "item": "coopperative:copper_pillar"
   }

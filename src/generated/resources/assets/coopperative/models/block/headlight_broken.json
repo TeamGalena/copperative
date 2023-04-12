@@ -2,9 +2,9 @@
   "parent": "minecraft:block/observer",
   "textures": {
     "bottom": "coopperative:block/headlight_back_off",
-    "side": "coopperative:block/headlight_side",
-    "top": "coopperative:block/dispenser_top",
     "front": "coopperative:block/headlight_broken",
-    "particle": "coopperative:block/headlight_side"
+    "particle": "coopperative:block/headlight_side",
+    "side": "coopperative:block/headlight_side",
+    "top": "coopperative:block/dispenser_top"
   }
 }

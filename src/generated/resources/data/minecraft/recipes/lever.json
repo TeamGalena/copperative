@@ -1,9 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "A",
-    "B"
-  ],
   "key": {
     "A": {
       "tag": "forge:rods/wooden"
@@ -12,6 +8,10 @@
       "tag": "forge:ingots/copper"
     }
   },
+  "pattern": [
+    "A",
+    "B"
+  ],
   "result": {
     "item": "minecraft:lever"
   }

@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/lever_on",
   "textures": {
-    "particle": "coopperative:block/lever",
     "base": "coopperative:block/lever_base",
-    "lever": "coopperative:block/lever"
+    "lever": "coopperative:block/lever",
+    "particle": "coopperative:block/lever"
   }
 }

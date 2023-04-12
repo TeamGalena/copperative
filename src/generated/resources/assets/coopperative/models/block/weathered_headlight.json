@@ -2,9 +2,9 @@
   "parent": "minecraft:block/observer",
   "textures": {
     "bottom": "coopperative:block/weathered_headlight_back_off",
-    "side": "coopperative:block/weathered_headlight_side",
-    "top": "coopperative:block/weathered_dispenser_top",
     "front": "coopperative:block/weathered_headlight_unlit",
-    "particle": "coopperative:block/weathered_headlight_side"
+    "particle": "coopperative:block/weathered_headlight_side",
+    "side": "coopperative:block/weathered_headlight_side",
+    "top": "coopperative:block/weathered_dispenser_top"
   }
 }

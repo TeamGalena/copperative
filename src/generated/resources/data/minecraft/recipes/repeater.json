@@ -1,9 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "ABA",
-    "CCC"
-  ],
   "key": {
     "A": {
       "item": "minecraft:redstone_torch"
@@ -15,6 +11,10 @@
       "tag": "forge:ingots/copper"
     }
   },
+  "pattern": [
+    "ABA",
+    "CCC"
+  ],
   "result": {
     "item": "minecraft:repeater"
   }

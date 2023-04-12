@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/orientable",
   "textures": {
-    "side": "coopperative:block/weathered_dispenser_side",
     "front": "coopperative:block/weathered_dropper",
+    "side": "coopperative:block/weathered_dispenser_side",
     "top": "coopperative:block/weathered_dispenser_top"
   }
 }
