@@ -18,8 +18,10 @@ public class CLang extends CLangProvider {
 
     public void withWeatheredPrefix(List<RegistryObject<Block>> blocks, String base) {
         blocks.forEach(block -> {
-            if(block.get() instanceof WeatheringCopper copper) {
-                addBlock(block, formatString(copper.getAge().name() + " " + base));
+            if(block.get() instanceof WeatheringCopper copper && copper.getAge() != WeatheringCopper.WeatherState.UNAFFECTED) {
+                var name = copper.getAge().name();
+                var prefix = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+                addBlock(block, prefix + " " + base);
             } else {
                 addBlock(block, base);
             }
