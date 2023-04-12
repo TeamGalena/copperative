@@ -4,10 +4,7 @@ import com.google.common.base.Suppliers;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
 import galena.coopperative.client.CoopperativeClient;
-import galena.coopperative.data.CBlockStates;
-import galena.coopperative.data.CItemModels;
-import galena.coopperative.data.CLang;
-import galena.coopperative.data.CRecipes;
+import galena.coopperative.data.*;
 import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CItems;
 import net.minecraft.data.DataGenerator;
@@ -145,6 +142,8 @@ public class Coopperative {
         }
         if(event.includeServer()) {
             generator.addProvider(true, new CRecipes(generator));
+            generator.addProvider(true, new CLoot(generator));
+            CTags.register(generator, helper);
             //generator.addProvider(true, new OLootTables(generator));
             //OBlockTags blockTags = new OBlockTags(generator, helper);
             //generator.addProvider(true, blockTags);

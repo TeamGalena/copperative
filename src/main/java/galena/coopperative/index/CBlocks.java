@@ -34,7 +34,7 @@ public class CBlocks {
     public static final RegistryObject<Block> PATINA_BLOCK = register("patina_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE).sound(SoundType.TUFF)), BUILDING);
 
     // Decorative Blocks
-    public static final ArrayList<RegistryObject<WeatheringCopperFullBlock>> COPPER_BRICKS = registerWeatheringSet("copper_bricks", weatherState -> new WeatheringCopperFullBlock(weatherState, BlockBehaviour.Properties.copy(Blocks.CUT_COPPER)), BUILDING);
+public static final ArrayList<RegistryObject<WeatheringCopperFullBlock>> COPPER_BRICKS = registerWeatheringSet("copper_bricks", weatherState -> new WeatheringCopperFullBlock(weatherState, BlockBehaviour.Properties.copy(Blocks.CUT_COPPER)), BUILDING);
     public static final ArrayList<RegistryObject<WeatheringPillarBlock>> COPPER_PILLAR = registerWeatheringSet("copper_pillar", weatherState -> new WeatheringPillarBlock(weatherState, BlockBehaviour.Properties.copy(Blocks.CUT_COPPER)), BUILDING);
     public static final ArrayList<RegistryObject<WeatheringPillarBlock>> COPPER_TILES = registerWeatheringSet("copper_tiles", weatherState -> new WeatheringPillarBlock(weatherState, BlockBehaviour.Properties.copy(Blocks.CUT_COPPER)), BUILDING);
 
