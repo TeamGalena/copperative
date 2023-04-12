@@ -20,6 +20,7 @@ public class CommonEvents {
     @SubscribeEvent
     public static void handleAxeScrapeEvent(BlockEvent.BlockToolModificationEvent event) {
         if (event.isSimulated() || event.getContext() == null) return;
+        if(event.getPlayer() != null && event.getPlayer().isCreative()) return;
         Level world = (Level) event.getLevel();
         UseOnContext ctx = event.getContext();
         if (event.getToolAction() == ToolActions.AXE_SCRAPE && WeatheringCopper.getPrevious(event.getState()).isPresent()) {
