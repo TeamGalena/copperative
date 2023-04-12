@@ -60,10 +60,6 @@ public class CBlockStates extends CBlockStateProvider {
         observer(CBlocks.EXPOSED_OBSERVER);
         observer(CBlocks.WEATHERED_OBSERVER);
         observer(CBlocks.OXIDIZED_OBSERVER);
-        observer(CBlocks.WAXED_OBSERVER, () -> Blocks.OBSERVER);
-        observer(CBlocks.WAXED_EXPOSED_OBSERVER, CBlocks.EXPOSED_OBSERVER);
-        observer(CBlocks.WAXED_WEATHERED_OBSERVER, CBlocks.WEATHERED_OBSERVER);
-        observer(CBlocks.WAXED_OXIDIZED_OBSERVER, CBlocks.OXIDIZED_OBSERVER);
 
         lever(() -> Blocks.LEVER);
         lever(CBlocks.EXPOSED_LEVER);

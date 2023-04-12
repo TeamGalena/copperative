@@ -1,4 +1,4 @@
-// 1.19.2	2023-04-09T22:38:29.4174831	Coopperative Block States
+// 1.19.2	2023-04-12T21:41:38.1305206	Coopperative Block States
 e941ccc24a66f6c9d760f473fb9fb771bbdc08f6 assets/coopperative/blockstates/copper_bricks.json
 76448bc4ad8b2da9d221b022190960c816608cb9 assets/coopperative/blockstates/copper_door.json
 522a97a4ec3c603735b0e660121df0bced6e7739 assets/coopperative/blockstates/copper_pillar.json
@@ -39,10 +39,6 @@ aa6e6ec88b04c3a495460d9a4313c43890a67272 assets/coopperative/blockstates/oxidize
 5e6fead630ec236edfa505ceb4b1ca75d56b8660 assets/coopperative/blockstates/oxidized_toggler.json
 362d63c8d6cd010bc2d43b4a8f75a5f96f915a61 assets/coopperative/blockstates/patina_block.json
 97c4503cbe9f8be64ddcf09d07881480fe3fac38 assets/coopperative/blockstates/toggler.json
-1d0cfece75d4d81ba82bfb7bafe09c7c1e03b122 assets/coopperative/blockstates/waxed_exposed_observer.json
-45d60b692e597d287fb4ff03f9d026b020035c69 assets/coopperative/blockstates/waxed_observer.json
-ada4436d33a439e98d5a2cb2404929eb28e9733a assets/coopperative/blockstates/waxed_oxidized_observer.json
-2529ef0a9daaefcd6d8ce0bef220ecadce983807 assets/coopperative/blockstates/waxed_weathered_observer.json
 820a86dc393e8f8075383e5ba1514354552bdf2f assets/coopperative/blockstates/weathered_comparator.json
 717e8d292143afe08d91610952e984e624a76800 assets/coopperative/blockstates/weathered_copper_bricks.json
 d467d5f9547851342bc9a09bc95ae009ffb95ba2 assets/coopperative/blockstates/weathered_copper_door.json

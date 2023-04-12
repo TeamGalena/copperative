@@ -171,7 +171,7 @@ public abstract class CLangProvider implements DataProvider {
         data.putIfAbsent(key, value);
     }
 
-    private String formatString(String key) {
+    protected String formatString(String key) {
         String[] strArr = key.split("_");
         StringBuffer res = new StringBuffer();
         for (String str : strArr) {

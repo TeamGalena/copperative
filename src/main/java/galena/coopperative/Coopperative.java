@@ -65,12 +65,7 @@ public class Coopperative {
 
         });
 
-        CBlocks.WAXED_BLOCKS = ImmutableBiMap.of(
-                CBlocks.WAXED_OBSERVER.get(), Blocks.OBSERVER,
-                CBlocks.WAXED_EXPOSED_OBSERVER.get(), CBlocks.EXPOSED_OBSERVER.get(),
-                CBlocks.WAXED_WEATHERED_OBSERVER.get(), CBlocks.WEATHERED_OBSERVER.get(),
-                CBlocks.WAXED_OXIDIZED_OBSERVER.get(), CBlocks.OXIDIZED_OBSERVER.get()
-        );
+        CBlocks.WAXED_BLOCKS = ImmutableBiMap.of();
 
         WEATHERING_BLOCKS = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
                 .putAll(blockMapFromArray(CBlocks.COPPER_BRICKS))

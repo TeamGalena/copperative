@@ -1,4 +1,4 @@
-// 1.19.2	2023-04-09T22:02:09.9238251	Coopperative Item Models
+// 1.19.2	2023-04-12T21:41:38.1285208	Coopperative Item Models
 5acdc4926658f4c7d7330bf547c008d9a3bb332d assets/coopperative/models/item/copper_bricks.json
 52859131ef96b4ac1777cd868a8178f069afa50d assets/coopperative/models/item/copper_door.json
 d7ebd5b156bc02acc80f3a53d3617de9208fe250 assets/coopperative/models/item/copper_nugget.json
@@ -41,10 +41,6 @@ fe96809c533e7a2cc212f7793050ecb41c02c6ee assets/coopperative/models/item/oxidize
 451a16fce58aa02344ac192b4b20e75dcb23ab28 assets/coopperative/models/item/patina.json
 05c76dccdde32b88c7035a53d4a4afc5e8ec918a assets/coopperative/models/item/patina_block.json
 13f4d64a4f057d7feac8f0c0a92a60480dc96205 assets/coopperative/models/item/toggler.json
-fe9ca97dd682daf873394c5837edf8cfabb6d539 assets/coopperative/models/item/waxed_exposed_observer.json
-51b310d0768018e878dd47681f4bad293685bbe7 assets/coopperative/models/item/waxed_observer.json
-26211e983339b90e196a230f53b16a4af2b84240 assets/coopperative/models/item/waxed_oxidized_observer.json
-bd6bdfb7d70d8aaa81650101324baee00de8df3e assets/coopperative/models/item/waxed_weathered_observer.json
 155c7aaafea63c665add1c6f9de888746548586a assets/coopperative/models/item/weathered_comparator.json
 08fa2dca3702384955dc02d32ce35e44bc2854b4 assets/coopperative/models/item/weathered_copper_bricks.json
 0cfae1f52e362fdff724636a258e3afb76d41f5c assets/coopperative/models/item/weathered_copper_door.json

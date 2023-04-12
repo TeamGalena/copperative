@@ -75,10 +75,6 @@ public class CItemModels extends CItemModelProvider {
         block(CBlocks.EXPOSED_OBSERVER);
         block(CBlocks.WEATHERED_OBSERVER);
         block(CBlocks.OXIDIZED_OBSERVER);
-        block(CBlocks.WAXED_OBSERVER, () -> Blocks.OBSERVER);
-        block(CBlocks.WAXED_EXPOSED_OBSERVER, CBlocks.EXPOSED_OBSERVER);
-        block(CBlocks.WAXED_WEATHERED_OBSERVER, CBlocks.WEATHERED_OBSERVER);
-        block(CBlocks.WAXED_OXIDIZED_OBSERVER, CBlocks.OXIDIZED_OBSERVER);
 
         blockFlat(CBlocks.EXPOSED_LEVER);
         blockFlat(CBlocks.WEATHERED_LEVER);

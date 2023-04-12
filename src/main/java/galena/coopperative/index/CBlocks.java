@@ -58,11 +58,6 @@ public static final ArrayList<RegistryObject<WeatheringCopperFullBlock>> COPPER_
     public static final RegistryObject<Block> EXPOSED_OBSERVER = register("exposed_observer", () -> new WeatheringObserverBlock(WeatherState.EXPOSED), REDSTONE);
     public static final RegistryObject<Block> WEATHERED_OBSERVER = register("weathered_observer", () -> new WeatheringObserverBlock(WeatherState.WEATHERED), REDSTONE);
     public static final RegistryObject<Block> OXIDIZED_OBSERVER = register("oxidized_observer", () -> new WeatheringObserverBlock(WeatherState.OXIDIZED), REDSTONE);
-    public static final RegistryObject<Block> WAXED_OBSERVER = register("waxed_observer", () -> new ObserverBlock(BlockBehaviour.Properties.copy(Blocks.OBSERVER).sound(SoundType.COPPER)), REDSTONE);
-    public static final RegistryObject<Block> WAXED_EXPOSED_OBSERVER = register("waxed_exposed_observer", () -> new ObserverBlock(BlockBehaviour.Properties.copy(EXPOSED_OBSERVER.get())), REDSTONE);
-    public static final RegistryObject<Block> WAXED_WEATHERED_OBSERVER = register("waxed_weathered_observer", () -> new ObserverBlock(BlockBehaviour.Properties.copy(WEATHERED_OBSERVER.get())), REDSTONE);
-    public static final RegistryObject<Block> WAXED_OXIDIZED_OBSERVER = register("waxed_oxidized_observer", () -> new ObserverBlock(BlockBehaviour.Properties.copy(OXIDIZED_OBSERVER.get())), REDSTONE);
-
     public static final RegistryObject<Block> EXPOSED_DISPENSER = register("exposed_dispenser", () -> new WeatheringDispenserBlock(WeatherState.EXPOSED), REDSTONE);
     public static final RegistryObject<Block> WEATHERED_DISPENSER = register("weathered_dispenser", () -> new WeatheringDispenserBlock(WeatherState.WEATHERED), REDSTONE);
     public static final RegistryObject<Block> OXIDIZED_DISPENSER = register("oxidized_dispenser", () -> new WeatheringDispenserBlock(WeatherState.OXIDIZED), REDSTONE);

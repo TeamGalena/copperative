@@ -4,6 +4,11 @@ import galena.coopperative.data.provider.CLangProvider;
 import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CItems;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.WeatheringCopper;
+import net.minecraftforge.registries.RegistryObject;
+
+import java.util.List;
 
 public class CLang extends CLangProvider {
 
@@ -11,10 +16,22 @@ public class CLang extends CLangProvider {
         super(gen, "en_us");
     }
 
+    public void withWeatheredPrefix(List<RegistryObject<Block>> blocks, String base) {
+        blocks.forEach(block -> {
+            if(block.get() instanceof WeatheringCopper copper) {
+                addBlock(block, formatString(copper.getAge().name() + " " + base));
+            } else {
+                addBlock(block, base);
+            }
+        });
+    }
+
     @Override
     protected void addTranslations() {
 
         addBlock(CBlocks.PATINA_BLOCK, "Block of Patina");
+        withWeatheredPrefix(CBlocks.HEADLIGHT, "Redstone Headlight");
+        withWeatheredPrefix(CBlocks.TOGGLER, "Redstone Toggler");
 
         /*
             Automatically create translations for blocks and items based on their registry name.
