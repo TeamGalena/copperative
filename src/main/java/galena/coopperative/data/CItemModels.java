@@ -1,14 +1,15 @@
 package galena.coopperative.data;
 
 import galena.coopperative.Coopperative;
-import galena.coopperative.index.CBlocks;
 import galena.coopperative.data.provider.CItemModelProvider;
+import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CItems;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -101,16 +102,29 @@ public class CItemModels extends CItemModelProvider {
         @Override
         protected void registerModels() {
             blockFlat(() -> Blocks.LEVER);
+            blockFlat(() -> Blocks.POWERED_RAIL);
             piston(() -> Blocks.PISTON);
             block(Blocks.DISPENSER);
             block(Blocks.DROPPER);
             block(Blocks.OBSERVER);
-
+            normalItem(() -> Items.LEVER);
+            normalItem(() -> Items.REPEATER);
+            normalItem(() -> Items.COMPARATOR);
         }
 
         public ItemModelBuilder block(Block block) {
             String name = ForgeRegistries.BLOCKS.getKey(block).getPath();
-            return withExistingParent(name, Coopperative.MOD_ID + ":block/" + name);
+            return withExistingParent(name, blockTexture(name));
+        }
+
+        @Override
+        protected ResourceLocation blockTexture(String name) {
+            return new ResourceLocation(Coopperative.MOD_ID + ":block/" + name);
+        }
+
+        @Override
+        protected ResourceLocation itemTexture(String name) {
+            return new ResourceLocation(Coopperative.MOD_ID + ":item/" + name);
         }
     }
 }

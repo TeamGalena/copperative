@@ -9,17 +9,16 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.ComparatorMode;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Locale;
 import java.util.function.Supplier;
 
@@ -155,9 +154,12 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
         String name = name(block);
         ResourceLocation bottom = texture(weatheringPrefix(block) + "dispenser_top");
         ResourceLocation side = texture(name.replace("sticky_", "") + "_side");
-        ResourceLocation platform = new ResourceLocation("block/piston_top" + (!extended && name.contains("sticky") ? "_sticky" : ""));
-        return models().withExistingParent(name, BLOCK_FOLDER + "/piston" + (extended ? "_base" : ""))
-                .texture("platform", platform)
+        ResourceLocation platform = extended
+                ? texture(weatheringPrefix(block) + "piston_inner")
+                : mcLoc("block/piston_top" + (name.contains("sticky") ? "_sticky" : ""));
+        String suffix = extended ? "_base" : "";
+        return models().withExistingParent(name + suffix, BLOCK_FOLDER + "/piston" + suffix)
+                .texture(extended ? "inside" : "platform", platform)
                 .texture("bottom", bottom)
                 .texture("side", side);
     }
@@ -349,7 +351,7 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
         return models().withExistingParent(name + (broken ? "_broken" : lit ? "_lit" : ""), BLOCK_FOLDER + "/observer")
                 .texture("bottom", back)
                 .texture("side", side)
-                .texture("top", texture( weatheringPrefix(block) + "dispenser_top"))
+                .texture("top", texture(weatheringPrefix(block) + "dispenser_top"))
                 .texture("front", front)
                 .texture("particle", side);
     }

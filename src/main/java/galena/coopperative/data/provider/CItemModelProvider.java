@@ -5,7 +5,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.WeatheringCopperFullBlock;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -28,8 +27,12 @@ public abstract class CItemModelProvider extends ItemModelProvider {
         return ForgeRegistries.BLOCKS.getKey(block.get()).getPath();
     }
 
-    private ResourceLocation texture(String name) {
+    protected ResourceLocation blockTexture(String name) {
         return modLoc("block/" + name);
+    }
+
+    protected ResourceLocation itemTexture(String name) {
+        return modLoc("item/" + name);
     }
 
     public ItemModelBuilder block(Supplier<? extends Block> block) {
@@ -70,22 +73,22 @@ public abstract class CItemModelProvider extends ItemModelProvider {
 
     public ItemModelBuilder blockFlat(Supplier<? extends Block> block, String name) {
         return withExistingParent(blockName(block), mcLoc("item/generated"))
-                .texture("layer0", modLoc("block/" + name));
+                .texture("layer0", blockTexture(name));
     }
 
     public ItemModelBuilder blockFlatWithItemName(Supplier<? extends Block> block, String name) {
         return withExistingParent(blockName(block), mcLoc("item/generated"))
-                .texture("layer0", modLoc("item/" + name));
+                .texture("layer0", itemTexture(name));
     }
 
     public ItemModelBuilder normalItem(Supplier<? extends Item> item) {
         return withExistingParent(ForgeRegistries.ITEMS.getKey(item.get()).getPath(), mcLoc("item/generated"))
-                .texture("layer0", modLoc("item/" + ForgeRegistries.ITEMS.getKey(item.get()).getPath()));
+                .texture("layer0", itemTexture(ForgeRegistries.ITEMS.getKey(item.get()).getPath()));
     }
 
     public ItemModelBuilder blockWithItem(Supplier<? extends Block> block) {
         return withExistingParent(blockName(block), mcLoc("item/generated"))
-                .texture("layer0", modLoc("item/" + blockName(block)));
+                .texture("layer0", itemTexture(blockName(block)));
     }
 
     public ItemModelBuilder blockInventorySpecific(Supplier<? extends Block> block) {
@@ -93,8 +96,8 @@ public abstract class CItemModelProvider extends ItemModelProvider {
     }
 
     public ItemModelBuilder piston(Supplier<? extends Block> piston) {
-        ResourceLocation bottom = texture(CBlockStateProvider.weatheringPrefix(piston) + "dispenser_top");
-        ResourceLocation side = texture(blockName(piston).replace("sticky_", "") + "_side");
+        ResourceLocation bottom = blockTexture(CBlockStateProvider.weatheringPrefix(piston) + "dispenser_top");
+        ResourceLocation side = blockTexture(blockName(piston).replace("sticky_", "") + "_side");
         return withExistingParent(blockName(piston), new ResourceLocation("block/" + (blockName(piston).contains("sticky") ? "sticky_" : "") + "piston_inventory"))
                 .texture("bottom", bottom)
                 .texture("side", side);

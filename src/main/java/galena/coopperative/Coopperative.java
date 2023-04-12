@@ -75,6 +75,7 @@ public class Coopperative {
         WEATHERING_BLOCKS = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
                 .putAll(blockMapFromArray(CBlocks.COPPER_BRICKS))
                 .putAll(blockMapFromArray(CBlocks.COPPER_PILLAR))
+                .putAll(blockMapFromArray(CBlocks.COPPER_TILES))
                 .putAll(blockMapFromArray(CBlocks.TOGGLER))
                 .putAll(blockMapFromArray(CBlocks.HEADLIGHT))
 
