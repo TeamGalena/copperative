@@ -2,7 +2,7 @@
   "parent": "minecraft:block/lever_on",
   "textures": {
     "base": "coopperative:block/lever_base",
-    "lever": "coopperative:block/lever",
+    "lever": "coopperative:item/lever",
     "particle": "coopperative:block/lever"
   }
 }

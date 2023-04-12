@@ -265,7 +265,7 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
         return models().withExistingParent(name + (powering ? "_on" : ""), BLOCK_FOLDER + "/lever" + (powering ? "_on" : ""))
                 .texture("particle", texture(name))
                 .texture("base", texture(name + "_base"))
-                .texture("lever", texture(name));
+                .texture("lever", modLoc("item/" + name));
     }
 
     public void lever(Supplier<? extends Block> block) {
