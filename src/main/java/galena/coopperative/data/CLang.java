@@ -35,6 +35,14 @@ public class CLang extends CLangProvider {
         withWeatheredPrefix(CBlocks.HEADLIGHT, "Redstone Headlight");
         withWeatheredPrefix(CBlocks.TOGGLER, "Redstone Toggler");
 
+        addBlock(CBlocks.EXPOSED_REPEATER, "Exposed Redstone Repeater");
+        addBlock(CBlocks.WEATHERED_REPEATER, "Weathered Redstone Repeater");
+        addBlock(CBlocks.OXIDIZED_REPEATER, "Oxidized Redstone Repeater");
+
+        addBlock(CBlocks.EXPOSED_COMPARATOR, "Exposed Redstone Comparator");
+        addBlock(CBlocks.WEATHERED_COMPARATOR, "Weathered Redstone Comparator");
+        addBlock(CBlocks.OXIDIZED_COMPARATOR, "Oxidized Redstone Comparator");
+
         /*
             Automatically create translations for blocks and items based on their registry name.
 
