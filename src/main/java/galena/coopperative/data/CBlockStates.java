@@ -1,8 +1,8 @@
 package galena.coopperative.data;
 
 import galena.coopperative.Coopperative;
-import galena.coopperative.index.CBlocks;
 import galena.coopperative.data.provider.CBlockStateProvider;
+import galena.coopperative.index.CBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -83,5 +83,11 @@ public class CBlockStates extends CBlockStateProvider {
         trapdoor(CBlocks.EXPOSED_COPPER_TRAPDOOR);
         trapdoor(CBlocks.WEATHERED_COPPER_TRAPDOOR);
         trapdoor(CBlocks.OXIDIZED_COPPER_TRAPDOOR);
+
+        var emptyModel = models().withExistingParent("empty", "block/block");
+        simpleBlock(CBlocks.SPOT_LIGHT.get(), emptyModel);
+        //getVariantBuilder(CBlocks.SPOT_LIGHT.get()).forAllStates($ ->
+        //        ConfiguredModel.builder().modelFile(emptyModel).build()
+        //);
     }
 }

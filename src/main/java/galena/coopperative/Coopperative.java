@@ -49,8 +49,8 @@ public class Coopperative {
 
 
         DeferredRegister<?>[] registers = {
-                //CBlockEntities.BLOCK_ENTITIES,
                 CBlocks.BLOCKS,
+                CBlocks.BLOCK_ENTITIES,
                 CItems.ITEMS,
                 //CSoundEvents.SOUNDS,
         };

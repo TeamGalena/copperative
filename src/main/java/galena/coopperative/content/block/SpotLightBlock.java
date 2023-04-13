@@ -2,12 +2,10 @@ package galena.coopperative.content.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -32,18 +30,14 @@ public class SpotLightBlock extends AirBlock implements SimpleWaterloggedBlock {
     }
 
     @Override
+    public RenderShape getRenderShape(BlockState state) {
+        //if (state.getFluidState().isEmpty()) return RenderShape.INVISIBLE;
+        return RenderShape.MODEL;
+    }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(LEVEL, WATERLOGGED);
-    }
-
-    @Override
-    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-        world.removeBlock(pos, false);
-    }
-
-    @Override
-    public boolean isRandomlyTicking(BlockState state) {
-        return true;
     }
 
     @Override
@@ -58,6 +52,14 @@ public class SpotLightBlock extends AirBlock implements SimpleWaterloggedBlock {
     @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+    }
+
+    public BlockState createState(LevelAccessor world, BlockPos pos) {
+        if (world.getFluidState(pos).is(Fluids.WATER)) {
+            return defaultBlockState().setValue(WATERLOGGED, true);
+        } else {
+            return defaultBlockState();
+        }
     }
 
 }
