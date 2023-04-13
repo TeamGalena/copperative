@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
@@ -21,14 +22,14 @@ public class HeadlightTile extends BlockEntity {
     }
 
     public void checkOcclusion() {
-        if(!hasLevel()) return;
-        if(level.getGameTime() % 10 != 0) return;
+        if (!hasLevel()) return;
+        if (level.getGameTime() % 10 != 0) return;
 
         var currentTarget = findTarget();
         var different = currentTarget.isEmpty() || !currentTarget.get().equals(savedSpotlight);
 
-        if(different) {
-            if(savedSpotlight != null) extinguishSpotlight();
+        if (different) {
+            if (savedSpotlight != null) extinguishSpotlight();
             currentTarget.ifPresent(this::placeSpotlight);
         }
     }
@@ -59,18 +60,29 @@ public class HeadlightTile extends BlockEntity {
 
     private Optional<BlockPos> findTarget() {
         Direction facing = getBlockState().getValue(HeadLightBlock.FACING);
+
+        BlockPos openSpace = null;
+
         for (int i = 1; HeadLightBlock.RANGE > i; i++) {
             BlockPos targetPos = getBlockPos().relative(facing, i);
-            if (!shinesThrough(level.getBlockState(targetPos))) {
-                if (i == 1) return Optional.empty();
-                return Optional.of(targetPos.relative(facing.getOpposite()));
+            var state = level.getBlockState(targetPos);
+            if(isReplaceable(state)) openSpace = targetPos;
+            if (!shinesThrough(state)) {
+                return Optional.ofNullable(openSpace);
             }
         }
+
         return Optional.empty();
     }
 
     private boolean shinesThrough(BlockState state) {
         return state.isAir() || !state.canOcclude();
+    }
+
+    private boolean isReplaceable(BlockState state) {
+        if (state.isAir() || state.is(CBlocks.SPOT_LIGHT.get())) return true;
+        if(state.is(Blocks.WATER)) return state.getFluidState().isSource();
+        return false;
     }
 
     public Optional<BlockPos> getSavedSpotlight() {
@@ -88,7 +100,7 @@ public class HeadlightTile extends BlockEntity {
     @Override
     public void deserializeNBT(CompoundTag nbt) {
         super.deserializeNBT(nbt);
-        if(nbt.contains("ActiveSpotlight")) {
+        if (nbt.contains("ActiveSpotlight")) {
             savedSpotlight = NbtUtils.readBlockPos(nbt.getCompound("ActiveSpotlight"));
         }
     }

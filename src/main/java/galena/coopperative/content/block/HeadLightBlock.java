@@ -35,10 +35,6 @@ public class HeadLightBlock extends DirectionalBlock implements CWeatheringCoppe
 
     public static final int RANGE = 30;
 
-    private Block getLight() {
-        return CBlocks.SPOT_LIGHT.get();
-    }
-
     public HeadLightBlock(WeatherState weatherState, Properties properties) {
         super(properties);
         this.weatherState = weatherState;
