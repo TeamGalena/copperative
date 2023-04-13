@@ -25,12 +25,10 @@ public class SpotLightBlock extends AirBlock implements SimpleWaterloggedBlock {
     public static final IntegerProperty LEVEL = BlockStateProperties.LEVEL;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final ToIntFunction<BlockState> LIGHT_EMISSION = (state) -> state.getValue(LEVEL);
-    public BlockPos headLightPos;
-    public Direction headLightRelative;
 
     public SpotLightBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(LEVEL, 15).setValue(WATERLOGGED, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any().setValue(LEVEL, MAX_LEVEL).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     @Override
@@ -40,32 +38,12 @@ public class SpotLightBlock extends AirBlock implements SimpleWaterloggedBlock {
 
     @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-        if (headLightPos == null) {
-            world.removeBlock(pos, false);
-            return;
-        }
-        BlockState headlightState = world.getBlockState(headLightPos);
-        if (!(headlightState.getBlock() instanceof HeadLightBlock)) {
-            world.removeBlock(pos, false);
-            return;
-        }
-        if (!HeadLightBlock.isLit(headlightState))
-            world.removeBlock(pos, false);
+        world.removeBlock(pos, false);
     }
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
         return true;
-    }
-
-    private Direction getRelativeDirection(BlockPos pos1, BlockPos pos2) {
-        if (pos1.getX() == pos2.getX()) {
-            if (pos1.getY() == pos2.getY()) {
-                return pos1.getZ() > pos2.getY() ? Direction.DOWN : Direction.UP;
-            }
-            return pos1.getY() > pos2.getY() ? Direction.EAST : Direction.WEST;
-        }
-        return pos1.getX() > pos2.getX() ? Direction.SOUTH : Direction.NORTH;
     }
 
     @Override
@@ -80,23 +58,6 @@ public class SpotLightBlock extends AirBlock implements SimpleWaterloggedBlock {
     @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
-    }
-
-    public void setHeadLightPos(BlockPos pos) {
-        this.headLightPos = pos;
-    }
-
-    public BlockPos getHeadLightPos() {
-        return this.headLightPos;
-    }
-
-    protected boolean shouldExist(Level world) {
-        BlockState state = world.getBlockState(headLightPos);
-        Boolean isHeadlight = state.getBlock() instanceof HeadLightBlock;
-        Boolean isLit = HeadLightBlock.isLit(state);
-        Boolean isFacingTowardsThis = state.getValue(HeadLightBlock.FACING).getOpposite().equals(this.headLightRelative);
-
-        return isHeadlight && isLit && isFacingTowardsThis;
     }
 
 }

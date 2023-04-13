@@ -10,15 +10,17 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DirectionalBlock;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Optional;
 
 public class HeadLightBlock extends DirectionalBlock implements CWeatheringCopper {
 
@@ -26,9 +28,11 @@ public class HeadLightBlock extends DirectionalBlock implements CWeatheringCoppe
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty BROKEN = BooleanProperty.create("broken");
 
-    private static final Integer RANGE = 30;
+    private static final int RANGE = 30;
 
-    private BlockPos spotlightPos = BlockPos.ZERO;
+    private Block getLight() {
+        return CBlocks.SPOT_LIGHT.get();
+    }
 
     public HeadLightBlock(WeatherState weatherState, Properties properties) {
         super(properties);
@@ -42,44 +46,47 @@ public class HeadLightBlock extends DirectionalBlock implements CWeatheringCoppe
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block p_55669_, BlockPos p_55670_, boolean p_55671_) {
+    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos neighbor, boolean isMoving) {
         if (!world.isClientSide) {
             boolean flag = isLit(state);
             if (flag != world.hasNeighborSignal(pos)) {
                 if (flag) {
                     world.scheduleTick(pos, this, 4);
-                    world.scheduleTick(spotlightPos, this, 4);
                 } else {
                     world.setBlock(pos, state.cycle(POWERED), 2);
-                    if (world.isEmptyBlock(pos.relative(state.getValue(FACING))))
-                        spotlight(state, world, pos);
+                    spotlight(state, world, pos);
                 }
             }
-
         }
     }
 
-    private boolean spotlight(BlockState state, Level world, BlockPos pos) {
-        if (state.getValue(BROKEN)) return false;
+    private Optional<BlockPos> findTarget(BlockState state, LevelAccessor world, BlockPos pos) {
         Direction facing = state.getValue(FACING);
         for (int i = 1; RANGE > i; i++) {
             BlockPos targetPos = pos.relative(facing, i);
-            if (!world.isEmptyBlock(targetPos)) {
-                spotlightPos = targetPos.relative(facing.getOpposite());
-                world.setBlock(spotlightPos, CBlocks.SPOT_LIGHT.get().defaultBlockState(), 2);
-                SpotLightBlock spotlight = (SpotLightBlock) world.getBlockState(spotlightPos).getBlock();
-                spotlight.setHeadLightPos(pos);
-                return true;
+            if (!shinesThrough(world.getBlockState(targetPos))) {
+                if (i == 1) return Optional.empty();
+                return Optional.of(targetPos.relative(facing.getOpposite()));
             }
         }
-        return false;
+        return Optional.empty();
+    }
+
+    private void spotlight(BlockState state, LevelAccessor world, BlockPos pos) {
+        if (state.getValue(BROKEN)) return;
+        var targetPos = findTarget(state, world, pos);
+        targetPos.ifPresent(it -> world.setBlock(it, getLight().defaultBlockState(), 2));
+    }
+
+    private boolean shinesThrough(BlockState state) {
+        return state.isAir() || !state.canOcclude() || state.is(getLight());
     }
 
     @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (isLit(state) && !world.hasNeighborSignal(pos)) {
             world.setBlock(pos, state.cycle(POWERED), 2);
-            world.scheduleTick(spotlightPos, this, 4);
+            tryExtinguish(world, pos, state);
         }
     }
 
@@ -88,14 +95,29 @@ public class HeadLightBlock extends DirectionalBlock implements CWeatheringCoppe
         return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite());
     }
 
-    @Override
-    public BlockState rotate(BlockState state, Rotation rotation) {
-        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
+    //@Override
+    //public BlockState rotate(BlockState state, Rotation rotation) {
+    //    return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
+    //}
+
+    //@Override
+    //public BlockState mirror(BlockState state, Mirror mirror) {
+    //    return state.rotate(mirror.getRotation(state.getValue(FACING)));
+    //}
+
+    private void tryExtinguish(LevelAccessor world, BlockPos pos, BlockState state) {
+        findTarget(state, world, pos).ifPresent(targetPos -> {
+            var spotlight = world.getBlockState(targetPos);
+            if (spotlight.is(getLight())) {
+                world.removeBlock(targetPos, false);
+            }
+        });
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirror) {
-        return state.rotate(mirror.getRotation(state.getValue(FACING)));
+    public void destroy(LevelAccessor world, BlockPos pos, BlockState state) {
+        super.destroy(world, pos, state);
+        tryExtinguish(world, pos, state);
     }
 
     public static boolean isLit(BlockState state) {
