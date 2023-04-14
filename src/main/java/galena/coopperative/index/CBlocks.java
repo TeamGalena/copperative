@@ -84,7 +84,7 @@ public class CBlocks {
     public static final RegistryObject<TrapDoorBlock> WEATHERED_COPPER_TRAPDOOR = register("weathered_copper_trapdoor", () -> new CopperTrapDoorBlock(WeatherState.WEATHERED, BlockBehaviour.Properties.copy(COPPER_DOOR.get())), REDSTONE);
     public static final RegistryObject<TrapDoorBlock> OXIDIZED_COPPER_TRAPDOOR = register("oxidized_copper_trapdoor", () -> new CopperTrapDoorBlock(WeatherState.OXIDIZED, BlockBehaviour.Properties.copy(COPPER_DOOR.get())), REDSTONE);
 
-    public static final ArrayList<RegistryObject<Block>> HEADLIGHT = registerWeatheringSet("headlight", weatherState -> new HeadLightBlock(weatherState, BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)), REDSTONE);
+    public static final ArrayList<RegistryObject<Block>> HEADLIGHT = registerWeatheringSet("headlight", weatherState -> new HeadLightBlock(weatherState, BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).lightLevel(HeadLightBlock.LIGHT_EMISSION)), REDSTONE);
     public static final RegistryObject<BlockEntityType<HeadlightTile>> HEADLIGHT_TILE = BLOCK_ENTITIES.register("headlight", () -> {
         var blocks = HEADLIGHT.stream().map(RegistryObject::get).toArray(Block[]::new);
         return BlockEntityType.Builder.of(HeadlightTile::new, blocks).build(null);

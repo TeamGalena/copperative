@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
+import java.util.function.ToIntFunction;
 
 public class HeadLightBlock extends DirectionalBlock implements CWeatheringCopper, EntityBlock {
 
@@ -34,6 +35,9 @@ public class HeadLightBlock extends DirectionalBlock implements CWeatheringCoppe
     public static final BooleanProperty BROKEN = BooleanProperty.create("broken");
 
     public static final int RANGE = 30;
+
+    public static final int LIGHT_LEVEL = 6;
+    public static final ToIntFunction<BlockState> LIGHT_EMISSION = state -> isLit(state) ? LIGHT_LEVEL : 0;
 
     public HeadLightBlock(WeatherState weatherState, Properties properties) {
         super(properties);
