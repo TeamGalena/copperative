@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "coopperative:block/oxidized_lever"
+    "layer0": "coopperative:item/oxidized_lever"
   }
 }
