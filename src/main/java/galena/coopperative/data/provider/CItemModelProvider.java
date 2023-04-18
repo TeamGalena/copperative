@@ -3,7 +3,7 @@ package galena.coopperative.data.provider;
 import galena.coopperative.Coopperative;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -76,14 +76,11 @@ public abstract class CItemModelProvider extends ItemModelProvider {
                 .texture("layer0", blockTexture(name));
     }
 
-    public ItemModelBuilder blockFlatWithItemName(Supplier<? extends Block> block, String name) {
-        return withExistingParent(blockName(block), mcLoc("item/generated"))
-                .texture("layer0", itemTexture(name));
-    }
-
-    public ItemModelBuilder normalItem(Supplier<? extends Item> item) {
-        return withExistingParent(ForgeRegistries.ITEMS.getKey(item.get()).getPath(), mcLoc("item/generated"))
-                .texture("layer0", itemTexture(ForgeRegistries.ITEMS.getKey(item.get()).getPath()));
+    public ItemModelBuilder normalItem(Supplier<? extends ItemLike> itemLike) {
+        var item = itemLike.get().asItem();
+        var itemId = ForgeRegistries.ITEMS.getKey(item).getPath();
+        return withExistingParent(itemId, mcLoc("item/generated"))
+                .texture("layer0", itemTexture(itemId));
     }
 
     public ItemModelBuilder blockWithItem(Supplier<? extends Block> block) {

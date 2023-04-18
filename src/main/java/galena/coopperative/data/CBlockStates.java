@@ -24,7 +24,7 @@ public class CBlockStates extends CBlockStateProvider {
         block(CBlocks.PATINA_BLOCK);
         weatheringBlock(CBlocks.COPPER_BRICKS);
         weatheringPillarBlock(CBlocks.COPPER_PILLAR);
-        copperTilesBlock(CBlocks.COPPER_TILES);
+        weatheringPillarBlock(CBlocks.COPPER_TILES);
 
         repeater(() -> Blocks.REPEATER);
         repeater(CBlocks.EXPOSED_REPEATER);

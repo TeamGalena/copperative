@@ -76,9 +76,9 @@ public class CItemModels extends CItemModelProvider {
         block(CBlocks.WEATHERED_OBSERVER);
         block(CBlocks.OXIDIZED_OBSERVER);
 
-        blockFlat(CBlocks.EXPOSED_LEVER);
-        blockFlat(CBlocks.WEATHERED_LEVER);
-        blockFlat(CBlocks.OXIDIZED_LEVER);
+        normalItem(CBlocks.EXPOSED_LEVER);
+        normalItem(CBlocks.WEATHERED_LEVER);
+        normalItem(CBlocks.OXIDIZED_LEVER);
 
         blockFlat(CBlocks.EXPOSED_POWERED_RAIL);
         blockFlat(CBlocks.WEATHERED_POWERED_RAIL);
@@ -100,6 +100,7 @@ public class CItemModels extends CItemModelProvider {
             blockFlat(() -> Blocks.LEVER);
             blockFlat(() -> Blocks.POWERED_RAIL);
             piston(() -> Blocks.PISTON);
+            piston(() -> Blocks.STICKY_PISTON);
             block(Blocks.DISPENSER);
             block(Blocks.DROPPER);
             block(Blocks.OBSERVER);

@@ -88,19 +88,7 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
             logBlock(blocks.get());
     }
 
-    public void copperTilesBlock(ArrayList<RegistryObject<WeatheringPillarBlock>> blockArrayList) {
-        for (Supplier<? extends RotatedPillarBlock> blocks : blockArrayList)
-            axisBlock(blocks.get(), copperTilesModel(blocks, false), copperTilesModel(blocks, true));
-    }
-
-    public ModelFile copperTilesModel(Supplier<? extends Block> block, Boolean hv) {
-        String name = name(block);
-        ResourceLocation side = texture(name + (hv ? "_horizontal" : "_vertical"));
-        ResourceLocation end = texture(name + "_top");
-        return models().cubeColumn(name, side, end);
-    }
-
-    public ModelFile repeaterModel(Supplier<? extends Block> block, int ticks, Boolean powering, Boolean locked) {
+    public ModelFile repeaterModel(Supplier<? extends Block> block, int ticks, boolean powering, boolean locked) {
         String name = name(block);
         String affix = "_" + ticks + "tick" + (powering ? "_on" : "") + (locked ? "_locked" : "");
         return models().withExistingParent(name + affix, BLOCK_FOLDER + "/repeater" + affix)
@@ -126,7 +114,7 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
         });
     }
 
-    public ModelFile comparatorModel(Supplier<? extends Block> block, Boolean powering, Boolean subtracting) {
+    public ModelFile comparatorModel(Supplier<? extends Block> block, boolean powering, boolean subtracting) {
         String name = name(block);
         String affix = (powering ? "_on" : "") + (subtracting ? "_subtract" : "");
         return models().withExistingParent(name + affix, BLOCK_FOLDER + "/comparator" + affix)
@@ -260,12 +248,11 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
         });
     }
 
-    public ModelFile leverModel(Supplier<? extends Block> block, Boolean powering) {
+    public ModelFile leverModel(Supplier<? extends Block> block, boolean powering) {
         String name = name(block);
-        return models().withExistingParent(name + (powering ? "_on" : ""), BLOCK_FOLDER + "/lever" + (powering ? "_on" : ""))
+        return models().withExistingParent(name + (powering ? "_on" : ""), texture("custom_lever" + (powering ? "_on" : "")))
                 .texture("particle", texture(name))
-                .texture("base", texture(name + "_base"))
-                .texture("lever", modLoc("item/" + name));
+                .texture("base", modLoc("block/" + name));
     }
 
     public void lever(Supplier<? extends Block> block) {

@@ -1,8 +1,7 @@
 {
-  "parent": "minecraft:block/lever",
+  "parent": "coopperative:block/custom_lever",
   "textures": {
-    "base": "coopperative:block/exposed_lever_base",
-    "lever": "coopperative:item/exposed_lever",
+    "base": "coopperative:block/exposed_lever",
     "particle": "coopperative:block/exposed_lever"
   }
 }

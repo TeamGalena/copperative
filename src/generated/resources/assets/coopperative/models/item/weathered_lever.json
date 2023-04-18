@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "coopperative:block/weathered_lever"
+    "layer0": "coopperative:item/weathered_lever"
   }
 }
