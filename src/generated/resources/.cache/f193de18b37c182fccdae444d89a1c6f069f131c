@@ -1,4 +1,4 @@
-// 1.19.2	2023-04-12T22:09:45.6532131	Coopperative Block States
+// 1.19.2	2023-04-13T16:00:48.4510619	Coopperative Block States
 e941ccc24a66f6c9d760f473fb9fb771bbdc08f6 assets/coopperative/blockstates/copper_bricks.json
 76448bc4ad8b2da9d221b022190960c816608cb9 assets/coopperative/blockstates/copper_door.json
 522a97a4ec3c603735b0e660121df0bced6e7739 assets/coopperative/blockstates/copper_pillar.json
@@ -38,6 +38,7 @@ ba3b30f211e98ec2242b5b605be3915d46d3bf75 assets/coopperative/blockstates/oxidize
 aa6e6ec88b04c3a495460d9a4313c43890a67272 assets/coopperative/blockstates/oxidized_sticky_piston.json
 5e6fead630ec236edfa505ceb4b1ca75d56b8660 assets/coopperative/blockstates/oxidized_toggler.json
 362d63c8d6cd010bc2d43b4a8f75a5f96f915a61 assets/coopperative/blockstates/patina_block.json
+62cc476667b671ddfb979b62ae436158cc2b541f assets/coopperative/blockstates/spot_light.json
 97c4503cbe9f8be64ddcf09d07881480fe3fac38 assets/coopperative/blockstates/toggler.json
 820a86dc393e8f8075383e5ba1514354552bdf2f assets/coopperative/blockstates/weathered_comparator.json
 717e8d292143afe08d91610952e984e624a76800 assets/coopperative/blockstates/weathered_copper_bricks.json
@@ -78,6 +79,7 @@ b453fb1b5f57958be1812f2d4d79c4a0cf0a49f3 assets/coopperative/models/block/copper
 fd315c32fa8ea8dd3620a9a1488f3d5d6ac9603e assets/coopperative/models/block/dispenser_vertical.json
 d12feb041767edd5048ee22114f298d1f70a747a assets/coopperative/models/block/dropper.json
 ab497a64bbe880dcdba2d60f230191c2130f6d9c assets/coopperative/models/block/dropper_vertical.json
+e528d8951b6212aff0082c9db8204f8b2c490fd4 assets/coopperative/models/block/empty.json
 a99153f56e084b8fe0b7a30baf601eeafaa87272 assets/coopperative/models/block/exposed_comparator.json
 1a83329d46aea5c2d808620c310989bd2a9ae074 assets/coopperative/models/block/exposed_comparator_on.json
 fb6bbde3326c48250bfc1ec31a4cec442454bd36 assets/coopperative/models/block/exposed_comparator_on_subtract.json
