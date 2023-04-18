@@ -3,7 +3,6 @@ package galena.coopperative.data.provider;
 import galena.coopperative.Coopperative;
 import galena.coopperative.content.block.HeadLightBlock;
 import galena.coopperative.content.block.TogglerBlock;
-import galena.coopperative.content.block.WeatheringPillarBlock;
 import galena.coopperative.content.block.weatheringvanilla.WeatheringPistonBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
@@ -18,7 +17,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.function.Supplier;
 
@@ -78,13 +77,13 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
         logBlock(block.get());
     }
 
-    public void weatheringBlock(ArrayList<RegistryObject<WeatheringCopperFullBlock>> blockArrayList) {
-        for (Supplier<? extends Block> blocks : blockArrayList)
+    public <B extends Block> void weatheringBlock(List<RegistryObject<B>> blockArrayList) {
+        for (Supplier<B> blocks : blockArrayList)
             block(blocks);
     }
 
-    public void weatheringPillarBlock(ArrayList<RegistryObject<WeatheringPillarBlock>> blockArrayList) {
-        for (Supplier<? extends RotatedPillarBlock> blocks : blockArrayList)
+    public <B extends RotatedPillarBlock> void weatheringPillarBlock(List<RegistryObject<B>> blockArrayList) {
+        for (Supplier<B> blocks : blockArrayList)
             logBlock(blocks.get());
     }
 
@@ -361,7 +360,7 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
         });
     }
 
-    public void headlight(ArrayList<RegistryObject<Block>> blockArrayList) {
+    public void headlight(List<RegistryObject<Block>> blockArrayList) {
         for (Supplier<? extends Block> blocks : blockArrayList) {
             headlight(blocks);
         }
@@ -388,7 +387,7 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
         });
     }
 
-    public void toggler(ArrayList<RegistryObject<Block>> blockArrayList) {
+    public void toggler(List<RegistryObject<Block>> blockArrayList) {
         for (Supplier<? extends Block> blocks : blockArrayList) {
             toggler(blocks);
         }

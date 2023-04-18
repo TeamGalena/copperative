@@ -5,8 +5,11 @@ import galena.coopperative.data.provider.CBlockStateProvider;
 import galena.coopperative.index.CBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.stream.Stream;
 
 public class CBlockStates extends CBlockStateProvider {
 
@@ -86,8 +89,17 @@ public class CBlockStates extends CBlockStateProvider {
 
         var emptyModel = models().withExistingParent("empty", "block/block");
         simpleBlock(CBlocks.SPOT_LIGHT.get(), emptyModel);
-        //getVariantBuilder(CBlocks.SPOT_LIGHT.get()).forAllStates($ ->
-        //        ConfiguredModel.builder().modelFile(emptyModel).build()
-        //);
+
+        CBlocks.WAXED_COPPER_BRICKS.forEach(block ->
+                simpleBlock(block.get(), models().withExistingParent(name(block), modLoc(name(block).substring(6))))
+        );
+
+        Stream.of(
+                CBlocks.WAXED_COPPER_TILES.stream(),
+                CBlocks.WAXED_COPPER_PILLAR.stream()
+        ).flatMap(it -> it).forEach(block -> {
+            var name = ModelProvider.BLOCK_FOLDER + "/" + name(block).substring(6);
+            axisBlock(block.get(), modLoc(name), modLoc(name + "_top"));
+        });
     }
 }

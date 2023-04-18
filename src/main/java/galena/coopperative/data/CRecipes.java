@@ -1,11 +1,14 @@
 package galena.coopperative.data;
 
-import galena.coopperative.index.CBlocks;
 import galena.coopperative.data.provider.CRecipeProvider;
+import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CItems;
+import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -146,5 +149,14 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_spyglass", has(Items.SPYGLASS))
                 .unlockedBy("has_redstone_lamp", has(Items.REDSTONE_LAMP))
                 .save(consumer);
+
+        CBlocks.WAXED_BLOCKS.get().forEach((unwaxed, waxed) -> {
+            var id = Registry.BLOCK.getKey(waxed);
+            ShapelessRecipeBuilder.shapeless(waxed)
+                    .requires(unwaxed)
+                    .requires(Items.HONEYCOMB)
+                    .unlockedBy("has_unwaxed", has(unwaxed))
+                    .save(consumer, new ResourceLocation(id.getNamespace(), id.getPath() + "_from_honeycomb"));
+        });
     }
 }

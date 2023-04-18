@@ -12,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public abstract class CItemModelProvider extends ItemModelProvider {
@@ -39,14 +40,14 @@ public abstract class CItemModelProvider extends ItemModelProvider {
         return block(block, blockName(block));
     }
 
-    public <B extends Block> ArrayList<ItemModelBuilder> weatheringBlock(ArrayList<RegistryObject<B>> blockArrayList) {
+    public <B extends Block> List<ItemModelBuilder> weatheringBlock(List<RegistryObject<B>> blockArrayList) {
         ArrayList<ItemModelBuilder> itemArrayList = new ArrayList<>(blockArrayList.size());
         for (Supplier<? extends B> blocks : blockArrayList)
             itemArrayList.add(block(blocks));
         return itemArrayList;
     }
 
-    public <B extends Block> ArrayList<ItemModelBuilder> weathingBlockWithItem(ArrayList<RegistryObject<B>> blockArrayList) {
+    public <B extends Block> List<ItemModelBuilder> weathingBlockWithItem(List<RegistryObject<B>> blockArrayList) {
         ArrayList<ItemModelBuilder> itemArrayList = new ArrayList<>(blockArrayList.size());
         for (Supplier<? extends B> blocks : blockArrayList)
             itemArrayList.add(blockWithItem(blocks));

@@ -26,6 +26,9 @@ public class CLoot extends CLootProvider {
                         COPPER_TILES.stream(),
                         COPPER_BRICKS.stream(),
                         COPPER_PILLAR.stream(),
+                        WAXED_COPPER_TILES.stream(),
+                        WAXED_COPPER_BRICKS.stream(),
+                        WAXED_COPPER_PILLAR.stream(),
                         HEADLIGHT.stream(),
                         TOGGLER.stream(),
                         Stream.of(

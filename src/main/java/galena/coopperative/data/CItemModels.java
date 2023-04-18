@@ -34,6 +34,9 @@ public class CItemModels extends CItemModelProvider {
         weatheringBlock(CBlocks.COPPER_BRICKS);
         weatheringBlock(CBlocks.COPPER_PILLAR);
         weatheringBlock(CBlocks.COPPER_TILES);
+        weatheringBlock(CBlocks.WAXED_COPPER_BRICKS);
+        weatheringBlock(CBlocks.WAXED_COPPER_PILLAR);
+        weatheringBlock(CBlocks.WAXED_COPPER_TILES);
         weatheringBlock(CBlocks.HEADLIGHT);
 
         blockWithItem(CBlocks.COPPER_DOOR);

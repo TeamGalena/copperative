@@ -120,6 +120,9 @@ public class CTags {
             COPPER_BRICKS.forEach(it -> pickaxe.add(it.get()));
             COPPER_TILES.forEach(it -> pickaxe.add(it.get()));
             COPPER_PILLAR.forEach(it -> pickaxe.add(it.get()));
+            WAXED_COPPER_BRICKS.forEach(it -> pickaxe.add(it.get()));
+            WAXED_COPPER_TILES.forEach(it -> pickaxe.add(it.get()));
+            WAXED_COPPER_PILLAR.forEach(it -> pickaxe.add(it.get()));
             HEADLIGHT.forEach(it -> pickaxe.add(it.get()));
             TOGGLER.forEach(it -> pickaxe.add(it.get()));
         }
