@@ -4,11 +4,12 @@ import galena.coopperative.Coopperative;
 import galena.coopperative.data.provider.CBlockStateProvider;
 import galena.coopperative.index.CBlocks;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 public class CBlockStates extends CBlockStateProvider {
@@ -20,6 +21,10 @@ public class CBlockStates extends CBlockStateProvider {
     @Override
     public @NotNull String getName() {
         return Coopperative.MOD_NAME + " Block States";
+    }
+
+    private static String unwaxedName(Supplier<? extends Block> block) {
+        return name(block).substring(6);
     }
 
     @Override
@@ -77,29 +82,30 @@ public class CBlockStates extends CBlockStateProvider {
         headlight(CBlocks.HEADLIGHT);
         toggler(CBlocks.TOGGLER);
 
-        door(CBlocks.COPPER_DOOR);
-        door(CBlocks.EXPOSED_COPPER_DOOR);
-        door(CBlocks.WEATHERED_COPPER_DOOR);
-        door(CBlocks.OXIDIZED_COPPER_DOOR);
-
-        trapdoor(CBlocks.COPPER_TRAPDOOR);
-        trapdoor(CBlocks.EXPOSED_COPPER_TRAPDOOR);
-        trapdoor(CBlocks.WEATHERED_COPPER_TRAPDOOR);
-        trapdoor(CBlocks.OXIDIZED_COPPER_TRAPDOOR);
+        CBlocks.COPPER_DOORS.forEach(this::door);
+        CBlocks.COPPER_TRAPDOORS.forEach(this::trapdoor);
 
         var emptyModel = models().withExistingParent("empty", "block/block");
         simpleBlock(CBlocks.SPOT_LIGHT.get(), emptyModel);
 
         CBlocks.WAXED_COPPER_BRICKS.forEach(block ->
-                simpleBlock(block.get(), models().withExistingParent(name(block), modLoc(name(block).substring(6))))
+                simpleBlock(block.get(), models().withExistingParent(name(block), modLoc(unwaxedName(block))))
         );
 
         Stream.of(
                 CBlocks.WAXED_COPPER_TILES.stream(),
                 CBlocks.WAXED_COPPER_PILLAR.stream()
         ).flatMap(it -> it).forEach(block -> {
-            var name = ModelProvider.BLOCK_FOLDER + "/" + name(block).substring(6);
-            axisBlock(block.get(), modLoc(name), modLoc(name + "_top"));
+            var name =  unwaxedName(block);
+            axisBlock(block.get(), texture(name), texture(name + "_top"));
         });
+
+        CBlocks.WAXED_COPPER_DOORS.forEach(block ->
+                doorBlock(block.get(), texture(unwaxedName(block) + "_bottom"), texture(unwaxedName(block) + "_top"))
+        );
+
+        CBlocks.WAXED_COPPER_TRAPDOORS.forEach(block ->
+                trapdoorBlock(block.get(), texture(unwaxedName(block)), true)
+        );
     }
 }

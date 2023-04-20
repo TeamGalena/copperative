@@ -61,6 +61,8 @@ public class Coopperative {
                 .putAll(waxedEntries(CBlocks.COPPER_BRICKS, CBlocks.WAXED_COPPER_BRICKS))
                 .putAll(waxedEntries(CBlocks.COPPER_TILES, CBlocks.WAXED_COPPER_TILES))
                 .putAll(waxedEntries(CBlocks.COPPER_PILLAR, CBlocks.WAXED_COPPER_PILLAR))
+                .putAll(waxedEntries(CBlocks.COPPER_DOORS, CBlocks.WAXED_COPPER_DOORS))
+                .putAll(waxedEntries(CBlocks.COPPER_TRAPDOORS, CBlocks.WAXED_COPPER_TRAPDOORS))
                 .build());
 
         WEATHERING_BLOCKS = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
@@ -106,13 +108,8 @@ public class Coopperative {
                 .put(CBlocks.EXPOSED_POWERED_RAIL.get(), CBlocks.WEATHERED_POWERED_RAIL.get())
                 .put(CBlocks.WEATHERED_POWERED_RAIL.get(), CBlocks.OXIDIZED_POWERED_RAIL.get())
 
-                .put(CBlocks.COPPER_DOOR.get(), CBlocks.EXPOSED_COPPER_DOOR.get())
-                .put(CBlocks.EXPOSED_COPPER_DOOR.get(), CBlocks.WEATHERED_COPPER_DOOR.get())
-                .put(CBlocks.WEATHERED_COPPER_DOOR.get(), CBlocks.OXIDIZED_COPPER_DOOR.get())
-
-                .put(CBlocks.COPPER_TRAPDOOR.get(), CBlocks.EXPOSED_COPPER_TRAPDOOR.get())
-                .put(CBlocks.EXPOSED_COPPER_TRAPDOOR.get(), CBlocks.WEATHERED_COPPER_TRAPDOOR.get())
-                .put(CBlocks.WEATHERED_COPPER_TRAPDOOR.get(), CBlocks.OXIDIZED_COPPER_TRAPDOOR.get())
+                .putAll(blockMapFromArray(CBlocks.COPPER_DOORS))
+                .putAll(blockMapFromArray(CBlocks.COPPER_TRAPDOORS))
                 .build());
     }
 

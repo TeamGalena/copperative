@@ -41,14 +41,9 @@ public class CoopperativeClient {
 
         render(TOGGLER, cutout);
 
-        render(COPPER_DOOR, cutout);
-        render(EXPOSED_COPPER_DOOR, cutout);
-        render(WEATHERED_COPPER_DOOR, cutout);
-        render(OXIDIZED_COPPER_DOOR, cutout);
-
-        render(COPPER_TRAPDOOR, cutout);
-        render(EXPOSED_COPPER_TRAPDOOR, cutout);
-        render(WEATHERED_COPPER_TRAPDOOR, cutout);
-        render(OXIDIZED_COPPER_TRAPDOOR, cutout);
+        COPPER_DOORS.forEach(it -> render(it, cutout));
+        COPPER_TRAPDOORS.forEach(it -> render(it, cutout));
+        WAXED_COPPER_DOORS.forEach(it -> render(it, cutout));
+        WAXED_COPPER_TRAPDOORS.forEach(it -> render(it, cutout));
     }
 }

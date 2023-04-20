@@ -54,19 +54,13 @@ public class CTags {
                     OXIDIZED_POWERED_RAIL.get()
             );
 
-            tag(BlockTags.DOORS).add(
-                    COPPER_DOOR.get(),
-                    EXPOSED_COPPER_DOOR.get(),
-                    WEATHERED_COPPER_DOOR.get(),
-                    OXIDIZED_COPPER_DOOR.get()
-            );
+            var doors = tag(BlockTags.DOORS);
+            COPPER_DOORS.forEach(it -> doors.add(it.get()));
+            WAXED_COPPER_DOORS.forEach(it -> doors.add(it.get()));
 
-            tag(BlockTags.TRAPDOORS).add(
-                    COPPER_TRAPDOOR.get(),
-                    EXPOSED_COPPER_TRAPDOOR.get(),
-                    WEATHERED_COPPER_TRAPDOOR.get(),
-                    OXIDIZED_COPPER_TRAPDOOR.get()
-            );
+            var trapdoors = tag(BlockTags.TRAPDOORS);
+            COPPER_TRAPDOORS.forEach(it -> trapdoors.add(it.get()));
+            WAXED_COPPER_TRAPDOORS.forEach(it -> trapdoors.add(it.get()));
 
             // Mineables
             var pickaxe = tag(BlockTags.MINEABLE_WITH_PICKAXE);
@@ -102,19 +96,9 @@ public class CTags {
                     WEATHERED_STICKY_PISTON.get(),
                     OXIDIZED_STICKY_PISTON.get(),
 
-                    COPPER_DOOR.get(),
-                    EXPOSED_COPPER_DOOR.get(),
-                    WEATHERED_COPPER_DOOR.get(),
-                    OXIDIZED_COPPER_DOOR.get(),
-
                     EXPOSED_POWERED_RAIL.get(),
                     WEATHERED_POWERED_RAIL.get(),
-                    OXIDIZED_POWERED_RAIL.get(),
-
-                    COPPER_TRAPDOOR.get(),
-                    EXPOSED_COPPER_TRAPDOOR.get(),
-                    WEATHERED_COPPER_TRAPDOOR.get(),
-                    OXIDIZED_COPPER_TRAPDOOR.get()
+                    OXIDIZED_POWERED_RAIL.get()
             );
 
             COPPER_BRICKS.forEach(it -> pickaxe.add(it.get()));
@@ -123,8 +107,14 @@ public class CTags {
             WAXED_COPPER_BRICKS.forEach(it -> pickaxe.add(it.get()));
             WAXED_COPPER_TILES.forEach(it -> pickaxe.add(it.get()));
             WAXED_COPPER_PILLAR.forEach(it -> pickaxe.add(it.get()));
+
             HEADLIGHT.forEach(it -> pickaxe.add(it.get()));
             TOGGLER.forEach(it -> pickaxe.add(it.get()));
+
+            COPPER_DOORS.forEach(it -> pickaxe.add(it.get()));
+            COPPER_TRAPDOORS.forEach(it -> pickaxe.add(it.get()));
+            WAXED_COPPER_DOORS.forEach(it -> pickaxe.add(it.get()));
+            WAXED_COPPER_TRAPDOORS.forEach(it -> pickaxe.add(it.get()));
         }
 
     }

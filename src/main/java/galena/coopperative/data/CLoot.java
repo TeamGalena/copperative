@@ -31,6 +31,8 @@ public class CLoot extends CLootProvider {
                         WAXED_COPPER_PILLAR.stream(),
                         HEADLIGHT.stream(),
                         TOGGLER.stream(),
+                        COPPER_TRAPDOORS.stream(),
+                        WAXED_COPPER_TRAPDOORS.stream(),
                         Stream.of(
                                 PATINA_BLOCK,
 
@@ -58,10 +60,6 @@ public class CLoot extends CLootProvider {
                                 OXIDIZED_LEVER,
                                 WEATHERED_LEVER,
 
-                                EXPOSED_COPPER_TRAPDOOR,
-                                OXIDIZED_COPPER_TRAPDOOR,
-                                WEATHERED_COPPER_TRAPDOOR,
-
                                 EXPOSED_POWERED_RAIL,
                                 OXIDIZED_POWERED_RAIL,
                                 WEATHERED_POWERED_RAIL
@@ -85,7 +83,8 @@ public class CLoot extends CLootProvider {
                 .map(RegistryObject::get)
                 .forEach(block -> event.register(block, blockLootWithName(block)));
 
-        Stream.of(EXPOSED_COPPER_DOOR, OXIDIZED_COPPER_DOOR, WEATHERED_COPPER_DOOR)
+        Stream.of(COPPER_DOORS.stream(), WAXED_COPPER_DOORS.stream())
+                .flatMap(it -> it)
                 .map(RegistryObject::get)
                 .forEach(block -> event.register(block, blockLoot(block, it ->
                         it.when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)

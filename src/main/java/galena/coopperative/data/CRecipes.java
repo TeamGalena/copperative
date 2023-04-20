@@ -38,8 +38,8 @@ public class CRecipes extends CRecipeProvider {
         compact(CBlocks.PATINA_BLOCK.get(), CItems.PATINA.get()).save(consumer);
         unCompact(CItems.PATINA.get(), CBlocks.PATINA_BLOCK.get()).save(consumer);
 
-        door(Items.COPPER_INGOT, CBlocks.COPPER_DOOR);
-        trapdoor(Items.COPPER_INGOT, CBlocks.COPPER_TRAPDOOR);
+        door(Items.COPPER_INGOT, CBlocks.COPPER_DOORS.get(0));
+        trapdoor(Items.COPPER_INGOT, CBlocks.COPPER_TRAPDOORS.get(0));
 
         quadTransform(Items.CUT_COPPER, CBlocks.COPPER_BRICKS.get(0));
 
