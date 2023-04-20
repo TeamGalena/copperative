@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "coopperative:exposed_copper_bricks"
+    },
+    {
+      "item": "coopperative:patina"
+    }
+  ],
+  "result": {
+    "item": "coopperative:weathered_copper_bricks"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:lever"
+    },
+    {
+      "item": "coopperative:patina"
+    }
+  ],
+  "result": {
+    "item": "coopperative:exposed_lever"
+  }
+}

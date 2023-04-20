@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "coopperative:weathered_repeater"
+    },
+    {
+      "item": "coopperative:patina"
+    }
+  ],
+  "result": {
+    "item": "coopperative:oxidized_repeater"
+  }
+}

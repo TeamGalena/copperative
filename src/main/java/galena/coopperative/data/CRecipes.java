@@ -1,5 +1,6 @@
 package galena.coopperative.data;
 
+import galena.coopperative.Coopperative;
 import galena.coopperative.data.provider.CRecipeProvider;
 import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CItems;
@@ -13,6 +14,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
@@ -38,17 +40,59 @@ public class CRecipes extends CRecipeProvider {
         compact(CBlocks.PATINA_BLOCK.get(), CItems.PATINA.get()).save(consumer);
         unCompact(CItems.PATINA.get(), CBlocks.PATINA_BLOCK.get()).save(consumer);
 
-        door(Items.COPPER_INGOT, CBlocks.COPPER_DOORS.get(0));
-        trapdoor(Items.COPPER_INGOT, CBlocks.COPPER_TRAPDOORS.get(0));
+        door(Items.COPPER_INGOT, CBlocks.COPPER_DOORS.get(0)).save(consumer);
+        trapdoor(Items.COPPER_INGOT, CBlocks.COPPER_TRAPDOORS.get(0)).save(consumer);
 
         quadTransform(Items.CUT_COPPER, CBlocks.COPPER_BRICKS.get(0));
 
-        ShapedRecipeBuilder.shaped(CBlocks.COPPER_PILLAR.get(0).get())
-                .pattern("A")
-                .pattern("A")
-                .define('A', Items.CUT_COPPER)
-                .unlockedBy("has_cut_copper", has(Items.CUT_COPPER))
-                .save(consumer);
+        var cutCopper = new Block[]{Blocks.CUT_COPPER, Blocks.EXPOSED_CUT_COPPER, Blocks.WEATHERED_CUT_COPPER, Blocks.OXIDIZED_CUT_COPPER};
+        var cutWaxedCopper = new Block[]{Blocks.WAXED_CUT_COPPER, Blocks.WAXED_EXPOSED_CUT_COPPER, Blocks.WAXED_WEATHERED_CUT_COPPER, Blocks.WAXED_OXIDIZED_CUT_COPPER};
+        var cutCopperSlabs = new Block[]{Blocks.CUT_COPPER_SLAB, Blocks.EXPOSED_CUT_COPPER_SLAB, Blocks.WEATHERED_CUT_COPPER_SLAB, Blocks.OXIDIZED_CUT_COPPER_SLAB};
+        var cutWaxedCopperSlabs = new Block[]{Blocks.WAXED_CUT_COPPER_SLAB, Blocks.WAXED_EXPOSED_CUT_COPPER_SLAB, Blocks.WAXED_WEATHERED_CUT_COPPER_SLAB, Blocks.WAXED_OXIDIZED_CUT_COPPER_SLAB};
+
+        for (int i = 0; i < CBlocks.COPPER_PILLAR.size(); i++) {
+            ShapedRecipeBuilder.shaped(CBlocks.COPPER_PILLAR.get(i).get())
+                    .pattern("A")
+                    .pattern("A")
+                    .define('A', cutCopper[i])
+                    .unlockedBy("has_cut_copper", has(cutCopper[i]))
+                    .save(consumer);
+
+            ShapedRecipeBuilder.shaped(CBlocks.WAXED_COPPER_PILLAR.get(i).get())
+                    .pattern("A")
+                    .pattern("A")
+                    .define('A', cutWaxedCopper[i])
+                    .unlockedBy("has_cut_copper", has(cutWaxedCopper[i]))
+                    .save(consumer);
+
+            ShapedRecipeBuilder.shaped(CBlocks.COPPER_BRICKS.get(i).get())
+                    .pattern("AA")
+                    .pattern("AA")
+                    .define('A', cutCopper[i])
+                    .unlockedBy("has_cut_copper", has(cutCopper[i]))
+                    .save(consumer);
+
+            ShapedRecipeBuilder.shaped(CBlocks.WAXED_COPPER_BRICKS.get(i).get())
+                    .pattern("AA")
+                    .pattern("AA")
+                    .define('A', cutWaxedCopper[i])
+                    .unlockedBy("has_cut_copper", has(cutWaxedCopper[i]))
+                    .save(consumer);
+
+            ShapedRecipeBuilder.shaped(CBlocks.COPPER_TILES.get(i).get())
+                    .pattern("A")
+                    .pattern("A")
+                    .define('A', cutCopperSlabs[i])
+                    .unlockedBy("has_cut_copper", has(cutCopperSlabs[i]))
+                    .save(consumer);
+
+            ShapedRecipeBuilder.shaped(CBlocks.WAXED_COPPER_TILES.get(i).get())
+                    .pattern("A")
+                    .pattern("A")
+                    .define('A', cutWaxedCopperSlabs[i])
+                    .unlockedBy("has_cut_copper", has(cutWaxedCopperSlabs[i]))
+                    .save(consumer);
+        }
 
         ShapedRecipeBuilder.shaped(Blocks.REPEATER)
                 .pattern("ABA")
@@ -157,6 +201,16 @@ public class CRecipes extends CRecipeProvider {
                     .requires(Items.HONEYCOMB)
                     .unlockedBy("has_unwaxed", has(unwaxed))
                     .save(consumer, new ResourceLocation(id.getNamespace(), id.getPath() + "_from_honeycomb"));
+        });
+
+        Coopperative.WEATHERING_BLOCKS.get().forEach((unweathered, weathered) -> {
+            var id = Registry.BLOCK.getKey(weathered);
+            ShapelessRecipeBuilder.shapeless(weathered)
+                    .requires(unweathered)
+                    .requires(CItems.PATINA.get())
+                    .unlockedBy("has_unweathered", has(unweathered))
+                    .unlockedBy("has_patina", has(CItems.PATINA.get()))
+                    .save(consumer, new ResourceLocation(id.getNamespace(), id.getPath() + "_from_patina"));
         });
     }
 }
