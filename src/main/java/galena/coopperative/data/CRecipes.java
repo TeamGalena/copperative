@@ -1,11 +1,14 @@
 package galena.coopperative.data;
 
-import galena.coopperative.index.CBlocks;
 import galena.coopperative.data.provider.CRecipeProvider;
+import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CItems;
+import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -35,8 +38,8 @@ public class CRecipes extends CRecipeProvider {
         compact(CBlocks.PATINA_BLOCK.get(), CItems.PATINA.get()).save(consumer);
         unCompact(CItems.PATINA.get(), CBlocks.PATINA_BLOCK.get()).save(consumer);
 
-        door(Items.COPPER_INGOT, CBlocks.COPPER_DOOR);
-        trapdoor(Items.COPPER_INGOT, CBlocks.COPPER_TRAPDOOR);
+        door(Items.COPPER_INGOT, CBlocks.COPPER_DOORS.get(0));
+        trapdoor(Items.COPPER_INGOT, CBlocks.COPPER_TRAPDOORS.get(0));
 
         quadTransform(Items.CUT_COPPER, CBlocks.COPPER_BRICKS.get(0));
 
@@ -146,5 +149,14 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_spyglass", has(Items.SPYGLASS))
                 .unlockedBy("has_redstone_lamp", has(Items.REDSTONE_LAMP))
                 .save(consumer);
+
+        CBlocks.WAXED_BLOCKS.get().forEach((unwaxed, waxed) -> {
+            var id = Registry.BLOCK.getKey(waxed);
+            ShapelessRecipeBuilder.shapeless(waxed)
+                    .requires(unwaxed)
+                    .requires(Items.HONEYCOMB)
+                    .unlockedBy("has_unwaxed", has(unwaxed))
+                    .save(consumer, new ResourceLocation(id.getNamespace(), id.getPath() + "_from_honeycomb"));
+        });
     }
 }

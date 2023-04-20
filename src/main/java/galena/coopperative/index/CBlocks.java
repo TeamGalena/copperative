@@ -1,6 +1,6 @@
 package galena.coopperative.index;
 
-import com.google.common.collect.ImmutableBiMap;
+import com.google.common.collect.BiMap;
 import galena.coopperative.Coopperative;
 import galena.coopperative.content.block.*;
 import galena.coopperative.content.block.tile.HeadlightTile;
@@ -11,15 +11,17 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 public class CBlocks {
 
@@ -30,17 +32,21 @@ public class CBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Coopperative.MOD_ID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Coopperative.MOD_ID);
 
-    public static ImmutableBiMap<Block, Block> WAXED_BLOCKS;
+    public static Supplier<BiMap<Block, Block>> WAXED_BLOCKS;
 
-    public static final RegistryObject<SpotLightBlock> SPOT_LIGHT = register("spot_light", () -> new SpotLightBlock(BlockBehaviour.Properties.of(Material.AIR).noCollission().noLootTable().noOcclusion().lightLevel(SpotLightBlock.LIGHT_EMISSION)));
+    public static final RegistryObject<SpotLightBlock> SPOT_LIGHT = register("spot_light", () -> new SpotLightBlock(Properties.of(Material.AIR).noCollission().noLootTable().noOcclusion().lightLevel(SpotLightBlock.LIGHT_EMISSION)));
 
     // Storage Blocks
-    public static final RegistryObject<Block> PATINA_BLOCK = register("patina_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE).sound(SoundType.TUFF)), BUILDING);
+    public static final RegistryObject<Block> PATINA_BLOCK = register("patina_block", () -> new Block(Properties.copy(Blocks.SANDSTONE).sound(SoundType.TUFF)), BUILDING);
 
     // Decorative Blocks
-    public static final ArrayList<RegistryObject<WeatheringCopperFullBlock>> COPPER_BRICKS = registerWeatheringSet("copper_bricks", weatherState -> new WeatheringCopperFullBlock(weatherState, BlockBehaviour.Properties.copy(Blocks.CUT_COPPER)), BUILDING);
-    public static final ArrayList<RegistryObject<WeatheringPillarBlock>> COPPER_PILLAR = registerWeatheringSet("copper_pillar", weatherState -> new WeatheringPillarBlock(weatherState, BlockBehaviour.Properties.copy(Blocks.CUT_COPPER)), BUILDING);
-    public static final ArrayList<RegistryObject<WeatheringPillarBlock>> COPPER_TILES = registerWeatheringSet("copper_tiles", weatherState -> new WeatheringPillarBlock(weatherState, BlockBehaviour.Properties.copy(Blocks.CUT_COPPER)), BUILDING);
+    public static final List<RegistryObject<WeatheringCopperFullBlock>> COPPER_BRICKS = registerWeatheringSet("copper_bricks", weatherState -> new WeatheringCopperFullBlock(weatherState, Properties.copy(Blocks.CUT_COPPER)), BUILDING);
+    public static final List<RegistryObject<WeatheringPillarBlock>> COPPER_PILLAR = registerWeatheringSet("copper_pillar", weatherState -> new WeatheringPillarBlock(weatherState, Properties.copy(Blocks.CUT_COPPER)), BUILDING);
+    public static final List<RegistryObject<WeatheringPillarBlock>> COPPER_TILES = registerWeatheringSet("copper_tiles", weatherState -> new WeatheringPillarBlock(weatherState, Properties.copy(Blocks.CUT_COPPER)), BUILDING);
+
+    public static final List<RegistryObject<Block>> WAXED_COPPER_BRICKS = registerWaxedSet("copper_bricks", $ -> new Block(Properties.copy(Blocks.CUT_COPPER)), BUILDING);
+    public static final List<RegistryObject<RotatedPillarBlock>> WAXED_COPPER_PILLAR = registerWaxedSet("copper_pillar", $ -> new RotatedPillarBlock(Properties.copy(Blocks.CUT_COPPER)), BUILDING);
+    public static final List<RegistryObject<RotatedPillarBlock>> WAXED_COPPER_TILES = registerWaxedSet("copper_tiles", $ -> new RotatedPillarBlock(Properties.copy(Blocks.CUT_COPPER)), BUILDING);
 
     // Redstone Components
     public static final RegistryObject<Block> EXPOSED_REPEATER = register("exposed_repeater", () -> new WeatheringRepeaterBlock(WeatherState.EXPOSED), REDSTONE);
@@ -74,23 +80,28 @@ public class CBlocks {
     public static final RegistryObject<Block> WEATHERED_LEVER = register("weathered_lever", () -> new WeatheringLeverBlock(WeatherState.WEATHERED), REDSTONE);
     public static final RegistryObject<Block> OXIDIZED_LEVER = register("oxidized_lever", () -> new WeatheringLeverBlock(WeatherState.OXIDIZED), REDSTONE);
 
-    public static final RegistryObject<DoorBlock> COPPER_DOOR = register("copper_door", () -> new CopperDoorBlock(WeatherState.UNAFFECTED, BlockBehaviour.Properties.copy(Blocks.IRON_DOOR).sound(SoundType.COPPER)), REDSTONE);
-    public static final RegistryObject<DoorBlock> EXPOSED_COPPER_DOOR = register("exposed_copper_door", () -> new CopperDoorBlock(WeatherState.EXPOSED, BlockBehaviour.Properties.copy(COPPER_DOOR.get())), REDSTONE);
-    public static final RegistryObject<DoorBlock> WEATHERED_COPPER_DOOR = register("weathered_copper_door", () -> new CopperDoorBlock(WeatherState.WEATHERED, BlockBehaviour.Properties.copy(COPPER_DOOR.get())), REDSTONE);
-    public static final RegistryObject<DoorBlock> OXIDIZED_COPPER_DOOR = register("oxidized_copper_door", () -> new CopperDoorBlock(WeatherState.OXIDIZED, BlockBehaviour.Properties.copy(COPPER_DOOR.get())), REDSTONE);
+    public static final List<RegistryObject<DoorBlock>> COPPER_DOORS = registerWeatheringSet("copper_door", it -> new CopperDoorBlock(it, Properties.copy(Blocks.IRON_DOOR).sound(SoundType.COPPER)), REDSTONE);
+    //public static final RegistryObject<DoorBlock> EXPOSED_COPPER_DOOR = register("exposed_copper_door", () -> new CopperDoorBlock(WeatherState.EXPOSED, Properties.copy(COPPER_DOOR.get())), REDSTONE);
+    //public static final RegistryObject<DoorBlock> WEATHERED_COPPER_DOOR = register("weathered_copper_door", () -> new CopperDoorBlock(WeatherState.WEATHERED, Properties.copy(COPPER_DOOR.get())), REDSTONE);
+    //public static final RegistryObject<DoorBlock> OXIDIZED_COPPER_DOOR = register("oxidized_copper_door", () -> new CopperDoorBlock(WeatherState.OXIDIZED, Properties.copy(COPPER_DOOR.get())), REDSTONE);
 
-    public static final RegistryObject<TrapDoorBlock> COPPER_TRAPDOOR = register("copper_trapdoor", () -> new CopperTrapDoorBlock(WeatherState.UNAFFECTED, BlockBehaviour.Properties.copy(Blocks.IRON_DOOR).sound(SoundType.COPPER)), REDSTONE);
-    public static final RegistryObject<TrapDoorBlock> EXPOSED_COPPER_TRAPDOOR = register("exposed_copper_trapdoor", () -> new CopperTrapDoorBlock(WeatherState.EXPOSED, BlockBehaviour.Properties.copy(COPPER_DOOR.get())), REDSTONE);
-    public static final RegistryObject<TrapDoorBlock> WEATHERED_COPPER_TRAPDOOR = register("weathered_copper_trapdoor", () -> new CopperTrapDoorBlock(WeatherState.WEATHERED, BlockBehaviour.Properties.copy(COPPER_DOOR.get())), REDSTONE);
-    public static final RegistryObject<TrapDoorBlock> OXIDIZED_COPPER_TRAPDOOR = register("oxidized_copper_trapdoor", () -> new CopperTrapDoorBlock(WeatherState.OXIDIZED, BlockBehaviour.Properties.copy(COPPER_DOOR.get())), REDSTONE);
+    public static final List<RegistryObject<TrapDoorBlock>> COPPER_TRAPDOORS = registerWeatheringSet("copper_trapdoor", it -> new CopperTrapDoorBlock(it, Properties.copy(Blocks.IRON_TRAPDOOR).sound(SoundType.COPPER)), REDSTONE);
+    //public static final RegistryObject<TrapDoorBlock> EXPOSED_COPPER_TRAPDOOR = register("exposed_copper_trapdoor", () -> new CopperTrapDoorBlock(WeatherState.EXPOSED, Properties.copy(COPPER_DOOR.get())), REDSTONE);
+    //public static final RegistryObject<TrapDoorBlock> WEATHERED_COPPER_TRAPDOOR = register("weathered_copper_trapdoor", () -> new CopperTrapDoorBlock(WeatherState.WEATHERED, Properties.copy(COPPER_DOOR.get())), REDSTONE);
+    //public static final RegistryObject<TrapDoorBlock> OXIDIZED_COPPER_TRAPDOOR = register("oxidized_copper_trapdoor", () -> new CopperTrapDoorBlock(WeatherState.OXIDIZED, Properties.copy(COPPER_DOOR.get())), REDSTONE);
 
-    public static final ArrayList<RegistryObject<Block>> HEADLIGHT = registerWeatheringSet("headlight", weatherState -> new HeadLightBlock(weatherState, BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).lightLevel(HeadLightBlock.LIGHT_EMISSION)), REDSTONE);
+    public static final List<RegistryObject<DoorBlock>> WAXED_COPPER_DOORS = registerWaxedSet("copper_door", it -> new WaxedDoorBlock(Properties.copy(Blocks.IRON_DOOR).sound(SoundType.COPPER)), REDSTONE);
+
+    public static final List<RegistryObject<TrapDoorBlock>> WAXED_COPPER_TRAPDOORS = registerWaxedSet("copper_trapdoor", $ -> new AbstractCopperTrapdoorBlock(Properties.copy(Blocks.IRON_TRAPDOOR).sound(SoundType.COPPER)), REDSTONE);
+
+
+    public static final List<RegistryObject<Block>> HEADLIGHT = registerWeatheringSet("headlight", weatherState -> new HeadLightBlock(weatherState, Properties.copy(Blocks.COPPER_BLOCK).lightLevel(HeadLightBlock.LIGHT_EMISSION)), REDSTONE);
     public static final RegistryObject<BlockEntityType<HeadlightTile>> HEADLIGHT_TILE = BLOCK_ENTITIES.register("headlight", () -> {
         var blocks = HEADLIGHT.stream().map(RegistryObject::get).toArray(Block[]::new);
         return BlockEntityType.Builder.of(HeadlightTile::new, blocks).build(null);
     });
 
-    public static final ArrayList<RegistryObject<Block>> TOGGLER = registerWeatheringSet("toggler", weatherState -> new TogglerBlock(weatherState, BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK)), REDSTONE);
+    public static final List<RegistryObject<Block>> TOGGLER = registerWeatheringSet("toggler", weatherState -> new TogglerBlock(weatherState, Properties.copy(Blocks.COPPER_BLOCK)), REDSTONE);
 
     // Rails
     public static final RegistryObject<Block> EXPOSED_POWERED_RAIL = register("exposed_powered_rail", () -> new WeatheringPoweredRailBlock(WeatherState.EXPOSED), TRANSPORT);
@@ -111,14 +122,22 @@ public class CBlocks {
         return BLOCKS.register(name, block);
     }
 
-    public static <B extends Block> ArrayList<RegistryObject<B>> registerWeatheringSet(String name, Function<WeatherState, B> function, CreativeModeTab tab) {
+    public static <B extends Block> List<RegistryObject<B>> registerWeatheringSet(UnaryOperator<String> name, Function<WeatherState, B> function, CreativeModeTab tab) {
         WeatherState[] wStates = WeatherState.values();
         ArrayList<RegistryObject<B>> blocks = new ArrayList<>(4);
         for (final WeatherState weatherState : wStates) {
             String prefix = weatherState.equals(WeatherState.UNAFFECTED) ? "" : weatherState.name().toLowerCase() + "_";
             Supplier<? extends B> supplier = () -> function.apply(weatherState);
-            blocks.add(register(prefix + name, supplier, tab));
+            blocks.add(register(name.apply(prefix), supplier, tab));
         }
         return blocks;
+    }
+
+    public static <B extends Block> List<RegistryObject<B>> registerWeatheringSet(String name, Function<WeatherState, B> function, CreativeModeTab tab) {
+        return registerWeatheringSet(prefix -> prefix + name, function, tab);
+    }
+
+    public static <B extends Block> List<RegistryObject<B>> registerWaxedSet(String name, Function<WeatherState, B> function, CreativeModeTab tab) {
+        return registerWeatheringSet(prefix -> "waxed_" + prefix + name, function, tab);
     }
 }

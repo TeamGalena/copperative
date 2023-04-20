@@ -5,6 +5,7 @@ import galena.coopperative.index.CBlocks;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -24,11 +25,11 @@ public class PlayerInteractions {
     public static void blockToolInteractions(final BlockEvent.BlockToolModificationEvent event) {
         ToolAction action = event.getToolAction();
         BlockState state = event.getState();
-        if (event.isSimulated()) return;
+        //if (event.isSimulated()) return;
 
         // Removing Wax ('Unwaxing' - Using an Axe on a waxed block).
         if (action.equals(ToolActions.AXE_WAX_OFF)) {
-            Block unWaxedBlock = CBlocks.WAXED_BLOCKS.get(state.getBlock());
+            Block unWaxedBlock = CBlocks.WAXED_BLOCKS.get().inverse().get(state.getBlock());
             if (unWaxedBlock == null) return;
             event.setFinalState(unWaxedBlock.withPropertiesOf(state));
         }
@@ -52,15 +53,18 @@ public class PlayerInteractions {
         ItemStack itemStack = event.getItemStack();
 
         // Waxing (Using Honeycomb on a waxable block).
-        if (itemStack.is(Items.HONEYCOMB) && CBlocks.WAXED_BLOCKS.inverse().get(state.getBlock()) != null) {
+        Block waxedBlock = CBlocks.WAXED_BLOCKS.get().get(state.getBlock());
+        if (itemStack.is(Items.HONEYCOMB) && waxedBlock != null) {
 
             if (event.getEntity() instanceof ServerPlayer player) CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger(player, pos, itemStack);
 
             event.getEntity().swing(event.getHand());
             if (!event.getEntity().isCreative()) event.getItemStack().shrink(1);
-            Block waxedBlock = CBlocks.WAXED_BLOCKS.inverse().get(state.getBlock());
-            if (!world.isClientSide() && waxedBlock != null) world.setBlock(pos, waxedBlock.withPropertiesOf(state), 11);
+            if (!world.isClientSide()) world.setBlock(pos, waxedBlock.withPropertiesOf(state), 11);
             world.levelEvent(event.getEntity(), 3003, pos, 0);
+
+            event.setCancellationResult(InteractionResult.CONSUME);
+            event.setCanceled(true);
         }
     }
 }

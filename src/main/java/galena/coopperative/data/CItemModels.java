@@ -34,19 +34,17 @@ public class CItemModels extends CItemModelProvider {
         weatheringBlock(CBlocks.COPPER_BRICKS);
         weatheringBlock(CBlocks.COPPER_PILLAR);
         weatheringBlock(CBlocks.COPPER_TILES);
+        weatheringBlock(CBlocks.WAXED_COPPER_BRICKS);
+        weatheringBlock(CBlocks.WAXED_COPPER_PILLAR);
+        weatheringBlock(CBlocks.WAXED_COPPER_TILES);
         weatheringBlock(CBlocks.HEADLIGHT);
-
-        blockWithItem(CBlocks.COPPER_DOOR);
-        blockWithItem(CBlocks.EXPOSED_COPPER_DOOR);
-        blockWithItem(CBlocks.WEATHERED_COPPER_DOOR);
-        blockWithItem(CBlocks.OXIDIZED_COPPER_DOOR);
 
         weathingBlockWithItem(CBlocks.TOGGLER);
 
-        trapDoor(CBlocks.COPPER_TRAPDOOR);
-        trapDoor(CBlocks.EXPOSED_COPPER_TRAPDOOR);
-        trapDoor(CBlocks.WEATHERED_COPPER_TRAPDOOR);
-        trapDoor(CBlocks.OXIDIZED_COPPER_TRAPDOOR);
+        CBlocks.COPPER_DOORS.forEach(this::blockWithItem);
+        CBlocks.COPPER_TRAPDOORS.forEach(this::trapDoor);
+        CBlocks.WAXED_COPPER_DOORS.forEach(it -> blockWithItem(it, unwaxedBlockName(it)));
+        CBlocks.WAXED_COPPER_TRAPDOORS.forEach(it -> trapDoor(it, unwaxedBlockName(it)));
 
         blockWithItem(CBlocks.EXPOSED_REPEATER);
         blockWithItem(CBlocks.WEATHERED_REPEATER);

@@ -12,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public abstract class CItemModelProvider extends ItemModelProvider {
@@ -27,6 +28,10 @@ public abstract class CItemModelProvider extends ItemModelProvider {
         return ForgeRegistries.BLOCKS.getKey(block.get()).getPath();
     }
 
+    protected String unwaxedBlockName(Supplier<? extends Block> block) {
+        return blockName(block).substring(6);
+    }
+
     protected ResourceLocation blockTexture(String name) {
         return modLoc("block/" + name);
     }
@@ -39,14 +44,14 @@ public abstract class CItemModelProvider extends ItemModelProvider {
         return block(block, blockName(block));
     }
 
-    public <B extends Block> ArrayList<ItemModelBuilder> weatheringBlock(ArrayList<RegistryObject<B>> blockArrayList) {
+    public <B extends Block> List<ItemModelBuilder> weatheringBlock(List<RegistryObject<B>> blockArrayList) {
         ArrayList<ItemModelBuilder> itemArrayList = new ArrayList<>(blockArrayList.size());
         for (Supplier<? extends B> blocks : blockArrayList)
             itemArrayList.add(block(blocks));
         return itemArrayList;
     }
 
-    public <B extends Block> ArrayList<ItemModelBuilder> weathingBlockWithItem(ArrayList<RegistryObject<B>> blockArrayList) {
+    public <B extends Block> List<ItemModelBuilder> weathingBlockWithItem(List<RegistryObject<B>> blockArrayList) {
         ArrayList<ItemModelBuilder> itemArrayList = new ArrayList<>(blockArrayList.size());
         for (Supplier<? extends B> blocks : blockArrayList)
             itemArrayList.add(blockWithItem(blocks));
@@ -83,9 +88,13 @@ public abstract class CItemModelProvider extends ItemModelProvider {
                 .texture("layer0", itemTexture(itemId));
     }
 
-    public ItemModelBuilder blockWithItem(Supplier<? extends Block> block) {
+    public ItemModelBuilder blockWithItem(Supplier<? extends Block> block, String texture) {
         return withExistingParent(blockName(block), mcLoc("item/generated"))
-                .texture("layer0", itemTexture(blockName(block)));
+                .texture("layer0", itemTexture(texture));
+    }
+
+    public ItemModelBuilder blockWithItem(Supplier<? extends Block> block) {
+        return blockWithItem(block, blockName(block));
     }
 
     public ItemModelBuilder blockInventorySpecific(Supplier<? extends Block> block) {
@@ -100,7 +109,11 @@ public abstract class CItemModelProvider extends ItemModelProvider {
                 .texture("side", side);
     }
 
+    public ItemModelBuilder trapDoor(Supplier<? extends Block> block, String texture) {
+        return block(block, texture + "_bottom");
+    }
+
     public ItemModelBuilder trapDoor(Supplier<? extends Block> block) {
-        return block(block, blockName(block) + "_bottom");
+        return trapDoor(block, blockName(block));
     }
 }

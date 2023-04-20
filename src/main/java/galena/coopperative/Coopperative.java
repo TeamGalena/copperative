@@ -22,7 +22,6 @@ import net.minecraftforge.registries.RegistryObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -47,7 +46,6 @@ public class Coopperative {
         modEventBus.addListener(this::gatherData);
 
 
-
         DeferredRegister<?>[] registers = {
                 CBlocks.BLOCKS,
                 CBlocks.BLOCK_ENTITIES,
@@ -58,14 +56,14 @@ public class Coopperative {
         for (DeferredRegister<?> register : registers) {
             register.register(modEventBus);
         }
-    }
 
-    private void setup(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-
-        });
-
-        CBlocks.WAXED_BLOCKS = ImmutableBiMap.of();
+        CBlocks.WAXED_BLOCKS = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
+                .putAll(waxedEntries(CBlocks.COPPER_BRICKS, CBlocks.WAXED_COPPER_BRICKS))
+                .putAll(waxedEntries(CBlocks.COPPER_TILES, CBlocks.WAXED_COPPER_TILES))
+                .putAll(waxedEntries(CBlocks.COPPER_PILLAR, CBlocks.WAXED_COPPER_PILLAR))
+                .putAll(waxedEntries(CBlocks.COPPER_DOORS, CBlocks.WAXED_COPPER_DOORS))
+                .putAll(waxedEntries(CBlocks.COPPER_TRAPDOORS, CBlocks.WAXED_COPPER_TRAPDOORS))
+                .build());
 
         WEATHERING_BLOCKS = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
                 .putAll(blockMapFromArray(CBlocks.COPPER_BRICKS))
@@ -110,14 +108,12 @@ public class Coopperative {
                 .put(CBlocks.EXPOSED_POWERED_RAIL.get(), CBlocks.WEATHERED_POWERED_RAIL.get())
                 .put(CBlocks.WEATHERED_POWERED_RAIL.get(), CBlocks.OXIDIZED_POWERED_RAIL.get())
 
-                .put(CBlocks.COPPER_DOOR.get(), CBlocks.EXPOSED_COPPER_DOOR.get())
-                .put(CBlocks.EXPOSED_COPPER_DOOR.get(), CBlocks.WEATHERED_COPPER_DOOR.get())
-                .put(CBlocks.WEATHERED_COPPER_DOOR.get(), CBlocks.OXIDIZED_COPPER_DOOR.get())
-
-                .put(CBlocks.COPPER_TRAPDOOR.get(), CBlocks.EXPOSED_COPPER_TRAPDOOR.get())
-                .put(CBlocks.EXPOSED_COPPER_TRAPDOOR.get(), CBlocks.WEATHERED_COPPER_TRAPDOOR.get())
-                .put(CBlocks.WEATHERED_COPPER_TRAPDOOR.get(), CBlocks.OXIDIZED_COPPER_TRAPDOOR.get())
+                .putAll(blockMapFromArray(CBlocks.COPPER_DOORS))
+                .putAll(blockMapFromArray(CBlocks.COPPER_TRAPDOORS))
                 .build());
+    }
+
+    private void setup(FMLCommonSetupEvent event) {
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
@@ -128,14 +124,14 @@ public class Coopperative {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper helper = event.getExistingFileHelper();
 
-        if(event.includeClient()) {
+        if (event.includeClient()) {
             generator.addProvider(true, new CBlockStates(generator, helper));
             generator.addProvider(true, new CItemModels(generator, helper));
             generator.addProvider(true, new CItemModels.ItemModelOverrides(generator, helper));
             generator.addProvider(true, new CLang(generator));
             //generator.addProvider(true, new OSoundDefinitions(generator, helper));
         }
-        if(event.includeServer()) {
+        if (event.includeServer()) {
             generator.addProvider(true, new CRecipes(generator));
             generator.addProvider(true, new CLoot(generator));
             CTags.register(generator, helper);
@@ -147,10 +143,23 @@ public class Coopperative {
         }
     }
 
-    private <B extends Block> ImmutableBiMap<Block, Block> blockMapFromArray(ArrayList<RegistryObject<B>> blockArrayList) {
+    private <B extends Block> ImmutableBiMap<Block, Block> blockMapFromArray(List<RegistryObject<B>> blockArrayList) {
         ImmutableBiMap.Builder<Block, Block> map = new ImmutableBiMap.Builder<>();
         for (int i = 0; blockArrayList.size() - 1 > i; i++)
             map.put(blockArrayList.get(i).get(), blockArrayList.get(i + 1).get());
+
+        return map.build();
+    }
+
+    private <T extends Block, R extends Block> ImmutableBiMap<Block, Block> waxedEntries(List<RegistryObject<T>> unwaxedList, List<RegistryObject<R>> waxedList) {
+        if (unwaxedList.size() != waxedList.size())
+            throw new IllegalArgumentException("waxed and unwaxed lists are not equals in size");
+
+        ImmutableBiMap.Builder<Block, Block> map = new ImmutableBiMap.Builder<>();
+
+        for (int i = 0; i < waxedList.size(); i++) {
+            map.put(unwaxedList.get(i).get(), waxedList.get(i).get());
+        }
 
         return map.build();
     }

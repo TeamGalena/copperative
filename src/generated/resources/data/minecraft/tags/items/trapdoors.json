@@ -3,6 +3,10 @@
     "coopperative:copper_trapdoor",
     "coopperative:exposed_copper_trapdoor",
     "coopperative:weathered_copper_trapdoor",
-    "coopperative:oxidized_copper_trapdoor"
+    "coopperative:oxidized_copper_trapdoor",
+    "coopperative:waxed_copper_trapdoor",
+    "coopperative:waxed_exposed_copper_trapdoor",
+    "coopperative:waxed_weathered_copper_trapdoor",
+    "coopperative:waxed_oxidized_copper_trapdoor"
   ]
 }

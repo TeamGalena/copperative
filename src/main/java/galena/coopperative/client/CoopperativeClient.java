@@ -1,12 +1,11 @@
 package galena.coopperative.client;
 
-import galena.coopperative.content.block.TogglerBlock;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 import static galena.coopperative.index.CBlocks.*;
@@ -17,9 +16,9 @@ public class CoopperativeClient {
         ItemBlockRenderTypes.setRenderLayer(block.get(), render);
     }
 
-    private static void render(ArrayList<RegistryObject<Block>> blockArrayList, RenderType render) {
-        for (Supplier<? extends Block> blocks : blockArrayList) {
-            render(blocks, render);
+    private static void render(List<RegistryObject<Block>> blocks, RenderType render) {
+        for (Supplier<? extends Block> block : blocks) {
+            render(block, render);
         }
     }
 
@@ -42,14 +41,9 @@ public class CoopperativeClient {
 
         render(TOGGLER, cutout);
 
-        render(COPPER_DOOR, cutout);
-        render(EXPOSED_COPPER_DOOR, cutout);
-        render(WEATHERED_COPPER_DOOR, cutout);
-        render(OXIDIZED_COPPER_DOOR, cutout);
-
-        render(COPPER_TRAPDOOR, cutout);
-        render(EXPOSED_COPPER_TRAPDOOR, cutout);
-        render(WEATHERED_COPPER_TRAPDOOR, cutout);
-        render(OXIDIZED_COPPER_TRAPDOOR, cutout);
+        COPPER_DOORS.forEach(it -> render(it, cutout));
+        COPPER_TRAPDOORS.forEach(it -> render(it, cutout));
+        WAXED_COPPER_DOORS.forEach(it -> render(it, cutout));
+        WAXED_COPPER_TRAPDOORS.forEach(it -> render(it, cutout));
     }
 }

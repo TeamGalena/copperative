@@ -1,4 +1,4 @@
-// 1.19.2	2023-04-09T22:38:29.42099	Coopperative Item Model Overrides
+// 1.19.2	2023-04-14T11:44:49.8029204	Coopperative Item Model Overrides
 1b34285635447485d3b4e077135a508e68147a34 assets/minecraft/models/item/comparator.json
 c8076eb2b62dea068e517ca50d55ebf9c7d74714 assets/minecraft/models/item/dispenser.json
 082e0e2519fd2c1037dd9ae66828a0eef139024e assets/minecraft/models/item/dropper.json
@@ -7,3 +7,4 @@ c8076eb2b62dea068e517ca50d55ebf9c7d74714 assets/minecraft/models/item/dispenser.
 8454f77ace1b1d09198ff7059fd636f6e9413234 assets/minecraft/models/item/piston.json
 3c74534dab7facb3e7e39e055897d86c7732f76e assets/minecraft/models/item/powered_rail.json
 ff7785ea3351b4d7e90d54a38c592f659319eda3 assets/minecraft/models/item/repeater.json
+77637468c2c5210988da10e8b60f554061a6791d assets/minecraft/models/item/sticky_piston.json
