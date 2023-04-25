@@ -51,28 +51,28 @@ public class CRecipes extends CRecipeProvider {
         var cutWaxedCopperSlabs = new Block[]{Blocks.WAXED_CUT_COPPER_SLAB, Blocks.WAXED_EXPOSED_CUT_COPPER_SLAB, Blocks.WAXED_WEATHERED_CUT_COPPER_SLAB, Blocks.WAXED_OXIDIZED_CUT_COPPER_SLAB};
 
         for (int i = 0; i < CBlocks.COPPER_PILLAR.size(); i++) {
-            ShapedRecipeBuilder.shaped(CBlocks.COPPER_PILLAR.get(i).get())
+            ShapedRecipeBuilder.shaped(CBlocks.COPPER_PILLAR.get(i).get(), 2)
                     .pattern("A")
                     .pattern("A")
                     .define('A', cutCopper[i])
                     .unlockedBy("has_cut_copper", has(cutCopper[i]))
                     .save(consumer);
 
-            ShapedRecipeBuilder.shaped(CBlocks.WAXED_COPPER_PILLAR.get(i).get())
+            ShapedRecipeBuilder.shaped(CBlocks.WAXED_COPPER_PILLAR.get(i).get(), 2)
                     .pattern("A")
                     .pattern("A")
                     .define('A', cutWaxedCopper[i])
                     .unlockedBy("has_cut_copper", has(cutWaxedCopper[i]))
                     .save(consumer);
 
-            ShapedRecipeBuilder.shaped(CBlocks.COPPER_BRICKS.get(i).get())
+            ShapedRecipeBuilder.shaped(CBlocks.COPPER_BRICKS.get(i).get(), 4)
                     .pattern("AA")
                     .pattern("AA")
                     .define('A', cutCopper[i])
                     .unlockedBy("has_cut_copper", has(cutCopper[i]))
                     .save(consumer);
 
-            ShapedRecipeBuilder.shaped(CBlocks.WAXED_COPPER_BRICKS.get(i).get())
+            ShapedRecipeBuilder.shaped(CBlocks.WAXED_COPPER_BRICKS.get(i).get(), 4)
                     .pattern("AA")
                     .pattern("AA")
                     .define('A', cutWaxedCopper[i])
