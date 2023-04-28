@@ -85,7 +85,7 @@ public class CItemModels extends CItemModelProvider {
 
     public static class ItemModelOverrides extends CItemModelProvider {
         public ItemModelOverrides(DataGenerator gen, ExistingFileHelper help) {
-            super(gen, "minecraft", help);
+            super(gen, "overrides", help);
         }
 
         @Override

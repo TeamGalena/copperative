@@ -10,9 +10,11 @@ import galena.coopperative.index.CItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -111,6 +113,8 @@ public class Coopperative {
                 .putAll(blockMapFromArray(CBlocks.COPPER_DOORS))
                 .putAll(blockMapFromArray(CBlocks.COPPER_TRAPDOORS))
                 .build());
+
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> CoopperativeClient::registerDynamicResources);
     }
 
     private void setup(FMLCommonSetupEvent event) {
@@ -126,6 +130,7 @@ public class Coopperative {
 
         if (event.includeClient()) {
             generator.addProvider(true, new CBlockStates(generator, helper));
+            generator.addProvider(true, new CBlockStateOverwrites(generator, helper));
             generator.addProvider(true, new CItemModels(generator, helper));
             generator.addProvider(true, new CItemModels.ItemModelOverrides(generator, helper));
             generator.addProvider(true, new CLang(generator));

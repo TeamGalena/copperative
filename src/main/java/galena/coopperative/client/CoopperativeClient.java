@@ -46,4 +46,8 @@ public class CoopperativeClient {
         WAXED_COPPER_DOORS.forEach(it -> render(it, cutout));
         WAXED_COPPER_TRAPDOORS.forEach(it -> render(it, cutout));
     }
+
+    public static void registerDynamicResources() {
+        new DynamicCooperativeResourcePack().register();
+    }
 }
