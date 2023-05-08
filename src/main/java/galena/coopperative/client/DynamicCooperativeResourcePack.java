@@ -19,7 +19,6 @@ public class DynamicCooperativeResourcePack extends DynClientResourcesProvider {
 
     public DynamicCooperativeResourcePack() {
         super(new DynamicTexturePack(new ResourceLocation(Coopperative.MOD_ID, "generated")));
-        dynamicPack.generateDebugResources = true;
     }
 
     @Override
