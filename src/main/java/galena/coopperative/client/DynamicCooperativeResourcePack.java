@@ -17,6 +17,8 @@ import java.util.stream.Stream;
 
 public class DynamicCooperativeResourcePack extends DynClientResourcesProvider {
 
+    public static final String NAMESPACE = "overrides";
+
     public DynamicCooperativeResourcePack() {
         super(new DynamicTexturePack(new ResourceLocation(Coopperative.MOD_ID, "generated")));
     }
@@ -38,7 +40,7 @@ public class DynamicCooperativeResourcePack extends DynClientResourcesProvider {
 
     private void enableBlockOverwrite(ResourceManager manager, Block block) {
         var id = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getKey(block));
-        var key = new ResourceLocation("overrides", id.getPath());
+        var key = new ResourceLocation(NAMESPACE, id.getPath());
 
         Stream.of(ResType.BLOCKSTATES, ResType.ITEM_MODELS).forEach(type -> {
             var override = StaticResource.getOrFail(manager, type.getPath(key));

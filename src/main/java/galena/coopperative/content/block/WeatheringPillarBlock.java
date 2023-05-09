@@ -1,6 +1,6 @@
 package galena.coopperative.content.block;
 
-import galena.coopperative.index.CBlocks;
+import galena.coopperative.index.CConversions;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -9,13 +9,11 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Random;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -35,7 +33,7 @@ public class WeatheringPillarBlock extends RotatedPillarBlock implements CWeathe
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return CWeatheringCopper.getNext(state.getBlock()).isPresent();
+        return CConversions.getWeatheredVersion(state.getBlock()).isPresent();
     }
 
     @Override

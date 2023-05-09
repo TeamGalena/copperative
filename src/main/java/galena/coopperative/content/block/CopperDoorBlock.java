@@ -1,5 +1,6 @@
 package galena.coopperative.content.block;
 
+import galena.coopperative.index.CConversions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
@@ -12,7 +13,6 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Optional;
 
 @ParametersAreNonnullByDefault
 public class CopperDoorBlock extends AbstractCopperDoorBlock implements CWeatheringCopper {
@@ -26,7 +26,7 @@ public class CopperDoorBlock extends AbstractCopperDoorBlock implements CWeather
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(HALF) == DoubleBlockHalf.UPPER && Optional.ofNullable(NEXT_BY_BLOCK.get().get(state.getBlock())).isPresent();
+        return state.getValue(HALF) == DoubleBlockHalf.UPPER && CConversions.getWeatheredVersion(state.getBlock()).isPresent();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package galena.coopperative.data;
 
+import galena.coopperative.client.DynamicCooperativeResourcePack;
 import galena.coopperative.data.provider.CBlockStateProvider;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
@@ -31,7 +32,7 @@ public class CBlockStateOverwrites extends CBlockStateProvider {
     @Override
     public void run(CachedOutput cache) throws IOException {
         super.run((path, bytes, hash) -> {
-            var newPath  = Path.of(path.toString().replace("minecraft\\blockstates", "overrides\\blockstates"));
+            var newPath = Path.of(path.toString().replace("minecraft\\blockstates", DynamicCooperativeResourcePack.NAMESPACE + "\\blockstates"));
             cache.writeIfNeeded(newPath, bytes, hash);
         });
     }

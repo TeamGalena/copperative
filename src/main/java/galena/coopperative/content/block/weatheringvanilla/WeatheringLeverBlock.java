@@ -1,6 +1,7 @@
 package galena.coopperative.content.block.weatheringvanilla;
 
 import galena.coopperative.content.block.CWeatheringCopper;
+import galena.coopperative.index.CConversions;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -14,9 +15,6 @@ import net.minecraft.world.level.block.LeverBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Optional;
-import java.util.Random;
 
 @MethodsReturnNonnullByDefault
 public class WeatheringLeverBlock extends LeverBlock implements CWeatheringCopper {
@@ -35,7 +33,7 @@ public class WeatheringLeverBlock extends LeverBlock implements CWeatheringCoppe
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return Optional.ofNullable(NEXT_BY_BLOCK.get().get(state.getBlock())).isPresent() || super.isRandomlyTicking;
+        return CConversions.getWeatheredVersion(state.getBlock()).isPresent() || super.isRandomlyTicking(state);
     }
 
     @Override

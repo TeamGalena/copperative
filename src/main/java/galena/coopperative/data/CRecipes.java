@@ -1,10 +1,9 @@
 package galena.coopperative.data;
 
-import galena.coopperative.Coopperative;
 import galena.coopperative.data.provider.CRecipeProvider;
 import galena.coopperative.index.CBlocks;
+import galena.coopperative.index.CConversions;
 import galena.coopperative.index.CItems;
-import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -17,8 +16,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class CRecipes extends CRecipeProvider {
@@ -194,8 +195,10 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_redstone_lamp", has(Items.REDSTONE_LAMP))
                 .save(consumer);
 
-        CBlocks.WAXED_BLOCKS.get().forEach((unwaxed, waxed) -> {
-            var id = Registry.BLOCK.getKey(waxed);
+        CConversions.getWaxedPairs().forEach(entry -> {
+            var unwaxed = entry.getKey();
+            var waxed = entry.getValue();
+            var id = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(waxed));
             ShapelessRecipeBuilder.shapeless(waxed)
                     .requires(unwaxed)
                     .requires(Items.HONEYCOMB)
@@ -203,8 +206,10 @@ public class CRecipes extends CRecipeProvider {
                     .save(consumer, new ResourceLocation(id.getNamespace(), id.getPath() + "_from_honeycomb"));
         });
 
-        Coopperative.WEATHERING_BLOCKS.get().forEach((unweathered, weathered) -> {
-            var id = Registry.BLOCK.getKey(weathered);
+        CConversions.getWeatheredPairs().forEach(entry -> {
+            var unweathered = entry.getKey();
+            var weathered = entry.getValue();
+            var id = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(weathered));
             ShapelessRecipeBuilder.shapeless(weathered)
                     .requires(unweathered)
                     .requires(CItems.PATINA.get())

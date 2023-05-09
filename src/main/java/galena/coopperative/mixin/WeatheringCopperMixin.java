@@ -1,7 +1,6 @@
 package galena.coopperative.mixin;
 
-import galena.coopperative.Coopperative;
-import galena.coopperative.index.CBlocks;
+import galena.coopperative.index.CConversions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,9 +19,11 @@ public interface WeatheringCopperMixin {
      */
     @Overwrite
     static Optional<BlockState> getPrevious(BlockState state) {
-        if (Coopperative.WEATHERING_BLOCKS.get().inverse().get(state.getBlock()) != null)
-            return Optional.of(Coopperative.WEATHERING_BLOCKS.get().inverse().get(state.getBlock()).withPropertiesOf(state));
-        return WeatheringCopper.getPrevious(state.getBlock()).map((block) -> block.withPropertiesOf(state));
+        return CConversions.getUnweatheredVersion(state.getBlock()).map(previous ->
+                previous.withPropertiesOf(state)
+        ).or(() ->
+                WeatheringCopper.getPrevious(state.getBlock()).map((block -> block.withPropertiesOf(state)))
+        );
     }
 
     /**
@@ -31,10 +32,11 @@ public interface WeatheringCopperMixin {
      */
     @Overwrite
     default Optional<BlockState> getNext(BlockState state) {
-        if (Coopperative.WEATHERING_BLOCKS.get().get(state.getBlock()) != null)
-            return Optional.of(Coopperative.WEATHERING_BLOCKS.get().get(state.getBlock()).withPropertiesOf(state));
-
-        return WeatheringCopper.getNext(state.getBlock()).map((block -> block.withPropertiesOf(state)));
+        return CConversions.getWeatheredVersion(state.getBlock()).map(next ->
+                next.withPropertiesOf(state)
+        ).or(() ->
+                WeatheringCopper.getNext(state.getBlock()).map((block -> block.withPropertiesOf(state)))
+        );
     }
 
     /**
@@ -43,15 +45,18 @@ public interface WeatheringCopperMixin {
      */
     @Overwrite
     static BlockState getFirst(BlockState state) {
-        if (Coopperative.WEATHERING_BLOCKS.get().inverse().get(state.getBlock()) != null) {
-            Block block = state.getBlock();
+        Block first = state.getBlock();
 
-            for(Block block1 = Coopperative.WEATHERING_BLOCKS.get().get(state.getBlock()); block1 != null; block1 = Coopperative.WEATHERING_BLOCKS.get().get(block1)) {
-                block = block1;
-            }
-
-            return block.withPropertiesOf(state);
+        while (true) {
+            var previous = CConversions.getUnweatheredVersion(first);
+            if(previous.isEmpty()) break;
+            first = previous.get();
         }
-        return WeatheringCopper.getFirst(state.getBlock().withPropertiesOf(state));
+
+        if(state.is(first)) {
+            return WeatheringCopper.getFirst(state.getBlock().withPropertiesOf(state));
+        } else {
+            return first.withPropertiesOf(state);
+        }
     }
 }
