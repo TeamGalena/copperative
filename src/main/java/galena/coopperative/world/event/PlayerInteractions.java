@@ -28,14 +28,14 @@ public class PlayerInteractions {
 
         // Removing Wax ('Unwaxing' - Using an Axe on a waxed block).
         if (action.equals(ToolActions.AXE_WAX_OFF)) {
-            CConversions.getUnweatheredVersion(state.getBlock()).ifPresent(block ->
+            CConversions.getUnwaxedVersion(state.getBlock()).ifPresent(block ->
                     event.setFinalState(block.withPropertiesOf(state))
             );
         }
 
         // Scrape Weathering Block
         if (action.equals(ToolActions.AXE_SCRAPE)) {
-            CConversions.getUnwaxedVersion(state.getBlock()).ifPresent(block ->
+            CConversions.getUnweatheredVersion(state.getBlock()).ifPresent(block ->
                     event.setFinalState(block.withPropertiesOf(state))
             );
         }
