@@ -1,5 +1,6 @@
 package galena.coopperative.content.block;
 
+import galena.coopperative.config.CommonConfig;
 import galena.coopperative.index.CConversions;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;
@@ -21,6 +22,8 @@ public interface CWeatheringCopper extends WeatheringCopper {
     }
 
     default void insert(Block block, boolean before, NonNullList<ItemStack> items, Predicate<ItemStack> filter, boolean startFromExposed) {
+        if(CommonConfig.isOverwriteDisabled(block)) return;
+
         ItemStack stack = new ItemStack(block);
         WeatherState weatherState = ((CWeatheringCopper) block).getAge();
         int offset = (weatherState.ordinal() - (startFromExposed ? 1 : 0)) * (before ? -1 : 1);

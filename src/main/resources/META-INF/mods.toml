@@ -33,3 +33,10 @@ Uniting copper and redstone components as one and expanding on copper as a whole
     versionRange="[1.19,1.20)"
     ordering="NONE"
     side="BOTH"
+
+[[dependencies.coopperative]]
+    modId="moonlight"
+    mandatory=true
+    versionRange="*"
+    ordering="NONE"
+    side="BOTH"

@@ -1,14 +1,27 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "item": "coopperative:weathered_dropper"
-    },
-    {
-      "item": "coopperative:patina"
+      "conditions": [
+        {
+          "type": "coopperative:overwrite_enabled",
+          "block": "minecraft:dropper"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "coopperative:weathered_dropper"
+          },
+          {
+            "item": "coopperative:patina"
+          }
+        ],
+        "result": {
+          "item": "coopperative:oxidized_dropper"
+        }
+      }
     }
-  ],
-  "result": {
-    "item": "coopperative:oxidized_dropper"
-  }
+  ]
 }

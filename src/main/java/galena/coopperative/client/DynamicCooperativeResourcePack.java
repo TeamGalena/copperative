@@ -8,6 +8,7 @@ import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesProvider;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicTexturePack;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -20,7 +21,7 @@ public class DynamicCooperativeResourcePack extends DynClientResourcesProvider {
     public static final String NAMESPACE = "overrides";
 
     public DynamicCooperativeResourcePack() {
-        super(new DynamicTexturePack(new ResourceLocation(Coopperative.MOD_ID, "generated")));
+        super(new DynamicTexturePack(new ResourceLocation(Coopperative.MOD_ID, "generated"), Pack.Position.TOP, true, true));
     }
 
     @Override
@@ -35,7 +36,8 @@ public class DynamicCooperativeResourcePack extends DynClientResourcesProvider {
 
     @Override
     public void regenerateDynamicAssets(ResourceManager manager) {
-        CommonConfig.getOverwrittenBlocks().forEach(block -> enableBlockOverwrite(manager, block));
+        CommonConfig.getOverwrittenBlocks(CommonConfig.OverrideTarget.APPEARANCE)
+                .forEach(block -> enableBlockOverwrite(manager, block));
     }
 
     private void enableBlockOverwrite(ResourceManager manager, Block block) {

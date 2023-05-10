@@ -1,10 +1,12 @@
 package galena.coopperative.config;
 
+import com.google.common.collect.ImmutableMap;
+import galena.coopperative.Coopperative;
+import galena.coopperative.index.CConversions;
+import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
+import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
@@ -12,9 +14,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.BooleanSupplier;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class CommonConfig {
+
+    public enum OverrideTarget {
+        APPEARANCE, RECIPE;
+    }
+
+    private record OverrideEntry(BooleanSupplier enabled, Map<OverrideTarget, BooleanSupplier> targets) {
+        boolean isEnabled(OverrideTarget target) {
+            return enabled.getAsBoolean() && targets.get(target).getAsBoolean();
+        }
+    }
+
     private static CommonConfig INSTANCE;
 
     private final static List<Block> overwrittenBlocks = List.of(
@@ -30,39 +44,65 @@ public class CommonConfig {
     );
 
     public static void register() {
-        var configured = new ForgeConfigSpec.Builder().configure(CommonConfig::new);
-        INSTANCE = configured.getLeft();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, configured.getRight());
+        var builder = ConfigBuilder.create(Coopperative.MOD_ID, ConfigType.COMMON);
+        builder.setSynced();
+        INSTANCE = new CommonConfig(builder);
+        builder.buildAndRegister().loadFromFile();
     }
 
     public static boolean isPossibleOverwrite(Block block) {
-        return overwrittenBlocks.contains(block);
+        var first = CConversions.getFirst(block);
+        return overwrittenBlocks.contains(first);
     }
 
     public static Stream<Block> getPossibleOverwrites() {
         return overwrittenBlocks.stream();
     }
 
-    public static Stream<Block> getOverwrittenBlocks() {
-        return getPossibleOverwrites().filter(CommonConfig::isOverwriteEnabled);
+    public static Stream<Block> getOverwrittenBlocks(OverrideTarget target) {
+        return getPossibleOverwrites().filter(it -> isOverwriteEnabled(it, target));
+    }
+
+    private static boolean test(Block block, Predicate<OverrideEntry> func) {
+        var first = CConversions.getFirst(block);
+        if (!INSTANCE.enabledOverwrites.containsKey(first)) return false;
+        return func.test(INSTANCE.enabledOverwrites.get(first));
+    }
+
+    public static boolean isOverwriteEnabled(Block block, OverrideTarget target) {
+        return test(block, it -> it.isEnabled(target));
+    }
+
+    public static boolean isOverwriteDisabled(Block block, OverrideTarget target) {
+        return test(block, it -> !it.isEnabled(target));
     }
 
     public static boolean isOverwriteEnabled(Block block) {
-        return INSTANCE.enabledOverwrites.getOrDefault(block, () -> false).getAsBoolean();
+        return test(block, it -> it.enabled.getAsBoolean());
     }
 
     public static boolean isOverwriteDisabled(Block block) {
-        return !INSTANCE.enabledOverwrites.getOrDefault(block, () -> true).getAsBoolean();
+        return test(block, it -> !it.enabled.getAsBoolean());
     }
 
-    private final Map<Block, BooleanSupplier> enabledOverwrites = new HashMap<>();
+    private final Map<Block, OverrideEntry> enabledOverwrites = new HashMap<>();
 
-    public CommonConfig(ForgeConfigSpec.Builder builder) {
+    public CommonConfig(ConfigBuilder builder) {
         builder.push("Enabled Copper Overrides");
         getPossibleOverwrites().forEach(block -> {
             var key = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block));
-            var property = builder.define(key.getPath(), true);
-            enabledOverwrites.put(block, property::get);
+            builder.push(key.getPath());
+
+            var property = builder.define("enabled", true);
+            var targets = ImmutableMap.<OverrideTarget, BooleanSupplier>builder();
+            for (OverrideTarget target : OverrideTarget.values()) {
+                var targetProperty = builder.define(target.name().toLowerCase(), true);
+                targets.put(target, targetProperty::get);
+            }
+
+            enabledOverwrites.put(block, new OverrideEntry(property::get, targets.build()));
+
+            builder.pop();
         });
         builder.pop();
     }

@@ -24,8 +24,6 @@ public class CoopperativeClient {
 
     public static void registerBlockRenderers() {
         RenderType cutout = RenderType.cutout();
-        RenderType mipped = RenderType.cutoutMipped();
-        RenderType translucent = RenderType.translucent();
 
         render(EXPOSED_REPEATER, cutout);
         render(WEATHERED_REPEATER, cutout);

@@ -1,7 +1,6 @@
 package galena.coopperative.mixin;
 
 import galena.coopperative.index.CConversions;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
@@ -45,16 +44,10 @@ public interface WeatheringCopperMixin {
      */
     @Overwrite
     static BlockState getFirst(BlockState state) {
-        Block first = state.getBlock();
-
-        while (true) {
-            var previous = CConversions.getUnweatheredVersion(first);
-            if(previous.isEmpty()) break;
-            first = previous.get();
-        }
+        var first = CConversions.getFirst(state.getBlock());
 
         if(state.is(first)) {
-            return WeatheringCopper.getFirst(state.getBlock().withPropertiesOf(state));
+            return WeatheringCopper.getFirst(first).withPropertiesOf(state);
         } else {
             return first.withPropertiesOf(state);
         }

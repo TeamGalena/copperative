@@ -1,8 +1,9 @@
 package galena.coopperative;
 
-import com.google.common.collect.ImmutableBiMap;
 import galena.coopperative.client.CoopperativeClient;
+import galena.coopperative.client.DynamicCooperativeDataPack;
 import galena.coopperative.config.CommonConfig;
+import galena.coopperative.config.OverwriteEnabledCondition;
 import galena.coopperative.data.*;
 import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CItems;
@@ -10,6 +11,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,7 +21,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -43,6 +44,7 @@ public class Coopperative {
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::gatherData);
 
+        CraftingHelper.register(new OverwriteEnabledCondition.Serializer());
         CommonConfig.register();
 
         DeferredRegister<?>[] registers = {
@@ -56,6 +58,7 @@ public class Coopperative {
             register.register(modEventBus);
         }
 
+        new DynamicCooperativeDataPack().register();
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> CoopperativeClient::registerDynamicResources);
     }
 
