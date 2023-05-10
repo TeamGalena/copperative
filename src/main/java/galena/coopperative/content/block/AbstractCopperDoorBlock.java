@@ -1,6 +1,6 @@
 package galena.coopperative.content.block;
 
-import galena.coopperative.index.CBlocks;
+import galena.coopperative.index.CConversions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -56,12 +56,12 @@ public class AbstractCopperDoorBlock extends DoorBlock {
 
         if (otherHalfState.is(state.getBlock())) return;
 
-        var waxed = CBlocks.WAXED_BLOCKS.get().get(state.getBlock());
-        var unwaxed = CBlocks.WAXED_BLOCKS.get().inverse().get(state.getBlock());
+        var waxed = CConversions.getWaxedVersion(state.getBlock());
+        var unwaxed = CConversions.getUnwaxedVersion(state.getBlock());
 
-        if (otherHalfState.is(waxed)) {
+        if (waxed.filter(otherHalfState::is).isPresent()) {
             world.levelEvent(3004, otherHalfPos, 0);
-        } else if (otherHalfState.is(unwaxed)) {
+        } else if (unwaxed.filter(otherHalfState::is).isPresent()) {
             world.levelEvent(3003, otherHalfPos, 0);
         } else {
             world.levelEvent(3005, otherHalfPos, 0);

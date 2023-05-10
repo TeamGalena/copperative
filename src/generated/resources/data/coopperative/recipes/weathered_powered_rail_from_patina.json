@@ -1,14 +1,27 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "item": "coopperative:exposed_powered_rail"
-    },
-    {
-      "item": "coopperative:patina"
+      "conditions": [
+        {
+          "type": "coopperative:overwrite_enabled",
+          "block": "minecraft:powered_rail"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "coopperative:exposed_powered_rail"
+          },
+          {
+            "item": "coopperative:patina"
+          }
+        ],
+        "result": {
+          "item": "coopperative:weathered_powered_rail"
+        }
+      }
     }
-  ],
-  "result": {
-    "item": "coopperative:weathered_powered_rail"
-  }
+  ]
 }

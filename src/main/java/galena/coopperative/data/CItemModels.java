@@ -1,6 +1,7 @@
 package galena.coopperative.data;
 
 import galena.coopperative.Coopperative;
+import galena.coopperative.client.DynamicCooperativeResourcePack;
 import galena.coopperative.data.provider.CItemModelProvider;
 import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CItems;
@@ -85,7 +86,7 @@ public class CItemModels extends CItemModelProvider {
 
     public static class ItemModelOverrides extends CItemModelProvider {
         public ItemModelOverrides(DataGenerator gen, ExistingFileHelper help) {
-            super(gen, "minecraft", help);
+            super(gen, DynamicCooperativeResourcePack.NAMESPACE, help);
         }
 
         @Override

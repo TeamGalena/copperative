@@ -1,12 +1,14 @@
 package galena.coopperative.data;
 
-import galena.coopperative.Coopperative;
+import galena.coopperative.config.CommonConfig;
+import galena.coopperative.config.OverwriteEnabledCondition;
 import galena.coopperative.data.provider.CRecipeProvider;
 import galena.coopperative.index.CBlocks;
+import galena.coopperative.index.CConversions;
 import galena.coopperative.index.CItems;
-import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -17,8 +19,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.crafting.ConditionalRecipe;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class CRecipes extends CRecipeProvider {
@@ -94,6 +99,60 @@ public class CRecipes extends CRecipeProvider {
                     .save(consumer);
         }
 
+        ShapedRecipeBuilder.shaped(CBlocks.TOGGLER.get(0).get())
+                .pattern(" A ")
+                .pattern("BAB")
+                .pattern("CCC")
+                .define('A', Items.AMETHYST_SHARD)
+                .define('B', REDSTONE_DUST)
+                .define('C', COPPER_INGOT)
+                .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(CBlocks.HEADLIGHT.get(0).get())
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("ACA")
+                .define('A', COPPER_INGOT)
+                .define('B', Items.SPYGLASS)
+                .define('C', Items.REDSTONE_LAMP)
+                .unlockedBy("has_spyglass", has(Items.SPYGLASS))
+                .unlockedBy("has_redstone_lamp", has(Items.REDSTONE_LAMP))
+                .save(consumer);
+
+        CConversions.getWaxedPairs().forEach(entry -> {
+            var unwaxed = entry.getKey();
+            var waxed = entry.getValue();
+            var id = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(waxed));
+            ShapelessRecipeBuilder.shapeless(waxed)
+                    .requires(unwaxed)
+                    .requires(Items.HONEYCOMB)
+                    .unlockedBy("has_unwaxed", has(unwaxed))
+                    .save(consumer, new ResourceLocation(id.getNamespace(), id.getPath() + "_from_honeycomb"));
+        });
+
+        CConversions.getWeatheredPairs().forEach(entry -> {
+            var unweathered = entry.getKey();
+            var weathered = entry.getValue();
+            var id = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(weathered));
+
+            var recipe = ShapelessRecipeBuilder.shapeless(weathered)
+                    .requires(unweathered)
+                    .requires(CItems.PATINA.get())
+                    .unlockedBy("has_unweathered", has(unweathered))
+                    .unlockedBy("has_patina", has(CItems.PATINA.get()));
+
+            var recipeId = suffix(id, "_from_patina");
+            if (CommonConfig.isPossibleOverwrite(unweathered)) {
+                conditional(recipe, unweathered, recipeId, consumer);
+            } else {
+                recipe.save(consumer, recipeId);
+            }
+
+        });
+    }
+
+    public static void registerOverrides(Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(Blocks.REPEATER)
                 .pattern("ABA")
                 .pattern("CCC")
@@ -172,45 +231,21 @@ public class CRecipes extends CRecipeProvider {
                 .define('C', REDSTONE_DUST)
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(consumer);
+    }
 
-        ShapedRecipeBuilder.shaped(CBlocks.TOGGLER.get(0).get())
-                .pattern(" A ")
-                .pattern("BAB")
-                .pattern("CCC")
-                .define('A', Items.AMETHYST_SHARD)
-                .define('B', REDSTONE_DUST)
-                .define('C', COPPER_INGOT)
-                .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD))
-                .save(consumer);
+    private static ResourceLocation suffix(ResourceLocation in, String suffix) {
+        return new ResourceLocation(in.getNamespace(), in.getPath() + suffix);
+    }
 
-        ShapedRecipeBuilder.shaped(CBlocks.HEADLIGHT.get(0).get())
-                .pattern("AAA")
-                .pattern("ABA")
-                .pattern("ACA")
-                .define('A', COPPER_INGOT)
-                .define('B', Items.SPYGLASS)
-                .define('C', Items.REDSTONE_LAMP)
-                .unlockedBy("has_spyglass", has(Items.SPYGLASS))
-                .unlockedBy("has_redstone_lamp", has(Items.REDSTONE_LAMP))
-                .save(consumer);
+    private static void conditional(RecipeBuilder recipe, Block target, ResourceLocation id, Consumer<FinishedRecipe> consumer) {
+        ConditionalRecipe.builder()
+                .addCondition(new OverwriteEnabledCondition(target))
+                .addRecipe(recipe::save)
+                .build(consumer, id);
+    }
 
-        CBlocks.WAXED_BLOCKS.get().forEach((unwaxed, waxed) -> {
-            var id = Registry.BLOCK.getKey(waxed);
-            ShapelessRecipeBuilder.shapeless(waxed)
-                    .requires(unwaxed)
-                    .requires(Items.HONEYCOMB)
-                    .unlockedBy("has_unwaxed", has(unwaxed))
-                    .save(consumer, new ResourceLocation(id.getNamespace(), id.getPath() + "_from_honeycomb"));
-        });
-
-        Coopperative.WEATHERING_BLOCKS.get().forEach((unweathered, weathered) -> {
-            var id = Registry.BLOCK.getKey(weathered);
-            ShapelessRecipeBuilder.shapeless(weathered)
-                    .requires(unweathered)
-                    .requires(CItems.PATINA.get())
-                    .unlockedBy("has_unweathered", has(unweathered))
-                    .unlockedBy("has_patina", has(CItems.PATINA.get()))
-                    .save(consumer, new ResourceLocation(id.getNamespace(), id.getPath() + "_from_patina"));
-        });
+    private static void conditional(RecipeBuilder recipe, Block target, Consumer<FinishedRecipe> consumer) {
+        var id = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(target));
+        conditional(recipe, target, id, consumer);
     }
 }

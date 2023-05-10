@@ -1,14 +1,27 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "item": "coopperative:exposed_comparator"
-    },
-    {
-      "item": "coopperative:patina"
+      "conditions": [
+        {
+          "type": "coopperative:overwrite_enabled",
+          "block": "minecraft:comparator"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "coopperative:exposed_comparator"
+          },
+          {
+            "item": "coopperative:patina"
+          }
+        ],
+        "result": {
+          "item": "coopperative:weathered_comparator"
+        }
+      }
     }
-  ],
-  "result": {
-    "item": "coopperative:weathered_comparator"
-  }
+  ]
 }

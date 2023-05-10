@@ -1,6 +1,5 @@
 package galena.coopperative.index;
 
-import com.google.common.collect.BiMap;
 import galena.coopperative.Coopperative;
 import galena.coopperative.content.block.*;
 import galena.coopperative.content.block.tile.HeadlightTile;
@@ -31,8 +30,6 @@ public class CBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Coopperative.MOD_ID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Coopperative.MOD_ID);
-
-    public static Supplier<BiMap<Block, Block>> WAXED_BLOCKS;
 
     public static final RegistryObject<SpotLightBlock> SPOT_LIGHT = register("spot_light", () -> new SpotLightBlock(Properties.of(Material.AIR).noCollission().noLootTable().noOcclusion().lightLevel(SpotLightBlock.LIGHT_EMISSION)));
 

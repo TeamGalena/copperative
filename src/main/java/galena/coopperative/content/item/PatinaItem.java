@@ -1,6 +1,6 @@
 package galena.coopperative.content.item;
 
-import galena.coopperative.Coopperative;
+import galena.coopperative.index.CConversions;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -38,11 +38,12 @@ public class PatinaItem extends Item {
             Block nextWeatherBlock = WeatheringCopper.getNext(block).get();
             return apply(world, player, stack, hand, pos, state, nextWeatherBlock);
         }
-        if (Coopperative.WEATHERING_BLOCKS.get().containsKey(block)) {
-            Block nextWeatherBlock = Coopperative.WEATHERING_BLOCKS.get().get(block);
-            return apply(world, player, stack, hand, pos, state, nextWeatherBlock);
-        }
-        return super.useOn(ctx);
+
+        return CConversions.getWeatheredVersion(block).map(weathered ->
+                apply(world, player, stack, hand, pos, state, weathered)
+        ).orElseGet(() ->
+            super.useOn(ctx)
+        );
     }
 
     private InteractionResult apply(Level world, Player player, ItemStack stack, InteractionHand hand, BlockPos pos, BlockState state, Block newBlock) {

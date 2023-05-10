@@ -24,8 +24,6 @@ public class CoopperativeClient {
 
     public static void registerBlockRenderers() {
         RenderType cutout = RenderType.cutout();
-        RenderType mipped = RenderType.cutoutMipped();
-        RenderType translucent = RenderType.translucent();
 
         render(EXPOSED_REPEATER, cutout);
         render(WEATHERED_REPEATER, cutout);
@@ -45,5 +43,9 @@ public class CoopperativeClient {
         COPPER_TRAPDOORS.forEach(it -> render(it, cutout));
         WAXED_COPPER_DOORS.forEach(it -> render(it, cutout));
         WAXED_COPPER_TRAPDOORS.forEach(it -> render(it, cutout));
+    }
+
+    public static void registerDynamicResources() {
+        DynamicCooperativeResourcePack.INSTANCE.register();
     }
 }

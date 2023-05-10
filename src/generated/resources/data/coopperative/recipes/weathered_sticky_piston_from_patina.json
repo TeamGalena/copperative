@@ -1,14 +1,27 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-      "item": "coopperative:exposed_sticky_piston"
-    },
-    {
-      "item": "coopperative:patina"
+      "conditions": [
+        {
+          "type": "coopperative:overwrite_enabled",
+          "block": "minecraft:sticky_piston"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "coopperative:exposed_sticky_piston"
+          },
+          {
+            "item": "coopperative:patina"
+          }
+        ],
+        "result": {
+          "item": "coopperative:weathered_sticky_piston"
+        }
+      }
     }
-  ],
-  "result": {
-    "item": "coopperative:weathered_sticky_piston"
-  }
+  ]
 }
