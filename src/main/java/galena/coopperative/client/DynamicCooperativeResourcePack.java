@@ -18,10 +18,13 @@ import java.util.stream.Stream;
 
 public class DynamicCooperativeResourcePack extends DynClientResourcesProvider {
 
+    public static final DynamicCooperativeResourcePack INSTANCE = new DynamicCooperativeResourcePack();
+
     public static final String NAMESPACE = "overrides";
 
-    public DynamicCooperativeResourcePack() {
+    private DynamicCooperativeResourcePack() {
         super(new DynamicTexturePack(new ResourceLocation(Coopperative.MOD_ID, "generated"), Pack.Position.TOP, true, true));
+        dynamicPack.addNamespaces("minecraft");
     }
 
     @Override

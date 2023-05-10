@@ -9,10 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -55,12 +52,12 @@ public class CommonConfig {
         return overwrittenBlocks.contains(first);
     }
 
-    public static Stream<Block> getPossibleOverwrites() {
-        return overwrittenBlocks.stream();
+    public static Collection<Block> getPossibleOverwrites() {
+        return overwrittenBlocks;
     }
 
     public static Stream<Block> getOverwrittenBlocks(OverrideTarget target) {
-        return getPossibleOverwrites().filter(it -> isOverwriteEnabled(it, target));
+        return getPossibleOverwrites().stream().filter(it -> isOverwriteEnabled(it, target));
     }
 
     private static boolean test(Block block, Predicate<OverrideEntry> func) {

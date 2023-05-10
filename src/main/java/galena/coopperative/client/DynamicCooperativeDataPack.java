@@ -19,15 +19,18 @@ import java.util.Map;
 
 public class DynamicCooperativeDataPack extends DynServerResourcesProvider {
 
+    public static final DynamicCooperativeDataPack INSTANCE = new DynamicCooperativeDataPack();
+
     private final Map<ResourceLocation, FinishedRecipe> recipes = new HashMap<>();
 
     private void registerOverride(FinishedRecipe recipe) {
         recipes.put(recipe.getId(), recipe);
     }
 
-    public DynamicCooperativeDataPack() {
+    private DynamicCooperativeDataPack() {
         super(new DynamicDataPack(new ResourceLocation(Coopperative.MOD_ID, "generated"), Pack.Position.TOP, true, true));
         CRecipes.registerOverrides(this::registerOverride);
+        dynamicPack.addNamespaces("minecraft");
     }
 
     @Override
@@ -37,7 +40,7 @@ public class DynamicCooperativeDataPack extends DynServerResourcesProvider {
 
     @Override
     public boolean dependsOnLoadedPacks() {
-        return false;
+        return true;
     }
 
     @Override

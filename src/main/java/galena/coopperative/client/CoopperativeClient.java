@@ -46,6 +46,6 @@ public class CoopperativeClient {
     }
 
     public static void registerDynamicResources() {
-        new DynamicCooperativeResourcePack().register();
+        DynamicCooperativeResourcePack.INSTANCE.register();
     }
 }

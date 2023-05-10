@@ -8,8 +8,6 @@ import galena.coopperative.data.*;
 import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CItems;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -24,20 +22,17 @@ import net.minecraftforge.registries.DeferredRegister;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
-
 @Mod(Coopperative.MOD_ID)
 public class Coopperative {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "coopperative";
     public static final String MOD_NAME = "Coopperative";
 
-    public static final List<Block> CopperizedBlocks = List.of(
-            Blocks.OBSERVER, Blocks.DISPENSER, Blocks.DROPPER, Blocks.PISTON, Blocks.STICKY_PISTON,
-            Blocks.REPEATER, Blocks.COMPARATOR, Blocks.LEVER, Blocks.POWERED_RAIL
-    );
-
     public Coopperative() {
+        CommonConfig.register();
+
+        DynamicCooperativeDataPack.INSTANCE.register();
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> CoopperativeClient::registerDynamicResources);
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::setup);
@@ -45,7 +40,6 @@ public class Coopperative {
         modEventBus.addListener(this::gatherData);
 
         CraftingHelper.register(new OverwriteEnabledCondition.Serializer());
-        CommonConfig.register();
 
         DeferredRegister<?>[] registers = {
                 CBlocks.BLOCKS,
@@ -57,9 +51,6 @@ public class Coopperative {
         for (DeferredRegister<?> register : registers) {
             register.register(modEventBus);
         }
-
-        new DynamicCooperativeDataPack().register();
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> CoopperativeClient::registerDynamicResources);
     }
 
     private void setup(FMLCommonSetupEvent event) {
