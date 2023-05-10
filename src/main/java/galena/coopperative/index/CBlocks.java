@@ -34,7 +34,7 @@ public class CBlocks {
     public static final RegistryObject<SpotLightBlock> SPOT_LIGHT = register("spot_light", () -> new SpotLightBlock(Properties.of(Material.AIR).noCollission().noLootTable().noOcclusion().lightLevel(SpotLightBlock.LIGHT_EMISSION)));
 
     // Storage Blocks
-    public static final RegistryObject<Block> PATINA_BLOCK = register("patina_block", () -> new Block(Properties.copy(Blocks.SANDSTONE).sound(SoundType.TUFF)), BUILDING);
+    public static final RegistryObject<Block> PATINA_BLOCK = register("patina_block", () -> new SandBlock(0xBD3A0, Properties.copy(Blocks.SAND).sound(SoundType.TUFF)), BUILDING);
 
     // Decorative Blocks
     public static final List<RegistryObject<WeatheringCopperFullBlock>> COPPER_BRICKS = registerWeatheringSet("copper_bricks", weatherState -> new WeatheringCopperFullBlock(weatherState, Properties.copy(Blocks.CUT_COPPER)), BUILDING);
