@@ -368,13 +368,13 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
 
     public ModelFile togglerModel(Supplier<? extends Block> block, Boolean powering) {
         String name = name(block);
-        String affix = powering ? "_on" : "";
-        return models().withExistingParent(name + affix, modLoc("block/base_toggler" + affix))
-                .texture("top", texture(name + affix));
+        String suffix = powering ? "_on" : "";
+        return models().withExistingParent(name + suffix, modLoc("block/base_toggler" + suffix))
+                .texture("top", texture(name + suffix));
     }
 
     public void toggler(Supplier<? extends Block> block) {
-        getVariantBuilder(block.get()).forAllStates(state -> {
+        getVariantBuilder(block.get()).forAllStatesExcept(state -> {
             boolean powering = state.getValue(TogglerBlock.POWERING);
             Direction facing = state.getValue(TogglerBlock.FACING);
             int y = 180;
@@ -384,7 +384,7 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
             if (facing == Direction.WEST) y = 90;
 
             return ConfiguredModel.builder().modelFile(togglerModel(block, powering)).rotationY(y).build();
-        });
+        }, TogglerBlock.POWERED);
     }
 
     public void toggler(List<RegistryObject<Block>> blockArrayList) {

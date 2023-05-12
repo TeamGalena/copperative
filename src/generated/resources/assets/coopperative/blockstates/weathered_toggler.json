@@ -1,62 +1,32 @@
 {
   "variants": {
-    "facing=east,powered=false,powering=false": {
+    "facing=east,powering=false": {
       "model": "coopperative:block/weathered_toggler",
       "y": 270
     },
-    "facing=east,powered=false,powering=true": {
+    "facing=east,powering=true": {
       "model": "coopperative:block/weathered_toggler_on",
       "y": 270
     },
-    "facing=east,powered=true,powering=false": {
-      "model": "coopperative:block/weathered_toggler",
-      "y": 270
-    },
-    "facing=east,powered=true,powering=true": {
-      "model": "coopperative:block/weathered_toggler_on",
-      "y": 270
-    },
-    "facing=north,powered=false,powering=false": {
+    "facing=north,powering=false": {
       "model": "coopperative:block/weathered_toggler",
       "y": 180
     },
-    "facing=north,powered=false,powering=true": {
+    "facing=north,powering=true": {
       "model": "coopperative:block/weathered_toggler_on",
       "y": 180
     },
-    "facing=north,powered=true,powering=false": {
-      "model": "coopperative:block/weathered_toggler",
-      "y": 180
-    },
-    "facing=north,powered=true,powering=true": {
-      "model": "coopperative:block/weathered_toggler_on",
-      "y": 180
-    },
-    "facing=south,powered=false,powering=false": {
+    "facing=south,powering=false": {
       "model": "coopperative:block/weathered_toggler"
     },
-    "facing=south,powered=false,powering=true": {
+    "facing=south,powering=true": {
       "model": "coopperative:block/weathered_toggler_on"
     },
-    "facing=south,powered=true,powering=false": {
-      "model": "coopperative:block/weathered_toggler"
-    },
-    "facing=south,powered=true,powering=true": {
-      "model": "coopperative:block/weathered_toggler_on"
-    },
-    "facing=west,powered=false,powering=false": {
+    "facing=west,powering=false": {
       "model": "coopperative:block/weathered_toggler",
       "y": 90
     },
-    "facing=west,powered=false,powering=true": {
-      "model": "coopperative:block/weathered_toggler_on",
-      "y": 90
-    },
-    "facing=west,powered=true,powering=false": {
-      "model": "coopperative:block/weathered_toggler",
-      "y": 90
-    },
-    "facing=west,powered=true,powering=true": {
+    "facing=west,powering=true": {
       "model": "coopperative:block/weathered_toggler_on",
       "y": 90
     }
