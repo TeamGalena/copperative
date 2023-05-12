@@ -7,6 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -57,14 +58,23 @@ public class HeadLightBlock extends DirectionalBlock implements CWeatheringCoppe
     }
 
     @Override
+    public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        super.setPlacedBy(world, pos, state, placer, stack);
+        if (world.hasNeighborSignal(pos)) {
+            world.setBlock(pos, state.setValue(POWERED, true), 2);
+            spotlight(state, world, pos);
+        }
+    }
+
+    @Override
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos neighbor, boolean isMoving) {
         if (!world.isClientSide) {
-            boolean flag = isLit(state);
-            if (flag != world.hasNeighborSignal(pos)) {
-                if (flag) {
+            boolean currentlyLit = isLit(state);
+            if (currentlyLit != world.hasNeighborSignal(pos)) {
+                if (currentlyLit) {
                     world.scheduleTick(pos, this, 4);
                 } else {
-                    world.setBlock(pos, state.cycle(POWERED), 2);
+                    world.setBlock(pos, state.setValue(POWERED, true), 2);
                     spotlight(state, world, pos);
                 }
             }
@@ -118,11 +128,11 @@ public class HeadLightBlock extends DirectionalBlock implements CWeatheringCoppe
     //    return state.rotate(mirror.getRotation(state.getValue(FACING)));
     //}
 
-    @Override
-    public void destroy(LevelAccessor world, BlockPos pos, BlockState state) {
-        super.destroy(world, pos, state);
-        getTile(world, pos).ifPresent(HeadlightTile::extinguishSpotlight);
-    }
+    //@Override
+    //public void destroy(LevelAccessor world, BlockPos pos, BlockState state) {
+    //    super.destroy(world, pos, state);
+    //    getTile(world, pos).ifPresent(HeadlightTile::extinguishSpotlight);
+    //}
 
     public static boolean isLit(BlockState state) {
         return state.getValue(POWERED) && !state.getValue(BROKEN);

@@ -98,6 +98,12 @@ public class HeadlightTile extends BlockEntity {
     }
 
     @Override
+    public void setRemoved() {
+        super.setRemoved();
+        extinguishSpotlight();
+    }
+
+    @Override
     public void deserializeNBT(CompoundTag nbt) {
         super.deserializeNBT(nbt);
         if (nbt.contains("ActiveSpotlight")) {
