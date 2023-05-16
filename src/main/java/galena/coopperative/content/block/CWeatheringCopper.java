@@ -22,7 +22,7 @@ public interface CWeatheringCopper extends WeatheringCopper {
     }
 
     default void insert(Block block, boolean before, NonNullList<ItemStack> items, Predicate<ItemStack> filter, boolean startFromExposed) {
-        if(CommonConfig.isOverwriteDisabled(block)) return;
+        if(CommonConfig.isOverwriteDisabled(block, CommonConfig.OverrideTarget.WEATHERING)) return;
 
         ItemStack stack = new ItemStack(block);
         WeatherState weatherState = ((CWeatheringCopper) block).getAge();

@@ -79,7 +79,7 @@ public class CConversions {
     }
 
     public static Optional<Block> getWeatheredVersion(Block block) {
-        if(CommonConfig.isOverwriteDisabled(block)) return Optional.empty();
+        if (CommonConfig.isOverwriteDisabled(block, CommonConfig.OverrideTarget.WEATHERING)) return Optional.empty();
         return Optional.ofNullable(WEATHERING_BLOCKS.get().get(block));
     }
 
@@ -87,11 +87,11 @@ public class CConversions {
         return Optional.ofNullable(WEATHERING_BLOCKS.get().inverse().get(block));
     }
 
-    public static Stream<Map.Entry<Block,Block>> getWaxedPairs() {
+    public static Stream<Map.Entry<Block, Block>> getWaxedPairs() {
         return WAXED_BLOCKS.get().entrySet().stream();
     }
 
-    public static Stream<Map.Entry<Block,Block>> getWeatheredPairs() {
+    public static Stream<Map.Entry<Block, Block>> getWeatheredPairs() {
         return WEATHERING_BLOCKS.get().entrySet().stream();
     }
 
@@ -100,7 +100,7 @@ public class CConversions {
 
         while (true) {
             var previous = CConversions.getUnweatheredVersion(first);
-            if(previous.isEmpty()) break;
+            if (previous.isEmpty()) break;
             first = previous.get();
         }
 

@@ -5,7 +5,8 @@
       "conditions": [
         {
           "type": "coopperative:overwrite_enabled",
-          "block": "minecraft:dispenser"
+          "block": "minecraft:dispenser",
+          "target": "weathering"
         }
       ],
       "recipe": {

@@ -5,7 +5,8 @@
       "conditions": [
         {
           "type": "coopperative:overwrite_enabled",
-          "block": "minecraft:piston"
+          "block": "minecraft:piston",
+          "target": "weathering"
         }
       ],
       "recipe": {

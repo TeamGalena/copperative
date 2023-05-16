@@ -10,6 +10,7 @@ import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import javax.annotation.Nullable;
 import java.util.Objects;
 
 public class OverwriteEnabledCondition implements ICondition {
@@ -17,13 +18,15 @@ public class OverwriteEnabledCondition implements ICondition {
     private static final ResourceLocation ID = new ResourceLocation(Coopperative.MOD_ID, "overwrite_enabled");
 
     private final ResourceLocation key;
+    private final @Nullable CommonConfig.OverrideTarget target;
 
-    public OverwriteEnabledCondition(ResourceLocation block) {
+    public OverwriteEnabledCondition(ResourceLocation block, @Nullable CommonConfig.OverrideTarget target) {
         this.key = block;
+        this.target = target;
     }
 
-    public OverwriteEnabledCondition(Block output) {
-        this(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(CConversions.getFirst(output))));
+    public OverwriteEnabledCondition(Block output, @Nullable CommonConfig.OverrideTarget target) {
+        this(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(CConversions.getFirst(output))), target);
     }
 
     @Override
@@ -34,7 +37,9 @@ public class OverwriteEnabledCondition implements ICondition {
     @Override
     public boolean test(IContext context) {
         var block = ForgeRegistries.BLOCKS.getValue(key);
-        return block != null && CommonConfig.isOverwriteEnabled(block);
+        if (block == null) return false;
+        if (target == null) return CommonConfig.isOverwriteEnabled(block);
+        return CommonConfig.isOverwriteEnabled(block, target);
     }
 
     public static class Serializer implements IConditionSerializer<OverwriteEnabledCondition> {
@@ -42,12 +47,16 @@ public class OverwriteEnabledCondition implements ICondition {
         @Override
         public void write(JsonObject json, OverwriteEnabledCondition value) {
             json.addProperty("block", value.key.toString());
+            if (value.target != null) json.addProperty("target", value.target.name().toLowerCase());
         }
 
         @Override
         public OverwriteEnabledCondition read(JsonObject json) {
             var key = new ResourceLocation(GsonHelper.getAsString(json, "block"));
-            return new OverwriteEnabledCondition(key);
+            var target = json.has("target")
+                    ? CommonConfig.OverrideTarget.valueOf(GsonHelper.getAsString(json, "target").toUpperCase())
+                    : null;
+            return new OverwriteEnabledCondition(key, target);
         }
 
         @Override

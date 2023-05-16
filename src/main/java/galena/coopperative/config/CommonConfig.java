@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 public class CommonConfig {
 
     public enum OverrideTarget {
-        APPEARANCE, RECIPE;
+        APPEARANCE, RECIPE, WEATHERING
     }
 
     private record OverrideEntry(BooleanSupplier enabled, Map<OverrideTarget, BooleanSupplier> targets) {

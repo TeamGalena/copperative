@@ -26,6 +26,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 import java.util.function.Consumer;
 
+import static galena.coopperative.Coopperative.MOD_ID;
+
 public class CRecipes extends CRecipeProvider {
 
     protected static final TagKey<Item> COPPER_INGOT = Tags.Items.INGOTS_COPPER;
@@ -150,6 +152,44 @@ public class CRecipes extends CRecipeProvider {
             }
 
         });
+
+        ShapedRecipeBuilder.shaped(Items.PRISMARINE_SHARD)
+                .pattern("AA ")
+                .pattern("ABA")
+                .pattern(" AA")
+                .define('A', CItems.PATINA.get())
+                .define('B', Items.CLAY_BALL)
+                .unlockedBy("has_patina", has(CItems.PATINA.get()))
+                .group("prismarine_shard")
+                .save(consumer, new ResourceLocation(MOD_ID, "prismarine_shard_from_clay"));
+
+        ShapedRecipeBuilder.shaped(Items.PRISMARINE_SHARD)
+                .pattern(" AA")
+                .pattern("ABA")
+                .pattern("AA ")
+                .define('A', CItems.PATINA.get())
+                .define('B', Items.CLAY_BALL)
+                .unlockedBy("has_patina", has(CItems.PATINA.get()))
+                .group("prismarine_shard")
+                .save(consumer, new ResourceLocation(MOD_ID, "prismarine_shard_from_clay_mirrored"));
+
+        ShapelessRecipeBuilder.shapeless(Items.PRISMARINE_CRYSTALS)
+                .requires(Items.GLOW_INK_SAC)
+                .requires(CItems.PATINA.get())
+                .requires(CItems.PATINA.get())
+                .requires(CItems.PATINA.get())
+                .unlockedBy("has_patina", has(CItems.PATINA.get()))
+                .group("prismarine_crystals")
+                .save(consumer, new ResourceLocation(MOD_ID, "prismarine_crystals_from_glow_ink"));
+
+        ShapelessRecipeBuilder.shapeless(Items.PRISMARINE_CRYSTALS)
+                .requires(CItems.PATINA.get())
+                .requires(Items.GLOWSTONE_DUST)
+                .requires(Items.GLOWSTONE_DUST)
+                .requires(CItems.PATINA.get())
+                .unlockedBy("has_patina", has(CItems.PATINA.get()))
+                .group("prismarine_crystals")
+                .save(consumer, new ResourceLocation(MOD_ID, "prismarine_crystals_from_glowstone"));
     }
 
     public static void registerOverrides(Consumer<FinishedRecipe> consumer) {
@@ -239,13 +279,8 @@ public class CRecipes extends CRecipeProvider {
 
     private static void conditional(RecipeBuilder recipe, Block target, ResourceLocation id, Consumer<FinishedRecipe> consumer) {
         ConditionalRecipe.builder()
-                .addCondition(new OverwriteEnabledCondition(target))
+                .addCondition(new OverwriteEnabledCondition(target, CommonConfig.OverrideTarget.WEATHERING))
                 .addRecipe(recipe::save)
                 .build(consumer, id);
-    }
-
-    private static void conditional(RecipeBuilder recipe, Block target, Consumer<FinishedRecipe> consumer) {
-        var id = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(target));
-        conditional(recipe, target, id, consumer);
     }
 }

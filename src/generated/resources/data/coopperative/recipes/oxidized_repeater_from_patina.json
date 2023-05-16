@@ -5,7 +5,8 @@
       "conditions": [
         {
           "type": "coopperative:overwrite_enabled",
-          "block": "minecraft:repeater"
+          "block": "minecraft:repeater",
+          "target": "weathering"
         }
       ],
       "recipe": {

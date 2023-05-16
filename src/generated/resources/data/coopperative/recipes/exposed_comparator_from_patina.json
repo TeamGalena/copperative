@@ -5,7 +5,8 @@
       "conditions": [
         {
           "type": "coopperative:overwrite_enabled",
-          "block": "minecraft:comparator"
+          "block": "minecraft:comparator",
+          "target": "weathering"
         }
       ],
       "recipe": {

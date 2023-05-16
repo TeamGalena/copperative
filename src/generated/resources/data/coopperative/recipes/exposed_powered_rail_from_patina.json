@@ -5,7 +5,8 @@
       "conditions": [
         {
           "type": "coopperative:overwrite_enabled",
-          "block": "minecraft:powered_rail"
+          "block": "minecraft:powered_rail",
+          "target": "weathering"
         }
       ],
       "recipe": {
