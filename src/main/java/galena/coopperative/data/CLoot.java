@@ -38,6 +38,7 @@ public class CLoot extends CLootProvider {
                         EXPOSERS.weathered(),
                         RELAYERS.weathered(),
                         CRANKS.weathered(),
+                        RANDOMIZERS.weathered(),
 
                         Stream.of(
                                 PATINA_BLOCK,

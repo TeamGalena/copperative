@@ -61,9 +61,13 @@ public class CConversions {
             .putAll(blockMapFromArray(CBlocks.COPPER_DOORS))
             .putAll(blockMapFromArray(CBlocks.COPPER_TRAPDOORS))
 
+<<<<<<< HEAD
             .putAll(blockMapFromArray(CBlocks.EXPOSERS.all().toList()))
             .putAll(blockMapFromArray(CBlocks.RELAYERS.all().toList()))
             .putAll(blockMapFromArray(CBlocks.CRANKS.all().toList()))
+=======
+            .putAll(blockMapFromArray(CBlocks.EXPOSERS.get().toList()))
+>>>>>>> 3c4552e (add framework for optional mod compatibilities)
             .build());
     private static final Supplier<BiMap<Block, Block>> WAXED_BLOCKS = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
             .putAll(waxedEntries(CBlocks.COPPER_BRICKS, CBlocks.WAXED_COPPER_BRICKS))

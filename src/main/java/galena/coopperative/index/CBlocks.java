@@ -9,6 +9,10 @@ import galena.coopperative.content.block.tile.HeadlightTile;
 import galena.coopperative.content.block.weatheringvanilla.*;
 import galena.oreganized.index.OBlocks;
 import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
+import galena.coopperative.content.block.compat.WeatheredExposer;
+import galena.coopperative.content.block.tile.HeadlightTile;
+import galena.coopperative.content.block.weatheringvanilla.*;
+import galena.oreganized.index.OBlocks;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -24,6 +28,9 @@ import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -126,6 +133,10 @@ public class CBlocks {
 
     public static final CopperSet<Block> CRANKS = ifLoaded("supplementaries",
             () -> registerConvertedSet("crank", ModRegistry.CRANK, WeatheredCrank::new, CreativeModeTab.TAB_REDSTONE), CopperSet::empty
+    );
+
+    public static final CopperSet<Block> RANDOMIZERS = ifLoaded("quark",
+            () -> registerConvertedSet("randomizer", ModRegistry.CRANK, WeatheredRandomizer::new, CreativeModeTab.TAB_REDSTONE), CopperSet::empty
     );
 
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> block, CreativeModeTab tab) {
