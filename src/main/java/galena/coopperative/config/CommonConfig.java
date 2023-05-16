@@ -1,12 +1,15 @@
 package galena.coopperative.config;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import galena.coopperative.Coopperative;
 import galena.coopperative.index.CConversions;
+import galena.oreganized.index.OBlocks;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
@@ -28,17 +31,28 @@ public class CommonConfig {
 
     private static CommonConfig INSTANCE;
 
-    private final static List<Block> overwrittenBlocks = List.of(
-            Blocks.REPEATER,
-            Blocks.COMPARATOR,
-            Blocks.PISTON,
-            Blocks.STICKY_PISTON,
-            Blocks.DISPENSER,
-            Blocks.DROPPER,
-            Blocks.OBSERVER,
-            Blocks.LEVER,
-            Blocks.POWERED_RAIL
-    );
+    private final static List<Block> OVERWRITTEN_BLOCKS = findOverrideableBlocks();
+
+    private static List<Block> findOverrideableBlocks() {
+        var builder = ImmutableList.<Block>builder();
+        builder.add(
+                Blocks.REPEATER,
+                Blocks.COMPARATOR,
+                Blocks.PISTON,
+                Blocks.STICKY_PISTON,
+                Blocks.DISPENSER,
+                Blocks.DROPPER,
+                Blocks.OBSERVER,
+                Blocks.LEVER,
+                Blocks.POWERED_RAIL
+        );
+
+        if(ModList.get().isLoaded("oreganized")) {
+            builder.add(OBlocks.EXPOSER.get());
+        }
+
+        return builder.build();
+    }
 
     public static void register() {
         var builder = ConfigBuilder.create(Coopperative.MOD_ID, ConfigType.COMMON);
@@ -49,11 +63,11 @@ public class CommonConfig {
 
     public static boolean isPossibleOverwrite(Block block) {
         var first = CConversions.getFirst(block);
-        return overwrittenBlocks.contains(first);
+        return OVERWRITTEN_BLOCKS.contains(first);
     }
 
     public static Collection<Block> getPossibleOverwrites() {
-        return overwrittenBlocks;
+        return OVERWRITTEN_BLOCKS;
     }
 
     public static Stream<Block> getOverwrittenBlocks(OverrideTarget target) {

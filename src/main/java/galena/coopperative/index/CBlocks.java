@@ -2,8 +2,10 @@ package galena.coopperative.index;
 
 import galena.coopperative.Coopperative;
 import galena.coopperative.content.block.*;
+import galena.coopperative.content.block.compat.WeatheredExposer;
 import galena.coopperative.content.block.tile.HeadlightTile;
 import galena.coopperative.content.block.weatheringvanilla.*;
+import galena.oreganized.index.OBlocks;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -12,15 +14,18 @@ import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.Material;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
+import java.util.stream.Stream;
 
 public class CBlocks {
 
@@ -108,6 +113,10 @@ public class CBlocks {
     // Workstations
     //public static final RegistryObject<Block> SOLDERING_TABLE = register("soldering_table", () -> new SolderingTableBlock(BlockBehaviour.Properties.copy(Blocks.SMITHING_TABLE)), REDSTONE);
 
+    // Compat
+    public static final Supplier<Stream<Supplier<Block>>> EXPOSERS = ifLoaded("oreganized",
+            () -> registerConvertedSet("exposer", OBlocks.EXPOSER, WeatheredExposer::new, CreativeModeTab.TAB_REDSTONE)::stream
+    );
 
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> block, CreativeModeTab tab) {
         RegistryObject<B> blocks = BLOCKS.register(name, block);
@@ -117,6 +126,23 @@ public class CBlocks {
 
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> block) {
         return BLOCKS.register(name, block);
+    }
+
+    public static <B extends Block> List<Supplier<B>> registerConvertedSet(String name, Supplier<B> targetSupplier, Function<WeatherState, B> function, CreativeModeTab tab) {
+        return Arrays.stream(WeatherState.values()).map(weatherState -> {
+            if (weatherState == WeatherState.UNAFFECTED) return targetSupplier;
+            String prefix = weatherState.name().toLowerCase() + "_";
+            return register(prefix + name, () -> function.apply(weatherState), tab);
+        }).toList();
+    }
+
+    public static <R> R ifLoaded(String mod, Supplier<R> supplier, Supplier<R> emptySupplier) {
+        if (ModList.get().isLoaded(mod)) return supplier.get();
+        else return emptySupplier.get();
+    }
+
+    public static <R> Supplier<Stream<R>> ifLoaded(String mod, Supplier<Supplier<Stream<R>>> supplier) {
+        return ifLoaded(mod, supplier, () -> Stream::empty);
     }
 
     public static <B extends Block> List<RegistryObject<B>> registerWeatheringSet(UnaryOperator<String> name, Function<WeatherState, B> function, CreativeModeTab tab) {

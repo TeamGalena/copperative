@@ -115,6 +115,8 @@ public class CTags {
             COPPER_TRAPDOORS.forEach(it -> pickaxe.add(it.get()));
             WAXED_COPPER_DOORS.forEach(it -> pickaxe.add(it.get()));
             WAXED_COPPER_TRAPDOORS.forEach(it -> pickaxe.add(it.get()));
+
+            EXPOSERS.get().forEach(it -> pickaxe.add(it.get()));
         }
 
     }

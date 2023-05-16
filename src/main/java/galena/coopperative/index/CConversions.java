@@ -6,7 +6,6 @@ import com.google.common.collect.ImmutableBiMap;
 import galena.coopperative.config.CommonConfig;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
 import java.util.Map;
@@ -61,6 +60,8 @@ public class CConversions {
 
             .putAll(blockMapFromArray(CBlocks.COPPER_DOORS))
             .putAll(blockMapFromArray(CBlocks.COPPER_TRAPDOORS))
+
+            .putAll(blockMapFromArray(CBlocks.EXPOSERS.get().toList()))
             .build());
     private static final Supplier<BiMap<Block, Block>> WAXED_BLOCKS = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
             .putAll(waxedEntries(CBlocks.COPPER_BRICKS, CBlocks.WAXED_COPPER_BRICKS))
@@ -107,7 +108,7 @@ public class CConversions {
         return first;
     }
 
-    private static <T extends Block, R extends Block> ImmutableBiMap<Block, Block> waxedEntries(List<RegistryObject<T>> unwaxedList, List<RegistryObject<R>> waxedList) {
+    private static <T extends Block, R extends Block> ImmutableBiMap<Block, Block> waxedEntries(List<? extends Supplier<T>> unwaxedList, List<? extends Supplier<R>> waxedList) {
         if (unwaxedList.size() != waxedList.size())
             throw new IllegalArgumentException("waxed and unwaxed lists are not equals in size");
 
@@ -120,10 +121,12 @@ public class CConversions {
         return map.build();
     }
 
-    private static <B extends Block> ImmutableBiMap<Block, Block> blockMapFromArray(List<RegistryObject<B>> blockArrayList) {
+    private static <B extends Block> ImmutableBiMap<Block, Block> blockMapFromArray(List<? extends Supplier<B>> blockArrayList) {
         ImmutableBiMap.Builder<Block, Block> map = new ImmutableBiMap.Builder<>();
-        for (int i = 0; blockArrayList.size() - 1 > i; i++)
-            map.put(blockArrayList.get(i).get(), blockArrayList.get(i + 1).get());
+
+        if (!blockArrayList.isEmpty())
+            for (int i = 0; blockArrayList.size() - 1 > i; i++)
+                map.put(blockArrayList.get(i).get(), blockArrayList.get(i + 1).get());
 
         return map.build();
     }
