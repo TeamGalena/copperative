@@ -48,8 +48,8 @@ public class DynamicCooperativeResourcePack extends DynClientResourcesProvider {
         var key = new ResourceLocation(NAMESPACE, id.getPath());
 
         Stream.of(ResType.BLOCKSTATES, ResType.ITEM_MODELS).forEach(type -> {
-            var override = StaticResource.getOrFail(manager, type.getPath(key));
-            dynamicPack.addBytes(id, override.data, type);
+            var override = StaticResource.getOrLog(manager, type.getPath(key));
+            if (override != null) dynamicPack.addBytes(id, override.data, type);
         });
     }
 

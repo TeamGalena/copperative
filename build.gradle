@@ -39,7 +39,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            ideaModule "${rootProject.name}.${project.name}.main"
+            ideaModule "${project.name}.main"
             taskName 'Client'
             arg "-mixin.config=${mod_id}.mixins.json"
             arg "-mixin.config=galenacapes.forge.mixins.json"
@@ -52,7 +52,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            ideaModule "${rootProject.name}.${project.name}.main"
+            ideaModule "${project.name}.main"
             taskName 'Server'
             args "-mixin.config=${mod_id}.mixins.json"
             mods {
@@ -64,7 +64,7 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            ideaModule "${rootProject.name}.${project.name}.main"
+            ideaModule "${project.name}.main"
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
             taskName 'Data'
             args "-mixin.config=${mod_id}.mixins.json"
@@ -101,6 +101,9 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    maven {
+        url "https://maven.architectury.dev/"
+    }
 }
 
 dependencies {
@@ -114,14 +117,15 @@ dependencies {
     // for config & dynamic data/resourcepack
     implementation fg.deobf("curse.maven:selene-499980:${moonlight_lib_version}")
 
+    //implementation fg.deobf("curse.maven:quark-243121:${quark_version}")
+    //implementation fg.deobf("vazkii.autoreglib:AutoRegLib:${arl_version}")
+    //compileOnly fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
     implementation fg.deobf("curse.maven:supplementaries-412082:${supplementaries_version}")
-    implementation fg.deobf("curse.maven:quark-243121:${quark_version}")
-    implementation fg.deobf("vazkii.autoreglib:AutoRegLib:${arl_version}")
     implementation fg.deobf("curse.maven:oreganized-769203:${oreganized_version}")
 
     // Pretty Shaders for Showcases
-    runtimeOnly fg.deobf("curse.maven:oculus-581495:${oculus_version}")
-    runtimeOnly fg.deobf("curse.maven:rubidium-574856:${rubidium_version}")
+    //runtimeOnly fg.deobf("curse.maven:oculus-581495:${oculus_version}")
+    //runtimeOnly fg.deobf("curse.maven:rubidium-574856:${rubidium_version}")
 
     // For testing compatibility
     runtimeOnly fg.deobf("curse.maven:create-328085:${create_version}")
