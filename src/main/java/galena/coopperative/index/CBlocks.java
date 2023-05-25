@@ -13,6 +13,7 @@ import galena.coopperative.content.block.compat.WeatheredExposer;
 import galena.coopperative.content.block.tile.HeadlightTile;
 import galena.coopperative.content.block.weatheringvanilla.*;
 import galena.oreganized.index.OBlocks;
+import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -137,6 +138,10 @@ public class CBlocks {
 
     public static final CopperSet<Block> RANDOMIZERS = ifLoaded("quark",
             () -> registerConvertedSet("randomizer", ModRegistry.CRANK, WeatheredRandomizer::new, CreativeModeTab.TAB_REDSTONE), CopperSet::empty
+    );
+
+    public static final Supplier<Stream<Supplier<Block>>> RELAYERS = ifLoaded("supplementaries",
+            () -> registerConvertedSet("relayer", ModRegistry.RELAYER, WeatheredExposer::new, CreativeModeTab.TAB_REDSTONE)::stream
     );
 
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> block, CreativeModeTab tab) {
