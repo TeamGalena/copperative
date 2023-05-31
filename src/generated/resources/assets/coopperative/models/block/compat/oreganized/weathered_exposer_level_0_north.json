@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/observer",
+  "textures": {
+    "bottom": "coopperative:block/compat/oreganized/weathered_exposer_back_on",
+    "front": "coopperative:block/compat/oreganized/weathered_exposer_level_0",
+    "particle": "coopperative:block/compat/oreganized/weathered_exposer_level_0",
+    "side": "coopperative:block/compat/oreganized/weathered_exposer_side",
+    "top": "coopperative:block/compat/oreganized/weathered_exposer_top"
+  }
+}

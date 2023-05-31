@@ -28,9 +28,8 @@ public class DynamicCooperativeDataPack extends DynServerResourcesProvider {
     }
 
     private DynamicCooperativeDataPack() {
-        super(new DynamicDataPack(new ResourceLocation(Coopperative.MOD_ID, "generated"), Pack.Position.TOP, true, true));
-        CRecipes.registerOverrides(this::registerOverride);
-        dynamicPack.addNamespaces("minecraft");
+        super(new DynamicDataPack(new ResourceLocation(Coopperative.MOD_ID, "generated"), Pack.Position.BOTTOM, true, true));
+        DynamicCooperativeResourcePack.OVERRIDDEN_NAMESPACES.forEach(dynamicPack::addNamespaces);
     }
 
     @Override
@@ -45,6 +44,10 @@ public class DynamicCooperativeDataPack extends DynServerResourcesProvider {
 
     @Override
     public void regenerateDynamicAssets(ResourceManager manager) {
+        if (recipes.isEmpty()) {
+            CRecipes.registerOverrides(this::registerOverride);
+        }
+
         CommonConfig.getOverwrittenBlocks(CommonConfig.OverrideTarget.RECIPE).forEach(this::enableBlockOverwrite);
     }
 

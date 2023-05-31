@@ -1,10 +1,12 @@
 package galena.coopperative.data.provider;
 
+import com.google.common.base.Preconditions;
 import galena.coopperative.Coopperative;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -115,5 +117,18 @@ public abstract class CItemModelProvider extends ItemModelProvider {
 
     public ItemModelBuilder trapDoor(Supplier<? extends Block> block) {
         return trapDoor(block, blockName(block));
+    }
+
+    public ItemModelBuilder compatBlock(Block block, String namespace, String name) {
+        var id = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getKey(block));
+        return withExistingParent(id.getPath(), new ResourceLocation(Coopperative.MOD_ID, "block/compat/" + namespace + "/" + name));
+    }
+
+    public String weatherPrefix(Block block) {
+        if (block instanceof WeatheringCopper it) {
+            var age = it.getAge();
+            if (age != WeatheringCopper.WeatherState.UNAFFECTED) return age.name().toLowerCase() + "_";
+        }
+        return "";
     }
 }

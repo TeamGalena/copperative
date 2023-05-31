@@ -86,7 +86,7 @@ public class CBlockStates extends CBlockStateProvider {
                 CBlocks.WAXED_COPPER_TILES.stream(),
                 CBlocks.WAXED_COPPER_PILLAR.stream()
         ).flatMap(it -> it).forEach(block -> {
-            var name =  unwaxedName(block);
+            var name = unwaxedName(block);
             axisBlock(block.get(), texture(name), texture(name + "_top"));
         });
 

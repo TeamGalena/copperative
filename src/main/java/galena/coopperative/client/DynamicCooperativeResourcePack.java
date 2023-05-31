@@ -14,17 +14,20 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 public class DynamicCooperativeResourcePack extends DynClientResourcesProvider {
 
-    public static final DynamicCooperativeResourcePack INSTANCE = new DynamicCooperativeResourcePack();
-
     public static final String NAMESPACE = "overrides";
+
+    public static final List<String> OVERRIDDEN_NAMESPACES = List.of("minecraft", "oreganized", "supplementaries", "quark");
+
+    public static final DynamicCooperativeResourcePack INSTANCE = new DynamicCooperativeResourcePack();
 
     private DynamicCooperativeResourcePack() {
         super(new DynamicTexturePack(new ResourceLocation(Coopperative.MOD_ID, "generated"), Pack.Position.TOP, true, true));
-        dynamicPack.addNamespaces("minecraft");
+        OVERRIDDEN_NAMESPACES.forEach(dynamicPack::addNamespaces);
     }
 
     @Override

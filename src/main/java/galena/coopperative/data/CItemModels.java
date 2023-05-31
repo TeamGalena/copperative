@@ -1,5 +1,6 @@
 package galena.coopperative.data;
 
+import com.google.common.base.Preconditions;
 import galena.coopperative.Coopperative;
 import galena.coopperative.client.DynamicCooperativeResourcePack;
 import galena.coopperative.data.provider.CItemModelProvider;
@@ -14,6 +15,8 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Supplier;
 
 public class CItemModels extends CItemModelProvider {
 
@@ -82,6 +85,9 @@ public class CItemModels extends CItemModelProvider {
         blockFlat(CBlocks.EXPOSED_POWERED_RAIL);
         blockFlat(CBlocks.WEATHERED_POWERED_RAIL);
         blockFlat(CBlocks.OXIDIZED_POWERED_RAIL);
+
+        CBlocks.EXPOSERS.get().map(Supplier::get).forEach(it -> compatBlock(it, "oreganized", weatherPrefix(it) + "exposer_level_0_south"));
+        CBlocks.RELAYERS.get().map(Supplier::get).forEach(it -> compatBlock(it, "supplementaries", weatherPrefix(it) + "relayer_off"));
     }
 
     public static class ItemModelOverrides extends CItemModelProvider {
@@ -106,21 +112,24 @@ public class CItemModels extends CItemModelProvider {
             normalItem(() -> Items.LEVER);
             normalItem(() -> Items.REPEATER);
             normalItem(() -> Items.COMPARATOR);
+
+            CBlocks.EXPOSERS.get().map(Supplier::get).findFirst().ifPresent(it -> compatBlock(it, "oreganized", weatherPrefix(it) + "exposer_level_0_south"));
+            CBlocks.RELAYERS.get().map(Supplier::get).findFirst().ifPresent(it -> compatBlock(it, "supplementaries", weatherPrefix(it) + "relayer_off"));
         }
 
         public ItemModelBuilder block(Block block) {
-            String name = ForgeRegistries.BLOCKS.getKey(block).getPath();
+            var name = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getKey(block)).getPath();
             return withExistingParent(name, blockTexture(name));
         }
 
         @Override
         protected ResourceLocation blockTexture(String name) {
-            return new ResourceLocation(Coopperative.MOD_ID + ":block/" + name);
+            return new ResourceLocation(Coopperative.MOD_ID, "block/" + name);
         }
 
         @Override
         protected ResourceLocation itemTexture(String name) {
-            return new ResourceLocation(Coopperative.MOD_ID + ":item/" + name);
+            return new ResourceLocation(Coopperative.MOD_ID, "item/" + name);
         }
     }
 }

@@ -59,6 +59,10 @@ public class CommonConfig {
             builder.add(OBlocks.EXPOSER.getId());
         }
 
+        if (ModList.get().isLoaded("supplementaries")) {
+            builder.add(new ResourceLocation("supplementaries", "relayer"));
+        }
+
         return builder.build();
     }
 

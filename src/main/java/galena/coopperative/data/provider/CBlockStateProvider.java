@@ -4,11 +4,13 @@ import galena.coopperative.Coopperative;
 import galena.coopperative.content.block.HeadLightBlock;
 import galena.coopperative.content.block.TogglerBlock;
 import galena.coopperative.content.block.weatheringvanilla.WeatheringPistonBlock;
+import galena.oreganized.content.block.ExposerBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.ComparatorMode;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -399,5 +401,60 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
 
     public void trapdoor(Supplier<? extends TrapDoorBlock> block) {
         trapdoorBlock(block.get(), texture(name(block)), true);
+    }
+
+    public void exposer(Supplier<? extends Block> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            var level = Math.round((ExposerBlock.TexturedFrames - 1) / (float) (state.getValue(ExposerBlock.LEVEL) + 1));
+            var facing = state.getValue(DirectionalBlock.FACING);
+
+            int x = 0;
+            int y = 0;
+            if (facing == Direction.EAST) y = 90;
+            if (facing == Direction.SOUTH) y = 180;
+            if (facing == Direction.WEST) y = 270;
+            if (facing == Direction.DOWN) x = 90;
+            if (facing == Direction.UP) x = 270;
+
+            var base = "compat/oreganized/" + name(block);
+            var front = base + "_level_" + level;
+            var side = base + "_side";
+            var back = state.getValue(ExposerBlock.LEVEL) > 0 ? base + "_back_on" : base + "_back";
+            var top = base + "_top";
+
+            var model = models().withExistingParent("block/" + front + "_" + facing, new ResourceLocation("block/observer"))
+                    .texture("bottom", texture(back))
+                    .texture("side", texture(side))
+                    .texture("top", texture(top))
+                    .texture("particle", texture(front))
+                    .texture("front", texture(front));
+
+            return ConfiguredModel.builder().modelFile(model).rotationX(x).rotationY(y).build();
+        });
+    }
+
+    public void relayer(Supplier<? extends Block> block) {
+        getVariantBuilder(block.get()).forAllStatesExcept(state -> {
+            var powered = state.getValue(BlockStateProperties.POWERED);
+            var facing = state.getValue(DirectionalBlock.FACING);
+
+            int x = 0;
+            int y = 0;
+            if (facing == Direction.EAST) y = 90;
+            if (facing == Direction.SOUTH) y = 180;
+            if (facing == Direction.WEST) y = 270;
+            if (facing == Direction.DOWN) x = 90;
+            if (facing == Direction.UP) x = 270;
+
+            var base = "compat/supplementaries/" + name(block);
+            var suffix = powered ? "_on" : "_off";
+
+            var model = models().withExistingParent("block/" + base + suffix, new ResourceLocation(Coopperative.MOD_ID, "block/base_relayer"))
+                    .texture("side", texture(base + "_side"))
+                    .texture("bottom", texture(base + "_back" + suffix))
+                    .texture("platform", texture(base + "_front"));
+
+            return ConfiguredModel.builder().modelFile(model).rotationX(x).rotationY(y).build();
+        }, BlockStateProperties.POWER);
     }
 }
