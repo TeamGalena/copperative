@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // 1.19.2	2023-06-07T11:40:30.2391061	Recipes
+=======
+// 1.19.2	2023-05-31T14:06:59.3064152	Recipes
+>>>>>>> 25d7dde (Added relayer & exposer compat)
 b2a7592ade15fb6f813fbfe36fd436fea4830dcb data/coopperative/advancements/recipes/building_blocks/copper_bricks.json
 6ff55c28c5ac2b73fc1d4683aae17ca5db0cc65d data/coopperative/advancements/recipes/building_blocks/copper_pillar.json
 ead58b11558e0a2a3585df639c7866d01d66bdc3 data/coopperative/advancements/recipes/building_blocks/copper_tiles.json

@@ -10,6 +10,7 @@ import galena.coopperative.content.block.weatheringvanilla.*;
 import galena.oreganized.index.OBlocks;
 import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
 import galena.coopperative.content.block.compat.WeatheredExposer;
+import galena.coopperative.content.block.compat.WeatheredRelayer;
 import galena.coopperative.content.block.tile.HeadlightTile;
 import galena.coopperative.content.block.weatheringvanilla.*;
 import galena.oreganized.index.OBlocks;
@@ -141,7 +142,7 @@ public class CBlocks {
     );
 
     public static final Supplier<Stream<Supplier<Block>>> RELAYERS = ifLoaded("supplementaries",
-            () -> registerConvertedSet("relayer", ModRegistry.RELAYER, WeatheredExposer::new, CreativeModeTab.TAB_REDSTONE)::stream
+            () -> registerConvertedSet("relayer", ModRegistry.RELAYER, WeatheredRelayer::new, CreativeModeTab.TAB_REDSTONE)::stream
     );
 
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> block, CreativeModeTab tab) {

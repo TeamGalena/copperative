@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 // 1.19.2	2023-06-07T09:15:48.8693588	Coopperative Block Tags
 0113a1c760726574a6a6c1aef6c29acf33d67686 data/minecraft/tags/blocks/doors.json
 c3c939ac41bec8221322572d6fea2db74ef82ee0 data/minecraft/tags/blocks/mineable/pickaxe.json
+=======
+// 1.19.2	2023-05-31T11:54:52.8558386	Coopperative Block Tags
+0113a1c760726574a6a6c1aef6c29acf33d67686 data/minecraft/tags/blocks/doors.json
+db1101c2373bf678b69ebbca2cad60d4611ae5bd data/minecraft/tags/blocks/mineable/pickaxe.json
+>>>>>>> 25d7dde (Added relayer & exposer compat)
 82d70fc72c4a8eeb6fcbe6ade95a293077557842 data/minecraft/tags/blocks/rails.json
 c862021693171ec6a55fd22a0d30ffb6bdbd8d09 data/minecraft/tags/blocks/trapdoors.json

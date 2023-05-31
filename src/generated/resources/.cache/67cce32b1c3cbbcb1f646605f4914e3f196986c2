@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // 1.19.2	2023-06-07T09:15:48.8693588	LootTables
+=======
+// 1.19.2	2023-05-31T11:54:52.8774277	LootTables
+>>>>>>> 25d7dde (Added relayer & exposer compat)
 a6c7515ff5182b22c18f4abadebc3b2886775ced data/coopperative/loot_tables/blocks/copper_bricks.json
 89001dd13f62580858bffa4d186d2cf624250ce4 data/coopperative/loot_tables/blocks/copper_door.json
 c5981c12898ffb0ef96ee32731cc4ef9b85667af data/coopperative/loot_tables/blocks/copper_pillar.json
@@ -84,3 +88,5 @@ d39985648058bd57b29d3fa463f4797f10171f2a data/coopperative/loot_tables/blocks/we
 ef2b05ad024e8a808ba61c9279b6ae7fd833fe03 data/coopperative/loot_tables/blocks/weathered_repeater.json
 4bbe616203e00bac448096d4e8eb822fb2f4d8e6 data/coopperative/loot_tables/blocks/weathered_sticky_piston.json
 cdd6b5cc17631ebaf1d4f98beeb55dad900fe9a3 data/coopperative/loot_tables/blocks/weathered_toggler.json
+b33e130bbad6e043f99e948bc99f2045e58402d2 data/oreganized/loot_tables/blocks/exposer.json
+61ad67bd5daa348d719fe14a21013f8d216962be data/supplementaries/loot_tables/blocks/relayer.json

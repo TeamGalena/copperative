@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // 1.19.2	2023-06-07T11:40:30.233105	Block States: coopperative
 9cefa4af6111eb3fa4bce09c63a2bf00b52719c3 assets/coopperative/blockstates/exposed_crank.json
 3457f9b0283c92b0745cf6fae871d2c260976538 assets/coopperative/blockstates/exposed_exposer.json
@@ -6,6 +7,13 @@
 e0dfa4f9779bf09fa89d46febadaec14628ccfee assets/coopperative/blockstates/oxidized_exposer.json
 a8973a038e6045a1f8263aab10828a7e4fc5e232 assets/coopperative/blockstates/oxidized_relayer.json
 12267526244b9ac5322af8390f9353f76f957271 assets/coopperative/blockstates/weathered_crank.json
+=======
+// 1.19.2	2023-05-31T14:06:59.3099176	Block States: coopperative
+3457f9b0283c92b0745cf6fae871d2c260976538 assets/coopperative/blockstates/exposed_exposer.json
+72f9a6a12e56c58650a7e2051ef4400a657031f6 assets/coopperative/blockstates/exposed_relayer.json
+e0dfa4f9779bf09fa89d46febadaec14628ccfee assets/coopperative/blockstates/oxidized_exposer.json
+a8973a038e6045a1f8263aab10828a7e4fc5e232 assets/coopperative/blockstates/oxidized_relayer.json
+>>>>>>> 25d7dde (Added relayer & exposer compat)
 49a5f312d83316879296a85c2601487704cf1e9a assets/coopperative/blockstates/weathered_exposer.json
 dbebe7b40356aa4d753c0d5c2706cf5ff69f46d8 assets/coopperative/blockstates/weathered_relayer.json
 1fa723c7ca039644feec7ed4cdf97474a7c9ed13 assets/coopperative/models/block/comparator.json
@@ -108,6 +116,7 @@ c93211c82033387bcece875d1de1dc8e602ef41f assets/coopperative/models/block/compat
 c93211c82033387bcece875d1de1dc8e602ef41f assets/coopperative/models/block/compat/oreganized/weathered_exposer_level_3_south.json
 c93211c82033387bcece875d1de1dc8e602ef41f assets/coopperative/models/block/compat/oreganized/weathered_exposer_level_3_up.json
 c93211c82033387bcece875d1de1dc8e602ef41f assets/coopperative/models/block/compat/oreganized/weathered_exposer_level_3_west.json
+<<<<<<< HEAD
 0af9b68daa8cafd8e03bd0123536fc17b75e8bc1 assets/coopperative/models/block/compat/supplementaries/crank_base.json
 9b6355a79f7b5827000071d7bb5bb665af22ed40 assets/coopperative/models/block/compat/supplementaries/crank_handle_0.json
 e678187a0bcf5f8813a583ca60d34554c76dac2f assets/coopperative/models/block/compat/supplementaries/crank_handle_1.json
@@ -161,10 +170,15 @@ b383363bec3e685b958d99154d63c513ece61921 assets/coopperative/models/block/compat
 e9a93d6b3a04d1da95a8bab808ed66a201a041da assets/coopperative/models/block/compat/supplementaries/oxidized_crank_handle_7.json
 5044705678dfc3a191d7c2b01e16ba030f15063e assets/coopperative/models/block/compat/supplementaries/oxidized_crank_handle_8.json
 ab8dc5c25d9a61bcffc49cce3f490d2ca0b2f729 assets/coopperative/models/block/compat/supplementaries/oxidized_crank_handle_9.json
+=======
+8d015538369baf660f0e4b4b7f4c6899ec7d16d9 assets/coopperative/models/block/compat/supplementaries/exposed_relayer_off.json
+20c961b0b9de65204ad35349c893ba3d60cdc082 assets/coopperative/models/block/compat/supplementaries/exposed_relayer_on.json
+>>>>>>> 25d7dde (Added relayer & exposer compat)
 741ddfb011a21a8b32dc32b0ab9152e3540142cc assets/coopperative/models/block/compat/supplementaries/oxidized_relayer_off.json
 cc2a352c767ac965e2f3f4aa12a432c38a7934ea assets/coopperative/models/block/compat/supplementaries/oxidized_relayer_on.json
 6b4839535940847afb39e13b9c4d796979681987 assets/coopperative/models/block/compat/supplementaries/relayer_off.json
 e5dcba4af01920d55a292ab06db2a808bf5ce139 assets/coopperative/models/block/compat/supplementaries/relayer_on.json
+<<<<<<< HEAD
 0b000ea13f30e5c53c17235667cba9d303c0270c assets/coopperative/models/block/compat/supplementaries/weathered_crank_base.json
 869adf17f5e0c1e55ffdcaeeb94f577a360e7818 assets/coopperative/models/block/compat/supplementaries/weathered_crank_handle_0.json
 01d7729ca7c261e243efc66939dc464b36592666 assets/coopperative/models/block/compat/supplementaries/weathered_crank_handle_1.json
@@ -182,6 +196,8 @@ b6f013b3ad517c029db1bc78d00a3638b12f1da9 assets/coopperative/models/block/compat
 d35d70f1858506e9022c8de656d0dc045793fb6c assets/coopperative/models/block/compat/supplementaries/weathered_crank_handle_7.json
 160fbd2cde09a1b8e8de8bea84f4813cbe152d08 assets/coopperative/models/block/compat/supplementaries/weathered_crank_handle_8.json
 a382c4193bde251b6189d7d6047b8f35e9e4b149 assets/coopperative/models/block/compat/supplementaries/weathered_crank_handle_9.json
+=======
+>>>>>>> 25d7dde (Added relayer & exposer compat)
 5357d85502e5adce23b97e32b02f7a324415e839 assets/coopperative/models/block/compat/supplementaries/weathered_relayer_off.json
 49ba9a9ce4a3ac7fda07df31a73b31a7406a0013 assets/coopperative/models/block/compat/supplementaries/weathered_relayer_on.json
 65b9b1f80f0275fb005104ae4c310ae6d9cd2bdd assets/coopperative/models/block/dispenser.json

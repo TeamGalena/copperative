@@ -61,7 +61,10 @@ public class CommonConfig {
 
         if (ModList.get().isLoaded("supplementaries")) {
             builder.add(new ResourceLocation("supplementaries", "relayer"));
+<<<<<<< HEAD
             builder.add(new ResourceLocation("supplementaries", "crank"));
+=======
+>>>>>>> 25d7dde (Added relayer & exposer compat)
         }
 
         return builder.build();
