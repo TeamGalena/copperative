@@ -110,7 +110,12 @@ public class CommonConfig {
         return test(block, it -> !it.enabled.getAsBoolean());
     }
 
+    public static boolean injectCopperNuggets() {
+        return INSTANCE.injectCopperNuggets.get();
+    }
+
     private final Map<ResourceLocation, OverrideEntry> enabledOverwrites = new HashMap<>();
+    private final Supplier<Boolean> injectCopperNuggets;
 
     public CommonConfig(ConfigBuilder builder) {
         builder.push("Enabled Copper Overrides");
@@ -129,6 +134,8 @@ public class CommonConfig {
             builder.pop();
         });
         builder.pop();
+
+        injectCopperNuggets = builder.define("copper_nugget_loot", true);
     }
 
 }

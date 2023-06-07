@@ -7,6 +7,7 @@ import galena.coopperative.config.OverwriteEnabledCondition;
 import galena.coopperative.data.*;
 import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CItems;
+import galena.coopperative.index.CLootInjects;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.crafting.CraftingHelper;
@@ -45,6 +46,8 @@ public class Coopperative {
                 CBlocks.BLOCKS,
                 CBlocks.BLOCK_ENTITIES,
                 CItems.ITEMS,
+                CLootInjects.LOOT_CONDITIONS,
+                CLootInjects.LOOT_MODIFIERS,
                 //CSoundEvents.SOUNDS,
         };
 
