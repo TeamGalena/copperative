@@ -80,6 +80,10 @@
     "supplementaries:relayer",
     "coopperative:exposed_relayer",
     "coopperative:weathered_relayer",
-    "coopperative:oxidized_relayer"
+    "coopperative:oxidized_relayer",
+    "supplementaries:crank",
+    "coopperative:exposed_crank",
+    "coopperative:weathered_crank",
+    "coopperative:oxidized_crank"
   ]
 }

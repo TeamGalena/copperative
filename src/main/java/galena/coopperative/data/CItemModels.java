@@ -86,8 +86,9 @@ public class CItemModels extends CItemModelProvider {
         blockFlat(CBlocks.WEATHERED_POWERED_RAIL);
         blockFlat(CBlocks.OXIDIZED_POWERED_RAIL);
 
-        CBlocks.EXPOSERS.get().map(Supplier::get).forEach(it -> compatBlock(it, "oreganized", weatherPrefix(it) + "exposer_level_0_south"));
-        CBlocks.RELAYERS.get().map(Supplier::get).forEach(it -> compatBlock(it, "supplementaries", weatherPrefix(it) + "relayer_off"));
+        CBlocks.EXPOSERS.weathered().map(Supplier::get).forEach(it -> compatBlock(it, "oreganized", weatherPrefix(it) + "exposer_level_0_south"));
+        CBlocks.RELAYERS.weathered().map(Supplier::get).forEach(it -> compatBlock(it, "supplementaries", weatherPrefix(it) + "relayer_off"));
+        CBlocks.CRANKS.weathered().map(Supplier::get).forEach(this::crank);
     }
 
     public static class ItemModelOverrides extends CItemModelProvider {
@@ -113,8 +114,9 @@ public class CItemModels extends CItemModelProvider {
             normalItem(() -> Items.REPEATER);
             normalItem(() -> Items.COMPARATOR);
 
-            CBlocks.EXPOSERS.get().map(Supplier::get).findFirst().ifPresent(it -> compatBlock(it, "oreganized", weatherPrefix(it) + "exposer_level_0_south"));
-            CBlocks.RELAYERS.get().map(Supplier::get).findFirst().ifPresent(it -> compatBlock(it, "supplementaries", weatherPrefix(it) + "relayer_off"));
+            CBlocks.EXPOSERS.unaffected().map(Supplier::get).ifPresent(it -> compatBlock(it, "oreganized", weatherPrefix(it) + "exposer_level_0_south"));
+            CBlocks.RELAYERS.unaffected().map(Supplier::get).ifPresent(it -> compatBlock(it, "supplementaries", weatherPrefix(it) + "relayer_off"));
+            CBlocks.CRANKS.unaffected().map(Supplier::get).ifPresent(this::crank);
         }
 
         public ItemModelBuilder block(Block block) {

@@ -29,8 +29,9 @@ public class CBlockStateOverwrites extends CBlockStateProvider {
         lever(() -> Blocks.LEVER);
         poweredRail(() -> Blocks.POWERED_RAIL);
 
-        CBlocks.EXPOSERS.get().forEach(this::exposer);
-        CBlocks.RELAYERS.get().forEach(this::relayer);
+        CBlocks.EXPOSERS.all().forEach(this::exposer);
+        CBlocks.RELAYERS.all().forEach(this::relayer);
+        CBlocks.CRANKS.all().forEach(this::crank);
     }
 
     @Override

@@ -1,5 +1,6 @@
-// 1.19.2	2023-05-31T14:00:15.1344332	Coopperative Item Model Overrides
+// 1.19.2	2023-06-07T11:45:08.9307911	Coopperative Item Model Overrides
 1b34285635447485d3b4e077135a508e68147a34 assets/overrides/models/item/comparator.json
+e2362a625628b7bf8b1cb9759a2937b687fafb82 assets/overrides/models/item/crank.json
 c8076eb2b62dea068e517ca50d55ebf9c7d74714 assets/overrides/models/item/dispenser.json
 082e0e2519fd2c1037dd9ae66828a0eef139024e assets/overrides/models/item/dropper.json
 aa764b9a17860e3537c927cde34513e36a12a00b assets/overrides/models/item/exposer.json

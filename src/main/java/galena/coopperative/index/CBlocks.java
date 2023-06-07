@@ -2,6 +2,7 @@ package galena.coopperative.index;
 
 import galena.coopperative.Coopperative;
 import galena.coopperative.content.block.*;
+import galena.coopperative.content.block.compat.WeatheredCrank;
 import galena.coopperative.content.block.compat.WeatheredExposer;
 import galena.coopperative.content.block.compat.WeatheredRelayer;
 import galena.coopperative.content.block.tile.HeadlightTile;
@@ -21,9 +22,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import javax.annotation.Nullable;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -116,12 +116,16 @@ public class CBlocks {
     //public static final RegistryObject<Block> SOLDERING_TABLE = register("soldering_table", () -> new SolderingTableBlock(BlockBehaviour.Properties.copy(Blocks.SMITHING_TABLE)), REDSTONE);
 
     // Compat
-    public static final Supplier<Stream<Supplier<Block>>> EXPOSERS = ifLoaded("oreganized",
-            () -> registerConvertedSet("exposer", OBlocks.EXPOSER, WeatheredExposer::new, CreativeModeTab.TAB_REDSTONE)::stream
+    public static final CopperSet<Block> EXPOSERS = ifLoaded("oreganized",
+            () -> registerConvertedSet("exposer", OBlocks.EXPOSER, WeatheredExposer::new, CreativeModeTab.TAB_REDSTONE), CopperSet::empty
     );
 
-    public static final Supplier<Stream<Supplier<Block>>> RELAYERS = ifLoaded("supplementaries",
-            () -> registerConvertedSet("relayer", ModRegistry.RELAYER, WeatheredRelayer::new, CreativeModeTab.TAB_REDSTONE)::stream
+    public static final CopperSet<Block> RELAYERS = ifLoaded("supplementaries",
+            () -> registerConvertedSet("relayer", ModRegistry.RELAYER, WeatheredRelayer::new, CreativeModeTab.TAB_REDSTONE), CopperSet::empty
+    );
+
+    public static final CopperSet<Block> CRANKS = ifLoaded("supplementaries",
+            () -> registerConvertedSet("crank", ModRegistry.CRANK, WeatheredCrank::new, CreativeModeTab.TAB_REDSTONE), CopperSet::empty
     );
 
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> block, CreativeModeTab tab) {
@@ -134,21 +138,17 @@ public class CBlocks {
         return BLOCKS.register(name, block);
     }
 
-    public static <B extends Block> List<Supplier<B>> registerConvertedSet(String name, Supplier<B> targetSupplier, Function<WeatherState, B> function, CreativeModeTab tab) {
-        return Arrays.stream(WeatherState.values()).map(weatherState -> {
-            if (weatherState == WeatherState.UNAFFECTED) return targetSupplier;
+    public static <B extends Block> CopperSet<B> registerConvertedSet(String name, Supplier<B> targetSupplier, Function<WeatherState, B> function, CreativeModeTab tab) {
+        var weathered = Stream.of(WeatherState.EXPOSED, WeatherState.WEATHERED, WeatherState.OXIDIZED).<Supplier<B>>map(weatherState -> {
             String prefix = weatherState.name().toLowerCase() + "_";
             return register(prefix + name, () -> function.apply(weatherState), tab);
         }).toList();
+        return new CopperSet<>(targetSupplier, weathered);
     }
 
     public static <R> R ifLoaded(String mod, Supplier<R> supplier, Supplier<R> emptySupplier) {
         if (ModList.get().isLoaded(mod)) return supplier.get();
         else return emptySupplier.get();
-    }
-
-    public static <R> Supplier<Stream<R>> ifLoaded(String mod, Supplier<Supplier<Stream<R>>> supplier) {
-        return ifLoaded(mod, supplier, () -> Stream::empty);
     }
 
     public static <B extends Block> List<RegistryObject<B>> registerWeatheringSet(UnaryOperator<String> name, Function<WeatherState, B> function, CreativeModeTab tab) {
@@ -168,5 +168,33 @@ public class CBlocks {
 
     public static <B extends Block> List<RegistryObject<B>> registerWaxedSet(String name, Function<WeatherState, B> function, CreativeModeTab tab) {
         return registerWeatheringSet(prefix -> "waxed_" + prefix + name, function, tab);
+    }
+
+    public static class CopperSet<T extends Block> {
+
+        public static <T extends Block> CopperSet<T> empty() {
+            return new CopperSet<>(null, Collections.emptyList());
+        }
+
+        private final @Nullable Supplier<T> unaffected;
+        private final Collection<Supplier<T>> weathered;
+
+        public CopperSet(@Nullable Supplier<T> unaffected, Collection<Supplier<T>> weathered) {
+            this.unaffected = unaffected;
+            this.weathered = weathered;
+        }
+
+        public Optional<Supplier<T>> unaffected() {
+            return Optional.ofNullable(unaffected);
+        }
+
+        public Stream<Supplier<T>> weathered() {
+            return weathered.stream();
+        }
+
+        public Stream<Supplier<T>> all() {
+            return Stream.of(Stream.ofNullable(unaffected), weathered()).flatMap(Function.identity());
+        }
+
     }
 }

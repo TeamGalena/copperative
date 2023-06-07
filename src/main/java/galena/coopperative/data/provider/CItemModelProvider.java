@@ -124,6 +124,13 @@ public abstract class CItemModelProvider extends ItemModelProvider {
         return withExistingParent(id.getPath(), new ResourceLocation(Coopperative.MOD_ID, "block/compat/" + namespace + "/" + name));
     }
 
+    public ItemModelBuilder crank(Block block) {
+        var prefix = weatherPrefix(block);
+        return  withExistingParent(prefix + "crank", new ResourceLocation(Coopperative.MOD_ID, "crank"))
+                .texture("0", new ResourceLocation(Coopperative.MOD_ID, "block/compat/supplementaries/" + prefix + "crank_handle"))
+                .texture("1", new ResourceLocation(Coopperative.MOD_ID, "block/compat/supplementaries/" + prefix + "crank_base"));
+    }
+
     public String weatherPrefix(Block block) {
         if (block instanceof WeatheringCopper it) {
             var age = it.getAge();

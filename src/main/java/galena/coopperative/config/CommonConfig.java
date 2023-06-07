@@ -61,6 +61,7 @@ public class CommonConfig {
 
         if (ModList.get().isLoaded("supplementaries")) {
             builder.add(new ResourceLocation("supplementaries", "relayer"));
+            builder.add(new ResourceLocation("supplementaries", "crank"));
         }
 
         return builder.build();

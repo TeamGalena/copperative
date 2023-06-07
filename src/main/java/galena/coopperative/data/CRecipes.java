@@ -274,7 +274,7 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(consumer);
 
-        CBlocks.EXPOSERS.get().findFirst().ifPresent(it ->
+        CBlocks.EXPOSERS.unaffected().ifPresent(it ->
                 ShapedRecipeBuilder.shaped(it.get())
                         .pattern("AAA")
                         .pattern("BBC")
@@ -286,7 +286,7 @@ public class CRecipes extends CRecipeProvider {
                         .save(consumer)
         );
 
-        CBlocks.RELAYERS.get().findFirst().ifPresent(it ->
+        CBlocks.RELAYERS.unaffected().ifPresent(it ->
                 ShapedRecipeBuilder.shaped(it.get())
                         .pattern("AAA")
                         .pattern("BBC")
@@ -294,6 +294,16 @@ public class CRecipes extends CRecipeProvider {
                         .define('A', COPPER_INGOT)
                         .define('B', REDSTONE_DUST)
                         .define('C', Tags.Items.INGOTS_IRON)
+                        .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
+                        .save(consumer)
+        );
+
+        CBlocks.CRANKS.unaffected().ifPresent(it ->
+                ShapedRecipeBuilder.shaped(it.get())
+                        .pattern(" A ")
+                        .pattern("BBB")
+                        .define('A', Tags.Items.RODS_WOODEN)
+                        .define('B', COPPER_INGOT)
                         .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                         .save(consumer)
         );

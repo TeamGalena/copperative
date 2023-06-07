@@ -35,8 +35,9 @@ public class CLoot extends CLootProvider {
                         COPPER_TRAPDOORS.stream(),
                         WAXED_COPPER_TRAPDOORS.stream(),
 
-                        EXPOSERS.get(),
-                        RELAYERS.get(),
+                        EXPOSERS.weathered(),
+                        RELAYERS.weathered(),
+                        CRANKS.weathered(),
 
                         Stream.of(
                                 PATINA_BLOCK,
