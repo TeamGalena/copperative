@@ -1,0 +1,7 @@
+{
+  "parent": "supplementaries:block/crank/crank_handle_5",
+  "textures": {
+    "1": "coopperative:block/compat/supplementaries/weathered_crank_handle",
+    "particle": "coopperative:block/compat/supplementaries/weathered_crank_handle"
+  }
+}

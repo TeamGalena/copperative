@@ -2,6 +2,7 @@ package galena.coopperative.data;
 
 import galena.coopperative.client.DynamicCooperativeResourcePack;
 import galena.coopperative.data.provider.CBlockStateProvider;
+import galena.coopperative.index.CBlocks;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Blocks;
@@ -27,13 +28,19 @@ public class CBlockStateOverwrites extends CBlockStateProvider {
         observer(() -> Blocks.OBSERVER);
         lever(() -> Blocks.LEVER);
         poweredRail(() -> Blocks.POWERED_RAIL);
+
+        CBlocks.EXPOSERS.all().forEach(this::exposer);
+        CBlocks.RELAYERS.all().forEach(this::relayer);
+        CBlocks.CRANKS.all().forEach(this::crank);
     }
 
     @Override
     public void run(CachedOutput cache) throws IOException {
         super.run((path, bytes, hash) -> {
-            var newPath = Path.of(path.toString().replace("minecraft\\blockstates", DynamicCooperativeResourcePack.NAMESPACE + "\\blockstates"));
-            cache.writeIfNeeded(newPath, bytes, hash);
+            var newPath = DynamicCooperativeResourcePack.OVERRIDDEN_NAMESPACES.stream().reduce(path.toString(), (it, namespace) ->
+                    it.replace(namespace + "\\blockstates", DynamicCooperativeResourcePack.NAMESPACE + "\\blockstates")
+            );
+            cache.writeIfNeeded(Path.of(newPath), bytes, hash);
         });
     }
 }

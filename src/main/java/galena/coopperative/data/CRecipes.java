@@ -6,6 +6,7 @@ import galena.coopperative.data.provider.CRecipeProvider;
 import galena.coopperative.index.CBlocks;
 import galena.coopperative.index.CConversions;
 import galena.coopperative.index.CItems;
+import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
@@ -32,6 +33,8 @@ public class CRecipes extends CRecipeProvider {
 
     protected static final TagKey<Item> COPPER_INGOT = Tags.Items.INGOTS_COPPER;
     protected static final TagKey<Item> REDSTONE_DUST = Tags.Items.DUSTS_REDSTONE;
+
+    protected static final TagKey<Item> SILVER_INGOT = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("forge", "ingots/silver"));
     protected static final Item REDSTONE_TORCH = Items.REDSTONE_TORCH;
 
     public CRecipes(DataGenerator gen) {
@@ -150,7 +153,6 @@ public class CRecipes extends CRecipeProvider {
             } else {
                 recipe.save(consumer, recipeId);
             }
-
         });
 
         ShapedRecipeBuilder.shaped(Items.PRISMARINE_SHARD)
@@ -271,6 +273,40 @@ public class CRecipes extends CRecipeProvider {
                 .define('C', REDSTONE_DUST)
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(consumer);
+
+        CBlocks.EXPOSERS.unaffected().ifPresent(it ->
+                ShapedRecipeBuilder.shaped(it.get())
+                        .pattern("AAA")
+                        .pattern("BBC")
+                        .pattern("AAA")
+                        .define('A', COPPER_INGOT)
+                        .define('B', REDSTONE_DUST)
+                        .define('C', SILVER_INGOT)
+                        .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
+                        .save(consumer)
+        );
+
+        CBlocks.RELAYERS.unaffected().ifPresent(it ->
+                ShapedRecipeBuilder.shaped(it.get())
+                        .pattern("AAA")
+                        .pattern("BBC")
+                        .pattern("AAA")
+                        .define('A', COPPER_INGOT)
+                        .define('B', REDSTONE_DUST)
+                        .define('C', Tags.Items.INGOTS_IRON)
+                        .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
+                        .save(consumer)
+        );
+
+        CBlocks.CRANKS.unaffected().ifPresent(it ->
+                ShapedRecipeBuilder.shaped(it.get())
+                        .pattern(" A ")
+                        .pattern("BBB")
+                        .define('A', Tags.Items.RODS_WOODEN)
+                        .define('B', COPPER_INGOT)
+                        .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
+                        .save(consumer)
+        );
     }
 
     private static ResourceLocation suffix(ResourceLocation in, String suffix) {

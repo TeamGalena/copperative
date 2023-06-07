@@ -10,6 +10,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePrope
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static galena.coopperative.index.CBlocks.*;
@@ -22,7 +23,7 @@ public class CLoot extends CLootProvider {
 
     @Override
     protected void registerTables(LootTableGenerationEvent event) {
-        Stream<RegistryObject<? extends Block>> defaultBlocks = Stream.of(
+        Stream<Supplier<? extends Block>> defaultBlocks = Stream.of(
                         COPPER_TILES.stream(),
                         COPPER_BRICKS.stream(),
                         COPPER_PILLAR.stream(),
@@ -33,6 +34,11 @@ public class CLoot extends CLootProvider {
                         TOGGLER.stream(),
                         COPPER_TRAPDOORS.stream(),
                         WAXED_COPPER_TRAPDOORS.stream(),
+
+                        EXPOSERS.weathered(),
+                        RELAYERS.weathered(),
+                        CRANKS.weathered(),
+
                         Stream.of(
                                 PATINA_BLOCK,
 
@@ -68,7 +74,7 @@ public class CLoot extends CLootProvider {
                 .flatMap(Function.identity());
 
         defaultBlocks
-                .map(RegistryObject::get)
+                .map(Supplier::get)
                 .forEach(block -> event.register(block, blockLoot(block)));
 
         Stream.of(

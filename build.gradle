@@ -39,37 +39,28 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            ideaModule "${rootProject.name}.${project.name}.main"
             taskName 'Client'
-            arg "-mixin.config=${mod_id}.mixins.json"
             arg "-mixin.config=galenacapes.forge.mixins.json"
-            mods {
-                modClientRun {
-                    source sourceSets.main
-                }
-            }
         }
 
         server {
-            workingDirectory project.file('run')
-            ideaModule "${rootProject.name}.${project.name}.main"
+            workingDirectory project.file('run/server')
             taskName 'Server'
-            args "-mixin.config=${mod_id}.mixins.json"
-            mods {
-                modServerRun {
-                    source sourceSets.main
-                }
-            }
         }
 
         data {
-            workingDirectory project.file('run')
-            ideaModule "${rootProject.name}.${project.name}.main"
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', 'supplementaries'
             taskName 'Data'
-            args "-mixin.config=${mod_id}.mixins.json"
-            mods {
-                modDataRun {
+        }
+
+        forEach {
+            it.property("forge.logging.console.level", "debug")
+
+            it.ideaModule("${project.name}.main")
+            it.arg("-mixin.config=${mod_id}.mixins.json")
+
+            it.mods {
+                create(mod_id) {
                     source sourceSets.main
                 }
             }
@@ -101,6 +92,9 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    maven {
+        url "https://maven.architectury.dev/"
+    }
 }
 
 dependencies {
@@ -111,16 +105,23 @@ dependencies {
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
     runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
 
+    // for config & dynamic data/resourcepack
     implementation fg.deobf("curse.maven:selene-499980:${moonlight_lib_version}")
 
+    //implementation fg.deobf("curse.maven:quark-243121:${quark_version}")
+    //implementation fg.deobf("vazkii.autoreglib:AutoRegLib:${arl_version}")
+    //compileOnly fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
+    implementation fg.deobf("curse.maven:supplementaries-412082:${supplementaries_version}")
+    implementation fg.deobf("curse.maven:oreganized-769203:${oreganized_version}")
+
     // Pretty Shaders for Showcases
-    runtimeOnly fg.deobf("curse.maven:oculus-581495:${oculus_version}")
-    runtimeOnly fg.deobf("curse.maven:rubidium-574856:${rubidium_version}")
+    //runtimeOnly fg.deobf("curse.maven:oculus-581495:${oculus_version}")
+    //runtimeOnly fg.deobf("curse.maven:rubidium-574856:${rubidium_version}")
 
     // For testing compatibility
-    runtimeOnly fg.deobf("curse.maven:create-328085:${create_version}")
-    runtimeOnly fg.deobf("curse.maven:flywheel-486392:${flywheel_version}")
-    runtimeOnly fg.deobf("curse.maven:create-alloyed-564792:${create_alloyed_version}")
+    //runtimeOnly fg.deobf("curse.maven:create-328085:${create_version}")
+    //runtimeOnly fg.deobf("curse.maven:flywheel-486392:${flywheel_version}")
+    //runtimeOnly fg.deobf("curse.maven:create-alloyed-564792:${create_alloyed_version}")
 }
 
 jar {

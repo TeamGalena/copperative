@@ -72,6 +72,18 @@
     "coopperative:waxed_copper_trapdoor",
     "coopperative:waxed_exposed_copper_trapdoor",
     "coopperative:waxed_weathered_copper_trapdoor",
-    "coopperative:waxed_oxidized_copper_trapdoor"
+    "coopperative:waxed_oxidized_copper_trapdoor",
+    "oreganized:exposer",
+    "coopperative:exposed_exposer",
+    "coopperative:weathered_exposer",
+    "coopperative:oxidized_exposer",
+    "supplementaries:relayer",
+    "coopperative:exposed_relayer",
+    "coopperative:weathered_relayer",
+    "coopperative:oxidized_relayer",
+    "supplementaries:crank",
+    "coopperative:exposed_crank",
+    "coopperative:weathered_crank",
+    "coopperative:oxidized_crank"
   ]
 }

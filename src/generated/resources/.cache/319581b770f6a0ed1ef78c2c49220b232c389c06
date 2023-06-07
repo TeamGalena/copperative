@@ -1,10 +1,13 @@
-// 1.19.2	2023-04-28T14:47:02.1606691	Coopperative Item Model Overrides
+// 1.19.2	2023-06-07T11:45:08.9307911	Coopperative Item Model Overrides
 1b34285635447485d3b4e077135a508e68147a34 assets/overrides/models/item/comparator.json
+e2362a625628b7bf8b1cb9759a2937b687fafb82 assets/overrides/models/item/crank.json
 c8076eb2b62dea068e517ca50d55ebf9c7d74714 assets/overrides/models/item/dispenser.json
 082e0e2519fd2c1037dd9ae66828a0eef139024e assets/overrides/models/item/dropper.json
+aa764b9a17860e3537c927cde34513e36a12a00b assets/overrides/models/item/exposer.json
 6540e03f3271af210e9ab5cabdeb02bbd66dea60 assets/overrides/models/item/lever.json
 51b310d0768018e878dd47681f4bad293685bbe7 assets/overrides/models/item/observer.json
 8454f77ace1b1d09198ff7059fd636f6e9413234 assets/overrides/models/item/piston.json
 3c74534dab7facb3e7e39e055897d86c7732f76e assets/overrides/models/item/powered_rail.json
+c951d7b9e344b62435dcbee2487b0f0377464a7b assets/overrides/models/item/relayer.json
 ff7785ea3351b4d7e90d54a38c592f659319eda3 assets/overrides/models/item/repeater.json
 77637468c2c5210988da10e8b60f554061a6791d assets/overrides/models/item/sticky_piston.json

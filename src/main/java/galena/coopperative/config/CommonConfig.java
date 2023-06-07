@@ -1,17 +1,25 @@
 package galena.coopperative.config;
 
+import com.google.common.base.Suppliers;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import galena.coopperative.Coopperative;
 import galena.coopperative.index.CConversions;
+import galena.oreganized.index.OBlocks;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 public class CommonConfig {
@@ -28,17 +36,36 @@ public class CommonConfig {
 
     private static CommonConfig INSTANCE;
 
-    private final static List<Block> overwrittenBlocks = List.of(
-            Blocks.REPEATER,
-            Blocks.COMPARATOR,
-            Blocks.PISTON,
-            Blocks.STICKY_PISTON,
-            Blocks.DISPENSER,
-            Blocks.DROPPER,
-            Blocks.OBSERVER,
-            Blocks.LEVER,
-            Blocks.POWERED_RAIL
+    private static final List<ResourceLocation> OVERWRITTEN_BLOCK_IDS = findOverrideableBlocks();
+    private static final Supplier<List<Block>> OVERWRITTEN_BLOCKS = Suppliers.memoize(() ->
+            OVERWRITTEN_BLOCK_IDS.stream().map(ForgeRegistries.BLOCKS::getValue).toList()
     );
+
+    private static List<ResourceLocation> findOverrideableBlocks() {
+        var builder = ImmutableList.<ResourceLocation>builder();
+        Stream.of(
+                "repeater",
+                "comparator",
+                "piston",
+                "sticky_piston",
+                "dispenser",
+                "dropper",
+                "observer",
+                "lever",
+                "powered_rail"
+        ).forEach(it -> builder.add(new ResourceLocation(it)));
+
+        if (ModList.get().isLoaded("oreganized")) {
+            builder.add(OBlocks.EXPOSER.getId());
+        }
+
+        if (ModList.get().isLoaded("supplementaries")) {
+            builder.add(new ResourceLocation("supplementaries", "relayer"));
+            builder.add(new ResourceLocation("supplementaries", "crank"));
+        }
+
+        return builder.build();
+    }
 
     public static void register() {
         var builder = ConfigBuilder.create(Coopperative.MOD_ID, ConfigType.COMMON);
@@ -49,11 +76,11 @@ public class CommonConfig {
 
     public static boolean isPossibleOverwrite(Block block) {
         var first = CConversions.getFirst(block);
-        return overwrittenBlocks.contains(first);
+        return getPossibleOverwrites().contains(first);
     }
 
     public static Collection<Block> getPossibleOverwrites() {
-        return overwrittenBlocks;
+        return OVERWRITTEN_BLOCKS.get();
     }
 
     public static Stream<Block> getOverwrittenBlocks(OverrideTarget target) {
@@ -62,8 +89,9 @@ public class CommonConfig {
 
     private static boolean test(Block block, Predicate<OverrideEntry> func) {
         var first = CConversions.getFirst(block);
-        if (!INSTANCE.enabledOverwrites.containsKey(first)) return false;
-        return func.test(INSTANCE.enabledOverwrites.get(first));
+        var key = ForgeRegistries.BLOCKS.getKey(first);
+        if (!INSTANCE.enabledOverwrites.containsKey(key)) return false;
+        return func.test(INSTANCE.enabledOverwrites.get(key));
     }
 
     public static boolean isOverwriteEnabled(Block block, OverrideTarget target) {
@@ -82,12 +110,11 @@ public class CommonConfig {
         return test(block, it -> !it.enabled.getAsBoolean());
     }
 
-    private final Map<Block, OverrideEntry> enabledOverwrites = new HashMap<>();
+    private final Map<ResourceLocation, OverrideEntry> enabledOverwrites = new HashMap<>();
 
     public CommonConfig(ConfigBuilder builder) {
         builder.push("Enabled Copper Overrides");
-        getPossibleOverwrites().forEach(block -> {
-            var key = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block));
+        OVERWRITTEN_BLOCK_IDS.forEach(key -> {
             builder.push(key.getPath());
 
             var property = builder.define("enabled", true);
@@ -97,7 +124,7 @@ public class CommonConfig {
                 targets.put(target, targetProperty::get);
             }
 
-            enabledOverwrites.put(block, new OverrideEntry(property::get, targets.build()));
+            enabledOverwrites.put(key, new OverrideEntry(property::get, targets.build()));
 
             builder.pop();
         });

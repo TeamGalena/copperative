@@ -4,11 +4,16 @@ import galena.coopperative.Coopperative;
 import galena.coopperative.content.block.HeadLightBlock;
 import galena.coopperative.content.block.TogglerBlock;
 import galena.coopperative.content.block.weatheringvanilla.WeatheringPistonBlock;
+import galena.oreganized.content.block.ExposerBlock;
+import io.netty.util.collection.IntObjectHashMap;
+import net.mehvahdjukaar.moonlight.api.util.math.Vec2i;
+import net.mehvahdjukaar.supplementaries.common.block.blocks.CrankBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.ComparatorMode;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -399,5 +404,91 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
 
     public void trapdoor(Supplier<? extends TrapDoorBlock> block) {
         trapdoorBlock(block.get(), texture(name(block)), true);
+    }
+
+    public void exposer(Supplier<? extends Block> block) {
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            var level = Math.round((ExposerBlock.TexturedFrames - 1) / (float) (state.getValue(ExposerBlock.LEVEL) + 1));
+            var facing = state.getValue(DirectionalBlock.FACING);
+
+            int x = 0;
+            int y = 0;
+            if (facing == Direction.EAST) y = 90;
+            if (facing == Direction.SOUTH) y = 180;
+            if (facing == Direction.WEST) y = 270;
+            if (facing == Direction.DOWN) x = 90;
+            if (facing == Direction.UP) x = 270;
+
+            var base = "block/compat/oreganized/" + name(block);
+            var front = base + "_level_" + level;
+            var side = base + "_side";
+            var back = state.getValue(ExposerBlock.LEVEL) > 0 ? base + "_back_on" : base + "_back";
+            var top = base + "_top";
+
+            var model = models().withExistingParent(front + "_" + facing, new ResourceLocation("block/observer"))
+                    .texture("bottom", back)
+                    .texture("side", side)
+                    .texture("top", top)
+                    .texture("particle", front)
+                    .texture("front", front);
+
+            return ConfiguredModel.builder().modelFile(model).rotationX(x).rotationY(y).build();
+        });
+    }
+
+    private Vec2i rotation(Direction facing) {
+        if (facing == Direction.EAST) return new Vec2i(0, 90);
+        if (facing == Direction.SOUTH) return new Vec2i(0, 180);
+        if (facing == Direction.WEST) return new Vec2i(0, 270);
+        if (facing == Direction.DOWN) return new Vec2i(90, 0);
+        if (facing == Direction.UP) return new Vec2i(270, 0);
+        return new Vec2i(0, 0);
+    }
+
+    public void relayer(Supplier<? extends Block> block) {
+        getVariantBuilder(block.get()).forAllStatesExcept(state -> {
+            var powered = state.getValue(BlockStateProperties.POWERED);
+            var facing = state.getValue(DirectionalBlock.FACING);
+            var rotation = rotation(facing);
+
+            var name = "block/compat/supplementaries/" + name(block);
+            var suffix = powered ? "_on" : "_off";
+
+            var model = models().withExistingParent(name + suffix, new ResourceLocation(Coopperative.MOD_ID, "block/base_relayer"))
+                    .texture("side", name + "_side")
+                    .texture("bottom", name + "_back" + suffix)
+                    .texture("platform", name + "_front");
+            return ConfiguredModel.builder().modelFile(model).rotationX(rotation.x()).rotationY(rotation.y()).build();
+        }, BlockStateProperties.POWER);
+    }
+
+    public void crank(Supplier<? extends Block> block) {
+        var name = "block/compat/supplementaries/" + name(block);
+        var base = models().withExistingParent(name + "_base", new ResourceLocation("supplementaries", "block/crank/crank_base"))
+                .texture("1", name + "_base")
+                .texture("particle", name + "_base");
+        var handles = new IntObjectHashMap<ModelFile>();
+
+        for (int i = 0; i < 16; i++) {
+            var model = models().withExistingParent(name + "_handle_" + i, new ResourceLocation("supplementaries", "block/crank/crank_handle_" + i))
+                    .texture("1", name + "_handle")
+                    .texture("particle", name + "_handle");
+            handles.put(i, model);
+        }
+
+        var builder = getMultipartBuilder(block.get());
+        for (Direction facing : Direction.values()) {
+            var rotation = rotation(facing);
+            builder.part()
+                    .modelFile(base).rotationX(rotation.x()).rotationY(rotation.y()).addModel()
+                    .condition(CrankBlock.FACING, facing);
+
+
+            for (int i = 0; i < 16; i++) {
+                builder.part()
+                        .modelFile(handles.get(i)).rotationX(rotation.x()).rotationY(rotation.y()).addModel()
+                        .condition(CrankBlock.FACING, facing).condition(CrankBlock.POWER, i);
+            }
+        }
     }
 }

@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "coopperative:overwrite_enabled",
+          "block": "oreganized:exposer",
+          "target": "weathering"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "oreganized:exposer"
+          },
+          {
+            "item": "coopperative:patina"
+          }
+        ],
+        "result": {
+          "item": "coopperative:exposed_exposer"
+        }
+      }
+    }
+  ]
+}
