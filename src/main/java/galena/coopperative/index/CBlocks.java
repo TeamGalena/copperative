@@ -10,6 +10,7 @@ import galena.coopperative.content.block.weatheringvanilla.*;
 import galena.oreganized.index.OBlocks;
 import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
 import galena.coopperative.content.block.compat.WeatheredExposer;
+import galena.coopperative.content.block.compat.WeatheredRandomizer;
 import galena.coopperative.content.block.compat.WeatheredRelayer;
 import galena.coopperative.content.block.tile.HeadlightTile;
 import galena.coopperative.content.block.weatheringvanilla.*;
@@ -143,6 +144,11 @@ public class CBlocks {
 
     public static final Supplier<Stream<Supplier<Block>>> RELAYERS = ifLoaded("supplementaries",
             () -> registerConvertedSet("relayer", ModRegistry.RELAYER, WeatheredRelayer::new, CreativeModeTab.TAB_REDSTONE)::stream
+    );
+
+
+    public static final Supplier<Stream<Supplier<Block>>> RANDOMIZERS = ifLoaded("quark",
+            () -> registerConvertedSet("randomizer", WeatheredRandomizer::loadUnaffected, WeatheredRandomizer::new, CreativeModeTab.TAB_REDSTONE)::stream
     );
 
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> block, CreativeModeTab tab) {

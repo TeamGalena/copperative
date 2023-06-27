@@ -66,7 +66,7 @@ public class CConversions {
             .putAll(blockMapFromArray(CBlocks.CRANKS.all().toList()))
             .putAll(blockMapFromArray(CBlocks.RANDOMIZERS.all().toList()))
             .build());
-            
+
     private static final Supplier<BiMap<Block, Block>> WAXED_BLOCKS = Suppliers.memoize(() -> ImmutableBiMap.<Block, Block>builder()
             .putAll(waxedEntries(CBlocks.COPPER_BRICKS, CBlocks.WAXED_COPPER_BRICKS))
             .putAll(waxedEntries(CBlocks.COPPER_TILES, CBlocks.WAXED_COPPER_TILES))

@@ -116,15 +116,10 @@ public class CTags {
             WAXED_COPPER_DOORS.forEach(it -> pickaxe.add(it.get()));
             WAXED_COPPER_TRAPDOORS.forEach(it -> pickaxe.add(it.get()));
 
-<<<<<<< HEAD
             EXPOSERS.all().forEach(it -> pickaxe.add(it.get()));
             RELAYERS.all().forEach(it -> pickaxe.add(it.get()));
             CRANKS.all().forEach(it -> pickaxe.add(it.get()));
             RANDOMIZERS.all().forEach(it -> pickaxe.add(it.get()));
-=======
-            EXPOSERS.get().forEach(it -> pickaxe.add(it.get()));
-            RELAYERS.get().forEach(it -> pickaxe.add(it.get()));
->>>>>>> 25d7dde (Added relayer & exposer compat)
         }
 
     }
