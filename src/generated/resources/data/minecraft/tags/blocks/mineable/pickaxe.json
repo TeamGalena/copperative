@@ -80,14 +80,14 @@
     "supplementaries:relayer",
     "coopperative:exposed_relayer",
     "coopperative:weathered_relayer",
-<<<<<<< HEAD
     "coopperative:oxidized_relayer",
     "supplementaries:crank",
     "coopperative:exposed_crank",
     "coopperative:weathered_crank",
-    "coopperative:oxidized_crank"
-=======
-    "coopperative:oxidized_relayer"
->>>>>>> 25d7dde (Added relayer & exposer compat)
+    "coopperative:oxidized_crank",
+    "quark:redstone_randomizer",
+    "coopperative:exposed_randomizer",
+    "coopperative:weathered_randomizer",
+    "coopperative:oxidized_randomizer"
   ]
 }

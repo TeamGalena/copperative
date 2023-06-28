@@ -4,12 +4,6 @@ import galena.coopperative.Coopperative;
 import galena.coopperative.content.block.*;
 import galena.coopperative.content.block.compat.WeatheredCrank;
 import galena.coopperative.content.block.compat.WeatheredExposer;
-import galena.coopperative.content.block.compat.WeatheredRelayer;
-import galena.coopperative.content.block.tile.HeadlightTile;
-import galena.coopperative.content.block.weatheringvanilla.*;
-import galena.oreganized.index.OBlocks;
-import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
-import galena.coopperative.content.block.compat.WeatheredExposer;
 import galena.coopperative.content.block.compat.WeatheredRandomizer;
 import galena.coopperative.content.block.compat.WeatheredRelayer;
 import galena.coopperative.content.block.tile.HeadlightTile;
@@ -31,9 +25,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
 import java.util.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -139,16 +130,7 @@ public class CBlocks {
     );
 
     public static final CopperSet<Block> RANDOMIZERS = ifLoaded("quark",
-            () -> registerConvertedSet("randomizer", ModRegistry.CRANK, WeatheredRandomizer::new, CreativeModeTab.TAB_REDSTONE), CopperSet::empty
-    );
-
-    public static final Supplier<Stream<Supplier<Block>>> RELAYERS = ifLoaded("supplementaries",
-            () -> registerConvertedSet("relayer", ModRegistry.RELAYER, WeatheredRelayer::new, CreativeModeTab.TAB_REDSTONE)::stream
-    );
-
-
-    public static final Supplier<Stream<Supplier<Block>>> RANDOMIZERS = ifLoaded("quark",
-            () -> registerConvertedSet("randomizer", WeatheredRandomizer::loadUnaffected, WeatheredRandomizer::new, CreativeModeTab.TAB_REDSTONE)::stream
+            () -> registerConvertedSet("randomizer", WeatheredRandomizer::loadUnaffected, WeatheredRandomizer::new, CreativeModeTab.TAB_REDSTONE), CopperSet::empty
     );
 
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> block, CreativeModeTab tab) {

@@ -307,6 +307,19 @@ public class CRecipes extends CRecipeProvider {
                         .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                         .save(consumer)
         );
+
+        CBlocks.RANDOMIZERS.unaffected().ifPresent(it ->
+                ShapedRecipeBuilder.shaped(it.get())
+                        .pattern(" A ")
+                        .pattern("ABA")
+                        .pattern("CCC")
+                        .define('A', Items.REDSTONE_TORCH)
+                        .define('B', Items.PRISMARINE_CRYSTALS)
+                        .define('C', COPPER_INGOT)
+                        .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
+                        .unlockedBy("has_prismarine", has(Items.PRISMARINE_CRYSTALS))
+                        .save(consumer, new ResourceLocation("quark", "automation/crafting/redstone_randomizer"))
+        );
     }
 
     private static ResourceLocation suffix(ResourceLocation in, String suffix) {

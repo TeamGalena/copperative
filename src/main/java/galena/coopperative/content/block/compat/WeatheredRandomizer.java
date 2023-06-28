@@ -1,7 +1,6 @@
 package galena.coopperative.content.block.compat;
 
 import galena.coopperative.content.block.CWeatheringCopper;
-import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -23,7 +22,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -43,14 +41,17 @@ import static vazkii.quark.content.automation.block.RedstoneRandomizerBlock.POWE
 
 public class WeatheredRandomizer extends Block implements CWeatheringCopper {
 
+    public static ResourceLocation UNAFFECTED_ID = new ResourceLocation("quark", "redstone_randomizer");
+
     public static Block loadUnaffected() {
-        return ForgeRegistries.BLOCKS.getValue(new ResourceLocation("quark", "redstone_randomizer"));
+        return ForgeRegistries.BLOCKS.getValue(UNAFFECTED_ID);
     }
 
     private final WeatherState weatherState;
 
     public WeatheredRandomizer(WeatherState weatherState) {
         super(Properties.of(Material.DECORATION).strength(0.0F).sound(SoundType.WOOD));
+        this.registerDefaultState(defaultBlockState().setValue(FACING, Direction.NORTH).setValue(POWERED, RandomizerPowerState.OFF));
         this.weatherState = weatherState;
     }
 
@@ -61,7 +62,7 @@ public class WeatheredRandomizer extends Block implements CWeatheringCopper {
 
     @Override
     public void fillItemCategory(@NotNull CreativeModeTab tab, @NotNull NonNullList<ItemStack> items) {
-        insert(this, false, items, itemStack -> itemStack.is(ModRegistry.RELAYER.get().asItem()), true);
+        insert(this, false, items, itemStack -> itemStack.is(WeatheredRandomizer.loadUnaffected().asItem()), true);
     }
 
     /**
@@ -95,7 +96,7 @@ public class WeatheredRandomizer extends Block implements CWeatheringCopper {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING, POWERED});
+        builder.add(FACING, POWERED);
     }
 
     @Nonnull

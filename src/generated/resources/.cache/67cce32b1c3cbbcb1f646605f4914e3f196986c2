@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-// 1.19.2	2023-06-07T09:15:48.8693588	LootTables
-=======
-// 1.19.2	2023-05-31T11:54:52.8774277	LootTables
->>>>>>> 25d7dde (Added relayer & exposer compat)
+// 1.19.2	2023-06-28T12:02:13.0878758	LootTables
 a6c7515ff5182b22c18f4abadebc3b2886775ced data/coopperative/loot_tables/blocks/copper_bricks.json
 89001dd13f62580858bffa4d186d2cf624250ce4 data/coopperative/loot_tables/blocks/copper_door.json
 c5981c12898ffb0ef96ee32731cc4ef9b85667af data/coopperative/loot_tables/blocks/copper_pillar.json
@@ -23,6 +19,7 @@ bb3023167e72a2620f74ee9b885df509760d5b33 data/coopperative/loot_tables/blocks/ex
 0f89d2ad783de98d4accc578c20f4002e1ee0bd5 data/coopperative/loot_tables/blocks/exposed_observer.json
 fd8e5bf9e838bd0414bf994e66afcfee1c2f37eb data/coopperative/loot_tables/blocks/exposed_piston.json
 63570288958590513ac704c24cd27fef109c2e0a data/coopperative/loot_tables/blocks/exposed_powered_rail.json
+228cdeccf84e7d048a9f728f2e32a421a7ed27a1 data/coopperative/loot_tables/blocks/exposed_randomizer.json
 35b31f99ff99dbcca98f779b4d6f6ce08b7f1211 data/coopperative/loot_tables/blocks/exposed_relayer.json
 6d6c4cade87cd80a3349151321a57c7d5562e462 data/coopperative/loot_tables/blocks/exposed_repeater.json
 dafd2aea003aa9a907d25860e2cc932a472313ab data/coopperative/loot_tables/blocks/exposed_sticky_piston.json
@@ -43,6 +40,7 @@ dacf1b6e08502c154558aa119e228b31b023a05e data/coopperative/loot_tables/blocks/ox
 060dede5707cdbc106277c5a4c85272890b0c4ee data/coopperative/loot_tables/blocks/oxidized_observer.json
 b86fcf719b969e040e72d613efa97b9b8adb8760 data/coopperative/loot_tables/blocks/oxidized_piston.json
 93cc413b6367f13e8f329ca33520faabcf91b70a data/coopperative/loot_tables/blocks/oxidized_powered_rail.json
+7c67a95a33a17c2fe58d26cee6f415e9e6372d30 data/coopperative/loot_tables/blocks/oxidized_randomizer.json
 f3e183ed1801c843e65ffc892f47d8208d46f43b data/coopperative/loot_tables/blocks/oxidized_relayer.json
 9a5f661f6f960807b601a188713f925d58196c40 data/coopperative/loot_tables/blocks/oxidized_repeater.json
 9c1b1a682fd233642e8ac6c1cb0d3c5e114fdc9c data/coopperative/loot_tables/blocks/oxidized_sticky_piston.json
@@ -84,9 +82,8 @@ b10e48ac7f91b55fce39e9e9e2f80ae0abaa8cab data/coopperative/loot_tables/blocks/we
 dea44294a4e1a107c0431ef8f0af7650e40a5db0 data/coopperative/loot_tables/blocks/weathered_observer.json
 f29c80b1b13c4275ea8329849527099c1b4cd0d9 data/coopperative/loot_tables/blocks/weathered_piston.json
 546e53bd72c5d41bf565e3150c3218e4a3882bc8 data/coopperative/loot_tables/blocks/weathered_powered_rail.json
+39d348a715db84f138d72c8f93081f5df578d828 data/coopperative/loot_tables/blocks/weathered_randomizer.json
 d39985648058bd57b29d3fa463f4797f10171f2a data/coopperative/loot_tables/blocks/weathered_relayer.json
 ef2b05ad024e8a808ba61c9279b6ae7fd833fe03 data/coopperative/loot_tables/blocks/weathered_repeater.json
 4bbe616203e00bac448096d4e8eb822fb2f4d8e6 data/coopperative/loot_tables/blocks/weathered_sticky_piston.json
 cdd6b5cc17631ebaf1d4f98beeb55dad900fe9a3 data/coopperative/loot_tables/blocks/weathered_toggler.json
-b33e130bbad6e043f99e948bc99f2045e58402d2 data/oreganized/loot_tables/blocks/exposer.json
-61ad67bd5daa348d719fe14a21013f8d216962be data/supplementaries/loot_tables/blocks/relayer.json

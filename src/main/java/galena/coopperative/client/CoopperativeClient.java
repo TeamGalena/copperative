@@ -43,6 +43,8 @@ public class CoopperativeClient {
         COPPER_TRAPDOORS.forEach(it -> render(it, cutout));
         WAXED_COPPER_DOORS.forEach(it -> render(it, cutout));
         WAXED_COPPER_TRAPDOORS.forEach(it -> render(it, cutout));
+
+        RANDOMIZERS.weathered().forEach(it -> render(it, cutout));
     }
 
     public static void registerDynamicResources() {

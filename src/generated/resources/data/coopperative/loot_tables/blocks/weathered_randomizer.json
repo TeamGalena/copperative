@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "supplementaries:relayer"
+          "name": "coopperative:weathered_randomizer"
         }
       ],
       "rolls": 1.0
