@@ -41,7 +41,7 @@ import static vazkii.quark.content.automation.block.RedstoneRandomizerBlock.POWE
 
 public class WeatheredRandomizer extends Block implements CWeatheringCopper {
 
-    public static ResourceLocation UNAFFECTED_ID = new ResourceLocation("quark", "redstone_randomizer");
+    public static final ResourceLocation UNAFFECTED_ID = new ResourceLocation("quark", "redstone_randomizer");
 
     public static Block loadUnaffected() {
         return ForgeRegistries.BLOCKS.getValue(UNAFFECTED_ID);

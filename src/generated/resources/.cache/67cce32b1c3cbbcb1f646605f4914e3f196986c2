@@ -1,4 +1,4 @@
-// 1.19.2	2023-06-28T12:02:13.0878758	LootTables
+// 1.19.2	2023-06-28T13:08:57.6444952	LootTables
 a6c7515ff5182b22c18f4abadebc3b2886775ced data/coopperative/loot_tables/blocks/copper_bricks.json
 89001dd13f62580858bffa4d186d2cf624250ce4 data/coopperative/loot_tables/blocks/copper_door.json
 c5981c12898ffb0ef96ee32731cc4ef9b85667af data/coopperative/loot_tables/blocks/copper_pillar.json
@@ -87,3 +87,4 @@ d39985648058bd57b29d3fa463f4797f10171f2a data/coopperative/loot_tables/blocks/we
 ef2b05ad024e8a808ba61c9279b6ae7fd833fe03 data/coopperative/loot_tables/blocks/weathered_repeater.json
 4bbe616203e00bac448096d4e8eb822fb2f4d8e6 data/coopperative/loot_tables/blocks/weathered_sticky_piston.json
 cdd6b5cc17631ebaf1d4f98beeb55dad900fe9a3 data/coopperative/loot_tables/blocks/weathered_toggler.json
+91fc6debce093a2727a932eb50ef32a88bb67f67 data/coopperative/loot_tables/gameplay/patina.json

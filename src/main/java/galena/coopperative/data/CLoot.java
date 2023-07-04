@@ -1,11 +1,19 @@
 package galena.coopperative.data;
 
+import galena.coopperative.content.event.CommonEvents;
 import galena.coopperative.data.provider.CLootProvider;
+import galena.coopperative.index.CItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -100,6 +108,12 @@ public class CLoot extends CLootProvider {
                                 )
                         ))
                 ));
+
+        event.register(CommonEvents.PATINA_LOOT_TABLE, LootTable.lootTable().withPool(LootPool.lootPool()
+                .add(LootItem.lootTableItem(CItems.PATINA.get())
+                        .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.25F, 0.5F, 0.75F, 1.0F))
+                )
+        ), LootContextParamSets.BLOCK);
     }
 
 }
