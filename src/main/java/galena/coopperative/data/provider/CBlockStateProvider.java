@@ -21,6 +21,8 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import vazkii.quark.content.automation.base.RandomizerPowerState;
+import vazkii.quark.content.automation.block.RedstoneRandomizerBlock;
 
 import java.util.List;
 import java.util.Locale;
@@ -471,7 +473,7 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
 
         for (int i = 0; i < 16; i++) {
             var model = models().withExistingParent(name + "_handle_" + i, new ResourceLocation("supplementaries", "block/crank/crank_handle_" + i))
-                    .texture("1", name + "_handle")
+                    .texture("0", name + "_handle")
                     .texture("particle", name + "_handle");
             handles.put(i, model);
         }
@@ -490,5 +492,26 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
                         .condition(CrankBlock.FACING, facing).condition(CrankBlock.POWER, i);
             }
         }
+    }
+
+    public void randomizer(Supplier<? extends Block> block) {
+        getVariantBuilder(block.get()).forAllStatesExcept(state -> {
+            RandomizerPowerState powered = state.getValue(RedstoneRandomizerBlock.POWERED);
+            var facing = state.getValue(RedstoneRandomizerBlock.FACING);
+            var rotation = rotation(facing);
+
+            var name = "block/compat/quark/" + name(block);
+            var suffix = switch (powered) {
+                case OFF -> "_off";
+                case LEFT -> "_on_left";
+                case RIGHT -> "_on_right";
+            };
+
+            var model = models().withExistingParent(name + suffix, new ResourceLocation("quark", "block/randomizer" + suffix))
+                    .texture("particle", name + suffix)
+                    .texture("slab", name + suffix)
+                    .texture("top", name + suffix);
+            return ConfiguredModel.builder().modelFile(model).rotationX(rotation.x()).rotationY(rotation.y() + 180).build();
+        }, BlockStateProperties.POWER);
     }
 }

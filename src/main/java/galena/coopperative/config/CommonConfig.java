@@ -4,6 +4,7 @@ import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import galena.coopperative.Coopperative;
+import galena.coopperative.content.block.compat.WeatheredRandomizer;
 import galena.coopperative.index.CConversions;
 import galena.oreganized.index.OBlocks;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
@@ -62,6 +63,10 @@ public class CommonConfig {
         if (ModList.get().isLoaded("supplementaries")) {
             builder.add(new ResourceLocation("supplementaries", "relayer"));
             builder.add(new ResourceLocation("supplementaries", "crank"));
+        }
+
+        if (ModList.get().isLoaded("quark")) {
+            builder.add(WeatheredRandomizer.UNAFFECTED_ID);
         }
 
         return builder.build();

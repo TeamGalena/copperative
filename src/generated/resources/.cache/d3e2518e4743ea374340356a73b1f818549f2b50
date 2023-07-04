@@ -1,4 +1,4 @@
-// 1.19.2	2023-06-07T11:45:08.9322977	Coopperative Item Models
+// 1.19.2	2023-06-28T12:26:30.1534862	Coopperative Item Models
 5acdc4926658f4c7d7330bf547c008d9a3bb332d assets/coopperative/models/item/copper_bricks.json
 52859131ef96b4ac1777cd868a8178f069afa50d assets/coopperative/models/item/copper_door.json
 d7ebd5b156bc02acc80f3a53d3617de9208fe250 assets/coopperative/models/item/copper_nugget.json
@@ -20,6 +20,7 @@ ca58723665e88479f96d4f8ee3fe662b860b68a3 assets/coopperative/models/item/exposed
 fe9ca97dd682daf873394c5837edf8cfabb6d539 assets/coopperative/models/item/exposed_observer.json
 1a67b3ee6ee2e4783e5329bebd9cec5b37fb3dfe assets/coopperative/models/item/exposed_piston.json
 01f8d1990683dbd0fa3ee263b17d3489c1456106 assets/coopperative/models/item/exposed_powered_rail.json
+5a18e033cb50a11b745f226b61839a72f43cc466 assets/coopperative/models/item/exposed_randomizer.json
 0c2fdb498ed9f21d991aab08e062dc3b9628efda assets/coopperative/models/item/exposed_relayer.json
 7ab8e1c09ebe7cbe6e0d5e5824e3bc8a58ba114a assets/coopperative/models/item/exposed_repeater.json
 86cee279f6b2ae7ed304124ca9114a48b85a8d70 assets/coopperative/models/item/exposed_sticky_piston.json
@@ -40,6 +41,7 @@ f286cd085d8a1b37ee6e07068c07d8a15420d730 assets/coopperative/models/item/oxidize
 26211e983339b90e196a230f53b16a4af2b84240 assets/coopperative/models/item/oxidized_observer.json
 7fd3ce178727e36d3ae42fe7e4e6b9637eb3bd3e assets/coopperative/models/item/oxidized_piston.json
 00c884be36f32f3ab13b52076e78c9193aaadfd6 assets/coopperative/models/item/oxidized_powered_rail.json
+da39a5e92cdf61e23ab75f4a09014c7bd88daab5 assets/coopperative/models/item/oxidized_randomizer.json
 2b9a565e1440a4677603e0f1e68a922949ecf48a assets/coopperative/models/item/oxidized_relayer.json
 1e89ac92cc26d80d215e87fd86ffd038f3ee7637 assets/coopperative/models/item/oxidized_repeater.json
 06f0ce24cb94a82e612f0de35f63e370b92b15c8 assets/coopperative/models/item/oxidized_sticky_piston.json
@@ -82,6 +84,7 @@ b1948f1faa41e523d56d4314b76fcbc85e7e5b6b assets/coopperative/models/item/weather
 bd6bdfb7d70d8aaa81650101324baee00de8df3e assets/coopperative/models/item/weathered_observer.json
 8ae74f69ea3ff98212d31efbbe886787dacd971d assets/coopperative/models/item/weathered_piston.json
 5135b45ce61810828931ddaa3bef32ed26f6afdb assets/coopperative/models/item/weathered_powered_rail.json
+e3916149b7f1b9117ca9749f107d2c741722ef5c assets/coopperative/models/item/weathered_randomizer.json
 9d0e59a3188b95f52714bf48c39021cc80fe09e4 assets/coopperative/models/item/weathered_relayer.json
 e63828161f7f4e746de14a6c8651726073657321 assets/coopperative/models/item/weathered_repeater.json
 0c6c0b7aa1f68c12028ad38949f87ad6b0df0a1f assets/coopperative/models/item/weathered_sticky_piston.json

@@ -4,6 +4,7 @@ import galena.coopperative.Coopperative;
 import galena.coopperative.content.block.*;
 import galena.coopperative.content.block.compat.WeatheredCrank;
 import galena.coopperative.content.block.compat.WeatheredExposer;
+import galena.coopperative.content.block.compat.WeatheredRandomizer;
 import galena.coopperative.content.block.compat.WeatheredRelayer;
 import galena.coopperative.content.block.tile.HeadlightTile;
 import galena.coopperative.content.block.weatheringvanilla.*;
@@ -126,6 +127,10 @@ public class CBlocks {
 
     public static final CopperSet<Block> CRANKS = ifLoaded("supplementaries",
             () -> registerConvertedSet("crank", ModRegistry.CRANK, WeatheredCrank::new, CreativeModeTab.TAB_REDSTONE), CopperSet::empty
+    );
+
+    public static final CopperSet<Block> RANDOMIZERS = ifLoaded("quark",
+            () -> registerConvertedSet("randomizer", WeatheredRandomizer::loadUnaffected, WeatheredRandomizer::new, CreativeModeTab.TAB_REDSTONE), CopperSet::empty
     );
 
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> block, CreativeModeTab tab) {

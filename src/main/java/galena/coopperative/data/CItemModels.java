@@ -89,6 +89,7 @@ public class CItemModels extends CItemModelProvider {
         CBlocks.EXPOSERS.weathered().map(Supplier::get).forEach(it -> compatBlock(it, "oreganized", weatherPrefix(it) + "exposer_level_0_south"));
         CBlocks.RELAYERS.weathered().map(Supplier::get).forEach(it -> compatBlock(it, "supplementaries", weatherPrefix(it) + "relayer_off"));
         CBlocks.CRANKS.weathered().map(Supplier::get).forEach(this::crank);
+        CBlocks.RANDOMIZERS.weathered().map(Supplier::get).forEach(it -> compatItem(it, "quark", weatherPrefix(it) + "randomizer"));
     }
 
     public static class ItemModelOverrides extends CItemModelProvider {
@@ -114,9 +115,10 @@ public class CItemModels extends CItemModelProvider {
             normalItem(() -> Items.REPEATER);
             normalItem(() -> Items.COMPARATOR);
 
-            CBlocks.EXPOSERS.unaffected().map(Supplier::get).ifPresent(it -> compatBlock(it, "oreganized", weatherPrefix(it) + "exposer_level_0_south"));
-            CBlocks.RELAYERS.unaffected().map(Supplier::get).ifPresent(it -> compatBlock(it, "supplementaries", weatherPrefix(it) + "relayer_off"));
+            CBlocks.EXPOSERS.unaffected().map(Supplier::get).ifPresent(it -> compatBlock(it, "oreganized", "exposer_level_0_south"));
+            CBlocks.RELAYERS.unaffected().map(Supplier::get).ifPresent(it -> compatBlock(it, "supplementaries", "relayer_off"));
             CBlocks.CRANKS.unaffected().map(Supplier::get).ifPresent(this::crank);
+            CBlocks.RANDOMIZERS.unaffected().map(Supplier::get).ifPresent(it -> compatItem(it, "quark", "randomizer"));
         }
 
         public ItemModelBuilder block(Block block) {

@@ -49,7 +49,7 @@ minecraft {
         }
 
         data {
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', 'supplementaries'
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', 'supplementaries', '--existing-mod', 'quark'
             taskName 'Data'
         }
 
@@ -108,8 +108,8 @@ dependencies {
     // for config & dynamic data/resourcepack
     implementation fg.deobf("curse.maven:selene-499980:${moonlight_lib_version}")
 
-    //implementation fg.deobf("curse.maven:quark-243121:${quark_version}")
-    //implementation fg.deobf("vazkii.autoreglib:AutoRegLib:${arl_version}")
+    implementation fg.deobf("curse.maven:quark-243121:${quark_version}")
+    implementation fg.deobf("vazkii.autoreglib:AutoRegLib:${arl_version}")
     //compileOnly fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
     implementation fg.deobf("curse.maven:supplementaries-412082:${supplementaries_version}")
     implementation fg.deobf("curse.maven:oreganized-769203:${oreganized_version}")

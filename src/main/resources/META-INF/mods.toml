@@ -54,3 +54,10 @@ Uniting copper and redstone components as one and expanding on copper as a whole
     versionRange="*"
     ordering="AFTER"
     side="BOTH"
+
+[[dependencies.coopperative]]
+    modId="quark"
+    mandatory=false
+    versionRange="*"
+    ordering="AFTER"
+    side="BOTH"
