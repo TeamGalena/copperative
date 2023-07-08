@@ -1,0 +1,6 @@
+{
+  "parent": "supplementaries:item/cog_block",
+  "textures": {
+    "all": "coopperative:block/compat/supplementaries/weathered_cog_block_on"
+  }
+}

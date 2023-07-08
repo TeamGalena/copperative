@@ -64,6 +64,7 @@ public class CConversions {
             .putAll(blockMapFromArray(CBlocks.EXPOSERS.all().toList()))
             .putAll(blockMapFromArray(CBlocks.RELAYERS.all().toList()))
             .putAll(blockMapFromArray(CBlocks.CRANKS.all().toList()))
+            .putAll(blockMapFromArray(CBlocks.COG_BLOCKS.all().toList()))
             .putAll(blockMapFromArray(CBlocks.RANDOMIZERS.all().toList()))
             .build());
 

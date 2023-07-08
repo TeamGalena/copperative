@@ -1,10 +1,11 @@
-// 1.19.2	2023-06-28T12:26:30.1534862	Coopperative Item Models
+// 1.19.2	2023-07-08T19:05:37.5798307	Coopperative Item Models
 5acdc4926658f4c7d7330bf547c008d9a3bb332d assets/coopperative/models/item/copper_bricks.json
 52859131ef96b4ac1777cd868a8178f069afa50d assets/coopperative/models/item/copper_door.json
 d7ebd5b156bc02acc80f3a53d3617de9208fe250 assets/coopperative/models/item/copper_nugget.json
 4bf77e4304d92ee29438996f2b38112077cb443c assets/coopperative/models/item/copper_pillar.json
 b2acd0ef550e114c4a260ca34a17a6edc02c52f4 assets/coopperative/models/item/copper_tiles.json
 40051fc208aac7ab85969e4518f83b978f85b292 assets/coopperative/models/item/copper_trapdoor.json
+09734093ceebfd800c3a16f2867d1a687e1cb467 assets/coopperative/models/item/exposed_cog_block.json
 7a1b5fa669de658b06f65a4308db6d8a8209b068 assets/coopperative/models/item/exposed_comparator.json
 9a95b65778653977bc12aa36e06455582d6aa615 assets/coopperative/models/item/exposed_copper_bricks.json
 845ca7f388d88ce4de25a835f2611321bb47fb87 assets/coopperative/models/item/exposed_copper_door.json
@@ -26,6 +27,7 @@ fe9ca97dd682daf873394c5837edf8cfabb6d539 assets/coopperative/models/item/exposed
 86cee279f6b2ae7ed304124ca9114a48b85a8d70 assets/coopperative/models/item/exposed_sticky_piston.json
 f9b54bd99c8db6a2e4afaa69d99e743b357ff9ab assets/coopperative/models/item/exposed_toggler.json
 224e96f2c68b655f3b0c3da901914d28d82f5177 assets/coopperative/models/item/headlight.json
+9781e81e423d9e3669da0a78ab504b92e1bc7852 assets/coopperative/models/item/oxidized_cog_block.json
 31391fe44e5255c7d61ea174b75ca647a658f7d9 assets/coopperative/models/item/oxidized_comparator.json
 0bd770994561c1b0c628e34cac2927f0e92412a2 assets/coopperative/models/item/oxidized_copper_bricks.json
 006bc74924b4f6956409b7ec5c1942fad4d04dac assets/coopperative/models/item/oxidized_copper_door.json
@@ -69,6 +71,7 @@ fc8e95c88e3c508149f60cffd6b00b9f9784899d assets/coopperative/models/item/waxed_o
 a079c2139b17f94db0e74dbba9e276788412ec28 assets/coopperative/models/item/waxed_weathered_copper_pillar.json
 4bb713746b298cd46a891847c4ca187873b8d6ef assets/coopperative/models/item/waxed_weathered_copper_tiles.json
 f79c2cc548c103cffeea1450cac14af5d33255cb assets/coopperative/models/item/waxed_weathered_copper_trapdoor.json
+d3290eafde4c77d0329726884dbddcca71c29e36 assets/coopperative/models/item/weathered_cog_block.json
 155c7aaafea63c665add1c6f9de888746548586a assets/coopperative/models/item/weathered_comparator.json
 08fa2dca3702384955dc02d32ce35e44bc2854b4 assets/coopperative/models/item/weathered_copper_bricks.json
 0cfae1f52e362fdff724636a258e3afb76d41f5c assets/coopperative/models/item/weathered_copper_door.json

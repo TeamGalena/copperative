@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "power=0": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_off"
+    },
+    "power=1": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_semi_on"
+    },
+    "power=10": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=11": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=12": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=13": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=14": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=15": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=2": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=3": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=4": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=5": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=6": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=7": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=8": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    },
+    "power=9": {
+      "model": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
+    }
+  }
+}

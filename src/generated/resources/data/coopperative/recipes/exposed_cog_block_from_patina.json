@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "coopperative:overwrite_enabled",
+          "block": "supplementaries:cog_block",
+          "target": "weathering"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "supplementaries:cog_block"
+          },
+          {
+            "item": "coopperative:patina"
+          }
+        ],
+        "result": {
+          "item": "coopperative:exposed_cog_block"
+        }
+      }
+    }
+  ]
+}

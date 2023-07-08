@@ -32,6 +32,7 @@ public class CBlockStateOverwrites extends CBlockStateProvider {
         CBlocks.EXPOSERS.all().forEach(this::exposer);
         CBlocks.RELAYERS.all().forEach(this::relayer);
         CBlocks.CRANKS.all().forEach(this::crank);
+        CBlocks.COG_BLOCKS.weathered().forEach(this::cogBlock);
         CBlocks.RANDOMIZERS.all().forEach(this::randomizer);
     }
 

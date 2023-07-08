@@ -1,0 +1,7 @@
+{
+  "parent": "supplementaries:block/cog_block_off",
+  "textures": {
+    "all": "coopperative:block/compat/supplementaries/oxidized_cog_block_off",
+    "particle": "coopperative:block/compat/supplementaries/oxidized_cog_block_off"
+  }
+}
