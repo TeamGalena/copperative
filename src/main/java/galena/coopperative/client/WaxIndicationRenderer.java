@@ -1,12 +1,10 @@
 package galena.coopperative.client;
 
-import com.mojang.blaze3d.vertex.VertexConsumer;
+import galena.coopperative.index.CItems;
 import it.unimi.dsi.fastutil.objects.AbstractObject2BooleanMap;
 import it.unimi.dsi.fastutil.objects.Object2BooleanLinkedOpenHashMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.LevelRenderer;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -18,9 +16,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -66,6 +62,11 @@ public class WaxIndicationRenderer {
         }
     }
 
+    private static boolean holdingIndicatorItem(Player player) {
+        return player.getItemInHand(InteractionHand.MAIN_HAND).is(CItems.WAX_INDICATORS)
+                || player.getItemInHand(InteractionHand.OFF_HAND).is(CItems.WAX_INDICATORS);
+    }
+
     @SubscribeEvent
     public static void tick(TickEvent.ClientTickEvent event) {
         var mc = Minecraft.getInstance();
@@ -73,7 +74,7 @@ public class WaxIndicationRenderer {
         var player = mc.player;
 
         if (level == null || player == null) return;
-        if (!player.getItemInHand(InteractionHand.MAIN_HAND).is(Items.HONEYCOMB)) return;
+        if (!holdingIndicatorItem(player)) return;
 
         CACHE.clear();
 
@@ -83,22 +84,6 @@ public class WaxIndicationRenderer {
         animateIn(16, level, player, pos, context);
         animateIn(32, level, player, pos, context);
 
-    }
-
-    //@SubscribeEvent
-    public static void renderLast(RenderLevelStageEvent event) {
-        if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_CUTOUT_BLOCKS) return;
-
-        var mc = Minecraft.getInstance();
-        var bufferSource = mc.renderBuffers().bufferSource();
-        VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.lines());
-        var pos = new BlockPos(-3, -61, -3);
-        var shape = Shapes.create(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
-        LevelRenderer.renderVoxelShape(event.getPoseStack(), vertexConsumer, shape,
-                pos.getX() - mc.player.getX(),
-                pos.getY() - mc.player.getEyeY(),
-                pos.getZ() - mc.player.getZ(),
-                1F, 0F, 1F, 1F);
     }
 
 }
