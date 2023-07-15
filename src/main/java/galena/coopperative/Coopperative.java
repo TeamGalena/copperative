@@ -39,6 +39,7 @@ public class Coopperative {
         modEventBus.addListener(this::setup);
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::gatherData);
+        modEventBus.addListener(CoopperativeClient::registerBlockColors);
 
         CraftingHelper.register(new OverwriteEnabledCondition.Serializer());
 

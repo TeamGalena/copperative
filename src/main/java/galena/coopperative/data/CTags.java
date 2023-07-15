@@ -119,6 +119,7 @@ public class CTags {
             EXPOSERS.all().forEach(it -> pickaxe.add(it.get()));
             RELAYERS.all().forEach(it -> pickaxe.add(it.get()));
             CRANKS.all().forEach(it -> pickaxe.add(it.get()));
+            COG_BLOCKS.all().forEach(it -> pickaxe.add(it.get()));
             RANDOMIZERS.all().forEach(it -> pickaxe.add(it.get()));
         }
 

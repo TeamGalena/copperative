@@ -2,6 +2,7 @@ package galena.coopperative.index;
 
 import galena.coopperative.Coopperative;
 import galena.coopperative.content.block.*;
+import galena.coopperative.content.block.compat.WeatheredCogBlock;
 import galena.coopperative.content.block.compat.WeatheredCrank;
 import galena.coopperative.content.block.compat.WeatheredExposer;
 import galena.coopperative.content.block.compat.WeatheredRandomizer;
@@ -127,6 +128,10 @@ public class CBlocks {
 
     public static final CopperSet<Block> CRANKS = ifLoaded("supplementaries",
             () -> registerConvertedSet("crank", ModRegistry.CRANK, WeatheredCrank::new, CreativeModeTab.TAB_REDSTONE), CopperSet::empty
+    );
+
+    public static final CopperSet<Block> COG_BLOCKS = ifLoaded("supplementaries",
+            () -> registerConvertedSet("cog_block", ModRegistry.COG_BLOCK, WeatheredCogBlock::new, CreativeModeTab.TAB_REDSTONE), CopperSet::empty
     );
 
     public static final CopperSet<Block> RANDOMIZERS = ifLoaded("quark",

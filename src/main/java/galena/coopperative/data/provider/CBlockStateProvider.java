@@ -7,6 +7,7 @@ import galena.coopperative.content.block.weatheringvanilla.WeatheringPistonBlock
 import galena.oreganized.content.block.ExposerBlock;
 import io.netty.util.collection.IntObjectHashMap;
 import net.mehvahdjukaar.moonlight.api.util.math.Vec2i;
+import net.mehvahdjukaar.supplementaries.common.block.blocks.CogBlock;
 import net.mehvahdjukaar.supplementaries.common.block.blocks.CrankBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
@@ -492,6 +493,24 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
                         .condition(CrankBlock.FACING, facing).condition(CrankBlock.POWER, i);
             }
         }
+    }
+
+    public void cogBlock(Supplier<? extends Block> block) {
+        var name = "block/compat/supplementaries/" + name(block);
+        getVariantBuilder(block.get()).forAllStatesExcept(state -> {
+            var power = state.getValue(CogBlock.POWER);
+
+            var suffix = switch (power) {
+                case 0 -> "_off";
+                case 1 -> "_semi_on";
+                default -> "_on";
+            };
+
+            var model = models().withExistingParent(name + suffix, new ResourceLocation("supplementaries", "block/cog_block" + suffix))
+                    .texture("particle", name + suffix)
+                    .texture("all", name + suffix);
+            return ConfiguredModel.builder().modelFile(model).build();
+        });
     }
 
     public void randomizer(Supplier<? extends Block> block) {

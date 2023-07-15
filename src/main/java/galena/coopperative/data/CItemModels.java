@@ -89,6 +89,7 @@ public class CItemModels extends CItemModelProvider {
         CBlocks.EXPOSERS.weathered().map(Supplier::get).forEach(it -> compatBlock(it, "oreganized", weatherPrefix(it) + "exposer_level_0_south"));
         CBlocks.RELAYERS.weathered().map(Supplier::get).forEach(it -> compatBlock(it, "supplementaries", weatherPrefix(it) + "relayer_off"));
         CBlocks.CRANKS.weathered().map(Supplier::get).forEach(this::crank);
+        CBlocks.COG_BLOCKS.weathered().map(Supplier::get).forEach(this::cogBlock);
         CBlocks.RANDOMIZERS.weathered().map(Supplier::get).forEach(it -> compatItem(it, "quark", weatherPrefix(it) + "randomizer"));
     }
 

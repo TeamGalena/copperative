@@ -22,6 +22,7 @@ public abstract class CItemModelProvider extends ItemModelProvider {
     public CItemModelProvider(DataGenerator gen, ExistingFileHelper help) {
         super(gen, Coopperative.MOD_ID, help);
     }
+
     public CItemModelProvider(DataGenerator gen, String target, ExistingFileHelper help) {
         super(gen, target, help);
     }
@@ -65,7 +66,6 @@ public abstract class CItemModelProvider extends ItemModelProvider {
     }
 
 
-
     public ItemModelBuilder block(Supplier<? extends Block> waxed, Supplier<? extends Block> block) {
         String name = blockName(block);
         return block(waxed, name);
@@ -74,6 +74,7 @@ public abstract class CItemModelProvider extends ItemModelProvider {
     public ItemModelBuilder blockFlat(Supplier<? extends Block> block) {
         return blockFlat(block, blockName(block));
     }
+
     public ItemModelBuilder blockFlat(Supplier<? extends Block> block, Supplier<? extends Block> fullBlock) {
         return blockFlat(block, blockName(fullBlock));
     }
@@ -130,9 +131,15 @@ public abstract class CItemModelProvider extends ItemModelProvider {
 
     public ItemModelBuilder crank(Block block) {
         var prefix = weatherPrefix(block);
-        return  withExistingParent(prefix + "crank", new ResourceLocation(Coopperative.MOD_ID, "crank"))
+        return withExistingParent(prefix + "crank", new ResourceLocation(Coopperative.MOD_ID, "crank"))
                 .texture("0", new ResourceLocation(Coopperative.MOD_ID, "block/compat/supplementaries/" + prefix + "crank_handle"))
                 .texture("1", new ResourceLocation(Coopperative.MOD_ID, "block/compat/supplementaries/" + prefix + "crank_base"));
+    }
+
+    public ItemModelBuilder cogBlock(Block block) {
+        var prefix = weatherPrefix(block);
+        return withExistingParent(prefix + "cog_block", new ResourceLocation("supplementaries", "cog_block"))
+                .texture("all", new ResourceLocation(Coopperative.MOD_ID, "block/compat/supplementaries/" + prefix + "cog_block_on"));
     }
 
     public String weatherPrefix(Block block) {
