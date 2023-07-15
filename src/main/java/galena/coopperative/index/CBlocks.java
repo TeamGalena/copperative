@@ -86,19 +86,13 @@ public class CBlocks {
     public static final RegistryObject<Block> WEATHERED_LEVER = register("weathered_lever", () -> new WeatheringLeverBlock(WeatherState.WEATHERED), REDSTONE);
     public static final RegistryObject<Block> OXIDIZED_LEVER = register("oxidized_lever", () -> new WeatheringLeverBlock(WeatherState.OXIDIZED), REDSTONE);
 
-    public static final List<RegistryObject<DoorBlock>> COPPER_DOORS = registerWeatheringSet("copper_door", it -> new CopperDoorBlock(it, Properties.copy(Blocks.IRON_DOOR).sound(SoundType.COPPER)), REDSTONE);
-    //public static final RegistryObject<DoorBlock> EXPOSED_COPPER_DOOR = register("exposed_copper_door", () -> new CopperDoorBlock(WeatherState.EXPOSED, Properties.copy(COPPER_DOOR.get())), REDSTONE);
-    //public static final RegistryObject<DoorBlock> WEATHERED_COPPER_DOOR = register("weathered_copper_door", () -> new CopperDoorBlock(WeatherState.WEATHERED, Properties.copy(COPPER_DOOR.get())), REDSTONE);
-    //public static final RegistryObject<DoorBlock> OXIDIZED_COPPER_DOOR = register("oxidized_copper_door", () -> new CopperDoorBlock(WeatherState.OXIDIZED, Properties.copy(COPPER_DOOR.get())), REDSTONE);
+    public static final List<RegistryObject<DoorBlock>> COPPER_DOORS = registerWeatheringSet("copper_door", it -> new CopperDoorBlock(it, Properties.copy(Blocks.IRON_DOOR).sound(SoundType.COPPER), AbstractCopperDoorBlock.canBeUsedByPlayers(it)), REDSTONE);
 
-    public static final List<RegistryObject<TrapDoorBlock>> COPPER_TRAPDOORS = registerWeatheringSet("copper_trapdoor", it -> new CopperTrapDoorBlock(it, Properties.copy(Blocks.IRON_TRAPDOOR).sound(SoundType.COPPER)), REDSTONE);
-    //public static final RegistryObject<TrapDoorBlock> EXPOSED_COPPER_TRAPDOOR = register("exposed_copper_trapdoor", () -> new CopperTrapDoorBlock(WeatherState.EXPOSED, Properties.copy(COPPER_DOOR.get())), REDSTONE);
-    //public static final RegistryObject<TrapDoorBlock> WEATHERED_COPPER_TRAPDOOR = register("weathered_copper_trapdoor", () -> new CopperTrapDoorBlock(WeatherState.WEATHERED, Properties.copy(COPPER_DOOR.get())), REDSTONE);
-    //public static final RegistryObject<TrapDoorBlock> OXIDIZED_COPPER_TRAPDOOR = register("oxidized_copper_trapdoor", () -> new CopperTrapDoorBlock(WeatherState.OXIDIZED, Properties.copy(COPPER_DOOR.get())), REDSTONE);
+    public static final List<RegistryObject<TrapDoorBlock>> COPPER_TRAPDOORS = registerWeatheringSet("copper_trapdoor", it -> new CopperTrapDoorBlock(it, Properties.copy(Blocks.IRON_TRAPDOOR).sound(SoundType.COPPER), AbstractCopperDoorBlock.canBeUsedByPlayers(it)), REDSTONE);
 
-    public static final List<RegistryObject<DoorBlock>> WAXED_COPPER_DOORS = registerWaxedSet("copper_door", it -> new WaxedDoorBlock(Properties.copy(Blocks.IRON_DOOR).sound(SoundType.COPPER)), REDSTONE);
+    public static final List<RegistryObject<DoorBlock>> WAXED_COPPER_DOORS = registerWaxedSet("copper_door", it -> new WaxedDoorBlock(Properties.copy(Blocks.IRON_DOOR).sound(SoundType.COPPER), AbstractCopperDoorBlock.canBeUsedByPlayers(it)), REDSTONE);
 
-    public static final List<RegistryObject<TrapDoorBlock>> WAXED_COPPER_TRAPDOORS = registerWaxedSet("copper_trapdoor", $ -> new AbstractCopperTrapdoorBlock(Properties.copy(Blocks.IRON_TRAPDOOR).sound(SoundType.COPPER)), REDSTONE);
+    public static final List<RegistryObject<TrapDoorBlock>> WAXED_COPPER_TRAPDOORS = registerWaxedSet("copper_trapdoor", it -> new AbstractCopperTrapdoorBlock(Properties.copy(Blocks.IRON_TRAPDOOR).sound(SoundType.COPPER), AbstractCopperDoorBlock.canBeUsedByPlayers(it)), REDSTONE);
 
 
     public static final List<RegistryObject<Block>> HEADLIGHT = registerWeatheringSet("headlight", weatherState -> new HeadLightBlock(weatherState, Properties.copy(Blocks.COPPER_BLOCK).lightLevel(HeadLightBlock.LIGHT_EMISSION)), REDSTONE);

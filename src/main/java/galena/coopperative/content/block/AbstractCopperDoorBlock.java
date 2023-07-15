@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -19,8 +20,18 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class AbstractCopperDoorBlock extends DoorBlock {
 
-    public AbstractCopperDoorBlock(Properties properties) {
+    private final boolean canBeUsedByPlayers;
+
+    public static boolean canBeUsedByPlayers(WeatheringCopper.WeatherState state) {
+        return switch (state) {
+            case UNAFFECTED, EXPOSED -> true;
+            default -> false;
+        };
+    }
+
+    public AbstractCopperDoorBlock(Properties properties, boolean canBeUsedByPlayers) {
         super(properties);
+        this.canBeUsedByPlayers = canBeUsedByPlayers;
     }
 
     private int getCloseSound() {
@@ -33,7 +44,7 @@ public class AbstractCopperDoorBlock extends DoorBlock {
 
     @Override
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (state.getValue(POWERED)) return InteractionResult.PASS;
+        if (!canBeUsedByPlayers) return InteractionResult.PASS;
         state = state.cycle(OPEN);
         world.setBlock(pos, state, 10);
         world.levelEvent(player, state.getValue(OPEN) ? this.getOpenSound() : this.getCloseSound(), pos, 0);

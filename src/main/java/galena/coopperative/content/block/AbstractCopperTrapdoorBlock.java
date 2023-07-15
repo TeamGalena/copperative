@@ -12,8 +12,11 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class AbstractCopperTrapdoorBlock extends TrapDoorBlock {
-    public AbstractCopperTrapdoorBlock(Properties properties) {
+    private final boolean canBeUsedByPlayers;
+
+    public AbstractCopperTrapdoorBlock(Properties properties, boolean canBeUsedByPlayers) {
         super(properties);
+        this.canBeUsedByPlayers = canBeUsedByPlayers;
     }
 
     private int getCloseSound() {
@@ -26,7 +29,7 @@ public class AbstractCopperTrapdoorBlock extends TrapDoorBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (state.getValue(POWERED)) return InteractionResult.PASS;
+        if (!canBeUsedByPlayers) return InteractionResult.PASS;
         state = state.cycle(OPEN);
         world.setBlock(pos, state, 10);
         if (state.getValue(WATERLOGGED)) {

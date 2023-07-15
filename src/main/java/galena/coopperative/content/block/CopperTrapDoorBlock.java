@@ -10,8 +10,8 @@ public class CopperTrapDoorBlock extends AbstractCopperTrapdoorBlock implements 
 
     private final WeatherState weatherState;
 
-    public CopperTrapDoorBlock(WeatherState weatherState, Properties properties) {
-        super(properties);
+    public CopperTrapDoorBlock(WeatherState weatherState, Properties properties, boolean canBeUsedByPlayers) {
+        super(properties, canBeUsedByPlayers);
         this.weatherState = weatherState;
     }
 
