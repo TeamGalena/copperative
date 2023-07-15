@@ -7,7 +7,6 @@ issueTrackerURL="https://github.com/xaidee/coopperative/issues/" #optional
 modId="coopperative" #mandatory
 version="0.0.2" #mandatory
 displayName="Coopperative" #mandatory
-updateJSONURL="https://www.curseforge.com/minecraft/mc-mods/coopperative/files" #optional
 displayURL="https://www.curseforge.com/minecraft/mc-mods/coopperative" #optional
 logoFile="logo.png" #optional
 authors="Team Galena" #optional

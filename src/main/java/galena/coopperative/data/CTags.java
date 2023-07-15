@@ -1,11 +1,13 @@
 package galena.coopperative.data;
 
 import galena.coopperative.Coopperative;
+import galena.coopperative.index.CItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nullable;
@@ -31,6 +33,8 @@ public class CTags {
             copy(BlockTags.RAILS, ItemTags.RAILS);
             copy(BlockTags.DOORS, ItemTags.DOORS);
             copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
+
+            tag(CItems.WAX_INDICATORS).add(Items.HONEYCOMB);
         }
     }
 
