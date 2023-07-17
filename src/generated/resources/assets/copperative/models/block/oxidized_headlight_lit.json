@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/observer",
+  "textures": {
+    "bottom": "copperative:block/oxidized_headlight_back_on",
+    "front": "copperative:block/oxidized_headlight_lit",
+    "particle": "copperative:block/oxidized_headlight_side",
+    "side": "copperative:block/oxidized_headlight_side",
+    "top": "copperative:block/oxidized_dispenser_top"
+  }
+}

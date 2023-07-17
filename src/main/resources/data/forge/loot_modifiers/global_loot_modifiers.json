@@ -1,7 +1,7 @@
 {
   "replace": false,
   "entries": [
-    "coopperative:copper_nuggets_shipwreck",
-    "coopperative:copper_nuggets_underwater_ruins"
+    "copperative:copper_nuggets_shipwreck",
+    "copperative:copper_nuggets_underwater_ruins"
   ]
 }

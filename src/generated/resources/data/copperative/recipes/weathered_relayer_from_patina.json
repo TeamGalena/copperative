@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "copperative:overwrite_enabled",
+          "block": "supplementaries:relayer",
+          "target": "weathering"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "copperative:exposed_relayer"
+          },
+          {
+            "item": "copperative:patina"
+          }
+        ],
+        "result": {
+          "item": "copperative:weathered_relayer"
+        }
+      }
+    }
+  ]
+}

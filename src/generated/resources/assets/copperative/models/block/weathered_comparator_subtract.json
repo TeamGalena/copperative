@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/comparator_subtract",
+  "textures": {
+    "particle": "copperative:block/weathered_comparator_off",
+    "slab": "copperative:block/weathered_dispenser_side",
+    "top": "copperative:block/weathered_comparator_off"
+  }
+}

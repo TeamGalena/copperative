@@ -1,0 +1,7 @@
+{
+  "parent": "copperative:item/crank",
+  "textures": {
+    "0": "copperative:block/compat/supplementaries/exposed_crank_handle",
+    "1": "copperative:block/compat/supplementaries/exposed_crank_base"
+  }
+}

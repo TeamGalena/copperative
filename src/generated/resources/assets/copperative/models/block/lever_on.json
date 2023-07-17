@@ -1,0 +1,7 @@
+{
+  "parent": "copperative:block/custom_lever_on",
+  "textures": {
+    "base": "copperative:block/lever",
+    "particle": "copperative:block/lever"
+  }
+}

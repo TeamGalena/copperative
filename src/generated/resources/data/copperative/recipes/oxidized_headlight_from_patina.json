@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "copperative:weathered_headlight"
+    },
+    {
+      "item": "copperative:patina"
+    }
+  ],
+  "result": {
+    "item": "copperative:oxidized_headlight"
+  }
+}

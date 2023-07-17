@@ -38,7 +38,7 @@ public abstract class AbstractClientPlayerMixin {
             if (Constants.Dev.contains(username)) cir.setReturnValue(new ResourceLocation(Constants.MOD_ID, "textures/capes/dev.png"));
             if (Constants.OPatreons.contains(username)) cir.setReturnValue(new ResourceLocation(Constants.MOD_ID, "textures/capes/oreganized.png"));
             if (Constants.OFPatreons.contains(username)) cir.setReturnValue(new ResourceLocation(Constants.MOD_ID, "textures/capes/overweightfarming.png"));
-            if (Constants.CPatreons.contains(username)) cir.setReturnValue(new ResourceLocation(Constants.MOD_ID, "textures/capes/coopperative.png"));
+            if (Constants.CPatreons.contains(username)) cir.setReturnValue(new ResourceLocation(Constants.MOD_ID, "textures/capes/copperative.png"));
         }
     }
 }

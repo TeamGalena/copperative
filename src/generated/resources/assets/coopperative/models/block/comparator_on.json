@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/comparator_on",
-  "textures": {
-    "particle": "coopperative:block/comparator_off",
-    "slab": "coopperative:block/dispenser_side",
-    "top": "coopperative:block/comparator_on"
-  }
-}

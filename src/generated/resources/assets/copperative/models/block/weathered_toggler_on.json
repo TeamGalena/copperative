@@ -1,0 +1,6 @@
+{
+  "parent": "copperative:block/base_toggler_on",
+  "textures": {
+    "top": "copperative:block/weathered_toggler_on"
+  }
+}

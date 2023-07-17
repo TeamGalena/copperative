@@ -1,12 +1,12 @@
 {
   "values": [
-    "coopperative:copper_trapdoor",
-    "coopperative:exposed_copper_trapdoor",
-    "coopperative:weathered_copper_trapdoor",
-    "coopperative:oxidized_copper_trapdoor",
-    "coopperative:waxed_copper_trapdoor",
-    "coopperative:waxed_exposed_copper_trapdoor",
-    "coopperative:waxed_weathered_copper_trapdoor",
-    "coopperative:waxed_oxidized_copper_trapdoor"
+    "copperative:copper_trapdoor",
+    "copperative:exposed_copper_trapdoor",
+    "copperative:weathered_copper_trapdoor",
+    "copperative:oxidized_copper_trapdoor",
+    "copperative:waxed_copper_trapdoor",
+    "copperative:waxed_exposed_copper_trapdoor",
+    "copperative:waxed_weathered_copper_trapdoor",
+    "copperative:waxed_oxidized_copper_trapdoor"
   ]
 }

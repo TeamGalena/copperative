@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_base",
+        "model": "copperative:block/compat/supplementaries/crank_base",
         "x": 90
       },
       "when": {
@@ -11,7 +11,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_0",
+        "model": "copperative:block/compat/supplementaries/crank_handle_0",
         "x": 90
       },
       "when": {
@@ -21,7 +21,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_1",
+        "model": "copperative:block/compat/supplementaries/crank_handle_1",
         "x": 90
       },
       "when": {
@@ -31,7 +31,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_2",
+        "model": "copperative:block/compat/supplementaries/crank_handle_2",
         "x": 90
       },
       "when": {
@@ -41,7 +41,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_3",
+        "model": "copperative:block/compat/supplementaries/crank_handle_3",
         "x": 90
       },
       "when": {
@@ -51,7 +51,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_4",
+        "model": "copperative:block/compat/supplementaries/crank_handle_4",
         "x": 90
       },
       "when": {
@@ -61,7 +61,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_5",
+        "model": "copperative:block/compat/supplementaries/crank_handle_5",
         "x": 90
       },
       "when": {
@@ -71,7 +71,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_6",
+        "model": "copperative:block/compat/supplementaries/crank_handle_6",
         "x": 90
       },
       "when": {
@@ -81,7 +81,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_7",
+        "model": "copperative:block/compat/supplementaries/crank_handle_7",
         "x": 90
       },
       "when": {
@@ -91,7 +91,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_8",
+        "model": "copperative:block/compat/supplementaries/crank_handle_8",
         "x": 90
       },
       "when": {
@@ -101,7 +101,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_9",
+        "model": "copperative:block/compat/supplementaries/crank_handle_9",
         "x": 90
       },
       "when": {
@@ -111,7 +111,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_10",
+        "model": "copperative:block/compat/supplementaries/crank_handle_10",
         "x": 90
       },
       "when": {
@@ -121,7 +121,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_11",
+        "model": "copperative:block/compat/supplementaries/crank_handle_11",
         "x": 90
       },
       "when": {
@@ -131,7 +131,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_12",
+        "model": "copperative:block/compat/supplementaries/crank_handle_12",
         "x": 90
       },
       "when": {
@@ -141,7 +141,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_13",
+        "model": "copperative:block/compat/supplementaries/crank_handle_13",
         "x": 90
       },
       "when": {
@@ -151,7 +151,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_14",
+        "model": "copperative:block/compat/supplementaries/crank_handle_14",
         "x": 90
       },
       "when": {
@@ -161,7 +161,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_15",
+        "model": "copperative:block/compat/supplementaries/crank_handle_15",
         "x": 90
       },
       "when": {
@@ -171,7 +171,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_base",
+        "model": "copperative:block/compat/supplementaries/crank_base",
         "x": 270
       },
       "when": {
@@ -180,7 +180,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_0",
+        "model": "copperative:block/compat/supplementaries/crank_handle_0",
         "x": 270
       },
       "when": {
@@ -190,7 +190,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_1",
+        "model": "copperative:block/compat/supplementaries/crank_handle_1",
         "x": 270
       },
       "when": {
@@ -200,7 +200,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_2",
+        "model": "copperative:block/compat/supplementaries/crank_handle_2",
         "x": 270
       },
       "when": {
@@ -210,7 +210,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_3",
+        "model": "copperative:block/compat/supplementaries/crank_handle_3",
         "x": 270
       },
       "when": {
@@ -220,7 +220,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_4",
+        "model": "copperative:block/compat/supplementaries/crank_handle_4",
         "x": 270
       },
       "when": {
@@ -230,7 +230,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_5",
+        "model": "copperative:block/compat/supplementaries/crank_handle_5",
         "x": 270
       },
       "when": {
@@ -240,7 +240,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_6",
+        "model": "copperative:block/compat/supplementaries/crank_handle_6",
         "x": 270
       },
       "when": {
@@ -250,7 +250,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_7",
+        "model": "copperative:block/compat/supplementaries/crank_handle_7",
         "x": 270
       },
       "when": {
@@ -260,7 +260,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_8",
+        "model": "copperative:block/compat/supplementaries/crank_handle_8",
         "x": 270
       },
       "when": {
@@ -270,7 +270,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_9",
+        "model": "copperative:block/compat/supplementaries/crank_handle_9",
         "x": 270
       },
       "when": {
@@ -280,7 +280,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_10",
+        "model": "copperative:block/compat/supplementaries/crank_handle_10",
         "x": 270
       },
       "when": {
@@ -290,7 +290,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_11",
+        "model": "copperative:block/compat/supplementaries/crank_handle_11",
         "x": 270
       },
       "when": {
@@ -300,7 +300,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_12",
+        "model": "copperative:block/compat/supplementaries/crank_handle_12",
         "x": 270
       },
       "when": {
@@ -310,7 +310,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_13",
+        "model": "copperative:block/compat/supplementaries/crank_handle_13",
         "x": 270
       },
       "when": {
@@ -320,7 +320,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_14",
+        "model": "copperative:block/compat/supplementaries/crank_handle_14",
         "x": 270
       },
       "when": {
@@ -330,7 +330,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_15",
+        "model": "copperative:block/compat/supplementaries/crank_handle_15",
         "x": 270
       },
       "when": {
@@ -340,7 +340,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_base"
+        "model": "copperative:block/compat/supplementaries/crank_base"
       },
       "when": {
         "facing": "north"
@@ -348,7 +348,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_0"
+        "model": "copperative:block/compat/supplementaries/crank_handle_0"
       },
       "when": {
         "facing": "north",
@@ -357,7 +357,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_1"
+        "model": "copperative:block/compat/supplementaries/crank_handle_1"
       },
       "when": {
         "facing": "north",
@@ -366,7 +366,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_2"
+        "model": "copperative:block/compat/supplementaries/crank_handle_2"
       },
       "when": {
         "facing": "north",
@@ -375,7 +375,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_3"
+        "model": "copperative:block/compat/supplementaries/crank_handle_3"
       },
       "when": {
         "facing": "north",
@@ -384,7 +384,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_4"
+        "model": "copperative:block/compat/supplementaries/crank_handle_4"
       },
       "when": {
         "facing": "north",
@@ -393,7 +393,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_5"
+        "model": "copperative:block/compat/supplementaries/crank_handle_5"
       },
       "when": {
         "facing": "north",
@@ -402,7 +402,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_6"
+        "model": "copperative:block/compat/supplementaries/crank_handle_6"
       },
       "when": {
         "facing": "north",
@@ -411,7 +411,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_7"
+        "model": "copperative:block/compat/supplementaries/crank_handle_7"
       },
       "when": {
         "facing": "north",
@@ -420,7 +420,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_8"
+        "model": "copperative:block/compat/supplementaries/crank_handle_8"
       },
       "when": {
         "facing": "north",
@@ -429,7 +429,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_9"
+        "model": "copperative:block/compat/supplementaries/crank_handle_9"
       },
       "when": {
         "facing": "north",
@@ -438,7 +438,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_10"
+        "model": "copperative:block/compat/supplementaries/crank_handle_10"
       },
       "when": {
         "facing": "north",
@@ -447,7 +447,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_11"
+        "model": "copperative:block/compat/supplementaries/crank_handle_11"
       },
       "when": {
         "facing": "north",
@@ -456,7 +456,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_12"
+        "model": "copperative:block/compat/supplementaries/crank_handle_12"
       },
       "when": {
         "facing": "north",
@@ -465,7 +465,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_13"
+        "model": "copperative:block/compat/supplementaries/crank_handle_13"
       },
       "when": {
         "facing": "north",
@@ -474,7 +474,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_14"
+        "model": "copperative:block/compat/supplementaries/crank_handle_14"
       },
       "when": {
         "facing": "north",
@@ -483,7 +483,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_15"
+        "model": "copperative:block/compat/supplementaries/crank_handle_15"
       },
       "when": {
         "facing": "north",
@@ -492,7 +492,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_base",
+        "model": "copperative:block/compat/supplementaries/crank_base",
         "y": 180
       },
       "when": {
@@ -501,7 +501,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_0",
+        "model": "copperative:block/compat/supplementaries/crank_handle_0",
         "y": 180
       },
       "when": {
@@ -511,7 +511,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_1",
+        "model": "copperative:block/compat/supplementaries/crank_handle_1",
         "y": 180
       },
       "when": {
@@ -521,7 +521,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_2",
+        "model": "copperative:block/compat/supplementaries/crank_handle_2",
         "y": 180
       },
       "when": {
@@ -531,7 +531,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_3",
+        "model": "copperative:block/compat/supplementaries/crank_handle_3",
         "y": 180
       },
       "when": {
@@ -541,7 +541,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_4",
+        "model": "copperative:block/compat/supplementaries/crank_handle_4",
         "y": 180
       },
       "when": {
@@ -551,7 +551,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_5",
+        "model": "copperative:block/compat/supplementaries/crank_handle_5",
         "y": 180
       },
       "when": {
@@ -561,7 +561,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_6",
+        "model": "copperative:block/compat/supplementaries/crank_handle_6",
         "y": 180
       },
       "when": {
@@ -571,7 +571,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_7",
+        "model": "copperative:block/compat/supplementaries/crank_handle_7",
         "y": 180
       },
       "when": {
@@ -581,7 +581,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_8",
+        "model": "copperative:block/compat/supplementaries/crank_handle_8",
         "y": 180
       },
       "when": {
@@ -591,7 +591,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_9",
+        "model": "copperative:block/compat/supplementaries/crank_handle_9",
         "y": 180
       },
       "when": {
@@ -601,7 +601,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_10",
+        "model": "copperative:block/compat/supplementaries/crank_handle_10",
         "y": 180
       },
       "when": {
@@ -611,7 +611,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_11",
+        "model": "copperative:block/compat/supplementaries/crank_handle_11",
         "y": 180
       },
       "when": {
@@ -621,7 +621,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_12",
+        "model": "copperative:block/compat/supplementaries/crank_handle_12",
         "y": 180
       },
       "when": {
@@ -631,7 +631,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_13",
+        "model": "copperative:block/compat/supplementaries/crank_handle_13",
         "y": 180
       },
       "when": {
@@ -641,7 +641,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_14",
+        "model": "copperative:block/compat/supplementaries/crank_handle_14",
         "y": 180
       },
       "when": {
@@ -651,7 +651,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_15",
+        "model": "copperative:block/compat/supplementaries/crank_handle_15",
         "y": 180
       },
       "when": {
@@ -661,7 +661,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_base",
+        "model": "copperative:block/compat/supplementaries/crank_base",
         "y": 270
       },
       "when": {
@@ -670,7 +670,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_0",
+        "model": "copperative:block/compat/supplementaries/crank_handle_0",
         "y": 270
       },
       "when": {
@@ -680,7 +680,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_1",
+        "model": "copperative:block/compat/supplementaries/crank_handle_1",
         "y": 270
       },
       "when": {
@@ -690,7 +690,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_2",
+        "model": "copperative:block/compat/supplementaries/crank_handle_2",
         "y": 270
       },
       "when": {
@@ -700,7 +700,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_3",
+        "model": "copperative:block/compat/supplementaries/crank_handle_3",
         "y": 270
       },
       "when": {
@@ -710,7 +710,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_4",
+        "model": "copperative:block/compat/supplementaries/crank_handle_4",
         "y": 270
       },
       "when": {
@@ -720,7 +720,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_5",
+        "model": "copperative:block/compat/supplementaries/crank_handle_5",
         "y": 270
       },
       "when": {
@@ -730,7 +730,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_6",
+        "model": "copperative:block/compat/supplementaries/crank_handle_6",
         "y": 270
       },
       "when": {
@@ -740,7 +740,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_7",
+        "model": "copperative:block/compat/supplementaries/crank_handle_7",
         "y": 270
       },
       "when": {
@@ -750,7 +750,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_8",
+        "model": "copperative:block/compat/supplementaries/crank_handle_8",
         "y": 270
       },
       "when": {
@@ -760,7 +760,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_9",
+        "model": "copperative:block/compat/supplementaries/crank_handle_9",
         "y": 270
       },
       "when": {
@@ -770,7 +770,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_10",
+        "model": "copperative:block/compat/supplementaries/crank_handle_10",
         "y": 270
       },
       "when": {
@@ -780,7 +780,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_11",
+        "model": "copperative:block/compat/supplementaries/crank_handle_11",
         "y": 270
       },
       "when": {
@@ -790,7 +790,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_12",
+        "model": "copperative:block/compat/supplementaries/crank_handle_12",
         "y": 270
       },
       "when": {
@@ -800,7 +800,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_13",
+        "model": "copperative:block/compat/supplementaries/crank_handle_13",
         "y": 270
       },
       "when": {
@@ -810,7 +810,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_14",
+        "model": "copperative:block/compat/supplementaries/crank_handle_14",
         "y": 270
       },
       "when": {
@@ -820,7 +820,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_15",
+        "model": "copperative:block/compat/supplementaries/crank_handle_15",
         "y": 270
       },
       "when": {
@@ -830,7 +830,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_base",
+        "model": "copperative:block/compat/supplementaries/crank_base",
         "y": 90
       },
       "when": {
@@ -839,7 +839,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_0",
+        "model": "copperative:block/compat/supplementaries/crank_handle_0",
         "y": 90
       },
       "when": {
@@ -849,7 +849,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_1",
+        "model": "copperative:block/compat/supplementaries/crank_handle_1",
         "y": 90
       },
       "when": {
@@ -859,7 +859,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_2",
+        "model": "copperative:block/compat/supplementaries/crank_handle_2",
         "y": 90
       },
       "when": {
@@ -869,7 +869,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_3",
+        "model": "copperative:block/compat/supplementaries/crank_handle_3",
         "y": 90
       },
       "when": {
@@ -879,7 +879,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_4",
+        "model": "copperative:block/compat/supplementaries/crank_handle_4",
         "y": 90
       },
       "when": {
@@ -889,7 +889,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_5",
+        "model": "copperative:block/compat/supplementaries/crank_handle_5",
         "y": 90
       },
       "when": {
@@ -899,7 +899,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_6",
+        "model": "copperative:block/compat/supplementaries/crank_handle_6",
         "y": 90
       },
       "when": {
@@ -909,7 +909,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_7",
+        "model": "copperative:block/compat/supplementaries/crank_handle_7",
         "y": 90
       },
       "when": {
@@ -919,7 +919,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_8",
+        "model": "copperative:block/compat/supplementaries/crank_handle_8",
         "y": 90
       },
       "when": {
@@ -929,7 +929,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_9",
+        "model": "copperative:block/compat/supplementaries/crank_handle_9",
         "y": 90
       },
       "when": {
@@ -939,7 +939,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_10",
+        "model": "copperative:block/compat/supplementaries/crank_handle_10",
         "y": 90
       },
       "when": {
@@ -949,7 +949,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_11",
+        "model": "copperative:block/compat/supplementaries/crank_handle_11",
         "y": 90
       },
       "when": {
@@ -959,7 +959,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_12",
+        "model": "copperative:block/compat/supplementaries/crank_handle_12",
         "y": 90
       },
       "when": {
@@ -969,7 +969,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_13",
+        "model": "copperative:block/compat/supplementaries/crank_handle_13",
         "y": 90
       },
       "when": {
@@ -979,7 +979,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_14",
+        "model": "copperative:block/compat/supplementaries/crank_handle_14",
         "y": 90
       },
       "when": {
@@ -989,7 +989,7 @@
     },
     {
       "apply": {
-        "model": "coopperative:block/compat/supplementaries/crank_handle_15",
+        "model": "copperative:block/compat/supplementaries/crank_handle_15",
         "y": 90
       },
       "when": {

@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/observer",
+  "textures": {
+    "bottom": "copperative:block/weathered_observer_back_off",
+    "front": "copperative:block/weathered_observer_front",
+    "particle": "copperative:block/weathered_observer_front",
+    "side": "copperative:block/weathered_observer_side",
+    "top": "copperative:block/weathered_observer_top"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "supplementaries:block/cog_block_on",
+  "textures": {
+    "all": "copperative:block/compat/supplementaries/exposed_cog_block_on",
+    "particle": "copperative:block/compat/supplementaries/exposed_cog_block_on"
+  }
+}

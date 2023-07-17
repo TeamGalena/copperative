@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,powering=false": {
+      "model": "copperative:block/oxidized_toggler",
+      "y": 270
+    },
+    "facing=east,powering=true": {
+      "model": "copperative:block/oxidized_toggler_on",
+      "y": 270
+    },
+    "facing=north,powering=false": {
+      "model": "copperative:block/oxidized_toggler",
+      "y": 180
+    },
+    "facing=north,powering=true": {
+      "model": "copperative:block/oxidized_toggler_on",
+      "y": 180
+    },
+    "facing=south,powering=false": {
+      "model": "copperative:block/oxidized_toggler"
+    },
+    "facing=south,powering=true": {
+      "model": "copperative:block/oxidized_toggler_on"
+    },
+    "facing=west,powering=false": {
+      "model": "copperative:block/oxidized_toggler",
+      "y": 90
+    },
+    "facing=west,powering=true": {
+      "model": "copperative:block/oxidized_toggler_on",
+      "y": 90
+    }
+  }
+}

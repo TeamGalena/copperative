@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/piston_base",
-  "textures": {
-    "bottom": "coopperative:block/oxidized_dispenser_top",
-    "inside": "coopperative:block/oxidized_piston_inner",
-    "side": "coopperative:block/oxidized_piston_side"
-  }
-}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "copperative:toggler"
+    },
+    {
+      "item": "copperative:patina"
+    }
+  ],
+  "result": {
+    "item": "copperative:exposed_toggler"
+  }
+}

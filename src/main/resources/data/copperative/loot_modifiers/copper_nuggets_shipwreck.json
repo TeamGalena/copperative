@@ -1,0 +1,15 @@
+{
+  "type": "copperative:inject_item",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/shipwreck_treasure"
+    },
+    {
+      "condition": "copperative:inject_copper_nuggets"
+    }
+  ],
+  "item": "copperative:copper_nugget",
+  "min": 12,
+  "max": 42
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/powered_rail_raised_sw",
+  "textures": {
+    "rail": "copperative:block/exposed_powered_rail"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/piston",
-  "textures": {
-    "bottom": "coopperative:block/dispenser_top",
-    "platform": "minecraft:block/piston_top",
-    "side": "coopperative:block/piston_side"
-  }
-}

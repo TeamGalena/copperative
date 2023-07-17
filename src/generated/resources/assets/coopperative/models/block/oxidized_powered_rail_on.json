@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/powered_rail_on",
-  "textures": {
-    "rail": "coopperative:block/oxidized_powered_rail_on"
-  }
-}

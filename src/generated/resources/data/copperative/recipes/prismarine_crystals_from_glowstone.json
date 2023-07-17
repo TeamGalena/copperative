@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "prismarine_crystals",
+  "ingredients": [
+    {
+      "item": "copperative:patina"
+    },
+    {
+      "item": "minecraft:glowstone_dust"
+    },
+    {
+      "item": "minecraft:glowstone_dust"
+    },
+    {
+      "item": "copperative:patina"
+    }
+  ],
+  "result": {
+    "item": "minecraft:prismarine_crystals"
+  }
+}

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "A": {
-      "item": "coopperative:copper_nugget"
+      "item": "copperative:copper_nugget"
     }
   },
   "pattern": [

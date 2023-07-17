@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/powered_rail_on_raised_ne",
+  "textures": {
+    "rail": "copperative:block/oxidized_powered_rail_on"
+  }
+}

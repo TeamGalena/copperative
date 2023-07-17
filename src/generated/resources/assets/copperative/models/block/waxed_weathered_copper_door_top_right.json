@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right",
+  "textures": {
+    "bottom": "copperative:block/weathered_copper_door_bottom",
+    "top": "copperative:block/weathered_copper_door_top"
+  }
+}

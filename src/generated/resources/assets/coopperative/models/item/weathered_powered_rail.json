@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "coopperative:block/weathered_powered_rail"
-  }
-}

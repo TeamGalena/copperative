@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/sticky_piston_inventory",
   "textures": {
-    "bottom": "coopperative:block/dispenser_top",
-    "side": "coopperative:block/piston_side"
+    "bottom": "copperative:block/dispenser_top",
+    "side": "copperative:block/piston_side"
   }
 }

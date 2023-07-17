@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/powered_rail",
+  "textures": {
+    "rail": "copperative:block/weathered_powered_rail"
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/repeater_4tick_on",
-  "textures": {
-    "particle": "coopperative:block/repeater_off",
-    "slab": "coopperative:block/dispenser_side",
-    "top": "coopperative:block/repeater_on",
-    "unlit": "minecraft:block/redstone_torch"
-  }
-}

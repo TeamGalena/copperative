@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "copperative:waxed_exposed_copper_pillar_from_honeycomb"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_unwaxed": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "copperative:exposed_copper_pillar"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_unwaxed",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "copperative:waxed_exposed_copper_pillar_from_honeycomb"
+    ]
+  }
+}

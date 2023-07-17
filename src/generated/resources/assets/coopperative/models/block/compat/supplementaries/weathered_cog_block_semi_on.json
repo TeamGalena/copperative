@@ -1,7 +1,0 @@
-{
-  "parent": "supplementaries:block/cog_block_semi_on",
-  "textures": {
-    "all": "coopperative:block/compat/supplementaries/weathered_cog_block_semi_on",
-    "particle": "coopperative:block/compat/supplementaries/weathered_cog_block_semi_on"
-  }
-}

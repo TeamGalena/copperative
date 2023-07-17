@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "copperative:overwrite_enabled",
+          "block": "minecraft:powered_rail",
+          "target": "weathering"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "minecraft:powered_rail"
+          },
+          {
+            "item": "copperative:patina"
+          }
+        ],
+        "result": {
+          "item": "copperative:exposed_powered_rail"
+        }
+      }
+    }
+  ]
+}

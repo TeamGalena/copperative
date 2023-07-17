@@ -1,0 +1,8 @@
+{
+  "parent": "copperative:block/base_relayer",
+  "textures": {
+    "bottom": "copperative:block/compat/supplementaries/relayer_back_off",
+    "platform": "copperative:block/compat/supplementaries/relayer_front",
+    "side": "copperative:block/compat/supplementaries/relayer_side"
+  }
+}

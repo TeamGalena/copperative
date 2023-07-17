@@ -1,6 +1,0 @@
-{
-  "parent": "supplementaries:item/cog_block",
-  "textures": {
-    "all": "coopperative:block/compat/supplementaries/exposed_cog_block_on"
-  }
-}
