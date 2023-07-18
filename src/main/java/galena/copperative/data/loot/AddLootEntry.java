@@ -3,7 +3,7 @@ package galena.copperative.data.loot;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -16,7 +16,7 @@ public class AddLootEntry extends LootModifier {
 
     public static final Codec<AddLootEntry> CODEC = RecordCodecBuilder.create(builder ->
             codecStart(builder)
-                    .and(Registry.ITEM.byNameCodec().fieldOf("item").forGetter(it -> it.item))
+                    .and(BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(it -> it.item))
                     .and(Codec.INT.fieldOf("min").forGetter(it -> it.min))
                     .and(Codec.INT.fieldOf("max").forGetter(it -> it.max))
                     .apply(builder, AddLootEntry::new)

@@ -6,7 +6,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WeatheringCopper;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraftforge.common.ToolActions;
@@ -28,8 +28,8 @@ public class CommonEvents {
         if (event.getToolAction() == ToolActions.AXE_SCRAPE && WeatheringCopper.getPrevious(event.getState()).isPresent()) {
             var dropPos = ctx.getClickedPos();
             var clickedFace = ctx.getClickedFace();
-            var lootTable = world.getServer().getLootTables().get(PATINA_LOOT_TABLE);
-            var lootContext = new LootContext.Builder(world)
+            var lootTable = world.getServer().getLootData().getLootTable(PATINA_LOOT_TABLE);
+            var lootContext = new LootParams.Builder(world)
                     .withParameter(LootContextParams.BLOCK_STATE, event.getState())
                     .withParameter(LootContextParams.ORIGIN, ctx.getClickLocation())
                     .withParameter(LootContextParams.TOOL, ctx.getItemInHand())

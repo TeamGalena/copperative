@@ -6,8 +6,8 @@ import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import org.jetbrains.annotations.NotNull;
 
 public class WeatheredCrank extends CrankBlock implements CWeatheringCopper {
@@ -15,7 +15,7 @@ public class WeatheredCrank extends CrankBlock implements CWeatheringCopper {
     private final WeatherState weatherState;
 
     public WeatheredCrank(WeatherState weatherState) {
-        super(Properties.of(Material.WOOD, MaterialColor.NONE).strength(0.6F, 0.6F).noCollission().noOcclusion());
+        super(Properties.of().mapColor(MapColor.NONE).pushReaction(PushReaction.DESTROY).strength(0.6F, 0.6F).noCollission().noOcclusion());
         this.weatherState = weatherState;
     }
 

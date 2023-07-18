@@ -20,11 +20,11 @@ import java.util.function.Supplier;
 public abstract class CItemModelProvider extends ItemModelProvider {
 
     public CItemModelProvider(DataGenerator gen, ExistingFileHelper help) {
-        super(gen, Copperative.MOD_ID, help);
+        this(gen, Copperative.MOD_ID, help);
     }
 
     public CItemModelProvider(DataGenerator gen, String target, ExistingFileHelper help) {
-        super(gen, target, help);
+        super(gen.getPackOutput(), target, help);
     }
 
     protected String blockName(Supplier<? extends Block> block) {

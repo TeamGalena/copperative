@@ -5,7 +5,7 @@ import galena.copperative.Copperative;
 import galena.copperative.config.CommonConfig;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesProvider;
+import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesGenerator;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicTexturePack;
 import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
 import net.minecraft.resources.ResourceLocation;
@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-public class DynamicCopperativeResourcePack extends DynClientResourcesProvider {
+public class DynamicCopperativeResourcePack extends DynClientResourcesGenerator {
 
     public static final String NAMESPACE = "overrides";
 

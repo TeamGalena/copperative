@@ -6,12 +6,9 @@ import galena.copperative.data.provider.CRecipeProvider;
 import galena.copperative.index.CBlocks;
 import galena.copperative.index.CConversions;
 import galena.copperative.index.CItems;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -23,7 +20,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.function.BiConsumer;
@@ -34,10 +30,10 @@ import static galena.copperative.Copperative.MOD_ID;
 public class CRecipes extends CRecipeProvider {
 
     protected static final TagKey<Item> COPPER_INGOT = Tags.Items.INGOTS_COPPER;
-    public static final TagKey<Item> COPPER_NUGGET = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("forge", "nuggets/copper"));
+    public static final TagKey<Item> COPPER_NUGGET = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "nuggets/copper"));
     protected static final TagKey<Item> REDSTONE_DUST = Tags.Items.DUSTS_REDSTONE;
 
-    protected static final TagKey<Item> SILVER_INGOT = TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("forge", "ingots/silver"));
+    protected static final TagKey<Item> SILVER_INGOT = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "ingots/silver"));
     protected static final Item REDSTONE_TORCH = Items.REDSTONE_TORCH;
 
     public CRecipes(DataGenerator gen) {
@@ -45,7 +41,7 @@ public class CRecipes extends CRecipeProvider {
     }
 
     @Override
-    protected void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
 
         compact(Items.COPPER_INGOT, CItems.COPPER_NUGGET.get()).save(consumer, "copper_ingot_from_nuggets");
         unCompact(CItems.COPPER_NUGGET.get(), Items.COPPER_INGOT).save(consumer);
@@ -64,42 +60,42 @@ public class CRecipes extends CRecipeProvider {
         var cutWaxedCopperSlabs = new Block[]{Blocks.WAXED_CUT_COPPER_SLAB, Blocks.WAXED_EXPOSED_CUT_COPPER_SLAB, Blocks.WAXED_WEATHERED_CUT_COPPER_SLAB, Blocks.WAXED_OXIDIZED_CUT_COPPER_SLAB};
 
         for (int i = 0; i < CBlocks.COPPER_PILLAR.size(); i++) {
-            ShapedRecipeBuilder.shaped(CBlocks.COPPER_PILLAR.get(i).get(), 2)
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, CBlocks.COPPER_PILLAR.get(i).get(), 2)
                     .pattern("A")
                     .pattern("A")
                     .define('A', cutCopper[i])
                     .unlockedBy("has_cut_copper", has(cutCopper[i]))
                     .save(consumer);
 
-            ShapedRecipeBuilder.shaped(CBlocks.WAXED_COPPER_PILLAR.get(i).get(), 2)
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, CBlocks.WAXED_COPPER_PILLAR.get(i).get(), 2)
                     .pattern("A")
                     .pattern("A")
                     .define('A', cutWaxedCopper[i])
                     .unlockedBy("has_cut_copper", has(cutWaxedCopper[i]))
                     .save(consumer);
 
-            ShapedRecipeBuilder.shaped(CBlocks.COPPER_BRICKS.get(i).get(), 4)
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, CBlocks.COPPER_BRICKS.get(i).get(), 4)
                     .pattern("AA")
                     .pattern("AA")
                     .define('A', cutCopper[i])
                     .unlockedBy("has_cut_copper", has(cutCopper[i]))
                     .save(consumer);
 
-            ShapedRecipeBuilder.shaped(CBlocks.WAXED_COPPER_BRICKS.get(i).get(), 4)
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, CBlocks.WAXED_COPPER_BRICKS.get(i).get(), 4)
                     .pattern("AA")
                     .pattern("AA")
                     .define('A', cutWaxedCopper[i])
                     .unlockedBy("has_cut_copper", has(cutWaxedCopper[i]))
                     .save(consumer);
 
-            ShapedRecipeBuilder.shaped(CBlocks.COPPER_TILES.get(i).get())
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, CBlocks.COPPER_TILES.get(i).get())
                     .pattern("A")
                     .pattern("A")
                     .define('A', cutCopperSlabs[i])
                     .unlockedBy("has_cut_copper", has(cutCopperSlabs[i]))
                     .save(consumer);
 
-            ShapedRecipeBuilder.shaped(CBlocks.WAXED_COPPER_TILES.get(i).get())
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, CBlocks.WAXED_COPPER_TILES.get(i).get())
                     .pattern("A")
                     .pattern("A")
                     .define('A', cutWaxedCopperSlabs[i])
@@ -107,7 +103,7 @@ public class CRecipes extends CRecipeProvider {
                     .save(consumer);
         }
 
-        ShapedRecipeBuilder.shaped(CBlocks.TOGGLER.get(0).get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, CBlocks.TOGGLER.get(0).get())
                 .pattern(" A ")
                 .pattern("BAB")
                 .pattern("CCC")
@@ -117,7 +113,7 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_amethyst_shard", has(Items.AMETHYST_SHARD))
                 .save(consumer);
 
-        ShapedRecipeBuilder.shaped(CBlocks.HEADLIGHT.get(0).get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, CBlocks.HEADLIGHT.get(0).get())
                 .pattern("CBC")
                 .pattern(" A ")
                 .pattern(" A ")
@@ -132,7 +128,7 @@ public class CRecipes extends CRecipeProvider {
             var unwaxed = entry.getKey();
             var waxed = entry.getValue();
             var id = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(waxed));
-            ShapelessRecipeBuilder.shapeless(waxed)
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, waxed)
                     .requires(unwaxed)
                     .requires(Items.HONEYCOMB)
                     .unlockedBy("has_unwaxed", has(unwaxed))
@@ -144,7 +140,7 @@ public class CRecipes extends CRecipeProvider {
             var weathered = entry.getValue();
             var id = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(weathered));
 
-            var recipe = ShapelessRecipeBuilder.shapeless(weathered)
+            var recipe = ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, weathered)
                     .requires(unweathered)
                     .requires(CItems.PATINA.get())
                     .unlockedBy("has_unweathered", has(unweathered))
@@ -158,7 +154,7 @@ public class CRecipes extends CRecipeProvider {
             }
         });
 
-        ShapedRecipeBuilder.shaped(Items.PRISMARINE_SHARD)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.PRISMARINE_SHARD)
                 .pattern("AA ")
                 .pattern("ABA")
                 .pattern(" AA")
@@ -168,7 +164,7 @@ public class CRecipes extends CRecipeProvider {
                 .group("prismarine_shard")
                 .save(consumer, new ResourceLocation(MOD_ID, "prismarine_shard_from_clay"));
 
-        ShapedRecipeBuilder.shaped(Items.PRISMARINE_SHARD)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.PRISMARINE_SHARD)
                 .pattern(" AA")
                 .pattern("ABA")
                 .pattern("AA ")
@@ -178,7 +174,7 @@ public class CRecipes extends CRecipeProvider {
                 .group("prismarine_shard")
                 .save(consumer, new ResourceLocation(MOD_ID, "prismarine_shard_from_clay_mirrored"));
 
-        ShapelessRecipeBuilder.shapeless(Items.PRISMARINE_CRYSTALS)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.PRISMARINE_CRYSTALS)
                 .requires(Items.GLOW_INK_SAC)
                 .requires(CItems.PATINA.get())
                 .requires(CItems.PATINA.get())
@@ -187,7 +183,7 @@ public class CRecipes extends CRecipeProvider {
                 .group("prismarine_crystals")
                 .save(consumer, new ResourceLocation(MOD_ID, "prismarine_crystals_from_glow_ink"));
 
-        ShapelessRecipeBuilder.shapeless(Items.PRISMARINE_CRYSTALS)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.PRISMARINE_CRYSTALS)
                 .requires(CItems.PATINA.get())
                 .requires(Items.GLOWSTONE_DUST)
                 .requires(Items.GLOWSTONE_DUST)
@@ -198,7 +194,7 @@ public class CRecipes extends CRecipeProvider {
     }
 
     public static void registerOverrides(BiConsumer<FinishedRecipe, ItemLike> consumer) {
-        ShapedRecipeBuilder.shaped(Blocks.REPEATER)
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.REPEATER)
                 .pattern("ABA")
                 .pattern("CCC")
                 .define('A', REDSTONE_TORCH)
@@ -208,7 +204,7 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(it -> consumer.accept(it, Blocks.REPEATER));
 
-        ShapedRecipeBuilder.shaped(Blocks.COMPARATOR)
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.COMPARATOR)
                 .pattern(" A ")
                 .pattern("ABA")
                 .pattern("CCC")
@@ -219,7 +215,7 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(it -> consumer.accept(it, Blocks.COMPARATOR));
 
-        ShapedRecipeBuilder.shaped(Blocks.PISTON)
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.PISTON)
                 .pattern("AAA")
                 .pattern("BCB")
                 .pattern("BDB")
@@ -230,7 +226,7 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(it -> consumer.accept(it, Blocks.PISTON));
 
-        ShapedRecipeBuilder.shaped(Blocks.OBSERVER)
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.OBSERVER)
                 .pattern("AAA")
                 .pattern("BBC")
                 .pattern("AAA")
@@ -240,7 +236,7 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(it -> consumer.accept(it, Blocks.OBSERVER));
 
-        ShapedRecipeBuilder.shaped(Blocks.DISPENSER)
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.DISPENSER)
                 .pattern("AAA")
                 .pattern("ABA")
                 .pattern("ACA")
@@ -250,7 +246,7 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(it -> consumer.accept(it, Blocks.DISPENSER));
 
-        ShapedRecipeBuilder.shaped(Blocks.DROPPER)
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.DROPPER)
                 .pattern("AAA")
                 .pattern("A A")
                 .pattern("ABA")
@@ -259,7 +255,7 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(it -> consumer.accept(it, Blocks.DROPPER));
 
-        ShapedRecipeBuilder.shaped(Blocks.LEVER)
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.LEVER)
                 .pattern("C")
                 .pattern("A")
                 .pattern("B")
@@ -269,7 +265,7 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(it -> consumer.accept(it, Blocks.LEVER));
 
-        ShapedRecipeBuilder.shaped(Blocks.POWERED_RAIL, 6)
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Blocks.POWERED_RAIL, 6)
                 .pattern("A A")
                 .pattern("ABA")
                 .pattern("ACA")
@@ -279,7 +275,7 @@ public class CRecipes extends CRecipeProvider {
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                 .save(it -> consumer.accept(it, Blocks.POWERED_RAIL));
 
-        ShapedRecipeBuilder.shaped(Items.SPYGLASS)
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Items.SPYGLASS)
                 .pattern("BCB")
                 .pattern(" A ")
                 .pattern(" A ")
@@ -290,7 +286,7 @@ public class CRecipes extends CRecipeProvider {
                 .save(it -> consumer.accept(it, Items.SPYGLASS));
 
         CBlocks.EXPOSERS.unaffected().ifPresent(block ->
-                ShapedRecipeBuilder.shaped(block.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, block.get())
                         .pattern("AAA")
                         .pattern("BBC")
                         .pattern("AAA")
@@ -302,7 +298,7 @@ public class CRecipes extends CRecipeProvider {
         );
 
         CBlocks.RELAYERS.unaffected().ifPresent(block ->
-                ShapedRecipeBuilder.shaped(block.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, block.get())
                         .pattern("AAA")
                         .pattern("BBC")
                         .pattern("AAA")
@@ -314,7 +310,7 @@ public class CRecipes extends CRecipeProvider {
         );
 
         CBlocks.CRANKS.unaffected().ifPresent(block ->
-                ShapedRecipeBuilder.shaped(block.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, block.get())
                         .pattern(" C ")
                         .pattern(" A ")
                         .pattern("BBB")
@@ -326,7 +322,7 @@ public class CRecipes extends CRecipeProvider {
         );
 
         CBlocks.RANDOMIZERS.unaffected().ifPresent(block ->
-                ShapedRecipeBuilder.shaped(block.get())
+                ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, block.get())
                         .pattern(" A ")
                         .pattern("ABA")
                         .pattern("CCC")

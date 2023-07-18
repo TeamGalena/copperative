@@ -8,8 +8,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-import java.io.IOException;
 import java.nio.file.Path;
+import java.util.concurrent.CompletableFuture;
 
 public class CBlockStateOverwrites extends CBlockStateProvider {
 
@@ -37,8 +37,8 @@ public class CBlockStateOverwrites extends CBlockStateProvider {
     }
 
     @Override
-    public void run(CachedOutput cache) throws IOException {
-        super.run((path, bytes, hash) -> {
+    public CompletableFuture<?> run(CachedOutput cache) {
+        return super.run((path, bytes, hash) -> {
             var newPath = DynamicCopperativeResourcePack.OVERRIDDEN_NAMESPACES.stream().reduce(path.toString(), (it, namespace) ->
                     it.replace(namespace + "\\blockstates", DynamicCopperativeResourcePack.NAMESPACE + "\\blockstates")
             );

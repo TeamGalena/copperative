@@ -1,55 +1,30 @@
 package galena.copperative.content.block;
 
+import galena.copperative.index.CBlocks;
 import galena.copperative.index.CConversions;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 public class AbstractCopperDoorBlock extends DoorBlock {
 
-    private final boolean canBeUsedByPlayers;
-
-    public static boolean canBeUsedByPlayers(WeatheringCopper.WeatherState state) {
+    public static BlockSetType blockSetFor(WeatheringCopper.WeatherState state) {
         return switch (state) {
-            case UNAFFECTED, EXPOSED -> true;
-            default -> false;
+            case UNAFFECTED, EXPOSED -> CBlocks.COPPER_BLOCK_SET;
+            default -> CBlocks.WEATHERED_COPPER_BLOCK_SET;
         };
     }
 
-    public AbstractCopperDoorBlock(Properties properties, boolean canBeUsedByPlayers) {
-        super(properties);
-        this.canBeUsedByPlayers = canBeUsedByPlayers;
-    }
-
-    private int getCloseSound() {
-        return 1011;
-    }
-
-    private int getOpenSound() {
-        return 1005;
-    }
-
-    @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (!canBeUsedByPlayers) return InteractionResult.PASS;
-        state = state.cycle(OPEN);
-        world.setBlock(pos, state, 10);
-        world.levelEvent(player, state.getValue(OPEN) ? this.getOpenSound() : this.getCloseSound(), pos, 0);
-        world.gameEvent(player, this.isOpen(state) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
-        return InteractionResult.sidedSuccess(world.isClientSide);
+    public AbstractCopperDoorBlock(Properties properties, BlockSetType blockSetType) {
+        super(properties, blockSetType);
     }
 
     @Override

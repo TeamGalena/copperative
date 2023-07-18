@@ -8,6 +8,7 @@ import galena.copperative.data.*;
 import galena.copperative.index.CBlocks;
 import galena.copperative.index.CItems;
 import galena.copperative.index.CLootInjects;
+import galena.copperative.index.CTabs;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.crafting.CraftingHelper;
@@ -55,6 +56,8 @@ public class Copperative {
         for (DeferredRegister<?> register : registers) {
             register.register(modEventBus);
         }
+
+        modEventBus.addListener(CTabs::addCreativeTabs);
     }
 
     private void setup(FMLCommonSetupEvent event) {
@@ -79,7 +82,7 @@ public class Copperative {
         if (event.includeServer()) {
             generator.addProvider(true, new CRecipes(generator));
             generator.addProvider(true, new CLoot(generator));
-            CTags.register(generator, helper);
+            CTags.register(generator, event.getLookupProvider(), helper);
             //generator.addProvider(true, new OLootTables(generator));
             //OBlockTags blockTags = new OBlockTags(generator, helper);
             //generator.addProvider(true, blockTags);

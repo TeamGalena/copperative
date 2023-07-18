@@ -1,8 +1,8 @@
 package galena.copperative.data.provider;
 
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -15,16 +15,14 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.*;
+import java.util.*;
+import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 public abstract class CLootProvider extends LootTableProvider {
 
     protected CLootProvider(DataGenerator gen) {
-        super(gen);
+        super(gen.getPackOutput(), Set.of(), List.of());
     }
 
     @Override
@@ -34,14 +32,18 @@ public abstract class CLootProvider extends LootTableProvider {
 
     private final List<BuiltLootTable> lootTables = new ArrayList<>();
 
+    public List<BuiltLootTable> getLootTables() {
+        return lootTables;
+    }
+
     @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
+    public List<LootTableProvider.SubProviderEntry> getTables() {
         registerTables((id, lootBuilder, contextSet) -> lootTables.add(new BuiltLootTable(id, lootBuilder, contextSet)));
         return lootTables.stream().map(table -> {
-            Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>> supplier = () -> event -> {
+            Supplier<LootTableSubProvider> supplier = () -> event -> {
                 event.accept(table.id, table.lootBuilder);
             };
-            return new Pair<>(supplier, table.set);
+            return new LootTableProvider.SubProviderEntry(supplier, table.set);
         }).toList();
     }
 

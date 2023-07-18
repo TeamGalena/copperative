@@ -7,6 +7,8 @@ import galena.copperative.Copperative;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
@@ -18,22 +20,21 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public abstract class CLangProvider implements DataProvider {
 
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().setLenient().create();
     private final Map<String, String> data = new TreeMap<>();
-    private final DataGenerator gen;
+    private final PackOutput.PathProvider output;
     private final String modid;
     private final String locale;
 
     public CLangProvider(DataGenerator gen, String locale) {
-        this.gen = gen;
+        this.output = gen.getPackOutput().createPathProvider(PackOutput.Target.RESOURCE_PACK, "assets");
         this.modid = Copperative.MOD_ID;
         this.locale = locale;
     }
@@ -41,10 +42,11 @@ public abstract class CLangProvider implements DataProvider {
     protected abstract void addTranslations();
 
     @Override
-    public void run(CachedOutput cache) throws IOException {
+    public CompletableFuture<?> run(CachedOutput cache) {
         addTranslations();
         if (!data.isEmpty())
-            save(cache, data, this.gen.getOutputFolder().resolve("assets/" + modid + "/lang/" + locale + ".json"));
+            return save(cache, data, new ResourceLocation(modid, "/lang/" + locale));
+        return CompletableFuture.allOf();
     }
 
     @Override
@@ -52,13 +54,13 @@ public abstract class CLangProvider implements DataProvider {
         return "Languages: " + locale;
     }
 
-    private void save(CachedOutput cache, Map<String, String> data, Path target) throws IOException {
+    private CompletableFuture<?> save(CachedOutput cache, Map<String, String> data, ResourceLocation target) {
         JsonObject json = new JsonObject();
         for (Map.Entry<String, String> pair : data.entrySet()) {
             json.addProperty(pair.getKey(), pair.getValue());
         }
 
-        DataProvider.saveStable(cache, json, target);
+        return DataProvider.saveStable(cache, json, output.json(target));
     }
 
     public void addBlock(Supplier<? extends Block> key, String name) {

@@ -2,16 +2,20 @@ package galena.copperative.data;
 
 import galena.copperative.Copperative;
 import galena.copperative.index.CItems;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -19,20 +23,21 @@ import static galena.copperative.index.CBlocks.*;
 
 public class CTags {
 
-    public static void register(DataGenerator generator, @Nullable ExistingFileHelper existingFileHelper) {
-        var blockTags = new CBlockTags(generator, existingFileHelper);
+    public static void register(DataGenerator generator, CompletableFuture<HolderLookup.Provider> lookup, @Nullable ExistingFileHelper existingFileHelper) {
+        var output = generator.getPackOutput();
+        var blockTags = new CBlockTags(output, lookup, existingFileHelper);
         generator.addProvider(true, blockTags);
-        generator.addProvider(true, new CItemTags(generator, blockTags, existingFileHelper));
+        generator.addProvider(true, new CItemTags(output, lookup, blockTags.contentsGetter(), existingFileHelper));
     }
 
     private static class CItemTags extends ItemTagsProvider {
 
-        private CItemTags(DataGenerator generator, BlockTagsProvider blockTags, @Nullable ExistingFileHelper existingFileHelper) {
-            super(generator, blockTags, Copperative.MOD_ID, existingFileHelper);
+        public CItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup, CompletableFuture<TagLookup<Block>> blockTags, @Nullable ExistingFileHelper helper) {
+            super(output, lookup, blockTags, Copperative.MOD_ID, helper);
         }
 
         @Override
-        protected void addTags() {
+        protected void addTags(HolderLookup.Provider lookup) {
             copy(BlockTags.RAILS, ItemTags.RAILS);
             copy(BlockTags.DOORS, ItemTags.DOORS);
             copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
@@ -45,8 +50,8 @@ public class CTags {
 
     private static class CBlockTags extends BlockTagsProvider {
 
-        private CBlockTags(DataGenerator generator, @Nullable ExistingFileHelper helper) {
-            super(generator, Copperative.MOD_ID, helper);
+        private CBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup, @Nullable ExistingFileHelper helper) {
+            super(output, lookup, Copperative.MOD_ID, helper);
         }
 
         @Override
@@ -55,7 +60,7 @@ public class CTags {
         }
 
         @Override
-        protected void addTags() {
+        protected void addTags(HolderLookup.Provider lookup) {
             // Vanilla
             tag(BlockTags.RAILS).add(
                     EXPOSED_POWERED_RAIL.get(),

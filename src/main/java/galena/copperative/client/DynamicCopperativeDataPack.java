@@ -4,7 +4,7 @@ import com.google.common.base.Preconditions;
 import galena.copperative.Copperative;
 import galena.copperative.config.CommonConfig;
 import galena.copperative.data.CRecipes;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynServerResourcesProvider;
+import net.mehvahdjukaar.moonlight.api.resources.pack.DynServerResourcesGenerator;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DynamicCopperativeDataPack extends DynServerResourcesProvider {
+public class DynamicCopperativeDataPack extends DynServerResourcesGenerator {
 
     public static final DynamicCopperativeDataPack INSTANCE = new DynamicCopperativeDataPack();
 

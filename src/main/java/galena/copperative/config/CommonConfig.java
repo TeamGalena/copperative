@@ -4,9 +4,7 @@ import com.google.common.base.Suppliers;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import galena.copperative.Copperative;
-import galena.copperative.content.block.compat.WeatheredRandomizer;
 import galena.copperative.index.CConversions;
-import galena.oreganized.index.OBlocks;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigType;
 import net.minecraft.resources.ResourceLocation;
@@ -57,7 +55,7 @@ public class CommonConfig {
         ).forEach(it -> builder.add(new ResourceLocation(it)));
 
         if (ModList.get().isLoaded("oreganized")) {
-            builder.add(OBlocks.EXPOSER.getId());
+            //builder.add(OBlocks.EXPOSER.getId());
         }
 
         if (ModList.get().isLoaded("supplementaries")) {
@@ -67,7 +65,7 @@ public class CommonConfig {
         }
 
         if (ModList.get().isLoaded("quark")) {
-            builder.add(WeatheredRandomizer.UNAFFECTED_ID);
+            //builder.add(WeatheredRandomizer.UNAFFECTED_ID);
         }
 
         return builder.build();

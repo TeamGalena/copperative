@@ -4,9 +4,7 @@ import galena.copperative.Copperative;
 import galena.copperative.content.block.HeadLightBlock;
 import galena.copperative.content.block.TogglerBlock;
 import galena.copperative.content.block.weatheringvanilla.WeatheringPistonBlock;
-import galena.oreganized.content.block.ExposerBlock;
 import io.netty.util.collection.IntObjectHashMap;
-import net.mehvahdjukaar.moonlight.api.util.math.Vec2i;
 import net.mehvahdjukaar.supplementaries.common.block.blocks.CogBlock;
 import net.mehvahdjukaar.supplementaries.common.block.blocks.CrankBlock;
 import net.minecraft.core.Direction;
@@ -22,8 +20,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import vazkii.quark.content.automation.base.RandomizerPowerState;
-import vazkii.quark.content.automation.block.RedstoneRandomizerBlock;
+import org.joml.Vector2i;
 
 import java.util.List;
 import java.util.Locale;
@@ -34,7 +31,7 @@ import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOL
 public abstract class CBlockStateProvider extends BlockStateProvider {
 
     public CBlockStateProvider(DataGenerator gen, ExistingFileHelper help) {
-        super(gen, Copperative.MOD_ID, help);
+        super(gen.getPackOutput(), Copperative.MOD_ID, help);
     }
 
     protected ResourceLocation texture(String name) {
@@ -410,6 +407,9 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
     }
 
     public void exposer(Supplier<? extends Block> block) {
+        throw new UnsupportedOperationException();
+
+        /*
         getVariantBuilder(block.get()).forAllStates(state -> {
             var level = Math.round((ExposerBlock.TexturedFrames - 1) / (float) (state.getValue(ExposerBlock.LEVEL) + 1));
             var facing = state.getValue(DirectionalBlock.FACING);
@@ -437,15 +437,16 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
 
             return ConfiguredModel.builder().modelFile(model).rotationX(x).rotationY(y).build();
         });
+        */
     }
 
-    private Vec2i rotation(Direction facing) {
-        if (facing == Direction.EAST) return new Vec2i(0, 90);
-        if (facing == Direction.SOUTH) return new Vec2i(0, 180);
-        if (facing == Direction.WEST) return new Vec2i(0, 270);
-        if (facing == Direction.DOWN) return new Vec2i(90, 0);
-        if (facing == Direction.UP) return new Vec2i(270, 0);
-        return new Vec2i(0, 0);
+    private Vector2i rotation(Direction facing) {
+        if (facing == Direction.EAST) return new Vector2i(0, 90);
+        if (facing == Direction.SOUTH) return new Vector2i(0, 180);
+        if (facing == Direction.WEST) return new Vector2i(0, 270);
+        if (facing == Direction.DOWN) return new Vector2i(90, 0);
+        if (facing == Direction.UP) return new Vector2i(270, 0);
+        return new Vector2i(0, 0);
     }
 
     public void relayer(Supplier<? extends Block> block) {
@@ -514,6 +515,9 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
     }
 
     public void randomizer(Supplier<? extends Block> block) {
+        throw new UnsupportedOperationException();
+
+        /*
         getVariantBuilder(block.get()).forAllStatesExcept(state -> {
             RandomizerPowerState powered = state.getValue(RedstoneRandomizerBlock.POWERED);
             var facing = state.getValue(RedstoneRandomizerBlock.FACING);
@@ -532,5 +536,6 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
                     .texture("top", name + suffix);
             return ConfiguredModel.builder().modelFile(model).rotationX(rotation.x()).rotationY(rotation.y() + 180).build();
         }, BlockStateProperties.POWER);
+         */
     }
 }

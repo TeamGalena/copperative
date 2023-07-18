@@ -9,6 +9,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,8 +20,8 @@ public class CopperDoorBlock extends AbstractCopperDoorBlock implements CWeather
 
     private final WeatherState weatherState;
 
-    public CopperDoorBlock(WeatherState weatherState, Properties properties, boolean canBeUsedByPlayers) {
-        super(properties, canBeUsedByPlayers);
+    public CopperDoorBlock(WeatherState weatherState, Properties properties, BlockSetType blockSetType) {
+        super(properties, blockSetType);
         this.weatherState = weatherState;
     }
 
