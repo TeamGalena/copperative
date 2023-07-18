@@ -23,9 +23,4 @@ public class WeatheringComparatorBlock extends ComparatorBlock implements CWeath
     public WeatherState getAge() {
         return this.weatherState;
     }
-
-    @Override
-    public void fillItemCategory(@NotNull CreativeModeTab tab, @NotNull NonNullList<ItemStack> items) {
-        insert(this, false, items, itemStack -> itemStack.getItem().equals(Items.COMPARATOR), true);
-    }
 }

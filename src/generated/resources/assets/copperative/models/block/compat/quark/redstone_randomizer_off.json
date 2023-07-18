@@ -1,8 +1,0 @@
-{
-  "parent": "quark:block/randomizer_off",
-  "textures": {
-    "particle": "copperative:block/compat/quark/redstone_randomizer_off",
-    "slab": "copperative:block/compat/quark/redstone_randomizer_off",
-    "top": "copperative:block/compat/quark/redstone_randomizer_off"
-  }
-}

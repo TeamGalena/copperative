@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "redstone",
   "key": {
     "A": {
       "tag": "forge:ingots/copper"
@@ -18,5 +19,6 @@
   ],
   "result": {
     "item": "copperative:headlight"
-  }
+  },
+  "show_notification": true
 }

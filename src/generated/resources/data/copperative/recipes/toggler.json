@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "redstone",
   "key": {
     "A": {
       "item": "minecraft:amethyst_shard"
@@ -18,5 +19,6 @@
   ],
   "result": {
     "item": "copperative:toggler"
-  }
+  },
+  "show_notification": true
 }

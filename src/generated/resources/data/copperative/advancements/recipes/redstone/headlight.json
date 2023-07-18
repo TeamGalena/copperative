@@ -43,5 +43,6 @@
     "recipes": [
       "copperative:headlight"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

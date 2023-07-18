@@ -8,6 +8,7 @@ import galena.copperative.content.block.compat.WeatheredRelayer;
 import galena.copperative.content.block.tile.HeadlightTile;
 import galena.copperative.content.block.weatheringvanilla.*;
 import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
@@ -21,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
@@ -37,8 +37,8 @@ public class CBlocks {
     public static final ResourceKey<CreativeModeTab> TRANSPORT = CreativeModeTabs.REDSTONE_BLOCKS;
     public static final ResourceKey<CreativeModeTab> BUILDING = CreativeModeTabs.BUILDING_BLOCKS;
 
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Copperative.MOD_ID);
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Copperative.MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registries.BLOCK, Copperative.MOD_ID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, Copperative.MOD_ID);
 
     public static final RegistryObject<SpotLightBlock> SPOT_LIGHT = register("spot_light", () -> new SpotLightBlock(Properties.of().noCollission().noLootTable().noOcclusion().lightLevel(SpotLightBlock.LIGHT_EMISSION)));
 
@@ -135,10 +135,10 @@ public class CBlocks {
     public static final CopperSet<Block> RANDOMIZERS = CopperSet.empty();
 
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> block, ResourceKey<CreativeModeTab> tab) {
-        RegistryObject<B> blocks = BLOCKS.register(name, block);
-        CItems.ITEMS.register(name, () -> new BlockItem(blocks.get(), new Item.Properties()));
-        CTabs.addToTab(block, tab);
-        return blocks;
+        RegistryObject<B> supplier = BLOCKS.register(name, block);
+        CItems.ITEMS.register(name, () -> new BlockItem(supplier.get(), new Item.Properties()));
+        CTabs.addToTab(supplier, tab);
+        return supplier;
     }
 
     public static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends B> block) {

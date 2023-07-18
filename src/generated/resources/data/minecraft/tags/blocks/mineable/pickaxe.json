@@ -74,22 +74,6 @@
     "copperative:waxed_weathered_copper_trapdoor",
     "copperative:waxed_oxidized_copper_trapdoor",
     {
-      "id": "oreganized:exposer",
-      "required": false
-    },
-    {
-      "id": "copperative:exposed_exposer",
-      "required": false
-    },
-    {
-      "id": "copperative:weathered_exposer",
-      "required": false
-    },
-    {
-      "id": "copperative:oxidized_exposer",
-      "required": false
-    },
-    {
       "id": "supplementaries:relayer",
       "required": false
     },
@@ -135,22 +119,6 @@
     },
     {
       "id": "copperative:oxidized_cog_block",
-      "required": false
-    },
-    {
-      "id": "quark:redstone_randomizer",
-      "required": false
-    },
-    {
-      "id": "copperative:exposed_randomizer",
-      "required": false
-    },
-    {
-      "id": "copperative:weathered_randomizer",
-      "required": false
-    },
-    {
-      "id": "copperative:oxidized_randomizer",
       "required": false
     }
   ]

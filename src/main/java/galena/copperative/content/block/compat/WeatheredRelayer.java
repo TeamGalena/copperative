@@ -24,9 +24,4 @@ public class WeatheredRelayer extends RelayerBlock implements CWeatheringCopper 
         return weatherState;
     }
 
-    @Override
-    public void fillItemCategory(@NotNull CreativeModeTab tab, @NotNull NonNullList<ItemStack> items) {
-        insert(this, false, items, itemStack -> itemStack.is(ModRegistry.RELAYER.get().asItem()), true);
-    }
-
 }

@@ -23,9 +23,4 @@ public class WeatheredCogBlock extends CogBlock implements CWeatheringCopper {
     public WeatherState getAge() {
         return weatherState;
     }
-
-    @Override
-    public void fillItemCategory(@NotNull CreativeModeTab tab, @NotNull NonNullList<ItemStack> items) {
-        insert(this, false, items, itemStack -> itemStack.is(ModRegistry.COG_BLOCK.get().asItem()), true);
-    }
 }

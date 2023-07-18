@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "building",
   "key": {
     "A": {
       "item": "minecraft:waxed_cut_copper"
@@ -12,5 +13,6 @@
   "result": {
     "count": 4,
     "item": "copperative:waxed_copper_bricks"
-  }
+  },
+  "show_notification": true
 }

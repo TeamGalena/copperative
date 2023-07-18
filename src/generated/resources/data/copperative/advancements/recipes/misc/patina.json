@@ -30,5 +30,6 @@
     "recipes": [
       "copperative:patina"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

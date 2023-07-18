@@ -170,7 +170,7 @@ tasks.withType(ProcessResources) {
     // this will ensure that this task is redone when the versions change.
     inputs.property("version", project.version)
 
-    filesMatching(["mods.toml", "pack.mcmeta"]) {
+    filesMatching(["META-INF/mods.toml", "pack.mcmeta"]) {
         expand([
                 "mod_version": project.version,
                 "mod_id"     : project.mod_id,

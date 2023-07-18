@@ -2,13 +2,8 @@ package galena.copperative.content.block.compat;
 
 import galena.copperative.content.block.CWeatheringCopper;
 import net.mehvahdjukaar.supplementaries.common.block.blocks.CrankBlock;
-import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
-import net.minecraft.core.NonNullList;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import org.jetbrains.annotations.NotNull;
 
 public class WeatheredCrank extends CrankBlock implements CWeatheringCopper {
 
@@ -22,11 +17,6 @@ public class WeatheredCrank extends CrankBlock implements CWeatheringCopper {
     @Override
     public WeatherState getAge() {
         return weatherState;
-    }
-
-    @Override
-    public void fillItemCategory(@NotNull CreativeModeTab tab, @NotNull NonNullList<ItemStack> items) {
-        insert(this, false, items, itemStack -> itemStack.is(ModRegistry.CRANK.get().asItem()), true);
     }
 
 }

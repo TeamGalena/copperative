@@ -34,7 +34,7 @@ public abstract class CLangProvider implements DataProvider {
     private final String locale;
 
     public CLangProvider(DataGenerator gen, String locale) {
-        this.output = gen.getPackOutput().createPathProvider(PackOutput.Target.RESOURCE_PACK, "assets");
+        this.output = gen.getPackOutput().createPathProvider(PackOutput.Target.RESOURCE_PACK, "lang");
         this.modid = Copperative.MOD_ID;
         this.locale = locale;
     }
@@ -45,7 +45,7 @@ public abstract class CLangProvider implements DataProvider {
     public CompletableFuture<?> run(CachedOutput cache) {
         addTranslations();
         if (!data.isEmpty())
-            return save(cache, data, new ResourceLocation(modid, "/lang/" + locale));
+            return save(cache, data, new ResourceLocation(modid, locale));
         return CompletableFuture.allOf();
     }
 

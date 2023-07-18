@@ -30,5 +30,6 @@
     "recipes": [
       "copperative:prismarine_crystals_from_glow_ink"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

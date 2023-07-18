@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "copperative:waxed_copper_bricks_from_honeycomb"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_unwaxed": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "copperative:copper_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_unwaxed",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "copperative:waxed_copper_bricks_from_honeycomb"
+    ]
+  },
+  "sends_telemetry_event": false
+}

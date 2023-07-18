@@ -25,9 +25,4 @@ public class WeatheringRepeaterBlock extends RepeaterBlock implements CWeatherin
     public WeatherState getAge() {
         return this.weatherState;
     }
-
-    @Override
-    public void fillItemCategory(@NotNull CreativeModeTab tab, @NotNull NonNullList<ItemStack> items) {
-        insert(this, false, items, itemStack -> itemStack.getItem().equals(Items.REPEATER), true);
-    }
 }

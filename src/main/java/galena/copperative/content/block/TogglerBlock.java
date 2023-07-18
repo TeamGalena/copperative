@@ -113,9 +113,4 @@ public class TogglerBlock extends DiodeBlock implements CWeatheringCopper {
     public @NotNull WeatherState getAge() {
         return weatherState;
     }
-
-    @Override
-    public void fillItemCategory(@NotNull CreativeModeTab tab, @NotNull NonNullList<ItemStack> items) {
-        insert(this, false, items, itemStack -> itemStack.getItem().equals(CBlocks.OXIDIZED_COMPARATOR.get().asItem()), false);
-    }
 }
