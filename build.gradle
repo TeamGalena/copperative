@@ -165,3 +165,17 @@ publishing {
 tasks.withType(GenerateModuleMetadata) {
     enabled = false
 }
+
+tasks.withType(ProcessResources) {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property("version", project.version)
+
+    filesMatching(["META-INF/mods.toml", "pack.mcmeta"]) {
+        expand([
+                "mod_version": project.version,
+                "mod_id"     : project.mod_id,
+                "mod_name"   : project.mod_name,
+                "mod_author" : project.mod_author,
+        ])
+    }
+}
