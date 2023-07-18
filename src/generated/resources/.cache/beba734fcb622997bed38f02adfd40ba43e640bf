@@ -1,7 +1,8 @@
-// 1.19.2	2023-07-15T17:15:19.4160068	Copperative Item Model Overrides
+// 1.19.2	2023-07-17T10:34:35.7114151	Copperative Item Model Overrides
 4a352102844139144ee51e9010313e92cfeb7a96 assets/overrides/models/item/comparator.json
 07eb42f5c7a00a0c7460e4d3dac342d9c5490a21 assets/overrides/models/item/crank.json
 0e15c52fb9ec897bb593697d95882d94d2e63f68 assets/overrides/models/item/dispenser.json
+e251b147ee2d7d434eaab86f42bacc9654b134c3 assets/overrides/models/item/dispenser_minecart.json
 96b8b5481d16cfda0b70fbe49912e93b6a677b73 assets/overrides/models/item/dropper.json
 fbf9975ebada62ae868eda5ed876a9ad146b8047 assets/overrides/models/item/exposer.json
 0a4afc2f542895e64f41fce6493ca0ca99cbdf50 assets/overrides/models/item/lever.json

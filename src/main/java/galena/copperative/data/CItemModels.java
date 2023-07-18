@@ -6,6 +6,7 @@ import galena.copperative.client.DynamicCopperativeResourcePack;
 import galena.copperative.data.provider.CItemModelProvider;
 import galena.copperative.index.CBlocks;
 import galena.copperative.index.CItems;
+import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
@@ -120,6 +121,7 @@ public class CItemModels extends CItemModelProvider {
             CBlocks.RELAYERS.unaffected().map(Supplier::get).ifPresent(it -> compatBlock(it, "supplementaries", "relayer_off"));
             CBlocks.CRANKS.unaffected().map(Supplier::get).ifPresent(this::crank);
             CBlocks.RANDOMIZERS.unaffected().map(Supplier::get).ifPresent(it -> compatItem(it, "quark", "randomizer"));
+            compatItem(ModRegistry.DISPENSER_MINECART_ITEM.get(), "supplementaries", "dispenser_minecart");
         }
 
         public ItemModelBuilder block(Block block) {

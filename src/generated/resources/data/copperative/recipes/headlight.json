@@ -5,16 +5,16 @@
       "tag": "forge:ingots/copper"
     },
     "B": {
-      "item": "minecraft:spyglass"
+      "item": "minecraft:amethyst_shard"
     },
     "C": {
       "item": "minecraft:redstone_lamp"
     }
   },
   "pattern": [
-    "AAA",
-    "ABA",
-    "ACA"
+    "CBC",
+    " A ",
+    " A "
   ],
   "result": {
     "item": "copperative:headlight"

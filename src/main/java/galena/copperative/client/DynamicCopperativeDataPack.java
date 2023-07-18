@@ -10,7 +10,8 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.Logger;
 
@@ -23,8 +24,9 @@ public class DynamicCopperativeDataPack extends DynServerResourcesProvider {
 
     private final Map<ResourceLocation, FinishedRecipe> recipes = new HashMap<>();
 
-    private void registerOverride(FinishedRecipe recipe) {
-        recipes.put(recipe.getId(), recipe);
+    private void registerOverride(FinishedRecipe recipe, ItemLike item) {
+        var id = Preconditions.checkNotNull(ForgeRegistries.ITEMS.getKey(item.asItem()));
+        recipes.put(id, recipe);
     }
 
     private DynamicCopperativeDataPack() {
@@ -49,10 +51,11 @@ public class DynamicCopperativeDataPack extends DynServerResourcesProvider {
         }
 
         CommonConfig.getOverwrittenBlocks(CommonConfig.OverrideTarget.RECIPE).forEach(this::enableBlockOverwrite);
+        enableBlockOverwrite(Items.SPYGLASS);
     }
 
-    private void enableBlockOverwrite(Block block) {
-        var id = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getKey(block));
+    private void enableBlockOverwrite(ItemLike item) {
+        var id = Preconditions.checkNotNull(ForgeRegistries.ITEMS.getKey(item.asItem()));
         var recipe = recipes.get(id);
         if (recipe != null) dynamicPack.addRecipe(recipe);
     }

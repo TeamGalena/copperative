@@ -4,6 +4,7 @@ import galena.copperative.index.CBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DiodeBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,6 +30,7 @@ public class TogglerBlock extends DiodeBlock implements CWeatheringCopper {
     public final WeatherState weatherState;
 
     public static BooleanProperty POWERING = BooleanProperty.create("powering");
+
     public TogglerBlock(WeatherState weatherState, Properties properties) {
         super(properties);
         this.weatherState = weatherState;
@@ -76,7 +79,7 @@ public class TogglerBlock extends DiodeBlock implements CWeatheringCopper {
 
     protected InteractionResult activated(Level world, BlockPos pos, BlockState state) {
         if (!world.isClientSide) {
-            float pitch = !(Boolean)state.getValue(POWERING) ? 1.0F : 0.6F;
+            float pitch = !(Boolean) state.getValue(POWERING) ? 1.0F : 0.6F;
             world.playSound(null, pos, SoundEvents.AMETHYST_CLUSTER_PLACE, SoundSource.BLOCKS, 0.3F, pitch);
             world.setBlock(pos, state.cycle(POWERING), 2);
         }
@@ -89,6 +92,21 @@ public class TogglerBlock extends DiodeBlock implements CWeatheringCopper {
             return false;
 
         return side.getAxis() == state.getValue(FACING).getAxis();
+    }
+
+    private static void makeParticle(BlockState state, LevelAccessor level, BlockPos pos) {
+        Direction direction = state.getValue(FACING).getOpposite();
+        double x = pos.getX() + 0.5D - 0.1D * direction.getStepX();
+        double y = pos.getY() + 0.5D;
+        double z = pos.getZ() + 0.5D - 0.1D * direction.getStepZ();
+        level.addParticle(new DustParticleOptions(DustParticleOptions.REDSTONE_PARTICLE_COLOR, 0.7F), x, y, z, 0.0D, 0.0D, 0.0D);
+    }
+
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (state.getValue(POWERING) && random.nextFloat() < 0.25F) {
+            makeParticle(state, level, pos);
+        }
     }
 
     @Override

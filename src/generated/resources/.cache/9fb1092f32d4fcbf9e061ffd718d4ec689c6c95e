@@ -1,4 +1,4 @@
-// 1.19.2	2023-07-15T17:15:19.4351046	Recipes
+// 1.19.2	2023-07-17T10:34:35.7074172	Recipes
 bb050ecfbd528248022b8c1f72f39ca40acf58bc data/copperative/advancements/recipes/building_blocks/copper_bricks.json
 2c0af5c4c4e06f4d92a9e251b04364d2d6dccb38 data/copperative/advancements/recipes/building_blocks/copper_pillar.json
 1e6c77d7a477b67d28c2e9db4a3ce4f663296bab data/copperative/advancements/recipes/building_blocks/copper_tiles.json
@@ -105,7 +105,7 @@ c6301582a8578e1d8ae33587a9dd1295184cdb21 data/copperative/recipes/exposed_relaye
 9361e2258e097417314b2eaaa21e73a2df5e4397 data/copperative/recipes/exposed_repeater_from_patina.json
 33fb33ff53c61e6d8fa78c10e1b4d0788044ed89 data/copperative/recipes/exposed_sticky_piston_from_patina.json
 a3e707da115104ab384890dc8da290e62c0240cf data/copperative/recipes/exposed_toggler_from_patina.json
-235823c925c9c3cfd419256ba12e09ae393826da data/copperative/recipes/headlight.json
+aaeac254ac6b76e33bb0a1b914b5cb3b2eab1f98 data/copperative/recipes/headlight.json
 5f71477fa1b17d95e0e0ed5cc2802bab166dcbc7 data/copperative/recipes/oxidized_cog_block_from_patina.json
 bd7bd674085c616884d24dabf614317aba39e35a data/copperative/recipes/oxidized_comparator_from_patina.json
 b6dbea9a9a4c59f01bc86484b06ad00b1ffe2cec data/copperative/recipes/oxidized_copper_bricks.json

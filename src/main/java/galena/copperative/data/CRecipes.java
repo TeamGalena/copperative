@@ -17,6 +17,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
@@ -25,6 +26,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import static galena.copperative.Copperative.MOD_ID;
@@ -116,11 +118,11 @@ public class CRecipes extends CRecipeProvider {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(CBlocks.HEADLIGHT.get(0).get())
-                .pattern("AAA")
-                .pattern("ABA")
-                .pattern("ACA")
+                .pattern("CBC")
+                .pattern(" A ")
+                .pattern(" A ")
                 .define('A', COPPER_INGOT)
-                .define('B', Items.SPYGLASS)
+                .define('B', Items.AMETHYST_SHARD)
                 .define('C', Items.REDSTONE_LAMP)
                 .unlockedBy("has_spyglass", has(Items.SPYGLASS))
                 .unlockedBy("has_redstone_lamp", has(Items.REDSTONE_LAMP))
@@ -195,7 +197,7 @@ public class CRecipes extends CRecipeProvider {
                 .save(consumer, new ResourceLocation(MOD_ID, "prismarine_crystals_from_glowstone"));
     }
 
-    public static void registerOverrides(Consumer<FinishedRecipe> consumer) {
+    public static void registerOverrides(BiConsumer<FinishedRecipe, ItemLike> consumer) {
         ShapedRecipeBuilder.shaped(Blocks.REPEATER)
                 .pattern("ABA")
                 .pattern("CCC")
@@ -204,7 +206,7 @@ public class CRecipes extends CRecipeProvider {
                 .define('C', COPPER_INGOT)
                 .unlockedBy("has_redstone_dust", has(REDSTONE_DUST))
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
-                .save(consumer);
+                .save(it -> consumer.accept(it, Blocks.REPEATER));
 
         ShapedRecipeBuilder.shaped(Blocks.COMPARATOR)
                 .pattern(" A ")
@@ -215,7 +217,7 @@ public class CRecipes extends CRecipeProvider {
                 .define('C', COPPER_INGOT)
                 .unlockedBy("has_quartz", has(Items.QUARTZ))
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
-                .save(consumer);
+                .save(it -> consumer.accept(it, Blocks.COMPARATOR));
 
         ShapedRecipeBuilder.shaped(Blocks.PISTON)
                 .pattern("AAA")
@@ -226,7 +228,7 @@ public class CRecipes extends CRecipeProvider {
                 .define('C', Tags.Items.INGOTS_IRON)
                 .define('D', REDSTONE_DUST)
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
-                .save(consumer);
+                .save(it -> consumer.accept(it, Blocks.PISTON));
 
         ShapedRecipeBuilder.shaped(Blocks.OBSERVER)
                 .pattern("AAA")
@@ -236,7 +238,7 @@ public class CRecipes extends CRecipeProvider {
                 .define('B', REDSTONE_DUST)
                 .define('C', Items.QUARTZ)
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
-                .save(consumer);
+                .save(it -> consumer.accept(it, Blocks.OBSERVER));
 
         ShapedRecipeBuilder.shaped(Blocks.DISPENSER)
                 .pattern("AAA")
@@ -246,7 +248,7 @@ public class CRecipes extends CRecipeProvider {
                 .define('B', Items.BOW)
                 .define('C', REDSTONE_DUST)
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
-                .save(consumer);
+                .save(it -> consumer.accept(it, Blocks.DISPENSER));
 
         ShapedRecipeBuilder.shaped(Blocks.DROPPER)
                 .pattern("AAA")
@@ -255,7 +257,7 @@ public class CRecipes extends CRecipeProvider {
                 .define('A', COPPER_INGOT)
                 .define('B', REDSTONE_DUST)
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
-                .save(consumer);
+                .save(it -> consumer.accept(it, Blocks.DROPPER));
 
         ShapedRecipeBuilder.shaped(Blocks.LEVER)
                 .pattern("C")
@@ -265,7 +267,7 @@ public class CRecipes extends CRecipeProvider {
                 .define('B', COPPER_INGOT)
                 .define('C', COPPER_NUGGET)
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
-                .save(consumer);
+                .save(it -> consumer.accept(it, Blocks.LEVER));
 
         ShapedRecipeBuilder.shaped(Blocks.POWERED_RAIL, 6)
                 .pattern("A A")
@@ -275,9 +277,9 @@ public class CRecipes extends CRecipeProvider {
                 .define('B', Tags.Items.RODS_WOODEN)
                 .define('C', REDSTONE_DUST)
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
-                .save(consumer);
+                .save(it -> consumer.accept(it, Blocks.POWERED_RAIL));
 
-        ShapedRecipeBuilder.shaped(Items.SPYGLASS, 6)
+        ShapedRecipeBuilder.shaped(Items.SPYGLASS)
                 .pattern("BCB")
                 .pattern(" A ")
                 .pattern(" A ")
@@ -285,10 +287,10 @@ public class CRecipes extends CRecipeProvider {
                 .define('B', COPPER_NUGGET)
                 .define('C', Items.AMETHYST_SHARD)
                 .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
-                .save(consumer);
+                .save(it -> consumer.accept(it, Items.SPYGLASS));
 
-        CBlocks.EXPOSERS.unaffected().ifPresent(it ->
-                ShapedRecipeBuilder.shaped(it.get())
+        CBlocks.EXPOSERS.unaffected().ifPresent(block ->
+                ShapedRecipeBuilder.shaped(block.get())
                         .pattern("AAA")
                         .pattern("BBC")
                         .pattern("AAA")
@@ -296,11 +298,11 @@ public class CRecipes extends CRecipeProvider {
                         .define('B', REDSTONE_DUST)
                         .define('C', SILVER_INGOT)
                         .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
-                        .save(consumer)
+                        .save(it -> consumer.accept(it, block.get()))
         );
 
-        CBlocks.RELAYERS.unaffected().ifPresent(it ->
-                ShapedRecipeBuilder.shaped(it.get())
+        CBlocks.RELAYERS.unaffected().ifPresent(block ->
+                ShapedRecipeBuilder.shaped(block.get())
                         .pattern("AAA")
                         .pattern("BBC")
                         .pattern("AAA")
@@ -308,11 +310,11 @@ public class CRecipes extends CRecipeProvider {
                         .define('B', REDSTONE_DUST)
                         .define('C', Tags.Items.INGOTS_IRON)
                         .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
-                        .save(consumer)
+                        .save(it -> consumer.accept(it, block.get()))
         );
 
-        CBlocks.CRANKS.unaffected().ifPresent(it ->
-                ShapedRecipeBuilder.shaped(it.get())
+        CBlocks.CRANKS.unaffected().ifPresent(block ->
+                ShapedRecipeBuilder.shaped(block.get())
                         .pattern(" C ")
                         .pattern(" A ")
                         .pattern("BBB")
@@ -320,11 +322,11 @@ public class CRecipes extends CRecipeProvider {
                         .define('B', COPPER_INGOT)
                         .define('C', COPPER_NUGGET)
                         .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
-                        .save(consumer)
+                        .save(it -> consumer.accept(it, block.get()))
         );
 
-        CBlocks.RANDOMIZERS.unaffected().ifPresent(it ->
-                ShapedRecipeBuilder.shaped(it.get())
+        CBlocks.RANDOMIZERS.unaffected().ifPresent(block ->
+                ShapedRecipeBuilder.shaped(block.get())
                         .pattern(" A ")
                         .pattern("ABA")
                         .pattern("CCC")
@@ -333,7 +335,7 @@ public class CRecipes extends CRecipeProvider {
                         .define('C', COPPER_INGOT)
                         .unlockedBy("has_copper_ingot", has(COPPER_INGOT))
                         .unlockedBy("has_prismarine", has(Items.PRISMARINE_CRYSTALS))
-                        .save(consumer, new ResourceLocation("quark", "automation/crafting/redstone_randomizer"))
+                        .save(it -> consumer.accept(it, block.get()), new ResourceLocation("quark", "automation/crafting/redstone_randomizer"))
         );
     }
 

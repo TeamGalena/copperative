@@ -87,8 +87,14 @@ public abstract class CItemModelProvider extends ItemModelProvider {
     public ItemModelBuilder normalItem(Supplier<? extends ItemLike> itemLike) {
         var item = itemLike.get().asItem();
         var itemId = ForgeRegistries.ITEMS.getKey(item).getPath();
+        return normalItem(itemLike, itemTexture(itemId));
+    }
+
+    public ItemModelBuilder normalItem(Supplier<? extends ItemLike> itemLike, ResourceLocation texture) {
+        var item = itemLike.get().asItem();
+        var itemId = ForgeRegistries.ITEMS.getKey(item).getPath();
         return withExistingParent(itemId, mcLoc("item/generated"))
-                .texture("layer0", itemTexture(itemId));
+                .texture("layer0", texture);
     }
 
     public ItemModelBuilder blockWithItem(Supplier<? extends Block> block, String texture) {
@@ -125,8 +131,8 @@ public abstract class CItemModelProvider extends ItemModelProvider {
         return withExistingParent(id.getPath(), new ResourceLocation(Copperative.MOD_ID, "block/compat/" + namespace + "/" + name));
     }
 
-    public ItemModelBuilder compatItem(Block block, String namespace, String name) {
-        return blockWithItem(() -> block, "compat/" + namespace + "/" + name);
+    public ItemModelBuilder compatItem(ItemLike item, String namespace, String name) {
+        return normalItem(() -> item, new ResourceLocation(Copperative.MOD_ID, "item/compat/" + namespace + "/" + name));
     }
 
     public ItemModelBuilder crank(Block block) {
