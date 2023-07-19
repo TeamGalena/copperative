@@ -19,7 +19,7 @@ public class WeatheredExposer extends ExposerBlock implements CWeatheringCopper 
     private final WeatherState weatherState;
 
     public WeatheredExposer(WeatherState weatherState) {
-        super(Properties.copy(Blocks.OBSERVER).randomTicks());
+        super(Properties.copy(Blocks.OBSERVER).randomTicks().color(CWeatheringCopper.colorFor(weatherState)));
         this.weatherState = weatherState;
     }
 

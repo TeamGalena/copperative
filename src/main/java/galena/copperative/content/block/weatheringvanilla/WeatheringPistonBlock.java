@@ -18,7 +18,7 @@ public class WeatheringPistonBlock extends PistonBaseBlock implements CWeatherin
     private final boolean isSticky;
 
     public WeatheringPistonBlock(WeatherState weatherState, boolean isSticky) {
-        super(isSticky, Properties.copy(isSticky ? Blocks.STICKY_PISTON : Blocks.PISTON).sound(SoundType.COPPER));
+        super(isSticky, Properties.copy(isSticky ? Blocks.STICKY_PISTON : Blocks.PISTON).sound(SoundType.COPPER).color(CWeatheringCopper.colorFor(weatherState)));
         this.weatherState = weatherState;
         this.isSticky = isSticky;
     }

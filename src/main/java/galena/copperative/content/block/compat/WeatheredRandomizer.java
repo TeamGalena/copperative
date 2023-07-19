@@ -50,7 +50,7 @@ public class WeatheredRandomizer extends Block implements CWeatheringCopper {
     private final WeatherState weatherState;
 
     public WeatheredRandomizer(WeatherState weatherState) {
-        super(Properties.of(Material.DECORATION).strength(0.0F).sound(SoundType.WOOD));
+        super(Properties.of(Material.DECORATION).strength(0.0F).sound(SoundType.COPPER));
         this.registerDefaultState(defaultBlockState().setValue(FACING, Direction.NORTH).setValue(POWERED, RandomizerPowerState.OFF));
         this.weatherState = weatherState;
     }

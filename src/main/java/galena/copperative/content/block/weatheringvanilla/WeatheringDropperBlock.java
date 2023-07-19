@@ -9,7 +9,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropperBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.WeatheringCopper;
 import org.jetbrains.annotations.NotNull;
 
 @MethodsReturnNonnullByDefault
@@ -18,7 +17,7 @@ public class WeatheringDropperBlock extends DropperBlock implements CWeatheringC
     private final WeatherState weatherState;
 
     public WeatheringDropperBlock(WeatherState weatherState) {
-        super(Properties.copy(Blocks.DROPPER).sound(SoundType.COPPER));
+        super(Properties.copy(Blocks.DROPPER).sound(SoundType.COPPER).color(CWeatheringCopper.colorFor(weatherState)));
         this.weatherState = weatherState;
     }
 

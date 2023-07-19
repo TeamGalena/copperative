@@ -9,14 +9,15 @@ import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class AbstractCopperTrapdoorBlock extends TrapDoorBlock {
     private final boolean canBeUsedByPlayers;
 
-    public AbstractCopperTrapdoorBlock(Properties properties, boolean canBeUsedByPlayers) {
+    public AbstractCopperTrapdoorBlock(Properties properties) {
         super(properties);
-        this.canBeUsedByPlayers = canBeUsedByPlayers;
+        this.canBeUsedByPlayers = material != Material.METAL;
     }
 
     private int getCloseSound() {

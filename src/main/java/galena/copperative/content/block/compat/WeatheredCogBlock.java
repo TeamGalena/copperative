@@ -15,7 +15,7 @@ public class WeatheredCogBlock extends CogBlock implements CWeatheringCopper {
     private final WeatherState weatherState;
 
     public WeatheredCogBlock(WeatherState weatherState) {
-        super(Properties.copy(Blocks.COPPER_BLOCK).strength(3.0F, 6.0F).sound(SoundType.COPPER).requiresCorrectToolForDrops());
+        super(Properties.copy(Blocks.COPPER_BLOCK).strength(3.0F, 6.0F).sound(SoundType.COPPER).requiresCorrectToolForDrops().color(CWeatheringCopper.colorFor(weatherState)));
         this.weatherState = weatherState;
     }
 
