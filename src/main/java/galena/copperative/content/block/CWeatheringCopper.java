@@ -7,6 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -46,5 +47,14 @@ public interface CWeatheringCopper extends WeatheringCopper {
             }
         }
         items.add(stack);
+    }
+
+    static MapColor colorFor(WeatheringCopper.WeatherState state) {
+        return switch (state) {
+            case UNAFFECTED ->  MapColor.COLOR_ORANGE;
+            case EXPOSED ->  MapColor.TERRACOTTA_LIGHT_GRAY;
+            case WEATHERED ->  MapColor.WARPED_STEM;
+            case OXIDIZED ->  MapColor.WARPED_NYLIUM;
+        };
     }
 }

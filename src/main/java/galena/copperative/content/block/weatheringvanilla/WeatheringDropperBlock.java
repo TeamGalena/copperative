@@ -12,7 +12,7 @@ public class WeatheringDropperBlock extends DropperBlock implements CWeatheringC
     private final WeatherState weatherState;
 
     public WeatheringDropperBlock(WeatherState weatherState) {
-        super(Properties.copy(Blocks.DROPPER).sound(SoundType.COPPER));
+        super(Properties.copy(Blocks.DROPPER).sound(SoundType.COPPER).mapColor(CWeatheringCopper.colorFor(weatherState)));
         this.weatherState = weatherState;
     }
 
