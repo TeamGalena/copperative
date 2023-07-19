@@ -23,7 +23,7 @@ public class WeatheringObserverBlock extends ObserverBlock implements CWeatherin
     private final WeatheringCopper.WeatherState weatherState;
 
     public WeatheringObserverBlock(WeatherState weatherState) {
-        super(Properties.copy(Blocks.OBSERVER).sound(SoundType.COPPER));
+        super(Properties.copy(Blocks.OBSERVER).sound(SoundType.COPPER).color(CWeatheringCopper.colorFor(weatherState)));
         this.weatherState = weatherState;
     }
 

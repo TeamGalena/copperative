@@ -8,10 +8,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,18 +23,23 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class AbstractCopperDoorBlock extends DoorBlock {
 
+    public static final Material SOFT_METAL = new Material.Builder(MaterialColor.METAL).build();
     private final boolean canBeUsedByPlayers;
 
-    public static boolean canBeUsedByPlayers(WeatheringCopper.WeatherState state) {
+    public static Material materialFor(WeatheringCopper.WeatherState state) {
         return switch (state) {
-            case UNAFFECTED, EXPOSED -> true;
-            default -> false;
+            case UNAFFECTED, EXPOSED -> SOFT_METAL;
+            default -> Material.METAL;
         };
     }
 
-    public AbstractCopperDoorBlock(Properties properties, boolean canBeUsedByPlayers) {
+    public static Properties propertiesFor(WeatheringCopper.WeatherState state) {
+        return Properties.of(materialFor(state), CWeatheringCopper.colorFor(state)).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.COPPER).noOcclusion();
+    }
+
+    public AbstractCopperDoorBlock(Properties properties) {
         super(properties);
-        this.canBeUsedByPlayers = canBeUsedByPlayers;
+        this.canBeUsedByPlayers = material != Material.METAL;
     }
 
     private int getCloseSound() {

@@ -15,7 +15,7 @@ public class WeatheredRelayer extends RelayerBlock implements CWeatheringCopper 
     private final WeatherState weatherState;
 
     public WeatheredRelayer(WeatherState weatherState) {
-        super(BlockBehaviour.Properties.copy(Blocks.OBSERVER).randomTicks());
+        super(BlockBehaviour.Properties.copy(Blocks.OBSERVER).randomTicks().color(CWeatheringCopper.colorFor(weatherState)));
         this.weatherState = weatherState;
     }
 

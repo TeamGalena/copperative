@@ -19,8 +19,8 @@ public class CopperDoorBlock extends AbstractCopperDoorBlock implements CWeather
 
     private final WeatherState weatherState;
 
-    public CopperDoorBlock(WeatherState weatherState, Properties properties, boolean canBeUsedByPlayers) {
-        super(properties, canBeUsedByPlayers);
+    public CopperDoorBlock(WeatherState weatherState, Properties properties) {
+        super(properties);
         this.weatherState = weatherState;
     }
 

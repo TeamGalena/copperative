@@ -15,7 +15,7 @@ public class WeatheredCrank extends CrankBlock implements CWeatheringCopper {
     private final WeatherState weatherState;
 
     public WeatheredCrank(WeatherState weatherState) {
-        super(Properties.of(Material.WOOD, MaterialColor.NONE).strength(0.6F, 0.6F).noCollission().noOcclusion());
+        super(Properties.of(Material.METAL, MaterialColor.NONE).strength(0.6F, 0.6F).noCollission().noOcclusion());
         this.weatherState = weatherState;
     }
 
