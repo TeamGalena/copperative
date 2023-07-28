@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
+import java.util.Locale;
 
 public class CLang extends CLangProvider {
 
@@ -20,7 +21,7 @@ public class CLang extends CLangProvider {
         blocks.forEach(block -> {
             if(block.get() instanceof WeatheringCopper copper && copper.getAge() != WeatheringCopper.WeatherState.UNAFFECTED) {
                 var name = copper.getAge().name();
-                var prefix = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+                var prefix = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase(Locale.ROOT);
                 addBlock(block, prefix + " " + base);
             } else {
                 addBlock(block, base);

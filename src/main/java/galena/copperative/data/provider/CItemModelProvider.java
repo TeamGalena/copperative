@@ -15,6 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Supplier;
 
 public abstract class CItemModelProvider extends ItemModelProvider {
@@ -151,7 +152,7 @@ public abstract class CItemModelProvider extends ItemModelProvider {
     public String weatherPrefix(Block block) {
         if (block instanceof WeatheringCopper it) {
             var age = it.getAge();
-            if (age != WeatheringCopper.WeatherState.UNAFFECTED) return age.name().toLowerCase() + "_";
+            if (age != WeatheringCopper.WeatherState.UNAFFECTED) return age.name().toLowerCase(Locale.ROOT) + "_";
         }
         return "";
     }
