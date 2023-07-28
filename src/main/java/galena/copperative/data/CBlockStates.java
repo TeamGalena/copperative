@@ -28,7 +28,7 @@ public class CBlockStates extends CBlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        block(CBlocks.PATINA_BLOCK);
+        staticColumn(CBlocks.PATINA_BLOCK);
         weatheringBlock(CBlocks.COPPER_BRICKS);
         weatheringPillarBlock(CBlocks.COPPER_PILLAR);
         weatheringPillarBlock(CBlocks.COPPER_TILES);
