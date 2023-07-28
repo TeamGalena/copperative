@@ -4,7 +4,13 @@ import galena.copperative.client.CopperativeClient;
 import galena.copperative.client.DynamicCopperativeDataPack;
 import galena.copperative.config.CommonConfig;
 import galena.copperative.config.OverwriteEnabledCondition;
-import galena.copperative.data.*;
+import galena.copperative.data.CBlockStateOverwrites;
+import galena.copperative.data.CBlockStates;
+import galena.copperative.data.CItemModels;
+import galena.copperative.data.CLang;
+import galena.copperative.data.CLoot;
+import galena.copperative.data.CRecipes;
+import galena.copperative.data.CTags;
 import galena.copperative.index.CBlocks;
 import galena.copperative.index.CItems;
 import galena.copperative.index.CLootInjects;
@@ -17,8 +23,6 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import org.apache.logging.log4j.LogManager;
@@ -34,13 +38,12 @@ public class Copperative {
         CommonConfig.register();
 
         DynamicCopperativeDataPack.INSTANCE.register();
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> CopperativeClient::registerDynamicResources);
+
+        //noinspection Convert2MethodRef - passing a lambda reference crashes server due to loading of client-only classes
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> CopperativeClient.register());
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(this::setup);
-        modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::gatherData);
-        modEventBus.addListener(CopperativeClient::registerBlockColors);
 
         CraftingHelper.register(new OverwriteEnabledCondition.Serializer());
 
@@ -58,13 +61,6 @@ public class Copperative {
         }
 
         modEventBus.addListener(CTabs::addCreativeTabs);
-    }
-
-    private void setup(FMLCommonSetupEvent event) {
-    }
-
-    private void clientSetup(FMLClientSetupEvent event) {
-        CopperativeClient.registerBlockRenderers();
     }
 
     public void gatherData(GatherDataEvent event) {

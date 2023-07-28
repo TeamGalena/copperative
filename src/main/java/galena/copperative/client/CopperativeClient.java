@@ -5,7 +5,10 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
@@ -40,7 +43,7 @@ public class CopperativeClient {
         }
     }
 
-    public static void registerBlockRenderers() {
+    private static void registerBlockRenderers() {
         RenderType cutout = RenderType.cutout();
 
         render(EXPOSED_REPEATER, cutout);
@@ -66,7 +69,7 @@ public class CopperativeClient {
         COG_BLOCKS.weathered().forEach(it -> render(it, cutout));
     }
 
-    public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
+    private static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
         if (ModList.get().isLoaded("supplementaries")) {
             COG_BLOCKS.weathered().forEach(it ->
                     event.register(new CogBlockColor(), it.get())
@@ -74,7 +77,15 @@ public class CopperativeClient {
         }
     }
 
-    public static void registerDynamicResources() {
+    public static void register() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
         DynamicCopperativeResourcePack.INSTANCE.register();
+        modEventBus.addListener(CopperativeClient::registerBlockColors);
+        modEventBus.addListener(CopperativeClient::setup);
+    }
+
+    private static void setup(FMLClientSetupEvent event) {
+        CopperativeClient.registerBlockRenderers();
     }
 }
