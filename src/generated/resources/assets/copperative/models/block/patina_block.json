@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "copperative:block/patina_block"
+    "end": "copperative:block/patina_block_top",
+    "side": "copperative:block/patina_block"
   }
 }
