@@ -1,6 +1,8 @@
 name: Build
 on:
   push:
+  release:
+    types: [created]
 
 jobs:
   build:
@@ -21,3 +23,10 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: build
+
+      - name: Upload jar to artifacts
+        if: ${{ github.event_name == 'release' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: mod-jar
+          path: build/libs/*.jar
