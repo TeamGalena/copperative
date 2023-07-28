@@ -533,4 +533,10 @@ public abstract class CBlockStateProvider extends BlockStateProvider {
             return ConfiguredModel.builder().modelFile(model).rotationX(rotation.x()).rotationY(rotation.y() + 180).build();
         }, BlockStateProperties.POWER);
     }
+
+    public <B extends Block> void staticColumn(Supplier<B> block) {
+        var name = name(block);
+        var texture = texture(name);
+        simpleBlock(block.get(), models().cubeColumn(name, texture, new ResourceLocation(texture.getNamespace(), texture.getPath() + "_top")));
+    }
 }
