@@ -17,6 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
@@ -131,7 +132,7 @@ public class CommonConfig {
             var property = builder.define("enabled", true);
             var targets = ImmutableMap.<OverrideTarget, BooleanSupplier>builder();
             for (OverrideTarget target : OverrideTarget.values()) {
-                var targetProperty = builder.define(target.name().toLowerCase(), true);
+                var targetProperty = builder.define(target.name().toLowerCase(Locale.ROOT), true);
                 targets.put(target, targetProperty::get);
             }
 
