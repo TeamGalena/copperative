@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-18T21:39:02.4765753	Copperative Block States
+// 1.20.1	2023-07-28T22:06:54.9598817	Copperative Block States
 438a4135790e3deb954693124d4a4b7d7e461e92 assets/copperative/blockstates/copper_bricks.json
 af2412f680c0e702248592f9616c1b481fa15c28 assets/copperative/blockstates/copper_door.json
 5f8c06ec4a3a98236de6c9f3bdf85e8775a7d6b8 assets/copperative/blockstates/copper_pillar.json
@@ -214,7 +214,7 @@ a5d0a052c99b12574e8c3655cfd48bbdae2d299e assets/copperative/models/block/oxidize
 88a8d55256723cbbd885e58e245c87aed302d484 assets/copperative/models/block/oxidized_sticky_piston_base.json
 186aa943b8f259720ce5c6ba432fd6aabe3d91b1 assets/copperative/models/block/oxidized_toggler.json
 6364781745b34482dd0ccd1027ad47f533b4bdc0 assets/copperative/models/block/oxidized_toggler_on.json
-d4b01e331a7dd0f7ccdbe60bdcceb895d996c8e8 assets/copperative/models/block/patina_block.json
+18a14ceaf50e7f215deb459bf07683a4c7e2e71e assets/copperative/models/block/patina_block.json
 9c287a5344a48bb1b235792f24b82ff59e782b16 assets/copperative/models/block/toggler.json
 600dad5534b87cf797200b82a08d5066c7d37413 assets/copperative/models/block/toggler_on.json
 6a7c16c83f41f3c4679f2eee185004db87753082 assets/copperative/models/block/waxed_copper_bricks.json
