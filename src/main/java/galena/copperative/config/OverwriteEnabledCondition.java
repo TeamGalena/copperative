@@ -11,6 +11,7 @@ import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+import java.util.Locale;
 import java.util.Objects;
 
 public class OverwriteEnabledCondition implements ICondition {
@@ -47,7 +48,7 @@ public class OverwriteEnabledCondition implements ICondition {
         @Override
         public void write(JsonObject json, OverwriteEnabledCondition value) {
             json.addProperty("block", value.key.toString());
-            if (value.target != null) json.addProperty("target", value.target.name().toLowerCase());
+            if (value.target != null) json.addProperty("target", value.target.name().toLowerCase(Locale.ROOT));
         }
 
         @Override

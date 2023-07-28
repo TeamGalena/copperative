@@ -149,7 +149,7 @@ public class CBlocks {
 
     public static <B extends Block> CopperSet<B> registerConvertedSet(String name, Supplier<B> targetSupplier, Function<WeatherState, B> function, ResourceKey<CreativeModeTab> tab) {
         var weathered = Stream.of(WeatherState.EXPOSED, WeatherState.WEATHERED, WeatherState.OXIDIZED).<Supplier<B>>map(weatherState -> {
-            String prefix = weatherState.name().toLowerCase() + "_";
+            String prefix = weatherState.name().toLowerCase(Locale.ROOT) + "_";
             return register(prefix + name, () -> function.apply(weatherState), tab);
         }).toList();
         return new CopperSet<>(targetSupplier, weathered);
@@ -164,7 +164,7 @@ public class CBlocks {
         WeatherState[] wStates = WeatherState.values();
         ArrayList<RegistryObject<B>> blocks = new ArrayList<>(4);
         for (final WeatherState weatherState : wStates) {
-            String prefix = weatherState.equals(WeatherState.UNAFFECTED) ? "" : weatherState.name().toLowerCase() + "_";
+            String prefix = weatherState.equals(WeatherState.UNAFFECTED) ? "" : weatherState.name().toLowerCase(Locale.ROOT) + "_";
             Supplier<? extends B> supplier = () -> function.apply(weatherState);
             blocks.add(register(name.apply(prefix), supplier, tab));
         }
