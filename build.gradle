@@ -7,6 +7,7 @@ plugins {
     id "net.darkhax.curseforgegradle" version "${cursegradle_version}"
     id "net.minecraftforge.gradle" version "${forgegradle_version}"
     id "org.spongepowered.mixin" version "${mixingradle_version}"
+    id "org.sonarqube" version "${sonar_version}"
 }
 
 archivesBaseName = "${mod_name} ${minecraft_version}-"
