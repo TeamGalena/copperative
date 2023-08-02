@@ -25,7 +25,7 @@ public class SpotLightBlock extends AirBlock implements SimpleWaterloggedBlock {
     public static final ToIntFunction<BlockState> LIGHT_EMISSION = (state) -> state.getValue(LEVEL);
 
     public SpotLightBlock(Properties properties) {
-        super(properties);
+        super(properties.replaceable());
         this.registerDefaultState(this.stateDefinition.any().setValue(LEVEL, MAX_LEVEL).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
