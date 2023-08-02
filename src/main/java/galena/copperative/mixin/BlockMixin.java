@@ -14,7 +14,7 @@ public abstract class BlockMixin {
 
     @Inject(method = "getSoundType", at = @At("RETURN"), cancellable = true)
     public void modifySoundType(BlockState state, CallbackInfoReturnable<SoundType> cir) {
-        if (CommonConfig.getPossibleOverwrites().contains(state.getBlock())) {
+        if (CommonConfig.isOverwriteEnabled(state.getBlock(), CommonConfig.OverrideTarget.SOUND)) {
             cir.setReturnValue(SoundType.COPPER);
         }
     }
