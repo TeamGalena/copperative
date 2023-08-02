@@ -1,56 +1,42 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: "${forgegradle_version}", changing: true
-        classpath "org.spongepowered:mixingradle:${mixingradle_version}"
-    }
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+
+plugins {
+    id "java"
+    id "maven-publish"
+    id "com.modrinth.minotaur" version "${minotaur_version}"
+    id "net.darkhax.curseforgegradle" version "${cursegradle_version}"
+    id "net.minecraftforge.gradle" version "${forgegradle_version}"
+    id "org.spongepowered.mixin" version "${mixingradle_version}"
 }
 
-apply plugin: 'java'
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
-apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'maven-publish'
-
 archivesBaseName = "${mod_name} ${minecraft_version}-"
+def isCI = System.getenv("CI") == "true"
 
 mixin {
     add sourceSets.main, "${mod_id}.refmap.json"
-
     config "${mod_id}.mixins.json"
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'official', version: minecraft_version
-
-    if (project.hasProperty('forge_ats_enabled') && project.findProperty('forge_ats_enabled').toBoolean()) {
-        // This location is hardcoded in Forge and can not be changed.
-        // https://github.com/MinecraftForge/MinecraftForge/blob/be1698bb1554f9c8fa2f58e32b9ab70bc4385e60/fmlloader/src/main/java/net/minecraftforge/fml/loading/moddiscovery/ModFile.java#L123
-        accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-        project.logger.debug('Forge Access Transformers are enabled for this project.')
-    }
+    mappings channel: "official", version: minecraft_version
 
     runs {
         client {
-            workingDirectory project.file('run')
-            taskName 'Client'
+            workingDirectory project.file("run")
+            taskName "Client"
             arg "-mixin.config=galenacapes.forge.mixins.json"
         }
 
         server {
-            workingDirectory project.file('run/server')
-            taskName 'Server'
+            workingDirectory project.file("run/server")
+            taskName "Server"
         }
 
         data {
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', 'supplementaries', '--existing-mod', 'quark'
-            taskName 'Data'
+            args "--mod", mod_id, "--all", "--output", file("src/generated/resources/"), "--existing", file("src/main/resources/"), "--existing-mod", "supplementaries", "--existing-mod", "quark"
+            taskName "Data"
         }
 
         forEach {
@@ -68,32 +54,27 @@ minecraft {
     }
 }
 
-sourceSets.main.resources.srcDir 'src/generated/resources'
+sourceSets.main.resources.srcDir "src/generated/resources"
 
 repositories {
     maven {
-        // Location of the maven that hosts JEI files (and TiC)
-        name 'Progwml6 maven'
-        url 'https://dvs1.progwml6.com/files/maven'
+        url "https://maven.blamejared.com"
+        content {
+            includeGroup "vazkii.autoreglib"
+            includeGroup "mezz.jei"
+        }
     }
     maven {
-        // Location of a maven mirror for JEI files, as a fallback
-        name 'ModMaven'
-        url 'https://modmaven.k-4u.nl'
-    }
-    maven {
-        // Location of the maven for vazkii's mods
-        name 'blamejared'
-        url 'https://maven.blamejared.com'
-    }
-    maven {
-        url 'https://www.cursemaven.com'
+        url "https://www.cursemaven.com"
         content {
             includeGroup "curse.maven"
         }
     }
     maven {
         url "https://maven.architectury.dev/"
+        content {
+            includeGroup "dev.architectury"
+        }
     }
 }
 
@@ -114,52 +95,38 @@ dependencies {
     implementation fg.deobf("curse.maven:supplementaries-412082:${supplementaries_version}")
     implementation fg.deobf("curse.maven:oreganized-769203:${oreganized_version}")
 
-    // Pretty Shaders for Showcases
-    //runtimeOnly fg.deobf("curse.maven:oculus-581495:${oculus_version}")
-    //runtimeOnly fg.deobf("curse.maven:rubidium-574856:${rubidium_version}")
+    if (!isCI) {
+        // Pretty Shaders for Showcases
+        //runtimeOnly fg.deobf("curse.maven:oculus-581495:${oculus_version}")
+        //runtimeOnly fg.deobf("curse.maven:rubidium-574856:${rubidium_version}")
 
-    // For testing compatibility
-    //runtimeOnly fg.deobf("curse.maven:create-328085:${create_version}")
-    //runtimeOnly fg.deobf("curse.maven:flywheel-486392:${flywheel_version}")
-    //runtimeOnly fg.deobf("curse.maven:create-alloyed-564792:${create_alloyed_version}")
+        // For testing compatibility
+        //runtimeOnly fg.deobf("curse.maven:create-328085:${create_version}")
+        //runtimeOnly fg.deobf("curse.maven:flywheel-486392:${flywheel_version}")
+        //runtimeOnly fg.deobf("curse.maven:create-alloyed-564792:${create_alloyed_version}")
+    }
 }
 
 jar {
     manifest {
         attributes([
-                'Specification-Title'     : mod_name,
-                'Specification-Vendor'    : mod_author,
-                'Specification-Version'   : project.jar.archiveVersion,
-                'Implementation-Title'    : project.name,
-                'Implementation-Version'  : project.jar.archiveVersion,
-                'Implementation-Vendor'   : mod_author,
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                'Timestampe'              : System.currentTimeMillis(),
-                'Built-On-Java'           : "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
-                'Build-On-Minecraft'      : minecraft_version
+                "Specification-Title"     : mod_name,
+                "Specification-Vendor"    : mod_author,
+                "Specification-Version"   : project.jar.archiveVersion,
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : mod_author,
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "Timestampe"              : System.currentTimeMillis(),
+                "Built-On-Java"           : "${System.getProperty("java.vm.version")} (${System.getProperty("java.vm.vendor")})",
+                "Build-On-Minecraft"      : minecraft_version
         ])
     }
 }
 
-jar.finalizedBy('reobfJar')
+jar.finalizedBy("reobfJar")
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId project.group
-            artifactId project.archivesBaseName
-            version project.version
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file://" + System.getenv("local_maven")
-        }
-    }
-}
-
-// Disables Gradle's custom module metadata from being published to maven. The
+// Disables Gradle"s custom module metadata from being published to maven. The
 // metadata includes mapped dependencies which are not reasonably consumable by
 // other mod developers.
 tasks.withType(GenerateModuleMetadata) {
@@ -177,5 +144,39 @@ tasks.withType(ProcessResources) {
                 "mod_name"   : project.mod_name,
                 "mod_author" : project.mod_author,
         ])
+    }
+}
+
+tasks.register("curseforge", TaskPublishCurseForge) {
+    apiToken = System.getenv("CURSEFORGE_TOKEN")
+
+    def mainFile = upload(project.curseforge_project_id, jar)
+
+    mainFile.changelogType = "markdown"
+    mainFile.changelog = System.getenv("CHANGELOG")
+
+    mainFile.addOptional "supplementaries"
+    mainFile.addOptional "quark"
+    mainFile.addOptional "oreganized"
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = project.modrinth_project_id
+    versionType = project.release_type
+    uploadFile = jar
+    gameVersions = [project.minecraft_version]
+    changelog = System.getenv("CHANGELOG")
+    dependencies {
+        optional.project "supplementaries"
+        optional.project "quark"
+        optional.project "oreganized"
+    }
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", project.mod_id
+        property "sonar.projectVersion", "${minecraft_version}-${version}"
     }
 }

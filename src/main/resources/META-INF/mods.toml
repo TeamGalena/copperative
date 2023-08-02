@@ -60,3 +60,10 @@ side="BOTH"
     versionRange="*"
     ordering="AFTER"
     side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="create"
+    mandatory=false
+    versionRange="*"
+    ordering="AFTER"
+    side="BOTH"
