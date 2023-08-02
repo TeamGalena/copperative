@@ -173,3 +173,10 @@ modrinth {
         optional.project "oreganized"
     }
 }
+
+sonar {
+    properties {
+        property "sonar.projectKey", project.mod_id
+        property "sonar.projectVersion", "${minecraft_version}-${version}"
+    }
+}
