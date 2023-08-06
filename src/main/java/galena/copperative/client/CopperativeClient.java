@@ -15,21 +15,15 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import static galena.copperative.index.CBlocks.COG_BLOCKS;
+import static galena.copperative.index.CBlocks.COMPARATORS;
 import static galena.copperative.index.CBlocks.COPPER_DOORS;
 import static galena.copperative.index.CBlocks.COPPER_TRAPDOORS;
-import static galena.copperative.index.CBlocks.EXPOSED_COMPARATOR;
-import static galena.copperative.index.CBlocks.EXPOSED_POWERED_RAIL;
-import static galena.copperative.index.CBlocks.EXPOSED_REPEATER;
-import static galena.copperative.index.CBlocks.OXIDIZED_COMPARATOR;
-import static galena.copperative.index.CBlocks.OXIDIZED_POWERED_RAIL;
-import static galena.copperative.index.CBlocks.OXIDIZED_REPEATER;
+import static galena.copperative.index.CBlocks.POWERED_RAILS;
 import static galena.copperative.index.CBlocks.RANDOMIZERS;
+import static galena.copperative.index.CBlocks.REPEATERS;
 import static galena.copperative.index.CBlocks.TOGGLER;
 import static galena.copperative.index.CBlocks.WAXED_COPPER_DOORS;
 import static galena.copperative.index.CBlocks.WAXED_COPPER_TRAPDOORS;
-import static galena.copperative.index.CBlocks.WEATHERED_COMPARATOR;
-import static galena.copperative.index.CBlocks.WEATHERED_POWERED_RAIL;
-import static galena.copperative.index.CBlocks.WEATHERED_REPEATER;
 
 public class CopperativeClient {
 
@@ -46,17 +40,9 @@ public class CopperativeClient {
     private static void registerBlockRenderers() {
         RenderType cutout = RenderType.cutout();
 
-        render(EXPOSED_REPEATER, cutout);
-        render(WEATHERED_REPEATER, cutout);
-        render(OXIDIZED_REPEATER, cutout);
-
-        render(EXPOSED_COMPARATOR, cutout);
-        render(WEATHERED_COMPARATOR, cutout);
-        render(OXIDIZED_COMPARATOR, cutout);
-
-        render(EXPOSED_POWERED_RAIL, cutout);
-        render(WEATHERED_POWERED_RAIL, cutout);
-        render(OXIDIZED_POWERED_RAIL, cutout);
+        REPEATERS.weathered().forEach(it -> render(it, cutout));
+        COMPARATORS.weathered().forEach(it -> render(it, cutout));
+        POWERED_RAILS.weathered().forEach(it -> render(it, cutout));
 
         render(TOGGLER, cutout);
 

@@ -55,7 +55,7 @@ public class OverwriteEnabledCondition implements ICondition {
         public OverwriteEnabledCondition read(JsonObject json) {
             var key = new ResourceLocation(GsonHelper.getAsString(json, "block"));
             var target = json.has("target")
-                    ? CommonConfig.OverrideTarget.valueOf(GsonHelper.getAsString(json, "target").toUpperCase())
+                    ? CommonConfig.OverrideTarget.valueOf(GsonHelper.getAsString(json, "target").toUpperCase(Locale.ROOT))
                     : null;
             return new OverwriteEnabledCondition(key, target);
         }

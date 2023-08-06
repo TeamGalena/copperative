@@ -1,28 +1,51 @@
 package galena.copperative.index;
 
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Supplier;
 
 public class CTabs {
 
+    private static final Collection<Entry<?>> ENTRIES = new ArrayList<>();
 
-    private static final Collection<Pair<Supplier<? extends ItemLike>, ResourceKey<CreativeModeTab>>> ITEMS_TO_TABS = new ArrayList<>();
+    public static <I extends ItemLike> void addToTab(Supplier<I> item, Supplier<I> after, ResourceKey<CreativeModeTab> tab) {
+        ENTRIES.add(new Entry<>(item, after, tab));
+    }
 
-    public static void addToTab(Supplier<? extends ItemLike> supplier, ResourceKey<CreativeModeTab> tab) {
-        ITEMS_TO_TABS.add(new Pair<>(supplier, tab));
+    public static <I extends ItemLike> void addToTab(Collection<Supplier<I>> items, @Nullable Supplier<I> after, ResourceKey<CreativeModeTab> tab) {
+        items.stream().reduce(after, (previous, next) -> {
+            addToTab(next, previous, tab);
+            return next;
+        });
     }
 
     public static void addCreativeTabs(BuildCreativeModeTabContentsEvent event) {
-        ITEMS_TO_TABS.stream()
-                .filter(it -> it.getSecond().equals(event.getTabKey()))
-                .forEach(it -> event.accept(it.getFirst()));
+        ENTRIES.forEach(it -> it.register(event));
+    }
+
+    public record Entry<I extends ItemLike>(Supplier<I> item, @Nullable Supplier<? extends ItemLike> after,
+                                            ResourceKey<CreativeModeTab> tab) {
+
+        private void register(BuildCreativeModeTabContentsEvent event) {
+            if (!event.getTabKey().equals(tab)) return;
+
+            var entries = event.getEntries();
+
+            if (after != null) {
+                var afterStack = new ItemStack(after.get());
+                entries.putAfter(afterStack, new ItemStack(item.get()), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            } else {
+                event.accept(item);
+            }
+        }
+
     }
 
 }

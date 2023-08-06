@@ -51,41 +51,23 @@ public class CItemModels extends CItemModelProvider {
         CBlocks.WAXED_COPPER_DOORS.forEach(it -> blockWithItem(it, unwaxedBlockName(it)));
         CBlocks.WAXED_COPPER_TRAPDOORS.forEach(it -> trapDoor(it, unwaxedBlockName(it)));
 
-        blockWithItem(CBlocks.EXPOSED_REPEATER);
-        blockWithItem(CBlocks.WEATHERED_REPEATER);
-        blockWithItem(CBlocks.OXIDIZED_REPEATER);
+        CBlocks.REPEATERS.weathered().forEach(this::blockWithItem);
 
-        blockWithItem(CBlocks.EXPOSED_COMPARATOR);
-        blockWithItem(CBlocks.WEATHERED_COMPARATOR);
-        blockWithItem(CBlocks.OXIDIZED_COMPARATOR);
+        CBlocks.COMPARATORS.weathered().forEach(this::blockWithItem);
 
-        piston(CBlocks.EXPOSED_PISTON);
-        piston(CBlocks.WEATHERED_PISTON);
-        piston(CBlocks.OXIDIZED_PISTON);
+        CBlocks.PISTONS.weathered().forEach(this::piston);
 
-        piston(CBlocks.EXPOSED_STICKY_PISTON);
-        piston(CBlocks.WEATHERED_STICKY_PISTON);
-        piston(CBlocks.OXIDIZED_STICKY_PISTON);
+        CBlocks.STICKY_PISTONS.weathered().forEach(this::piston);
 
-        block(CBlocks.EXPOSED_DISPENSER);
-        block(CBlocks.WEATHERED_DISPENSER);
-        block(CBlocks.OXIDIZED_DISPENSER);
+        CBlocks.DISPENSERS.weathered().forEach(this::block);
 
-        block(CBlocks.EXPOSED_DROPPER);
-        block(CBlocks.WEATHERED_DROPPER);
-        block(CBlocks.OXIDIZED_DROPPER);
+        CBlocks.DROPPERS.weathered().forEach(this::block);
 
-        block(CBlocks.EXPOSED_OBSERVER);
-        block(CBlocks.WEATHERED_OBSERVER);
-        block(CBlocks.OXIDIZED_OBSERVER);
+        CBlocks.OBSERVERS.weathered().forEach(this::block);
 
-        normalItem(CBlocks.EXPOSED_LEVER);
-        normalItem(CBlocks.WEATHERED_LEVER);
-        normalItem(CBlocks.OXIDIZED_LEVER);
+        CBlocks.LEVERS.weathered().forEach(this::normalItem);
 
-        blockFlat(CBlocks.EXPOSED_POWERED_RAIL);
-        blockFlat(CBlocks.WEATHERED_POWERED_RAIL);
-        blockFlat(CBlocks.OXIDIZED_POWERED_RAIL);
+        CBlocks.POWERED_RAILS.weathered().forEach(this::blockFlat);
 
         CBlocks.EXPOSERS.weathered().map(Supplier::get).forEach(it -> compatBlock(it, "oreganized", weatherPrefix(it) + "exposer_level_0_south"));
         CBlocks.RELAYERS.weathered().map(Supplier::get).forEach(it -> compatBlock(it, "supplementaries", weatherPrefix(it) + "relayer_off"));

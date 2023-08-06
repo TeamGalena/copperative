@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -20,9 +21,8 @@ public class CItems {
     public static final TagKey<Item> WAX_INDICATORS = TagKey.create(Registries.ITEM, new ResourceLocation(Copperative.MOD_ID, "wax_indicators"));
 
     static {
-        CTabs.addToTab(COPPER_NUGGET, CreativeModeTabs.INGREDIENTS);
-        CTabs.addToTab(PATINA, CreativeModeTabs.INGREDIENTS);
-        CTabs.addToTab(COPPER_NUGGET, CreativeModeTabs.INGREDIENTS);
+        CTabs.addToTab(COPPER_NUGGET, () -> Items.GOLD_NUGGET, CreativeModeTabs.INGREDIENTS);
+        CTabs.addToTab(PATINA, COPPER_NUGGET, CreativeModeTabs.INGREDIENTS);
     }
 
 }
