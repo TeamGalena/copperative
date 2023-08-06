@@ -33,41 +33,23 @@ public class CBlockStates extends CBlockStateProvider {
         weatheringPillarBlock(CBlocks.COPPER_PILLAR);
         weatheringPillarBlock(CBlocks.COPPER_TILES);
 
-        repeater(CBlocks.EXPOSED_REPEATER);
-        repeater(CBlocks.WEATHERED_REPEATER);
-        repeater(CBlocks.OXIDIZED_REPEATER);
+        CBlocks.REPEATERS.weathered().forEach(this::repeater);
 
-        comparator(CBlocks.EXPOSED_COMPARATOR);
-        comparator(CBlocks.WEATHERED_COMPARATOR);
-        comparator(CBlocks.OXIDIZED_COMPARATOR);
+        CBlocks.COMPARATORS.weathered().forEach(this::comparator);
 
-        piston(CBlocks.EXPOSED_PISTON);
-        piston(CBlocks.WEATHERED_PISTON);
-        piston(CBlocks.OXIDIZED_PISTON);
+        CBlocks.PISTONS.weathered().forEach(this::piston);
 
-        piston(CBlocks.EXPOSED_STICKY_PISTON);
-        piston(CBlocks.WEATHERED_STICKY_PISTON);
-        piston(CBlocks.OXIDIZED_STICKY_PISTON);
+        CBlocks.STICKY_PISTONS.weathered().forEach(this::piston);
 
-        dispenser(CBlocks.EXPOSED_DISPENSER);
-        dispenser(CBlocks.WEATHERED_DISPENSER);
-        dispenser(CBlocks.OXIDIZED_DISPENSER);
+        CBlocks.DISPENSERS.weathered().forEach(this::dispenser);
 
-        dropper(CBlocks.EXPOSED_DROPPER);
-        dropper(CBlocks.WEATHERED_DROPPER);
-        dropper(CBlocks.OXIDIZED_DROPPER);
+        CBlocks.DROPPERS.weathered().forEach(this::dropper);
 
-        observer(CBlocks.EXPOSED_OBSERVER);
-        observer(CBlocks.WEATHERED_OBSERVER);
-        observer(CBlocks.OXIDIZED_OBSERVER);
+        CBlocks.OBSERVERS.weathered().forEach(this::observer);
 
-        lever(CBlocks.EXPOSED_LEVER);
-        lever(CBlocks.WEATHERED_LEVER);
-        lever(CBlocks.OXIDIZED_LEVER);
+        CBlocks.LEVERS.weathered().forEach(this::lever);
 
-        poweredRail(CBlocks.EXPOSED_POWERED_RAIL);
-        poweredRail(CBlocks.WEATHERED_POWERED_RAIL);
-        poweredRail(CBlocks.OXIDIZED_POWERED_RAIL);
+        CBlocks.POWERED_RAILS.weathered().forEach(this::poweredRail);
 
         headlight(CBlocks.HEADLIGHT);
         toggler(CBlocks.TOGGLER);

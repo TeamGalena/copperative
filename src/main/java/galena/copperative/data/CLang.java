@@ -6,10 +6,10 @@ import galena.copperative.index.CItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WeatheringCopper;
-import net.minecraftforge.registries.RegistryObject;
 
-import java.util.List;
 import java.util.Locale;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 public class CLang extends CLangProvider {
 
@@ -17,11 +17,15 @@ public class CLang extends CLangProvider {
         super(gen, "en_us");
     }
 
-    public void withWeatheredPrefix(List<RegistryObject<Block>> blocks, String base) {
+    private String capitalize(String value) {
+        return value.substring(0, 1).toUpperCase(Locale.ROOT) + value.substring(1).toLowerCase(Locale.ROOT);
+    }
+
+    public void withWeatheredPrefix(Stream<? extends Supplier<Block>> blocks, String base) {
         blocks.forEach(block -> {
             if(block.get() instanceof WeatheringCopper copper && copper.getAge() != WeatheringCopper.WeatherState.UNAFFECTED) {
                 var name = copper.getAge().name();
-                var prefix = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase(Locale.ROOT);
+                var prefix = capitalize(name);
                 addBlock(block, prefix + " " + base);
             } else {
                 addBlock(block, base);
@@ -31,18 +35,13 @@ public class CLang extends CLangProvider {
 
     @Override
     protected void addTranslations() {
-
         addBlock(CBlocks.PATINA_BLOCK, "Block of Patina");
-        withWeatheredPrefix(CBlocks.HEADLIGHT, "Redstone Headlight");
-        withWeatheredPrefix(CBlocks.TOGGLER, "Redstone Toggler");
+        withWeatheredPrefix(CBlocks.HEADLIGHT.stream(), "Redstone Headlight");
+        withWeatheredPrefix(CBlocks.TOGGLER.stream(), "Redstone Toggler");
 
-        addBlock(CBlocks.EXPOSED_REPEATER, "Exposed Redstone Repeater");
-        addBlock(CBlocks.WEATHERED_REPEATER, "Weathered Redstone Repeater");
-        addBlock(CBlocks.OXIDIZED_REPEATER, "Oxidized Redstone Repeater");
+        withWeatheredPrefix(CBlocks.REPEATERS.weathered(), "Redstone Repeater");
 
-        addBlock(CBlocks.EXPOSED_COMPARATOR, "Exposed Redstone Comparator");
-        addBlock(CBlocks.WEATHERED_COMPARATOR, "Weathered Redstone Comparator");
-        addBlock(CBlocks.OXIDIZED_COMPARATOR, "Oxidized Redstone Comparator");
+        withWeatheredPrefix(CBlocks.COMPARATORS.weathered(), "Redstone Comparator");
 
         /*
             Automatically create translations for blocks and items based on their registry name.

@@ -62,11 +62,8 @@ public class CTags {
         @Override
         protected void addTags(HolderLookup.Provider lookup) {
             // Vanilla
-            tag(BlockTags.RAILS).add(
-                    EXPOSED_POWERED_RAIL.get(),
-                    WEATHERED_POWERED_RAIL.get(),
-                    OXIDIZED_POWERED_RAIL.get()
-            );
+            var rails = tag(BlockTags.RAILS);
+            POWERED_RAILS.weathered().forEach(it -> rails.add(it.get()));
 
             var doors = tag(BlockTags.DOORS);
             COPPER_DOORS.forEach(it -> doors.add(it.get()));
@@ -79,41 +76,7 @@ public class CTags {
             // Mineables
             var pickaxe = tag(BlockTags.MINEABLE_WITH_PICKAXE);
 
-            pickaxe.add(
-                    PATINA_BLOCK.get(),
-
-                    EXPOSED_REPEATER.get(),
-                    WEATHERED_REPEATER.get(),
-                    OXIDIZED_REPEATER.get(),
-
-                    EXPOSED_COMPARATOR.get(),
-                    WEATHERED_COMPARATOR.get(),
-                    OXIDIZED_COMPARATOR.get(),
-
-                    EXPOSED_OBSERVER.get(),
-                    WEATHERED_OBSERVER.get(),
-                    OXIDIZED_OBSERVER.get(),
-
-                    EXPOSED_DISPENSER.get(),
-                    WEATHERED_DISPENSER.get(),
-                    OXIDIZED_DISPENSER.get(),
-
-                    EXPOSED_DROPPER.get(),
-                    WEATHERED_DROPPER.get(),
-                    OXIDIZED_DROPPER.get(),
-
-                    EXPOSED_PISTON.get(),
-                    WEATHERED_PISTON.get(),
-                    OXIDIZED_PISTON.get(),
-
-                    EXPOSED_STICKY_PISTON.get(),
-                    WEATHERED_STICKY_PISTON.get(),
-                    OXIDIZED_STICKY_PISTON.get(),
-
-                    EXPOSED_POWERED_RAIL.get(),
-                    WEATHERED_POWERED_RAIL.get(),
-                    OXIDIZED_POWERED_RAIL.get()
-            );
+            pickaxe.add(PATINA_BLOCK.get());
 
             COPPER_BRICKS.forEach(it -> pickaxe.add(it.get()));
             COPPER_TILES.forEach(it -> pickaxe.add(it.get()));
@@ -121,6 +84,15 @@ public class CTags {
             WAXED_COPPER_BRICKS.forEach(it -> pickaxe.add(it.get()));
             WAXED_COPPER_TILES.forEach(it -> pickaxe.add(it.get()));
             WAXED_COPPER_PILLAR.forEach(it -> pickaxe.add(it.get()));
+
+            REPEATERS.all().forEach(it -> pickaxe.add(it.get()));
+            COMPARATORS.all().forEach(it -> pickaxe.add(it.get()));
+            OBSERVERS.all().forEach(it -> pickaxe.add(it.get()));
+            DISPENSERS.all().forEach(it -> pickaxe.add(it.get()));
+            DROPPERS.all().forEach(it -> pickaxe.add(it.get()));
+            PISTONS.all().forEach(it -> pickaxe.add(it.get()));
+            STICKY_PISTONS.all().forEach(it -> pickaxe.add(it.get()));
+            POWERED_RAILS.all().forEach(it -> pickaxe.add(it.get()));
 
             HEADLIGHT.forEach(it -> pickaxe.add(it.get()));
             TOGGLER.forEach(it -> pickaxe.add(it.get()));

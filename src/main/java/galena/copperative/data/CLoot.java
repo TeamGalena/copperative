@@ -49,37 +49,15 @@ public class CLoot extends CLootProvider {
                         COG_BLOCKS.weathered(),
                         RANDOMIZERS.weathered(),
 
-                        Stream.of(
-                                PATINA_BLOCK,
+                        REPEATERS.weathered(),
+                        COMPARATORS.weathered(),
+                        PISTONS.weathered(),
+                        STICKY_PISTONS.weathered(),
+                        OBSERVERS.weathered(),
+                        LEVERS.weathered(),
+                        POWERED_RAILS.weathered(),
 
-                                EXPOSED_REPEATER,
-                                OXIDIZED_REPEATER,
-                                WEATHERED_REPEATER,
-
-                                EXPOSED_COMPARATOR,
-                                OXIDIZED_COMPARATOR,
-                                WEATHERED_COMPARATOR,
-
-                                EXPOSED_PISTON,
-                                OXIDIZED_PISTON,
-                                WEATHERED_PISTON,
-
-                                EXPOSED_STICKY_PISTON,
-                                OXIDIZED_STICKY_PISTON,
-                                WEATHERED_STICKY_PISTON,
-
-                                EXPOSED_OBSERVER,
-                                OXIDIZED_OBSERVER,
-                                WEATHERED_OBSERVER,
-
-                                EXPOSED_LEVER,
-                                OXIDIZED_LEVER,
-                                WEATHERED_LEVER,
-
-                                EXPOSED_POWERED_RAIL,
-                                OXIDIZED_POWERED_RAIL,
-                                WEATHERED_POWERED_RAIL
-                        )
+                        Stream.of(PATINA_BLOCK)
                 )
                 .flatMap(Function.identity());
 
@@ -87,16 +65,8 @@ public class CLoot extends CLootProvider {
                 .map(Supplier::get)
                 .forEach(block -> event.register(block, blockLoot(block)));
 
-        Stream.of(
-                        EXPOSED_DROPPER,
-                        OXIDIZED_DROPPER,
-                        WEATHERED_DROPPER,
-
-                        EXPOSED_DISPENSER,
-                        OXIDIZED_DISPENSER,
-                        WEATHERED_DISPENSER
-                )
-                .map(RegistryObject::get)
+        Stream.of(DROPPERS, DISPENSERS).flatMap(CopperSet::weathered)
+                .map(Supplier::get)
                 .forEach(block -> event.register(block, blockLootWithName(block)));
 
         Stream.of(COPPER_DOORS.stream(), WAXED_COPPER_DOORS.stream())
