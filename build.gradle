@@ -155,6 +155,7 @@ tasks.register("curseforge", TaskPublishCurseForge) {
 
     mainFile.changelogType = "markdown"
     mainFile.changelog = System.getenv("CHANGELOG")
+    mainFile.releaseType = project.release_type
 
     mainFile.addOptional "supplementaries"
     mainFile.addOptional "quark"
