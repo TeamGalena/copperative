@@ -18,13 +18,6 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
 
-      - name: Update mod version
-        uses: christian-draeger/write-properties@1.0.1
-        with:
-          path: "gradle.properties"
-          property: "version"
-          value: ${{ github.event.release.tag_name }}
-
       - name: Build and upload
         uses: gradle/gradle-build-action@v2
         with:
