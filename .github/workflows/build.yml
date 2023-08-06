@@ -1,6 +1,7 @@
 name: Build
 on:
   push:
+    branches-ignore:  [ "1.19" ]
   release:
     types: [created]
 
