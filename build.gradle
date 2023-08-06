@@ -175,6 +175,13 @@ modrinth {
     }
 }
 
+// Fix to get sonarqube working with mixingradle (see https://github.com/SpongePowered/MixinGradle/issues/48)
+tasks.compileJava.doFirst {
+    options.compilerArgs.replaceAll {
+        it.toString()
+    }
+}
+
 sonar {
     properties {
         property "sonar.projectKey", project.mod_id
