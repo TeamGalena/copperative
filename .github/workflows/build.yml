@@ -1,6 +1,7 @@
 name: Build
 on:
-  pull_request:
+  push:
+    branches-ignore:  [ "1.20" ]
   release:
     types: [created]
 
