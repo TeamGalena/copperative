@@ -157,6 +157,7 @@ tasks.register("curseforge", TaskPublishCurseForge) {
     mainFile.changelog = System.getenv("CHANGELOG")
     mainFile.releaseType = project.release_type
 
+    mainFile.addRequired "selene"
     mainFile.addOptional "supplementaries"
     mainFile.addOptional "quark"
     mainFile.addOptional "oreganized"
@@ -170,6 +171,7 @@ modrinth {
     gameVersions = [project.minecraft_version]
     changelog = System.getenv("CHANGELOG")
     dependencies {
+        required.project "moonlight"
         optional.project "supplementaries"
         optional.project "quark"
         optional.project "oreganized"
