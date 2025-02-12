@@ -67,3 +67,17 @@ Uniting copper and redstone components as one and expanding on copper as a whole
     versionRange="*"
     ordering="AFTER"
     side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="rechiseled"
+    mandatory=false
+    versionRange="*"
+    ordering="BEFORE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="rechiseledcreate"
+    mandatory=false
+    versionRange="*"
+    ordering="BEFORE"
+    side="BOTH"
